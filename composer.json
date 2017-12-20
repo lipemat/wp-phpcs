@@ -10,8 +10,7 @@
     }
   ],
   "minimum-stability": "stable",
-  "require": {},
-  "require-dev": {
+  "require": {
     "squizlabs/php_codesniffer": "*",
     "wp-coding-standards/wpcs": "^0.14",
     "wimg/php-compatibility": "*",
