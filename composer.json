@@ -1,0 +1,20 @@
+{
+  "name": "lipemat/wp-phpcs",
+  "description": "PHP Codesniffer for a WordPress plugin",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "lipemat",
+      "email": "mat@matlipe.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {},
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*",
+    "wp-coding-standards/wpcs": "^0.14",
+    "wimg/php-compatibility": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
+  }
+}
