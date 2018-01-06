@@ -1,5 +1,6 @@
 #!/bin/sh
 
+PHP='php'
 PROJECT=`php -r "echo dirname(dirname(dirname(realpath('$0'))));"`
 ## Fix windows paths
 PROJECT=${PROJECT//\\//}
@@ -26,7 +27,7 @@ SFILES=${SFILES:-$STAGED_FILES_CMD}
 # Run php lint.
 echo "Checking PHP Lint..."
 for FILE in $SFILES; do
-  php -l -d display_errors=0 $PROJECT/$FILE
+  $PHP -l -d display_errors=0 $PROJECT/$FILE
   if [ $? != 0 ]; then
     echo "Fix the error before commit."
     exit 1
