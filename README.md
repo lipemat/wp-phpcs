@@ -11,7 +11,14 @@ composer require lipemat/wp-phpcs
 
 Copy the phpcs-sample.xml file to the root of your plugin and rename to phpcs.xml. Adjust the configuration as desired.
 
+
 ## Running
+
+Running this command will tell phpcs where to find the WordPress and PHPCompatibility standards. You will only need to run it once after any composer update.
+
+```bash
+phpcs --config-set installed_paths ../../wp-coding-standards/wpcs/,../../wimg/php-compatibility/
+```
 
 The vendor/bin folder includes the scripts to run on either Windows or Unix. Open a terminal and cd to your plugin directory then run
 
@@ -23,7 +30,7 @@ OR
 {project dir}/vendor/bin/phpcbf ./
 ```
 
-You may also created your own script to add somewhere on your path. Here is an example phpcs.cmd for Windows. This assumes you created a folder name wp-phpcs in your root and run composer require there. 
+You may also create your own script somewhere on your PATH. Here is an example phpcs.cmd for Windows. This assumes you created a folder name wp-phpcs in your root and ran composer require there. 
 ``` text
 @echo off
 C:\wp-phpcs\vendor\bin\phpcs %*
@@ -38,7 +45,7 @@ Copy the pre-commit file to your plugins .git/hooks directory and the rest is au
 
 ## Other Notes
 
-The sample phpcs.xml has many thing excluded. This is partially because some things don't really fit in with WordPress standards, and partially because I get lazy sometimes with comments. You can remove any of <exclude> items to make more strict. Remove them all if you really really want to make your code strict. 
+The sample phpcs.xml has many things excluded. This is partially because some things don't really fit in with WordPress standards, and partially because I get lazy sometimes with comments. You can remove any of <exclude> items to make more strict. Remove them all if you really really want to make your code strict. 
 
 There is one in particular worth mentioning. This one is an important security item, but it throws a lot of false positives unless you always late escape. I recommend removing it unless you really are conscious of escaping. Even if you don't remove it, you will get warnings in PHPStorm if you enable CodeSniffer.
 
