@@ -8,7 +8,7 @@ PROJECT=${PROJECT//\\//}
 STAGED_FILES_CMD=`git diff --cached --name-only --diff-filter=ACMR HEAD | grep \\\\.php`
 
 
-# Run codesniffer
+# Check for phpcs config
 if [ ! -f $PROJECT/phpcs.xml ] && [ ! -f $PROJECT/phpcs.xml.dist ]; then
   echo "$PROJECT/phpcs.xml or $PROJECT/phpcs.xml.dist not found!"
   exit 1;
