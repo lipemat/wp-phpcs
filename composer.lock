@@ -1,12 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e45bc8a6488f81649063c2042b8eebc",
-    "packages": [],
-    "packages-dev": [
+    "content-hash": "7b834f5c80a1eba3e9c933ad72501138",
+    "packages": [
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
             "version": "v0.4.4",
@@ -77,16 +76,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.2.2",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "d7c00c3000ac0ce79c96fcbfef86b49a71158cd1"
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d7c00c3000ac0ce79c96fcbfef86b49a71158cd1",
-                "reference": "d7c00c3000ac0ce79c96fcbfef86b49a71158cd1",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
                 "shasum": ""
             },
             "require": {
@@ -96,7 +95,7 @@
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
             },
             "bin": [
                 "bin/phpcs",
@@ -124,20 +123,20 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-12-19T21:44:46+00:00"
+            "time": "2018-06-06T23:58:19+00:00"
         },
         {
             "name": "wimg/php-compatibility",
-            "version": "8.0.1",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wimg/PHPCompatibility.git",
-                "reference": "4c4385fb891dff0501009670f988d4fe36785249"
+                "reference": "4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wimg/PHPCompatibility/zipball/4c4385fb891dff0501009670f988d4fe36785249",
-                "reference": "4c4385fb891dff0501009670f988d4fe36785249",
+                "url": "https://api.github.com/repos/wimg/PHPCompatibility/zipball/4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e",
+                "reference": "4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e",
                 "shasum": ""
             },
             "require": {
@@ -151,7 +150,7 @@
                 "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
             },
             "suggest": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.1"
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
             },
             "type": "phpcodesniffer-standard",
             "autoload": {
@@ -176,20 +175,20 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-08-07T19:39:05+00:00"
+            "time": "2017-12-27T21:58:38+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
-            "version": "0.14.0",
+            "version": "0.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git",
-                "reference": "8cadf48fa1c70b2381988e0a79e029e011a8f41c"
+                "reference": "cf6b310caad735816caef7573295f8a534374706"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/8cadf48fa1c70b2381988e0a79e029e011a8f41c",
-                "reference": "8cadf48fa1c70b2381988e0a79e029e011a8f41c",
+                "url": "https://api.github.com/repos/WordPress-Coding-Standards/WordPress-Coding-Standards/zipball/cf6b310caad735816caef7573295f8a534374706",
+                "reference": "cf6b310caad735816caef7573295f8a534374706",
                 "shasum": ""
             },
             "require": {
@@ -216,9 +215,10 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2017-11-01T15:10:46+00:00"
+            "time": "2018-02-16T01:57:48+00:00"
         }
     ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
