@@ -15,6 +15,6 @@
     "wp-coding-standards/wpcs": "^1.0.0",
     "wimg/php-compatibility": "*",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
-    "automattic/vipwpcs": "^0.2.4"
+    "automattic/vipwpcs": "^0.3.0"
   }
 }
