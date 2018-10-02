@@ -11,14 +11,16 @@ composer require lipemat/wp-phpcs
 
 Copy the phpcs-sample.xml file to the root of your plugin and rename to phpcs.xml. Adjust the configuration as desired.
 
+## Setup
 
-## Running
-
-Running this command will tell phpcs where to find the WordPress and PHPCompatibility standards. You will only need to run it once after any composer update.
+Running this command will tell phpcs where to find the WordPress and PHPCompatibility standards. 
 
 ```bash
-phpcs --config-set installed_paths ../../wp-coding-standards/wpcs/,../../wimg/php-compatibility/
+phpcs --config-set installed_paths '../../wimg/php-compatibility/,../../wp-coding-standards/wpcs/,../../automattic/vipwpcs/'
 ```
+**Composer will likely do this for you when you run composer install due to the included `dealerdirect/phpcodesniffer-composer-installer` library.**
+
+## Running
 
 The vendor/bin folder includes the scripts to run on either Windows or Unix. Open a terminal and cd to your plugin directory then run
 
