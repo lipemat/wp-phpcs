@@ -12,9 +12,9 @@
   "minimum-stability": "stable",
   "require": {
     "squizlabs/php_codesniffer": "*",
-    "wp-coding-standards/wpcs": "^1.0.0",
-    "wimg/php-compatibility": "*",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
-    "automattic/vipwpcs": "^0.3.0"
+    "wp-coding-standards/wpcs": "^1.2.1",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+    "automattic/vipwpcs": "^0.4.0",
+    "phpcompatibility/phpcompatibility-wp": "^2.0.0"
   }
 }
