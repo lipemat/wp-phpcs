@@ -6,42 +6,70 @@
 
     <description>Starting Point Rule Set.</description>
 
+    <!-- sniff both PHP and JS -->
+    <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS"/>
+
     <!-- Exclude paths -->
     <exclude-pattern>*/dev/*</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/local-config\.php</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
 
+    <!-- Show sniff codes in all reports, and progress when running -->
+    <arg value="snp"/>
 
-    <config name="minimum_supported_wp_version" value="4.9" />
+    <!-- Exclude paths -->
+    <exclude-pattern>*/dev/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/local-config\.php</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
 
-    <!-- @see https://github.com/wimg/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions -->
-    <config name="testVersion" value="5.2-"/>
+    <config name="minimum_supported_wp_version" value="5.2.2" />
 
-    <!-- Turns on the PHPCompatibility Standard -->
-    <rule ref="PHPCompatibility"/>
+    <!-- @see https://github.com/PHPCompatibility/PHPCompatibility#using-a-custom-ruleset -->
+    <config name="testVersion" value="7.3-"/>
+    <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
+    <rule ref="PHPCompatibilityWP"/>
 
     <!-- Turns on the WordPress Standard -->
     <rule ref="WordPress">
-        <exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
-        <exclude name="WordPress.VIP.DirectDatabaseQuery.SchemaChange" />
-        <exclude name="WordPress.VIP.FileSystemWritesDisallow.file_ops_fwrite" />
-        <exclude name="WordPress.VIP.OrderByRand" />
-        <exclude name="WordPress.VIP.RestrictedFunctions" />
-        <exclude name="WordPress.VIP.RestrictedVariables.user_meta__wpdb__usermeta" />
-        <exclude name="WordPress.VIP.PostsPerPage.posts_per_page_posts_per_page" />
+        <exclude-pattern>*/js/*</exclude-pattern>
+        <exclude name="Generic.Commenting" />
+        <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent" />
+        <exclude name="Squiz.Commenting" />
+        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine" />
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
-        <exclude name="Generic" />
-        <exclude name="Squiz" />
+        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+        <exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
     </rule>
+
+
+    <!-- wp_verify_nonce() handles casting on it's own and does not need extra overhead -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput">
+        <properties>
+            <property name="customUnslashingSanitizingFunctions" type="array">
+                <element value="wp_verify_nonce"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
+    <rule ref="WordPressVIPMinimum.JS">
+        <type>error</type>
+    </rule>
+
+    <!-- Translations -->
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array" value="sample-namespace" />
         </properties>
     </rule>
-    <!-- Remove this unless you really know what you are outputting -->
-    <rule ref="WordPress.XSS.EscapeOutput.OutputNotEscaped">
-        <type>warning</type>
-    </rule>
+
 </ruleset>
