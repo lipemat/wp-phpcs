@@ -1,5 +1,16 @@
 # WP PHPCS
-PHP Codesniffer setup for a WordPress Plugin
+
+<p>
+<a href="https://github.com/lipemat/wp-phpcs/releases">
+<img src="https://img.shields.io/packagist/v/lipemat/wp-phpcs.svg?label=version" />
+</a>
+    <img alt="" src="https://img.shields.io/badge/wordpress->=4.8.0-green.svg">
+    <img src="https://img.shields.io/packagist/php-v/lipemat/wp-phpcs.svg?color=brown" />
+    <img alt="Packagist" src="https://img.shields.io/packagist/l/lipemat/wp-phpcs.svg">
+</p>
+
+
+PHP Codesniffer setup for a WordPress plugin.
 
 ## Installation
 
