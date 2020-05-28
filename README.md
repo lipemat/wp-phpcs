@@ -27,14 +27,13 @@ Copy the phpcs-sample.xml file to the root of your plugin and rename to phpcs.xm
 Running this command will tell phpcs where to find the WordPress and PHPCompatibility standards. 
 
 ```bash
-phpcs --config-set installed_paths '../../wimg/php-compatibility/,../../wp-coding-standards/wpcs/,../../automattic/vipwpcs/'
+phpcs --config-set installed_paths '../../phpcompatibility/phpcompatibility-paragonie,../../phpcompatibility/phpcompatibility-wp,../../wp-coding-standards/wpcs,../../automattic/vipwpcs,../../phpcompatibility/php-compatibility'
 ```
 **Composer will likely do this for you when you run composer install due to the included `dealerdirect/phpcodesniffer-composer-installer` library.**
 
 ## Running
 
-The vendor/bin folder includes the scripts to run on either Windows or Unix. Open a terminal and cd to your plugin directory then run
-
+The vendor/bin folder includes the scripts to run on either Windows or Unix. You may either add that directory to your PATH or call it verbosely like so:
 ``` bash
 {project dir}/vendor/bin/phpcs ./
 ```
@@ -43,7 +42,7 @@ OR
 {project dir}/vendor/bin/phpcbf ./
 ```
 
-You may also create your own script somewhere on your PATH. Here is an example phpcs.cmd for Windows. This assumes you created a folder name wp-phpcs in your root and ran composer require there. 
+You may also create your own script somewhere on your PATH. Here is an example phpcs.bat for Windows. This assumes you created a folder named wp-phpcs in your root and ran composer require there. 
 ``` text
 @echo off
 C:\wp-phpcs\vendor\bin\phpcs %*
@@ -53,20 +52,12 @@ C:\wp-phpcs\vendor\bin\phpcs %*
 
 Once you have scripts added to your path for phpcs and phpcbf, you can use the included git-hooks/pre-commit to run PHP lint and PHPCS automatically before making any commit. 
 
-Copy the pre-commit file to your plugins .git/hooks directory and the rest is automatic.
+Copy the pre-commit file to your plugin's .git/hooks directory, and the rest is automatic.
 
 
 ## Other Notes
 
-The sample phpcs.xml has many things excluded. This is partially because some things don't really fit in with WordPress standards, and partially because I get lazy sometimes with comments. You can remove any of <exclude> items to make more strict. Remove them all if you really really want to make your code strict. 
-
-There is one in particular worth mentioning. This one is an important security item, but it throws a lot of false positives unless you always late escape. I recommend removing it unless you really are conscious of escaping. Even if you don't remove it, you will get warnings in PHPStorm if you enable CodeSniffer.
-
-``` xml
-<rule ref="WordPress.XSS.EscapeOutput.OutputNotEscaped">
-      <type>warning</type>
-</rule>
-```
+The sample phpcs.xml has many things excluded. This is partially because some things don't really fit in with WordPress standards, and partially because I get sometimes lazy with comments. You can remove any of <exclude> items to make more strict. Remove them all if you really want to make your code strict. 
  
 ## Enabling Code Sniffer in PHPStorm
 
