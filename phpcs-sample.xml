@@ -5,7 +5,7 @@
     <!-- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/blob/develop/WordPress-Core/ruleset.xml -->
 
     <description>Starting Point Rule Set.</description>
-    <version>2.1.0</version>
+    <version>2.3.0</version>
 
     <!-- Include when not specified -->
     <file>./wp-content/plugins/core</file>
@@ -25,7 +25,7 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/wp/*</exclude-pattern>
 
-    <config name="minimum_supported_wp_version" value="5.7.0" />
+    <config name="minimum_supported_wp_version" value="5.8.1" />
 
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibility#using-a-custom-ruleset -->
     <config name="testVersion" value="8.0-" />
@@ -52,12 +52,12 @@
         <exclude name="Squiz.Commenting" />
         <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine" />
 
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-        <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
         <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
         <exclude name="WordPress.PHP.DisallowShortTernary.Found" />
-        <exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
     </rule>
 
     <!-- Functions which don't require extra un-slashing and sanitization -->
