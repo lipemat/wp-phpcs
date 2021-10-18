@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a1c660870c4ecd39b1b02c03125d61f",
+    "content-hash": "4dc39818c40fb998b529b514ed04c1ac",
     "packages": [
         {
             "name": "automattic/vipwpcs",
@@ -301,145 +301,6 @@
             "time": "2021-07-21T11:09:57+00:00"
         },
         {
-            "name": "phpcsstandards/phpcsextra",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHPCSStandards/PHPCSExtra.git",
-                "reference": "5d1dcf7b3b38036503c7f0cfb8bfb3cc8531e707"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHPCSExtra/zipball/5d1dcf7b3b38036503c7f0cfb8bfb3cc8531e707",
-                "reference": "5d1dcf7b3b38036503c7f0cfb8bfb3cc8531e707",
-                "shasum": ""
-            },
-            "require": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.1 || ^0.5 || ^0.6.2 || ^0.7",
-                "php": ">=5.4",
-                "phpcsstandards/phpcsutils": "^1.0 || dev-develop",
-                "squizlabs/php_codesniffer": "^3.3.1"
-            },
-            "require-dev": {
-                "php-parallel-lint/php-console-highlighter": "^0.5",
-                "php-parallel-lint/php-parallel-lint": "^1.3.1",
-                "phpcsstandards/phpcsdevtools": "^1.0",
-                "phpunit/phpunit": "^4.5 || ^5.0 || ^6.0 || ^7.0"
-            },
-            "default-branch": true,
-            "type": "phpcodesniffer-standard",
-            "extra": {
-                "branch-alias": {
-                    "dev-stable": "1.x-dev",
-                    "dev-develop": "1.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Juliette Reinders Folmer",
-                    "homepage": "https://github.com/jrfnl",
-                    "role": "lead"
-                },
-                {
-                    "name": "Contributors",
-                    "homepage": "https://github.com/PHPCSStandards/PHPCSExtra/graphs/contributors"
-                }
-            ],
-            "description": "A collection of sniffs and standards for use with PHP_CodeSniffer.",
-            "keywords": [
-                "PHP_CodeSniffer",
-                "phpcbf",
-                "phpcodesniffer-standard",
-                "phpcs",
-                "standards"
-            ],
-            "support": {
-                "issues": "https://github.com/PHPCSStandards/PHPCSExtra/issues",
-                "source": "https://github.com/PHPCSStandards/PHPCSExtra"
-            },
-            "time": "2021-09-25T18:28:39+00:00"
-        },
-        {
-            "name": "phpcsstandards/phpcsutils",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHPCSStandards/PHPCSUtils.git",
-                "reference": "593249e791047c5156cd13de69ea49e102b8509f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHPCSUtils/zipball/593249e791047c5156cd13de69ea49e102b8509f",
-                "reference": "593249e791047c5156cd13de69ea49e102b8509f",
-                "shasum": ""
-            },
-            "require": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.1 || ^0.5 || ^0.6.2 || ^0.7",
-                "php": ">=5.4",
-                "squizlabs/php_codesniffer": "^2.6.0 || ^3.1.0 || 4.0.x-dev@dev"
-            },
-            "conflict": {
-                "squizlabs/php_codesniffer": "3.5.3"
-            },
-            "require-dev": {
-                "php-parallel-lint/php-console-highlighter": "^0.5",
-                "php-parallel-lint/php-parallel-lint": "^1.3.1",
-                "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || >=9.0 <9.3.0",
-                "yoast/phpunit-polyfills": "^1.0.1"
-            },
-            "default-branch": true,
-            "type": "phpcodesniffer-standard",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev",
-                    "dev-develop": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "PHPCSUtils/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Juliette Reinders Folmer",
-                    "homepage": "https://github.com/jrfnl",
-                    "role": "lead"
-                },
-                {
-                    "name": "Contributors",
-                    "homepage": "https://github.com/PHPCSStandards/PHPCSUtils/graphs/contributors"
-                }
-            ],
-            "description": "A suite of utility functions for use with PHP_CodeSniffer",
-            "homepage": "https://phpcsutils.com/",
-            "keywords": [
-                "PHP_CodeSniffer",
-                "phpcbf",
-                "phpcodesniffer-standard",
-                "phpcs",
-                "phpcs2",
-                "phpcs3",
-                "standards",
-                "tokens",
-                "utility"
-            ],
-            "support": {
-                "docs": "https://phpcsutils.com/",
-                "issues": "https://github.com/PHPCSStandards/PHPCSUtils/issues",
-                "source": "https://github.com/PHPCSStandards/PHPCSUtils"
-            },
-            "time": "2021-09-25T18:33:01+00:00"
-        },
-        {
             "name": "sirbrillig/phpcs-variable-analysis",
             "version": "2.x-dev",
             "source": {
@@ -551,34 +412,52 @@
         },
         {
             "name": "wp-coding-standards/wpcs",
-            "version": "dev-develop",
+            "version": "2.3.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
-                "reference": "dc2f21771cb2b5336a7e6bb6616abcdfa691d7de"
+                "url": "https://github.com/lipemat/WordPress-Coding-Standards.git",
+                "reference": "049fb9af3f515fb78c7f39054d5f85df2ecba3b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/dc2f21771cb2b5336a7e6bb6616abcdfa691d7de",
-                "reference": "dc2f21771cb2b5336a7e6bb6616abcdfa691d7de",
+                "url": "https://api.github.com/repos/lipemat/WordPress-Coding-Standards/zipball/049fb9af3f515fb78c7f39054d5f85df2ecba3b0",
+                "reference": "049fb9af3f515fb78c7f39054d5f85df2ecba3b0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4",
-                "phpcsstandards/phpcsextra": "^1.0",
-                "phpcsstandards/phpcsutils": "^1.0",
-                "squizlabs/php_codesniffer": "^3.5.0"
+                "squizlabs/php_codesniffer": "^3.3.1"
             },
             "require-dev": {
-                "php-parallel-lint/php-console-highlighter": "^0.5",
-                "php-parallel-lint/php-parallel-lint": "^1.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || ^0.6",
                 "phpcompatibility/php-compatibility": "^9.0",
                 "phpcsstandards/phpcsdevtools": "^1.0",
                 "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
             },
-            "default-branch": true,
+            "suggest": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.6 || This Composer plugin will sort out the PHPCS 'installed_paths' automatically."
+            },
             "type": "phpcodesniffer-standard",
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "check-cs": [
+                    "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs"
+                ],
+                "fix-cs": [
+                    "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
+                ],
+                "install-codestandards": [
+                    "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+                ],
+                "run-tests": [
+                    "@php ./vendor/phpunit/phpunit/phpunit --filter WordPress --bootstrap=\"./vendor/squizlabs/php_codesniffer/tests/bootstrap.php\" ./vendor/squizlabs/php_codesniffer/tests/AllTests.php"
+                ],
+                "check-complete": [
+                    "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness -q ./WordPress"
+                ],
+                "check-complete-strict": [
+                    "@php ./vendor/phpcsstandards/phpcsdevtools/bin/phpcs-check-feature-completeness ./WordPress"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -590,31 +469,22 @@
             ],
             "description": "PHP_CodeSniffer rules (sniffs) to enforce WordPress coding conventions",
             "keywords": [
+                "WordPress",
                 "phpcs",
-                "standards",
-                "wordpress"
+                "standards"
             ],
             "support": {
                 "issues": "https://github.com/WordPress/WordPress-Coding-Standards/issues",
-                "source": "https://github.com/WordPress/WordPress-Coding-Standards",
-                "wiki": "https://github.com/WordPress/WordPress-Coding-Standards/wiki"
+                "wiki": "https://github.com/WordPress/WordPress-Coding-Standards/wiki",
+                "source": "https://github.com/WordPress/WordPress-Coding-Standards"
             },
-            "time": "2021-07-29T11:23:51+00:00"
+            "time": "2021-10-18T17:46:03+00:00"
         }
     ],
     "packages-dev": [],
-    "aliases": [
-        {
-            "package": "wp-coding-standards/wpcs",
-            "version": "dev-develop",
-            "alias": "2.3.0",
-            "alias_normalized": "2.3.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "wp-coding-standards/wpcs": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
