@@ -27,7 +27,7 @@ Copy the phpcs-sample.xml file to the root of your plugin and rename to phpcs.xm
 Running this command will tell phpcs where to find the WordPress and PHPCompatibility standards. 
 
 ```bash
-phpcs --config-set installed_paths '../../phpcompatibility/phpcompatibility-paragonie,../../phpcompatibility/phpcompatibility-wp,../../wp-coding-standards/wpcs,../../automattic/vipwpcs,../../phpcompatibility/php-compatibility'
+phpcs --config-set installed_paths '../../automattic/vipwpcs,../../phpcompatibility/php-compatibility,../../phpcompatibility/phpcompatibility-paragonie,../../phpcompatibility/phpcompatibility-wp,../../sirbrillig/phpcs-variable-analysis,../../wp-coding-standards/wpcs,../../lipemat/wp-phpcs/src'
 ```
 **Composer will likely do this for you when you run composer install due to the included `dealerdirect/phpcodesniffer-composer-installer` library.**
 

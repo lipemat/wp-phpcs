@@ -79,11 +79,6 @@
         </properties>
     </rule>
 
-    <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
-    <rule ref="WordPressVIPMinimum.JS">
-        <type>error</type>
-    </rule>
-
     <!-- Translations -->
     <rule ref="WordPress.WP.I18n">
         <!-- Only target the theme and core plugin -->
@@ -94,4 +89,6 @@
             </property>
         </properties>
     </rule>
+
+    <rule ref="Lipe"></rule>
 </ruleset>
