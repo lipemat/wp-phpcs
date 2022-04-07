@@ -12,9 +12,9 @@
     <file>./wp-content/themes/core</file>
 
     <!-- sniff both PHP and JS -->
-    <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS" />
+    <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS"/>
     <!-- Show sniff codes in all reports, and progress when running -->
-    <arg value="sp" />
+    <arg value="sp"/>
 
     <!-- Exclude paths -->
     <exclude-pattern>*/dev/*</exclude-pattern>
@@ -25,39 +25,39 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/wp/*</exclude-pattern>
 
-    <config name="minimum_supported_wp_version" value="5.8.1" />
+    <config name="minimum_supported_wp_version" value="5.8.1"/>
 
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibility#using-a-custom-ruleset -->
-    <config name="testVersion" value="8.0-" />
+    <config name="testVersion" value="8.0-"/>
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
-    <rule ref="PHPCompatibilityWP" />
+    <rule ref="PHPCompatibilityWP"/>
 
     <rule ref="WordPress">
         <!-- Only target the theme and core plugin -->
         <include-pattern>*/core/*</include-pattern>
         <exclude-pattern>*/js/*</exclude-pattern>
 
-        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
-        <exclude name="Generic.Commenting" />
-        <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
-        <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
-        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+        <exclude name="Generic.Commenting"/>
+        <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound"/>
+        <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
 
-        <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
-        <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
-        <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
-        <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
-        <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+        <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+        <exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
+        <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
+        <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent"/>
 
-        <exclude name="Squiz.Commenting" />
-        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine" />
+        <exclude name="Squiz.Commenting"/>
+        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
 
-        <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found"/>
 
-        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
-        <exclude name="WordPress.PHP.DisallowShortTernary.Found" />
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
+        <exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
     </rule>
 
     <!-- Functions which don't require extra un-slashing and sanitization -->
@@ -65,8 +65,8 @@
         <properties>
             <property name="customUnslashingSanitizingFunctions" type="array">
 
-                <element value="wp_verify_nonce" />
-                <element value="sn" />
+                <element value="wp_verify_nonce"/>
+                <element value="sn"/>
             </property>
         </properties>
     </rule>
@@ -74,7 +74,7 @@
     <rule ref="WordPress.Security.EscapeOutput">
         <properties>
             <property name="customEscapingFunctions" type="array">
-                <element value="es" />
+                <element value="es"/>
             </property>
         </properties>
     </rule>
@@ -85,10 +85,12 @@
         <include-pattern>*/core/*</include-pattern>
         <properties>
             <property name="text_domain" type="array">
-                <element value="lipe" />
+                <element value="lipe"/>
             </property>
         </properties>
     </rule>
 
-    <rule ref="Lipe"></rule>
+    <rule ref="Lipe">
+        <type>error</type>
+    </rule>
 </ruleset>

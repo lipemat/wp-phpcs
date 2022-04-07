@@ -5,7 +5,7 @@ namespace Lipe\Sniffs\JS;
 use Lipe\Traits\EscapeOutputFunctions;
 use PHP_CodeSniffer\Util\Tokens;
 
-class DangerouslySetInnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\DangerouslySetInnerHTMLSniff
+class InnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\InnerHTMLSniff
 {
     use EscapeOutputFunctions;
 
@@ -18,12 +18,13 @@ class DangerouslySetInnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\Danger
      */
     public function process_token($stackPtr)
     {
-        if ($this->tokens[$stackPtr]['content'] !== 'dangerouslySetInnerHTML') {
-            // Looking for dangerouslySetInnerHTML only.
+        if ($this->tokens[$stackPtr]['content'] !== 'innerHTML') {
+            // Looking for .innerHTML only.
             return;
         }
 
         $functionToken = $this->phpcsFile->findNext(Tokens::$functionNameTokens, $stackPtr + 1);
+
         if ($this->isScapeFunction($functionToken)) {
             // It's a scape function.
             return;

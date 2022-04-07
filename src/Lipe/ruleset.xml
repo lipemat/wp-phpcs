@@ -1,8 +1,4 @@
 <?xml version="1.0"?>
 <ruleset name="Lipe">
-    <description>Custom coding standards to improve sniffers</description>
-    <!-- Exclude overridden Sniffs -->
-    <rule ref="WordPressVIPMinimum">
-        <exclude name="WordPressVIPMinimum.JS.DangerouslySetInnerHTML.Found"></exclude>
-    </rule>
+    <description>Lipe Projects Sniffs &amp; Rule Set</description>
 </ruleset>
