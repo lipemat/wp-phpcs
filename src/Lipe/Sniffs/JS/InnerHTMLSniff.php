@@ -1,35 +1,42 @@
 <?php
+/**
+ * Lipe.JS.InnerHTMLSniff
+ *
+ * @package wp-phpcs\Lipe
+ */
 
 namespace Lipe\Sniffs\JS;
 
 use Lipe\Traits\EscapeOutputFunctions;
 use PHP_CodeSniffer\Util\Tokens;
 
-class InnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\InnerHTMLSniff
-{
-    use EscapeOutputFunctions;
+/**
+ * Looks for instances of .innerHMTL.
+ */
+class InnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\InnerHTMLSniff {
 
-    /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @param int $stackPtr The position of the current token in the stack passed in $tokens.
-     *
-     * @return void
-     */
-    public function process_token($stackPtr)
-    {
-        if ($this->tokens[$stackPtr]['content'] !== 'innerHTML') {
-            // Looking for .innerHTML only.
-            return;
-        }
+	use EscapeOutputFunctions;
 
-        $functionToken = $this->phpcsFile->findNext(Tokens::$functionNameTokens, $stackPtr + 1);
+	/**
+	 * Processes this test, when one of its tokens is encountered.
+	 *
+	 * @param integer $stackPtr The position of the current token in the stack passed in $tokens.
+	 *
+	 * @return void
+	 */
+	public function process_token( $stackPtr ) {
+		if ( $this->tokens[ $stackPtr ]['content'] !== 'innerHTML' ) {
+			// Looking for .innerHTML only.
+			return;
+		}
 
-        if ($this->isScapeFunction($functionToken)) {
-            // It's a scape function.
-            return;
-        }
+		$functionToken = $this->phpcsFile->findNext( Tokens::$functionNameTokens, ( $stackPtr + 1 ) );
 
-        parent::process_token($stackPtr);
-    }
+		if ( $this->isEscapeFunction( $functionToken ) ) {
+			return;
+		}
+
+		parent::process_token( $stackPtr );
+	}
+
 }
