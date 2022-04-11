@@ -57,14 +57,12 @@ trait EscapeOutputFunctions {
 	 * @return void
 	 */
 	protected function mergeFunctionLists() {
-		$this->escapingFunctions = [ 'sanitize' => true ];
-
 		if ( $this->customEscapingFunctions !== $this->addedCustomFunctions['escape'] ) {
-			$customEscapeFunctions = $this->merge_custom_array( $this->customEscapingFunctions, [], false );
+			$customEscapeFunctions = static::merge_custom_array( $this->customEscapingFunctions, [], false );
 
-			$this->escapingFunctions = $this->merge_custom_array(
+			$this->escapingFunctions = static::merge_custom_array(
 				$customEscapeFunctions,
-				$this->escapingFunctions
+				[ 'sanitize' => true ]
 			);
 
 			$this->addedCustomFunctions['escape'] = $this->customEscapingFunctions;
