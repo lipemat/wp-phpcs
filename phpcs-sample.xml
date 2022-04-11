@@ -1,19 +1,21 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Coding Standards">
+<ruleset name="Starting Point - Rules">
     <!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
-    <!-- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
-    <!-- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/blob/develop/WordPress-Core/ruleset.xml -->
 
-    <description>Starting Point Rule Set.</description>
-    <version>2.3.0</version>
+    <description>Ruleset for the Starting Point project.</description>
+    <version>3.1.0</version>
 
     <!-- Include when not specified -->
     <file>./wp-content/plugins/core</file>
     <file>./wp-content/themes/core</file>
 
-    <!-- sniff both PHP and JS -->
+    <!-- Show file path based on project root. -->
+    <arg name="basepath" value="." />
+    <!-- Cache between runs -->
+    <arg name="cache" value="./.phpcs.cache" />
+    <!-- Sniff both PHP and JS. -->
     <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS" />
-    <!-- Show sniff codes in all reports, and progress when running -->
+    <!-- Show sniff codes in all reports, and progress when running. -->
     <arg value="sp" />
 
     <!-- Exclude paths -->
@@ -25,7 +27,7 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/wp/*</exclude-pattern>
 
-    <config name="minimum_supported_wp_version" value="5.8.1" />
+    <config name="minimum_supported_wp_version" value="5.9.3" />
 
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibility#using-a-custom-ruleset -->
     <config name="testVersion" value="8.0-" />
@@ -60,11 +62,10 @@
         <exclude name="WordPress.PHP.DisallowShortTernary.Found" />
     </rule>
 
-    <!-- Functions which don't require extra un-slashing and sanitization -->
+    <!-- These don't require extra un-slashing and sanitization -->
     <rule ref="WordPress.Security.ValidatedSanitizedInput">
         <properties>
             <property name="customUnslashingSanitizingFunctions" type="array">
-
                 <element value="wp_verify_nonce" />
                 <element value="sn" />
             </property>
@@ -80,7 +81,7 @@
     </rule>
 
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
-    <rule ref="WordPressVIPMinimum.JS">
+    <rule ref="Lipe.JS">
         <type>error</type>
     </rule>
 
@@ -93,9 +94,5 @@
                 <element value="lipe" />
             </property>
         </properties>
-    </rule>
-
-    <rule ref="Lipe.JS">
-        <type>error</type>
     </rule>
 </ruleset>
