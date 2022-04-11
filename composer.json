@@ -9,6 +9,9 @@
       "email": "mat@matlipe.com"
     }
   ],
+  "archive": {
+    "exclude": ["/dev"]
+  },
   "config": {
     "vendor-dir": "vendor",
     "optimize-autoloader": true,
