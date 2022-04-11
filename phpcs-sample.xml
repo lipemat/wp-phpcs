@@ -94,4 +94,8 @@
             </property>
         </properties>
     </rule>
+
+    <rule ref="Lipe.JS">
+        <type>error</type>
+    </rule>
 </ruleset>
