@@ -66,9 +66,19 @@ class WindowSniff extends \WordPressVIPMinimum\Sniffs\JS\WindowSniff {
 		}
 
 		$nextNextToken = \str_replace( [ '"', "'" ], '', $this->tokens[ $nextNextTokenPtr ]['content'] );
+
 		if ( isset( $this->windowProperties[ $nextNextToken ] ) ) {
 			$functionToken = $this->phpcsFile->findNext( Tokens::$functionNameTokens, ( $nextNextTokenPtr + 3 ) );
 
+			// Wrapped in escape function.
+			if ( ! empty( $this->tokens[ $nextTokenPtr ]['nested_parenthesis'] ) ) {
+				$functionBefore = $this->phpcsFile->findNext( Tokens::$functionNameTokens, $stackPtr - 3 );
+				if ( $this->isEscapeFunction( $functionBefore ) ) {
+					return;
+				}
+			}
+
+			// Followed by escape function.
 			if ( $this->isEscapeFunction( $functionToken ) ) {
 				return;
 			}
