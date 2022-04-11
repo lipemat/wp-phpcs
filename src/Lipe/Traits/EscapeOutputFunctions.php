@@ -31,6 +31,17 @@ trait EscapeOutputFunctions {
 
 
 	/**
+	 * Set the default value for `escapingFunctions`.
+	 *
+	 * We do it here instead of a property because the Trait
+	 * classes with the abstract otherwise.
+	 */
+	public function __construct() {
+		$this->escapingFunctions = [ 'sanitize' => true ];
+	}
+
+
+	/**
 	 * Detect if current position is an escape function
 	 *
 	 * @param int $functionToken token amount scape function.
@@ -42,7 +53,11 @@ trait EscapeOutputFunctions {
 
 		$openParenthesis = $this->phpcsFile->findNext( Tokens::$emptyTokens, $functionToken + 1, null, true, null, true );
 
-		return isset( $this->escapingFunctions[ $this->tokens[ $functionToken ]['content'] ], $this->tokens[ $openParenthesis ]['parenthesis_opener'], $this->tokens[ $openParenthesis ]['parenthesis_closer'] ) && T_OPEN_PARENTHESIS === $this->tokens[ $openParenthesis ]['code'];
+		if ( ! isset( $this->escapingFunctions[ $this->tokens[ $functionToken ]['content'] ], $this->tokens[ $openParenthesis ]['parenthesis_opener'], $this->tokens[ $openParenthesis ]['parenthesis_closer'] ) ) {
+			return false;
+		}
+
+		return T_OPEN_PARENTHESIS === $this->tokens[ $openParenthesis ]['code'];
 	}
 
 	/**
@@ -56,7 +71,7 @@ trait EscapeOutputFunctions {
 
 			$this->escapingFunctions = static::merge_custom_array(
 				$customEscapeFunctions,
-				[ 'sanitize' => true ]
+				$this->escapingFunctions
 			);
 
 			$this->addedCustomFunctions['escape'] = $this->customEscapingFunctions;
