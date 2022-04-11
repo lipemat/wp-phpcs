@@ -11,7 +11,7 @@ use Lipe\Traits\EscapeOutputFunctions;
 use PHP_CodeSniffer\Util\Tokens;
 
 /**
- * Flags functions which are executing HTML passed to it.
+ * Flags functions, which are executing HTML passed to it.
  */
 class HTMLExecutingFunctionsSniff extends \WordPressVIPMinimum\Sniffs\JS\HTMLExecutingFunctionsSniff {
 	use EscapeOutputFunctions;

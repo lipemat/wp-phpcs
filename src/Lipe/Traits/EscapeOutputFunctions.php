@@ -12,7 +12,7 @@ use PHP_CodeSniffer\Util\Tokens;
 trait EscapeOutputFunctions {
 
 	/**
-	 * Custom list of functions which escape values for output.
+	 * Custom list of functions, which escape values for output.
 	 *
 	 * @var string[]
 	 */
@@ -21,7 +21,7 @@ trait EscapeOutputFunctions {
 	/**
 	 * Cache of previously added custom functions.
 	 *
-	 * Prevents having to do the same merges over and over again.
+	 * Prevents having to do the same merges over and over.
 	 *
 	 * @var array
 	 */
@@ -29,10 +29,12 @@ trait EscapeOutputFunctions {
 		'escape' => [],
 	];
 
+
 	/**
-	 * Detect if current position is a scape function
+	 * Detect if current position is an escape function
 	 *
-	 * @param int $functionToken token number of scape function.
+	 * @param int $functionToken token amount scape function.
+	 *
 	 * @return bool
 	 */
 	protected function isEscapeFunction( $functionToken ) {
@@ -40,15 +42,7 @@ trait EscapeOutputFunctions {
 
 		$openParenthesis = $this->phpcsFile->findNext( Tokens::$emptyTokens, $functionToken + 1, null, true, null, true );
 
-		if ( isset( $this->escapingFunctions[ $this->tokens[ $functionToken ]['content'] ] ) &&
-			T_OPEN_PARENTHESIS === $this->tokens[ $openParenthesis ]['code'] &&
-			isset( $this->tokens[ $openParenthesis ]['parenthesis_opener'] ) &&
-			isset( $this->tokens[ $openParenthesis ]['parenthesis_closer'] )
-		) {
-			return true;
-		}
-
-		return false;
+		return isset( $this->escapingFunctions[ $this->tokens[ $functionToken ]['content'] ], $this->tokens[ $openParenthesis ]['parenthesis_opener'], $this->tokens[ $openParenthesis ]['parenthesis_closer'] ) && T_OPEN_PARENTHESIS === $this->tokens[ $openParenthesis ]['code'];
 	}
 
 	/**

@@ -14,7 +14,6 @@ use PHP_CodeSniffer\Util\Tokens;
  * Looks for incorrect way of stripping tags.
  */
 class StrippingTagsSniff extends \WordPressVIPMinimum\Sniffs\JS\StrippingTagsSniff {
-
 	use EscapeOutputFunctions;
 
 	/**

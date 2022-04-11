@@ -14,7 +14,6 @@ use PHP_CodeSniffer\Util\Tokens;
  * Looks for instances of window properties that should be flagged.
  */
 class WindowSniff extends \WordPressVIPMinimum\Sniffs\JS\WindowSniff {
-
 	use EscapeOutputFunctions;
 
 	/**
@@ -66,7 +65,7 @@ class WindowSniff extends \WordPressVIPMinimum\Sniffs\JS\WindowSniff {
 			return;
 		}
 
-		$nextNextToken = str_replace( [ '"', "'" ], '', $this->tokens[ $nextNextTokenPtr ]['content'] );
+		$nextNextToken = \str_replace( [ '"', "'" ], '', $this->tokens[ $nextNextTokenPtr ]['content'] );
 		if ( isset( $this->windowProperties[ $nextNextToken ] ) ) {
 			$functionToken = $this->phpcsFile->findNext( Tokens::$functionNameTokens, ( $nextNextTokenPtr + 3 ) );
 

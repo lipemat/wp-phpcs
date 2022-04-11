@@ -14,7 +14,6 @@ use PHP_CodeSniffer\Util\Tokens;
  * Looks for instances of .innerHMTL.
  */
 class InnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\InnerHTMLSniff {
-
 	use EscapeOutputFunctions;
 
 	/**
