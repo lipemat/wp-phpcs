@@ -22,6 +22,7 @@
     <file>./src</file>
 
     <rule ref="WordPress-Extra">
+        <exclude-pattern>*.js</exclude-pattern>
         <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
         <exclude name="WordPress.Files.FileName" />
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
@@ -29,7 +30,9 @@
         <exclude name="WordPress.PHP.YodaConditions" />
     </rule>
 
-    <rule ref="WordPress-Docs" />
+    <rule ref="WordPress-Docs">
+        <exclude-pattern>*.js</exclude-pattern>
+    </rule>
 
     <!-- Enforce PSR1 compatible namespaces. -->
     <rule ref="PSR1.Classes.ClassDeclaration" />
@@ -47,4 +50,9 @@
 
     <!-- Disallow Yoda conditions. -->
     <rule ref="Generic.ControlStructures.DisallowYodaConditions" />
+
+    <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
+    <rule ref="Lipe.JS">
+        <type>error</type>
+    </rule>
 </ruleset>

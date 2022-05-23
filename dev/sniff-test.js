@@ -3,14 +3,15 @@ import {sanitize} from 'dompurify';
 let arbitrary = 'First &middot; Second';
 
 const Test = ( {} ) => {
-	// DangerouslySetInnerHTMLSniff
+	// DangerouslySetInnerHTMLSniff.
 	return (
 		<div>
 			<div dangerouslySetInnerHTML={{__html: sanitize( arbitrary )}} />
 		</div>
 	);
 
-	// HTMLExecutingFunctionsSniff
+
+	// HTMLExecutingFunctionsSniff.
 	$( body ).after( sanitize( arbitrary ) );
 	$( body ).append( sanitize( arbitrary ) );
 	$( body ).appendTo( sanitize( arbitrary ) );
@@ -20,22 +21,22 @@ const Test = ( {} ) => {
 	$( body ).insertBefore( sanitize( arbitrary ) );
 	$( body ).prepend( sanitize( arbitrary ) );
 	$( body ).prependTo( sanitize( arbitrary ) );
-	$( body ).replaceAll( sn( arbitrary ) );
+	$( body ).replaceAll( sanitize( arbitrary ) );
 	$( body ).replaceWith( sanitize( arbitrary ) );
 	$( body ).write( sanitize( arbitrary ) );
 	$( body ).writeln( sanitize( arbitrary ) );
 
-	// InnerHTMLSniff
+	// InnerHTMLSniff.
 	document.getElementById( 'body' ).innerHTML = sanitize( arbitrary );
 
-	// StringConcatSniff
-	const str = 'test' + sn( '<concat>' ) + sn( 'test' ) + snx( '</concat>' );
+	// StringConcatSniff.
+	const str = 'test' + sanitize( '<concat>' ) + sanitize( 'test' ) + snx( '</concat>' );
 
-	// StrippingTagsSniff
-	$( body ).html( sn( arbitrary ) ).text();
+	// StrippingTagsSniff.
+	$( body ).html( sanitize( arbitrary ) ).text();
 
-	// WindowSniff
-	window.location.href = sn( arbitrary );
+	// WindowSniff.
+	window.location.href = sanitize( arbitrary );
 	window.location.protocol = sanitize( arbitrary );
 	window.location.host = sanitize( arbitrary );
 	window.location.hostname = sanitize( arbitrary );
