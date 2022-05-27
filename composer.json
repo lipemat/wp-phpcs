@@ -16,7 +16,10 @@
     "vendor-dir": "vendor",
     "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   },
   "minimum-stability": "dev",
   "require": {
