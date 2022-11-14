@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4dc39818c40fb998b529b514ed04c1ac",
+    "content-hash": "b0dc9bb89d629ad8d0d7699b189bd8b1",
     "packages": [
         {
             "name": "automattic/vipwpcs",
@@ -197,16 +197,16 @@
         },
         {
             "name": "phpcompatibility/phpcompatibility-paragonie",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibilityParagonie.git",
-                "reference": "ddabec839cc003651f2ce695c938686d1086cf43"
+                "reference": "bba5a9dfec7fcfbd679cfaf611d86b4d3759da26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibilityParagonie/zipball/ddabec839cc003651f2ce695c938686d1086cf43",
-                "reference": "ddabec839cc003651f2ce695c938686d1086cf43",
+                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibilityParagonie/zipball/bba5a9dfec7fcfbd679cfaf611d86b4d3759da26",
+                "reference": "bba5a9dfec7fcfbd679cfaf611d86b4d3759da26",
                 "shasum": ""
             },
             "require": {
@@ -243,13 +243,14 @@
                 "paragonie",
                 "phpcs",
                 "polyfill",
-                "standards"
+                "standards",
+                "static analysis"
             ],
             "support": {
                 "issues": "https://github.com/PHPCompatibility/PHPCompatibilityParagonie/issues",
                 "source": "https://github.com/PHPCompatibility/PHPCompatibilityParagonie"
             },
-            "time": "2021-02-15T10:24:51+00:00"
+            "time": "2022-10-25T01:46:02+00:00"
         },
         {
             "name": "phpcompatibility/phpcompatibility-wp",
@@ -312,12 +313,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sirbrillig/phpcs-variable-analysis.git",
-                "reference": "0691145a56821df6b61e4303b7f00426dc747214"
+                "reference": "e619b63dca59bc2ab5406dd260c5743935374460"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sirbrillig/phpcs-variable-analysis/zipball/0691145a56821df6b61e4303b7f00426dc747214",
-                "reference": "0691145a56821df6b61e4303b7f00426dc747214",
+                "url": "https://api.github.com/repos/sirbrillig/phpcs-variable-analysis/zipball/e619b63dca59bc2ab5406dd260c5743935374460",
+                "reference": "e619b63dca59bc2ab5406dd260c5743935374460",
                 "shasum": ""
             },
             "require": {
@@ -363,7 +364,7 @@
                 "source": "https://github.com/sirbrillig/phpcs-variable-analysis",
                 "wiki": "https://github.com/sirbrillig/phpcs-variable-analysis/wiki"
             },
-            "time": "2022-10-24T17:41:15+00:00"
+            "time": "2022-11-07T17:51:19+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -425,16 +426,16 @@
         },
         {
             "name": "wp-coding-standards/wpcs",
-            "version": "2.3.0.1",
+            "version": "2.3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lipemat/WordPress-Coding-Standards.git",
-                "reference": "5b6831a3abb17242348052a04959b64a6b56b10f"
+                "reference": "872d059516b92c36a9a71ef9489411916cf38141"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lipemat/WordPress-Coding-Standards/zipball/5b6831a3abb17242348052a04959b64a6b56b10f",
-                "reference": "5b6831a3abb17242348052a04959b64a6b56b10f",
+                "url": "https://api.github.com/repos/lipemat/WordPress-Coding-Standards/zipball/872d059516b92c36a9a71ef9489411916cf38141",
+                "reference": "872d059516b92c36a9a71ef9489411916cf38141",
                 "shasum": ""
             },
             "require": {
@@ -491,7 +492,7 @@
                 "wiki": "https://github.com/WordPress/WordPress-Coding-Standards/wiki",
                 "source": "https://github.com/WordPress/WordPress-Coding-Standards"
             },
-            "time": "2022-05-27T16:37:11+00:00"
+            "time": "2022-11-14T19:07:31+00:00"
         }
     ],
     "packages-dev": [],
