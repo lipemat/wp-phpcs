@@ -1,7 +1,7 @@
 {
   "name": "lipemat/wp-phpcs",
   "description": "PHP Codesniffer for a WordPress plugin",
-  "type": "library",
+  "type": "phpcodesniffer-standard",
   "license": "MIT",
   "authors": [
     {
