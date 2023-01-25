@@ -1,4 +1,88 @@
 <?xml version="1.0"?>
 <ruleset name="Lipe">
     <description>Lipe Project - Rules</description>
+
+    <!-- Show file path based on project root. -->
+    <arg name="basepath" value="." />
+    <!-- Sniff both PHP and JS. -->
+    <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS" />
+    <!-- Show sniff codes in all reports, and progress when running. -->
+    <arg value="sp" />
+
+    <!-- Exclude paths -->
+    <exclude-pattern>*/dev/*</exclude-pattern>
+    <exclude-pattern>*/dist/*</exclude-pattern>
+    <exclude-pattern>*/wp-unit/*</exclude-pattern>
+    <exclude-pattern>*/js/tests/*</exclude-pattern>
+    <exclude-pattern>*/local-config\.php</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/wp/*</exclude-pattern>
+
+    <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
+    <rule ref="PHPCompatibilityWP">
+        <include-pattern>*\.php$</include-pattern>
+    </rule>
+
+    <!-- Rules available from PHPCSExtra -->
+    <!-- @link https://github.com/PHPCSStandards/PHPCSExtra#sniffs -->
+    <rule ref="Universal.Arrays">
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
+    </rule>
+    <rule ref="Universal.Namespaces.DisallowCurlyBraceSyntax" />
+    <rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames" />
+    <rule ref="Universal.Operators.DisallowLogicalAndOr" />
+    <rule ref="Universal.Operators.StrictComparisons" />
+    <rule ref="Universal.PHP.OneStatementInShortEchoTag" />
+    <rule ref="Universal.UseStatements.LowercaseFunctionConst" />
+    <rule ref="Universal.UseStatements.NoLeadingBackslash" />
+
+    <rule ref="WordPress">
+        <exclude-pattern>*/js/*</exclude-pattern>
+
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+        <exclude name="Generic.Commenting" />
+        <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
+        <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+
+        <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent" />
+
+        <exclude name="Squiz.Commenting" />
+        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine" />
+
+        <exclude name="WordPress.Arrays.ArrayIndentation" />
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+        <exclude name="WordPress.PHP.DisallowShortTernary.Found" />
+    </rule>
+
+    <!-- These don't require extra un-slashing and sanitization -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput">
+        <properties>
+            <property name="customUnslashingSanitizingFunctions" type="array">
+                <element value="wp_verify_nonce" />
+                <element value="sn" />
+            </property>
+        </properties>
+    </rule>
+
+    <!-- All our own escaping functions -->
+    <rule ref="WordPress.Security.EscapeOutput">
+        <properties>
+            <property name="customEscapingFunctions" type="array">
+                <element value="es" />
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
+    <rule ref="Lipe.JS">
+        <type>error</type>
+    </rule>
 </ruleset>
