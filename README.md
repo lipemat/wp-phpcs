@@ -54,8 +54,9 @@ Copy the pre-commit file to your plugin's .git/hooks directory, and the rest is 
 
 ## Lipe Sniffs
 
-This package ships with some `Lipe` namespaced sniffs.
-1. `<rule ref="Lipe" />` for all our default standards.
+This package ships with some _optional_ `Lipe` namespaced sniffs.
+1. `<rule ref="Lipe" />` for all our default configurations and sniffs.
+   1. @note This configuration is opinionated, you probably just want to include desired sniff namespaces. 
 2. `<rule ref="Lipe.JS" />` for our JavaScript security sniffs, which support dompurify.
 
 ## Other Notes
