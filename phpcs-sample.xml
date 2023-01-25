@@ -1,22 +1,15 @@
 <?xml version="1.0"?>
-<ruleset name="Starting Point - Rules">
+<ruleset name="Sample - Rules">
     <!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
 
-    <description>Ruleset for the Starting Point project.</description>
-    <version>3.1.0</version>
+    <description>Sample ruleset for your project.</description>
 
     <!-- Include when not specified -->
-    <file>./wp-content/plugins/core</file>
-    <file>./wp-content/themes/core</file>
+    <file>./wp-content/plugins</file>
+    <file>./wp-content/themes</file>
 
-    <!-- Show file path based on project root. -->
-    <arg name="basepath" value="." />
-    <!-- Cache between runs -->
-    <arg name="cache" value="./.phpcs.cache" />
     <!-- Sniff both PHP and JS. -->
     <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS" />
-    <!-- Show sniff codes in all reports, and progress when running. -->
-    <arg value="sp" />
 
     <!-- Exclude paths -->
     <exclude-pattern>*/dev/*</exclude-pattern>
@@ -25,7 +18,6 @@
     <exclude-pattern>*/local-config\.php</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
-    <exclude-pattern>*/wp/*</exclude-pattern>
 
     <config name="minimum_supported_wp_version" value="5.9.3" />
 
@@ -35,13 +27,9 @@
     <rule ref="PHPCompatibilityWP" />
 
     <rule ref="WordPress">
-        <!-- Only target the theme and core plugin -->
-        <include-pattern>*/core/*</include-pattern>
         <exclude-pattern>*/js/*</exclude-pattern>
 
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
-        <exclude name="Generic.Commenting" />
-        <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
 
@@ -50,49 +38,10 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
         <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
         <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent" />
-
-        <exclude name="Squiz.Commenting" />
-        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine" />
-
-        <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
-
-        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
-        <exclude name="WordPress.PHP.DisallowShortTernary.Found" />
-    </rule>
-
-    <!-- These don't require extra un-slashing and sanitization -->
-    <rule ref="WordPress.Security.ValidatedSanitizedInput">
-        <properties>
-            <property name="customUnslashingSanitizingFunctions" type="array">
-                <element value="wp_verify_nonce" />
-                <element value="sn" />
-            </property>
-        </properties>
-    </rule>
-    <!-- All our own escaping functions -->
-    <rule ref="WordPress.Security.EscapeOutput">
-        <properties>
-            <property name="customEscapingFunctions" type="array">
-                <element value="es" />
-            </property>
-        </properties>
     </rule>
 
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
     <rule ref="Lipe.JS">
         <type>error</type>
-    </rule>
-
-    <!-- Translations -->
-    <rule ref="WordPress.WP.I18n">
-        <!-- Only target the theme and core plugin -->
-        <include-pattern>*/core/*</include-pattern>
-        <properties>
-            <property name="text_domain" type="array">
-                <element value="lipe" />
-            </property>
-        </properties>
     </rule>
 </ruleset>

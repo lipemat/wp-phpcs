@@ -20,16 +20,7 @@ Use composer to install. Although this may be added directly to your plugins com
 composer require lipemat/wp-phpcs
 ```
 
-Copy the phpcs-sample.xml file to the root of your plugin and rename to phpcs.xml. Adjust the configuration as desired.
-
-## Setup
-
-Running this command will tell phpcs where to find the WordPress and PHPCompatibility standards. 
-
-```bash
-phpcs --config-set installed_paths '../../automattic/vipwpcs,../../phpcompatibility/php-compatibility,../../phpcompatibility/phpcompatibility-paragonie,../../phpcompatibility/phpcompatibility-wp,../../sirbrillig/phpcs-variable-analysis,../../wp-coding-standards/wpcs,../../lipemat/wp-phpcs/src'
-```
-**Composer will likely do this for you when you run composer install due to the included `dealerdirect/phpcodesniffer-composer-installer` library.**
+Copy the `phpcs-sample.xml` file to the root of your plugin and rename to `phpcs.xml`. Adjust the configuration as desired.
 
 ## Running
 
@@ -50,24 +41,23 @@ C:\wp-phpcs\vendor\bin\phpcs %*
 
 ## Automating
 
-Once you have scripts added to your path for phpcs and phpcbf, you can use the included git-hooks/pre-commit to run PHP lint and PHPCS automatically before making any commit. 
+Once you have scripts added to your path for phpcs and phpcbf, you can use the included `git-hooks/pre-commit` to run PHP lint and PHPCS automatically before making any commit. 
 
 Copy the pre-commit file to your plugin's .git/hooks directory, and the rest is automatic.
 
+## Included Sniffs
+1. [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards#rulesets)
+2. [WordPress VIP Coding Standards](https://github.com/Automattic/VIP-Coding-Standards)
+   3. @notice Will be removed in version 3.
+3. [PHPCompatibilityWP](https://github.com/PHPCompatibility/PHPCompatibilityWP)
+4. [PHPCSExtra](https://github.com/PHPCSStandards/PHPCSExtra#sniffs)
+
+## Lipe Sniffs
+
+This package ships with some `Lipe` namespaced sniffs.
+1. `<rule ref="Lipe" />` for all our default standards.
+2. `<rule ref="Lipe.JS" />` for our JavaScript security sniffs, which support dompurify.
 
 ## Other Notes
 
-The sample phpcs.xml has many things excluded. This is partially because some things don't really fit in with WordPress standards, and partially because I get sometimes lazy with comments. You can remove any of <exclude> items to make more strict. Remove them all if you really want to make your code strict. 
- 
-## Enabling Code Sniffer in PHPStorm
-
-```
-1. Editor -> Inspections -> PHP Code Sniffer Validation
-2. Coding Standard = {plugin dir}/phpcs.xml
-```
-You will probably also want to use WordPress code styles
-```
-1. Editor -> Code Style -> PHP
-    2. Can most likely use the Default one
-    3. Use 'Set from' and select WordPress. It won't be exact but good starting point.
-```
+The `phpcs-sample.xml` has many things excluded. This is partially because some things don't really fit in with WordPress standards. You can remove any of `<exclude>` items to make more strict. Remove them all if you really want to make your code strict.
