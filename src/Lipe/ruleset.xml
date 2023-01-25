@@ -26,9 +26,7 @@
 
     <!-- Rules available from PHPCSExtra -->
     <!-- @link https://github.com/PHPCSStandards/PHPCSExtra#sniffs -->
-    <rule ref="Universal.Arrays">
-        <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
-    </rule>
+    <rule ref="Universal.Arrays.DuplicateArrayKey" />
     <rule ref="Universal.Namespaces.DisallowCurlyBraceSyntax" />
     <rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames" />
     <rule ref="Universal.Operators.DisallowLogicalAndOr" />
