@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Lipe">
+<ruleset name="Lipe" namespace="Lipe">
     <description>Lipe Project - Rules</description>
 
     <!-- Show file path based on project root. -->
@@ -27,6 +27,7 @@
     <!-- Rules available from PHPCSExtra -->
     <!-- @link https://github.com/PHPCSStandards/PHPCSExtra#sniffs -->
     <rule ref="Universal.Arrays.DuplicateArrayKey" />
+    <rule ref="Universal.CodeAnalysis.StaticInFinalClass" />
     <rule ref="Universal.Namespaces.DisallowCurlyBraceSyntax" />
     <rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames">
         <exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.defaultFound" />
