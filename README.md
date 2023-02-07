@@ -16,6 +16,19 @@ PHP Codesniffer setup for a WordPress plugin.
 
 Use composer to install. Although this may be added directly to your plugins composer.json, it is recommended to install somewhere globally to reuse across projects. 
 
+If not using as a global library, your local `composer.json` will need to include the following config.
+
+```json
+{
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
+```
+
+Install via composer 
 ```bash
 composer require lipemat/wp-phpcs
 ```
