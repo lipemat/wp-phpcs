@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<ruleset name="LipePlugin" namespace="LipePlugin">
+    <description>Lipe Plugin - Rules</description>
+
+    <!-- Show file path based on project root. -->
+    <arg name="basepath" value="." />
+    <!-- Sniff both PHP and JS. -->
+    <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS" />
+    <!-- Show sniff codes in all reports, and progress when running. -->
+    <arg value="sp" />
+
+    <!-- Exclude paths -->
+    <exclude-pattern>*/dev/*</exclude-pattern>
+    <exclude-pattern>*/dist/*</exclude-pattern>
+    <exclude-pattern>*/wp-unit/*</exclude-pattern>
+    <exclude-pattern>*/js/tests/*</exclude-pattern>
+    <exclude-pattern>*/local-config\.php</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/wp/*</exclude-pattern>
+
+    <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
+    <rule ref="PHPCompatibilityWP">
+        <include-pattern>*\.php$</include-pattern>
+    </rule>
+
+    <rule ref="WordPress">
+        <exclude-pattern>*/js/*</exclude-pattern>
+        <exclude name="Generic.Formatting.MultipleStatementAlignment" />
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+
+        <exclude name="PEAR.Functions.FunctionCallSignature" />
+        <exclude name="PEAR.NamingConventions.ValidClassName" />
+
+        <exclude name="Squiz.Commenting.FileComment.Missing" />
+
+        <exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
+        <exclude name="WordPress.Arrays.MultipleStatementAlignment.LongIndexSpaceBeforeDoubleArrow" />
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+    </rule>
+
+    <rule ref="Universal.Classes.DisallowFinalClass">
+        <type>error</type>
+    </rule>
+
+    <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
+    <rule ref="Lipe.JS">
+        <type>error</type>
+    </rule>
+
+    <!-- These don't require extra un-slashing and sanitization -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput">
+        <properties>
+            <property name="customUnslashingSanitizingFunctions" type="array">
+                <element value="wp_verify_nonce" />
+            </property>
+        </properties>
+    </rule>
+
+</ruleset>

@@ -68,14 +68,25 @@ Copy the pre-commit file to your plugin's .git/hooks directory, and the rest is 
 
 This package ships with some _optional_ `Lipe` namespaced sniffs.
 1. `<rule ref="Lipe" />` for all our default configurations and sniffs.
-   1. @note This configuration is opinionated, you probably just want to include desired sniff namespaces. 
+    1. @note This configuration is opinionated, you probably just want to include desired sniff namespaces.
 2. `<rule ref="Lipe.JS" />` for our JavaScript security sniffs, which support dompurify.
-3. `<rule ref="Lipe.CodeAnalysis.SelfInClassSniff" />` for distributed packages, which should not use `self` to improve extensibility. 
-   1. 'ReturnType' - return type of methods.
-   2. 'InstanceOf' - self instance for static calls.
-   3. 'NewInstance' - Constructing via `new self()`.
-   4. 'ScopeResolution' - Local constants via `self::`. 
+3. `<rule ref="Lipe.CodeAnalysis.SelfInClassSniff" />` for distributed packages, which should not use `self` to improve extensibility.
+    1. 'ReturnType' - return type of methods.
+    2. 'InstanceOf' - self instance for static calls.
+    3. 'NewInstance' - Constructing via `new self()`.
+    4. 'ScopeResolution' - Local constants via `self::`.
+
+## LipePlugin Sniffs
+
+This package ships with some _optional_ `LipePlugin` namespaced sniffs designed to be used with a distributed plugin or library.
+1. `<rule ref="LipePlugin" />` for all the default configurations and sniffs.
+    1. @note This configuration is opinionated, you probably just want to include desired sniff namespaces.
+2. `<rule ref="Lipe.CodeAnalysis.SelfInClassSniff" />` force use of `static` instead of `self` to improve extensibility.
+    1. 'ReturnType' - return type of methods.
+    2. 'InstanceOf' - self instance for static calls.
+    3. 'NewInstance' - Constructing via `new self()`.
+    4. 'ScopeResolution' - Local constants via `self::`.
 
 ## Other Notes
 
-The `phpcs-sample.xml` has many things excluded. This is partially because some things don't really fit in with WordPress standards. You can remove any of `<exclude>` items to make more strict. Remove them all if you really want to make your code strict.
+The `phpcs-sample.xml` has many things excluded. This is because some things don't really fit in with WordPress standards. You can remove any of `<exclude>` items to make more strict. Remove them all if you really want to make your code strict.

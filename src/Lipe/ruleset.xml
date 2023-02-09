@@ -26,6 +26,7 @@
 
     <!-- Rules available from PHPCSExtra -->
     <!-- @link https://github.com/PHPCSStandards/PHPCSExtra#sniffs -->
+    <rule ref="Modernize.FunctionCalls.Dirname" />
     <rule ref="Universal.Arrays.DuplicateArrayKey" />
     <rule ref="Universal.CodeAnalysis.StaticInFinalClass" />
     <rule ref="Universal.Namespaces.DisallowCurlyBraceSyntax" />

@@ -1,18 +1,18 @@
 <?php
 /**
- * Lipe.CodeAnalysis.SelfInClassSniff
+ * LipePlugin.CodeAnalysis.SelfInClassSniff
  *
  * Used to verify a distributed plugin is not using `self` which
  * limits the extendability of a class.
  *
  * Inspired by StaticInFinalClassSniff
  *
- * @see StaticInFinalClassSniff
+ * @see     StaticInFinalClassSniff
  *
  * @package wp-phpcs\Lipe
  */
 
-namespace Lipe\Sniffs\CodeAnalysis;
+namespace LipePlugin\Sniffs\CodeAnalysis;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
