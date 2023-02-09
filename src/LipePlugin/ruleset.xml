@@ -46,6 +46,13 @@
         <type>error</type>
     </rule>
 
+    <!-- Requires local "prefixes" -->
+    <!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#naming-conventions-prefix-everything-in-the-global-namespace -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <exclude name="WordPress.NamingConventions.PrefixAllGlobals.InvalidPrefixPassed" />
+        <exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound" />
+    </rule>
+
     <!-- These don't require extra un-slashing and sanitization -->
     <rule ref="WordPress.Security.ValidatedSanitizedInput">
         <properties>
