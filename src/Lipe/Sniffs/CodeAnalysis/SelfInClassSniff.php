@@ -161,7 +161,7 @@ final class SelfInClassSniff implements Sniff {
 				return;
 			}
 
-			if ( $tokens[ $prevNonEmpty ]['code'] === \T_COLON ) {
+			if ( $tokens[ $prevNonEmpty ]['code'] === \T_NEW ) {
 				$this->handleError( $phpcsFile, $stackPtr, 'NewInstance', '"new self"' );
 				return;
 			}
