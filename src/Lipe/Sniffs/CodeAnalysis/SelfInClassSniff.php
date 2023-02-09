@@ -106,6 +106,14 @@ final class SelfInClassSniff implements Sniff {
 				}
 			}
 
+			if ( $tokens[ $ooPtr ]['code'] === \T_CLASS ) {
+				$classProps = ObjectDeclarations::getClassProperties( $phpcsFile, $ooPtr );
+				if ( $classProps['is_final'] === true ) {
+					// Method in a final class cannot be static.
+					return $scopeOpener;
+				}
+			}
+
 			$functionProps = FunctionDeclarations::getProperties( $phpcsFile, $stackPtr );
 			if ( $functionProps['return_type'] === '' ) {
 				return $scopeOpener;
@@ -135,6 +143,13 @@ final class SelfInClassSniff implements Sniff {
 		if ( $ooPtr === false ) {
 			// Not in an OO context.
 			return;
+		}
+		if ( $tokens[ $ooPtr ]['code'] === \T_CLASS ) {
+			$classProps = ObjectDeclarations::getClassProperties( $phpcsFile, $ooPtr );
+			if ( $classProps['is_final'] === true ) {
+				// Constants in a final class cannot be static.
+				return;
+			}
 		}
 
 		$prevNonEmpty = $phpcsFile->findPrevious( Tokens::$emptyTokens, ( $stackPtr - 1 ), null, true );
