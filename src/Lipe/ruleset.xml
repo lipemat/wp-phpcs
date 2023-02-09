@@ -30,9 +30,6 @@
     <rule ref="Universal.Arrays.DuplicateArrayKey" />
     <rule ref="Universal.CodeAnalysis.StaticInFinalClass" />
     <rule ref="Universal.Namespaces.DisallowCurlyBraceSyntax" />
-    <rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames">
-        <exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.defaultFound" />
-    </rule>
     <rule ref="Universal.Operators.DisallowLogicalAndOr" />
     <rule ref="Universal.Operators.StrictComparisons" />
     <rule ref="Universal.PHP.OneStatementInShortEchoTag" />
