@@ -10,8 +10,8 @@
  * @see StaticInFinalClassSniff
  *
  * @package wp-phpcs\Lipe
- *
  */
+
 namespace Lipe\Sniffs\CodeAnalysis;
 
 use PHP_CodeSniffer\Files\File;
@@ -26,7 +26,14 @@ use PHPCSUtils\Utils\Scopes;
 /**
  * Forbid the `self` keyword for any classes.
  */
-final class SelfInClassSniff implements Sniff {
+class SelfInClassSniff implements Sniff {
+	/**
+	 * A list of tokenizers this sniff supports.
+	 *
+	 * @var string[]
+	 */
+	public $supportedTokenizers = [ 'PHP' ];
+
 	/**
 	 * OO Scopes in which late static binding is useless.
 	 *
@@ -53,7 +60,7 @@ final class SelfInClassSniff implements Sniff {
 			// While this is our "real" target.
 			\T_SELF,
 			// But we also need this as after "instanceof", `self` is tokenized as `T_STRING in PHPCS < 4.0.0.
-			// See: https://github.com/squizlabs/PHP_CodeSniffer/pull/3121
+			// See: https://github.com/squizlabs/PHP_CodeSniffer/pull/3121.
 			\T_STRING,
 		];
 	}
@@ -101,7 +108,7 @@ final class SelfInClassSniff implements Sniff {
 			} else {
 				$ooPtr = Conditions::getLastCondition( $phpcsFile, $stackPtr, $this->validOOScopes );
 				if ( $ooPtr === false ) {
-					// Arrow function is outside of OO.
+					// Arrow function is not OO.
 					return $scopeOpener;
 				}
 			}
