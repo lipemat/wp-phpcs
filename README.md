@@ -70,7 +70,7 @@ This package ships with some _optional_ `Lipe` namespaced sniffs.
 1. `<rule ref="Lipe" />` for all our default configurations and sniffs.
     1. @note This configuration is opinionated, you probably just want to include desired sniff namespaces.
 2. `<rule ref="Lipe.JS" />` for our JavaScript security sniffs, which support dompurify.
-3. `<rule ref="Lipe.CodeAnalysis.SelfInClassSniff" />` for distributed packages, which should not use `self` to improve extensibility.
+3. `<rule ref="LipePlugin.CodeAnalysis.SelfInClassSniff" />` for distributed packages, which should not use `self` to improve extensibility.
     1. 'ReturnType' - return type of methods.
     2. 'InstanceOf' - self instance for static calls.
     3. 'NewInstance' - Constructing via `new self()`.
