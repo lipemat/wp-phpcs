@@ -75,6 +75,7 @@ This package ships with some _optional_ `Lipe` namespaced sniffs.
     2. 'InstanceOf' - self instance for static calls.
     3. 'NewInstance' - Constructing via `new self()`.
     4. 'ScopeResolution' - Local constants via `self::`.
+4. `<rule ref="Lipe.DB.CalcFoundRowsSniff" />` for detecting the deprecated uses of MySQL `SQL_CALC_FOUND_ROWS`.
 
 ## LipePlugin Sniffs
 
