@@ -41,6 +41,8 @@
         <type>error</type>
     </rule>
 
+    <rule ref="Lipe.DB.CalcFoundRows" />
+
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
     <rule ref="Lipe.JS">
         <type>error</type>

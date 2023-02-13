@@ -48,8 +48,6 @@ class SelfInClassSniff implements Sniff {
 	/**
 	 * Returns an array of tokens this test wants to listen for.
 	 *
-	 * @since 1.0.0
-	 *
 	 * @return array
 	 */
 	public function register() {
@@ -67,8 +65,6 @@ class SelfInClassSniff implements Sniff {
 
 	/**
 	 * Processes this test, when one of its tokens is encountered.
-	 *
-	 * @since 1.0.0
 	 *
 	 * @param File $phpcsFile                        The file being scanned.
 	 * @param int  $stackPtr                         The position of the current token
