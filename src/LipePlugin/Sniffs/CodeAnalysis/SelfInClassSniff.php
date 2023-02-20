@@ -191,7 +191,7 @@ class SelfInClassSniff implements Sniff {
 	 * @return void
 	 */
 	private function handleError( $phpcsFile, $stackPtr, $errorCode, $extraMsg ) {
-		$fix = $phpcsFile->addFixableError(
+		$fix = $phpcsFile->addFixableWarning(
 			'Use "static" instead of "self" when using late static binding in an OO construct. Found: %s',
 			$stackPtr,
 			$errorCode,
