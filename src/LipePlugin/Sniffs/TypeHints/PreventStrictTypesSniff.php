@@ -12,6 +12,7 @@ namespace LipePlugin\Sniffs\TypeHints;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Util\Tokens;
 
 class PreventStrictTypesSniff implements Sniff {
 
@@ -90,8 +91,8 @@ class PreventStrictTypesSniff implements Sniff {
 		);
 
 		if ( true === $fix ) {
-			$max = $stackPtr + 10;
-			for ( $i = $stackPtr; $i < $max; $i ++ ) {
+			$end = ( $phpcsFile->findNext( [ T_SEMICOLON ], $stackPtr ) + 1 );
+			for ( $i = $stackPtr; $i <= $end; $i ++ ) {
 				$phpcsFile->fixer->replaceToken( $i, '' );
 			}
 		}
