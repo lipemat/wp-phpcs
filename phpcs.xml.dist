@@ -24,10 +24,10 @@
     <rule ref="WordPress-Extra">
         <exclude-pattern>*.js</exclude-pattern>
         <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+        <exclude name="Generic.ControlStructures.DisallowYodaConditions.Found" />
         <exclude name="WordPress.Files.FileName" />
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
         <exclude name="WordPress.NamingConventions.ValidVariableName" />
-        <exclude name="WordPress.PHP.YodaConditions" />
     </rule>
 
     <rule ref="WordPress-Docs">
