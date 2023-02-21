@@ -1,6 +1,6 @@
 <?php
 /**
- * LipePlugin.CodeAnalysis.SelfInClassSniff
+ * LipePlugin.CodeAnalysis.SelfInClass
  *
  * Used to verify a distributed plugin is not using `self` which
  * limits the extendability of a class.

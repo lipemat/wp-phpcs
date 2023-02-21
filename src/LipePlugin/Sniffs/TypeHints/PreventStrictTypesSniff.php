@@ -1,6 +1,6 @@
 <?php
 /**
- * LipePlugin.TypeHints.PreventStrictTypesSniff
+ * LipePlugin.TypeHints.PreventStrictTypes
  *
  * Used to verify a distributed plugin is not using `declare(strict_types = 1)` which
  * cannot be relied on with 3rd party plugins in the stack.

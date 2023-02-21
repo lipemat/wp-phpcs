@@ -1,6 +1,6 @@
 <?php
 /**
- * Lipe.DB.CalcFoundRowsSniff
+ * Lipe.DB.CalcFoundRows
  *
  * MySQL has deprecated `SQL_CALC_FOUND_ROWS` in favor of running
  * a `COUNT` query instead.
