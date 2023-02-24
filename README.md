@@ -70,13 +70,14 @@ This package ships with some _optional_ `Lipe` namespaced sniffs.
 1. `<rule ref="Lipe" />` for all our default configurations and sniffs.
     1. @note This configuration is opinionated, you probably just want to include desired sniff namespaces.
 2. `<rule ref="Lipe.JS" />` for our JavaScript security sniffs, which support dompurify.
-3. `<rule ref="LipePlugin.CodeAnalysis.SelfInClass" />` for distributed packages, which should not use `self` to improve extensibility.
+3. `<rule ref="LipePlugin.TypeHints.PrivateInClass" />` for distributed packages, which should not use `private` to improve extensibility.
+4. `<rule ref="LipePlugin.CodeAnalysis.SelfInClass" />` for distributed packages, which should not use `self` to improve extensibility.
     1. 'ReturnType' - return type of methods.
     2. 'InstanceOf' - self instance for static calls.
     3. 'NewInstance' - Constructing via `new self()`.
     4. 'ScopeResolution' - Local constants via `self::`.
-4. `<rule ref="Lipe.DB.CalcFoundRows" />` for detecting the deprecated uses of MySQL `SQL_CALC_FOUND_ROWS`.
-5. `<rule ref="LipePlugin.TypeHints.PreventStrictTypes" />` for distributed packages, which should not use `strict_type` to improve compatibility.
+5. `<rule ref="Lipe.DB.CalcFoundRows" />` for detecting the deprecated uses of MySQL `SQL_CALC_FOUND_ROWS`.
+6. `<rule ref="LipePlugin.TypeHints.PreventStrictTypes" />` for distributed packages, which should not use `strict_type` to improve compatibility.
 
 ## LipePlugin Sniffs
 
