@@ -76,14 +76,14 @@ class SelfInClassSniff implements Sniff {
 	public function process( File $phpcsFile, $stackPtr ) {
 		$tokens = $phpcsFile->getTokens();
 
-		if ( $tokens[ $stackPtr ]['code'] === \T_STRING
-			&& \strtolower( $tokens[ $stackPtr ]['content'] ) !== 'self'
+		if ( \T_STRING === $tokens[ $stackPtr ]['code']
+		     && 'self' !== \strtolower( $tokens[ $stackPtr ]['content'] )
 		) {
 			return;
 		}
 
-		if ( $tokens[ $stackPtr ]['code'] === \T_FUNCTION
-			|| $tokens[ $stackPtr ]['code'] === \T_FN
+		if ( \T_FUNCTION === $tokens[ $stackPtr ]['code']
+		     || \T_FN === $tokens[ $stackPtr ]['code']
 		) {
 			/*
 			 * Check return types for methods in final classes, anon classes and enums.
@@ -95,30 +95,30 @@ class SelfInClassSniff implements Sniff {
 				$scopeOpener = $tokens[ $stackPtr ]['scope_opener'];
 			}
 
-			if ( $tokens[ $stackPtr ]['code'] === \T_FUNCTION ) {
+			if ( \T_FUNCTION === $tokens[ $stackPtr ]['code'] ) {
 				$ooPtr = Scopes::validDirectScope( $phpcsFile, $stackPtr, $this->validOOScopes );
-				if ( $ooPtr === false ) {
+				if ( false === $ooPtr ) {
 					// Method in a trait (not known where it is used), interface (never final) or not in an OO scope.
 					return $scopeOpener;
 				}
 			} else {
 				$ooPtr = Conditions::getLastCondition( $phpcsFile, $stackPtr, $this->validOOScopes );
-				if ( $ooPtr === false ) {
+				if ( false === $ooPtr ) {
 					// Arrow function is not OO.
 					return $scopeOpener;
 				}
 			}
 
-			if ( $tokens[ $ooPtr ]['code'] === \T_CLASS ) {
+			if ( \T_CLASS === $tokens[ $ooPtr ]['code'] ) {
 				$classProps = ObjectDeclarations::getClassProperties( $phpcsFile, $ooPtr );
-				if ( $classProps['is_final'] === true ) {
+				if ( true === $classProps['is_final'] ) {
 					// Method in a final class cannot be static.
 					return $scopeOpener;
 				}
 			}
 
 			$functionProps = FunctionDeclarations::getProperties( $phpcsFile, $stackPtr );
-			if ( $functionProps['return_type'] === '' ) {
+			if ( '' === $functionProps['return_type'] ) {
 				return $scopeOpener;
 			}
 
@@ -128,7 +128,7 @@ class SelfInClassSniff implements Sniff {
 				( $functionProps['return_type_end_token'] + 1 )
 			);
 
-			if ( $staticPtr === false ) {
+			if ( false === $staticPtr ) {
 				return $scopeOpener;
 			}
 
@@ -143,37 +143,37 @@ class SelfInClassSniff implements Sniff {
 		 */
 		$functionPtr = Conditions::getLastCondition( $phpcsFile, $stackPtr, [ \T_FUNCTION, \T_CLOSURE ] );
 		$ooPtr       = Scopes::validDirectScope( $phpcsFile, $functionPtr, $this->validOOScopes );
-		if ( $ooPtr === false ) {
+		if ( false === $ooPtr ) {
 			// Not in an OO context.
 			return;
 		}
-		if ( $tokens[ $ooPtr ]['code'] === \T_CLASS ) {
+		if ( \T_CLASS === $tokens[ $ooPtr ]['code'] ) {
 			$classProps = ObjectDeclarations::getClassProperties( $phpcsFile, $ooPtr );
-			if ( $classProps['is_final'] === true ) {
+			if ( true === $classProps['is_final'] ) {
 				// Constants in a final class cannot be static.
 				return;
 			}
 		}
 
 		$prevNonEmpty = $phpcsFile->findPrevious( Tokens::$emptyTokens, ( $stackPtr - 1 ), null, true );
-		if ( $prevNonEmpty !== false ) {
-			if ( $tokens[ $prevNonEmpty ]['code'] === \T_INSTANCEOF ) {
+		if ( false !== $prevNonEmpty ) {
+			if ( \T_INSTANCEOF === $tokens[ $prevNonEmpty ]['code'] ) {
 				$prevPrevNonEmpty = $phpcsFile->findPrevious( Tokens::$emptyTokens, ( $prevNonEmpty - 1 ), null, true );
-				$extraMsg         = GetTokensAsString::compact( $phpcsFile, $prevPrevNonEmpty, $stackPtr, true );
+				$extraMsg = GetTokensAsString::compact( $phpcsFile, $prevPrevNonEmpty, $stackPtr, true );
 				$this->handleError( $phpcsFile, $stackPtr, 'InstanceOf', '"' . $extraMsg . '"' );
 				return;
 			}
 
-			if ( $tokens[ $prevNonEmpty ]['code'] === \T_NEW ) {
+			if ( \T_NEW === $tokens[ $prevNonEmpty ]['code'] ) {
 				$this->handleError( $phpcsFile, $stackPtr, 'NewInstance', '"new self"' );
 				return;
 			}
 		}
 
 		$nextNonEmpty = $phpcsFile->findNext( Tokens::$emptyTokens, ( $stackPtr + 1 ), null, true );
-		if ( $nextNonEmpty !== false && $tokens[ $nextNonEmpty ]['code'] === \T_DOUBLE_COLON ) {
+		if ( false !== $nextNonEmpty && \T_DOUBLE_COLON === $tokens[ $nextNonEmpty ]['code'] ) {
 			$nextNextNonEmpty = $phpcsFile->findNext( Tokens::$emptyTokens, ( $nextNonEmpty + 1 ), null, true );
-			$extraMsg         = GetTokensAsString::compact( $phpcsFile, $stackPtr, $nextNextNonEmpty, true );
+			$extraMsg = GetTokensAsString::compact( $phpcsFile, $stackPtr, $nextNextNonEmpty, true );
 			$this->handleError( $phpcsFile, $stackPtr, 'ScopeResolution', '"' . $extraMsg . '"' );
 		}
 	}
@@ -198,7 +198,7 @@ class SelfInClassSniff implements Sniff {
 			[ $extraMsg ]
 		);
 
-		if ( $fix === true ) {
+		if ( true === $fix ) {
 			$phpcsFile->fixer->replaceToken( $stackPtr, 'static' );
 		}
 	}
