@@ -2,11 +2,11 @@
 
 <p>
 <a href="https://github.com/lipemat/wp-phpcs/releases">
-<img src="https://img.shields.io/packagist/v/lipemat/wp-phpcs.svg?label=version" />
+<img alt="package version" src="https://img.shields.io/packagist/v/lipemat/wp-phpcs.svg?label=version">
 </a>
-    <img alt="" src="https://img.shields.io/badge/wordpress->=4.8.0-green.svg">
-    <img src="https://img.shields.io/packagist/php-v/lipemat/wp-phpcs.svg?color=brown" />
-    <img alt="Packagist" src="https://img.shields.io/packagist/l/lipemat/wp-phpcs.svg">
+    <img alt="required WordPress version" src="https://img.shields.io/badge/wordpress->=4.8.0-green.svg">
+    <img alt="required PHP version" src="https://img.shields.io/packagist/php-v/lipemat/wp-phpcs.svg?color=brown" />
+    <img alt="Packagist version" src="https://img.shields.io/packagist/l/lipemat/wp-phpcs.svg">
 </p>
 
 
