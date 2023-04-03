@@ -50,7 +50,6 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent" />
 
         <exclude name="Squiz.Commenting" />
-        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType" />
         <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine" />
 
         <exclude name="WordPress.Arrays.ArrayIndentation" />
