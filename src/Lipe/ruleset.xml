@@ -26,7 +26,7 @@
     <!-- @link https://github.com/PHPCSStandards/PHPCSExtra#sniffs -->
     <rule ref="Modernize.FunctionCalls.Dirname" />
     <rule ref="Universal.Arrays.DuplicateArrayKey" />
-    <rule ref="Universal.CodeAnalysis.StaticInFinalClass" />
+    <rule ref="Universal.CodeAnalysis" />
     <rule ref="Universal.Namespaces.DisallowCurlyBraceSyntax" />
     <rule ref="Universal.Operators.DisallowLogicalAndOr" />
     <rule ref="Universal.Operators.StrictComparisons" />
