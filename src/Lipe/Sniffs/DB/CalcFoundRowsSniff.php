@@ -54,7 +54,7 @@ class CalcFoundRowsSniff implements Sniff {
 	public function process( File $phpcsFile, $stackPtr ) {
 		$tokens = $phpcsFile->getTokens();
 
-		if ( \stripos( $tokens[ $stackPtr ]['content'], 'SQL_CALC_FOUND_ROWS' ) === false ) {
+		if ( false === \stripos( $tokens[ $stackPtr ]['content'], 'SQL_CALC_FOUND_ROWS' ) ) {
 			return;
 		}
 
