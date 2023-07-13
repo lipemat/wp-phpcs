@@ -43,6 +43,7 @@
     </rule>
 
     <rule ref="Lipe.DB.CalcFoundRows" />
+    <rule ref="Lipe.PHP.DisallowNullCoalesceInCondition" />
 
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
     <rule ref="Lipe.JS">
