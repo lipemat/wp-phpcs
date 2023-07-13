@@ -18,6 +18,10 @@ use PHP_CodeSniffer\Util\Tokens;
  * if ( $foo ? true : false )
  * if ( $post['post_type'] ?? 'page' === 'page' )
  * if ( $post['post_type'] ??= 'page' === 'page' )
+ * if ( 0 !== $update_id ? 'updated' : 'added' )
+ *
+ * // Pass
+ * 0 !== $update_id ? 'updated' : 'added'
  *
  * @author Mat Lipe
  * @since  3.0.0
@@ -78,7 +82,8 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 		$error = false;
 		if ( \T_IF === $tokens[ $statement_start ]['code'] ) {
 			$error = true;
-		} else {
+			// We allow ternary in conditions if it is outside an if statement.
+		} elseif ( \T_INLINE_ELSE !== $tokens[ $stackPtr ]['code'] ) {
 			// Loop through the tokens with the statement and check for equality tokens.
 			for ( $i = $statement_start; $i < $statement_end; $i ++ ) {
 				if ( \in_array( $tokens[ $i ]['code'], Tokens::$equalityTokens, true ) ) {
