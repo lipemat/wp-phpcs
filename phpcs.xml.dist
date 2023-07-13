@@ -24,7 +24,6 @@
     <rule ref="WordPress-Extra">
         <exclude-pattern>*.js</exclude-pattern>
         <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
-        <exclude name="Generic.ControlStructures.DisallowYodaConditions.Found" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="WordPress.Files.FileName" />
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
@@ -48,9 +47,6 @@
 
     <!-- Disallow long array syntax. -->
     <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
-
-    <!-- Disallow Yoda conditions. -->
-    <rule ref="Generic.ControlStructures.DisallowYodaConditions" />
 
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
     <rule ref="Lipe.JS">
