@@ -22,9 +22,9 @@ use PHP_CodeSniffer\Util\Tokens;
  * @author Mat Lipe
  * @since  3.0.0
  *
- * @code   `TernaryFound` - For ternary in condition.
- * @code   `CoalesceFound` - For null coalesce in condition.
- * @code   `CoalesceEqualFound` - For null coalesce equal in condition.
+ * @code   `Ternary` - For ternary in condition.
+ * @code   `Coalesce` - For null coalesce in condition.
+ * @code   `CoalesceEqual` - For null coalesce equal in condition.
  */
 class DisallowNullCoalesceInConditionSniff implements Sniff {
 	/**
@@ -67,38 +67,48 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 	 */
 	public function process( File $phpcsFile, $stackPtr ) {
 		$tokens = $phpcsFile->getTokens();
+		$skip_in_statement = [
+			\T_COLON,
+			\T_OPEN_PARENTHESIS,
+			\T_OPEN_SQUARE_BRACKET,
+		];
+		$statement_start = $phpcsFile->findStartOfStatement( $stackPtr, $skip_in_statement );
+		$statement_end = $phpcsFile->findEndOfStatement( $stackPtr, $skip_in_statement );
 
-		$skipTokens = Tokens::$emptyTokens;
-		$skipTokens[] = \T_OPEN_PARENTHESIS;
-
-		$prev = $phpcsFile->findPrevious( $skipTokens, ( $stackPtr - 1 ), null, true );
-
-		if ( false === $prev ) {
-			// Live coding or parse error.
-			return;
+		$error = false;
+		if ( \T_IF === $tokens[ $statement_start ]['code'] ) {
+			$error = true;
+		} else {
+			// Loop through the tokens with the statement and check for equality tokens.
+			for ( $i = $statement_start; $i < $statement_end; $i ++ ) {
+				if ( \in_array( $tokens[ $i ]['code'], Tokens::$equalityTokens, true ) ) {
+					$error = true;
+					break;
+				}
+			}
 		}
 
-		$prev_statement_closer = $phpcsFile->findStartOfStatement( $stackPtr, [ \T_COLON, \T_OPEN_PARENTHESIS, \T_OPEN_SQUARE_BRACKET ] );
-
-		if ( \T_IF === $tokens[ $prev_statement_closer ]['code'] ) {
+		if ( $error ) {
 			if ( \T_INLINE_ELSE === $tokens[ $stackPtr ]['code'] ) {
 				$phpcsFile->addError(
 					'Using ternary in a condition is not allowed.',
 					$stackPtr,
-					'TernaryFound'
+					'Ternary'
 				);
+				return;
 			}
 			if ( \T_COALESCE_EQUAL === $tokens[ $stackPtr ]['code'] ) {
 				$phpcsFile->addError(
 					'Using null coalesce equal in a condition is not allowed.',
 					$stackPtr,
-					'CoalesceEqualFound'
+					'CoalesceEqual'
 				);
+				return;
 			}
 			$phpcsFile->addError(
 				'Using null coalesce in a condition is not allowed.',
 				$stackPtr,
-				'CoalesceFound'
+				'Coalesce'
 			);
 		}
 	}
