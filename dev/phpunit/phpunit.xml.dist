@@ -1,0 +1,17 @@
+<phpunit
+    beStrictAboutTestsThatDoNotTestAnything="false"
+    bootstrap="bootstrap.php"
+    colors="true"
+    failOnRisky="true"
+    failOnWarning="true"
+>
+    <testsuites>
+        <testsuite name="Sniffs">
+            <file>tests/LipeSniffs.php</file>
+            <file>tests/LipePluginSniffs.php</file>
+        </testsuite>
+        <testsuite name="Fixtures">
+            <file>tests/FixtureTests.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>

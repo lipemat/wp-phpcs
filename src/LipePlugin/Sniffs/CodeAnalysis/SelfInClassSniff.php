@@ -76,15 +76,12 @@ class SelfInClassSniff implements Sniff {
 	public function process( File $phpcsFile, $stackPtr ) {
 		$tokens = $phpcsFile->getTokens();
 
-		if ( \T_STRING === $tokens[ $stackPtr ]['code']
-		     && 'self' !== \strtolower( $tokens[ $stackPtr ]['content'] )
+		if ( \T_STRING === $tokens[ $stackPtr ]['code'] && 'self' !== \strtolower( $tokens[ $stackPtr ]['content'] )
 		) {
 			return;
 		}
 
-		if ( \T_FUNCTION === $tokens[ $stackPtr ]['code']
-		     || \T_FN === $tokens[ $stackPtr ]['code']
-		) {
+		if ( \T_FUNCTION === $tokens[ $stackPtr ]['code'] || \T_FN === $tokens[ $stackPtr ]['code'] ) {
 			/*
 			 * Check return types for methods in final classes, anon classes and enums.
 			 *

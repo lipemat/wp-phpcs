@@ -21,6 +21,8 @@
     <!-- Include when not specified -->
     <file>./src</file>
 
+    <exclude-pattern>dev/*</exclude-pattern>
+
     <rule ref="WordPress-Extra">
         <exclude-pattern>*.js</exclude-pattern>
         <exclude name="Generic.Arrays.DisallowShortArraySyntax" />

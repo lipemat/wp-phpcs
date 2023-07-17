@@ -1,0 +1,44 @@
+{
+  "7": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.slow_query_meta_value",
+      "type": "error"
+    }
+  ],
+  "14": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "27": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "37": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "47": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "59": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.Dynamic",
+      "type": "warning"
+    }
+  ],
+  "69": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.Dynamic",
+      "type": "warning"
+    }
+  ]
+}

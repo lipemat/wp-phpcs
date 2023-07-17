@@ -14,6 +14,9 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Util\Tokens;
 
+/**
+ * Forbid the `declare(strict_types = 1)` statement.
+ */
 class PreventStrictTypesSniff implements Sniff {
 
 	/**
