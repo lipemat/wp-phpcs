@@ -53,6 +53,7 @@
         <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine" />
 
         <exclude name="WordPress.Arrays.ArrayIndentation" />
+        <exclude name="WordPress.DB.SlowDBQuery.slow_db_query_meta_query" />
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
         <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />

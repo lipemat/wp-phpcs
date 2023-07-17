@@ -1,4 +1,9 @@
 <?php
+/**
+ * Lipe.PHP.DisallowNullCoalesceInCondition
+ *
+ * @package Lipe
+ */
 
 namespace Lipe\Sniffs\PHP;
 
