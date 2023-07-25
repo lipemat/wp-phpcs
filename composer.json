@@ -38,7 +38,8 @@
     "wp-coding-standards/wpcs": "^2.3.0.2"
   },
   "require-dev": {
-    "ext-json": "*"
+    "ext-json": "*",
+    "roave/security-advisories": "dev-latest"
   },
   "scripts": {
     "git-hooks": "dev/bin/git-hooks.sh"
