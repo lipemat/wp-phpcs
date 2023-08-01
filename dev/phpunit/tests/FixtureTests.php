@@ -96,6 +96,7 @@ class FixtureTests extends TestCase {
 		$this->config->sniffs = [
 			'Lipe.DB.CalcFoundRows',
 			'Lipe.DB.SlowMetaQuery',
+			'Lipe.DB.SlowOrderBy',
 			'Lipe.JS.DangerouslySetInnerHTML',
 			'Lipe.JS.HTMLExecutingFunctions',
 			'Lipe.JS.InnerHTML',

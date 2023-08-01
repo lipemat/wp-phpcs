@@ -85,8 +85,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 * @param int    $line  Token line.
 	 * @param array  $group Group definition.
 	 *
-	 * @return bool         FALSE if no match, TRUE if matches, STRING if matches
-	 *                       with custom error message passed to ->process().
+	 * @return bool
 	 */
 	public function callback( $key, $val, $line, $group ) : bool {
 		switch ( $key ) {
