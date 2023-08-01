@@ -1,17 +1,13 @@
 <?php
 
 new WP_Query( [
-	'orderby'        => 'ID',
-	'posts_per_page' => 4,
+	'orderby' => 'modified',
 ] );
-
 new WP_Query( [
-	'post_type' => [ 'page', 'post' ],
-	'orderby'   => 'title',
+	'orderby' => 'relevance',
 ] );
-
 new WP_Query( [
-	'orderby' => 'date',
+	'orderby' => 'post__in',
 ] );
 
 get_posts( [

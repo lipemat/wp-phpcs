@@ -30,6 +30,9 @@ final class SlowOrderByUnitTest extends AbstractSniffUnitTest {
 					32 => 1,
 					35 => 1,
 					38 => 1,
+					42 => 1,
+					43 => 1,
+					44 => 1,
 				];
 		}
 		return [];

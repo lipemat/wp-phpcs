@@ -37,3 +37,8 @@ $what->orderby = 'meta_value_num';
 $args = [
 	'orderby' => 'rand',
 ];
+
+$args2 = new Lipe\Lib\Query\Args();
+$args2->orderby( 'meta_value' );
+$args2->orderby( 'rand' );
+$args2->orderby( 'meta_value_num' );

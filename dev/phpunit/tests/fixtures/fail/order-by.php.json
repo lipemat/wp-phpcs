@@ -46,5 +46,47 @@
       "source": "Lipe.DB.SlowOrderBy.rand",
       "type": "error"
     }
+  ],
+  "28": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.meta_value",
+      "type": "error"
+    }
+  ],
+  "29": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.rand",
+      "type": "error"
+    }
+  ],
+  "30": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.meta_value_num",
+      "type": "error"
+    }
+  ],
+  "33": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.rand",
+      "type": "error"
+    }
+  ],
+  "37": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.meta_value",
+      "type": "error"
+    }
+  ],
+  "40": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.rand",
+      "type": "error"
+    }
+  ],
+  "43": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.meta_value_num",
+      "type": "error"
+    }
   ]
 }

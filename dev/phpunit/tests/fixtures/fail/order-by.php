@@ -23,3 +23,21 @@ $what->orderby = 'meta_value_num';
 $args = [
 	'orderby' => 'rand',
 ];
+
+$args2 = new Lipe\Lib\Query\Args();
+$args2->orderby( 'meta_value' );
+$args2->orderby( 'rand' );
+$args2->orderby( 'meta_value_num' );
+
+get_posts( [
+	'orderby' => 'rand',
+] );
+
+$args = new Args\WP_Query();
+$args->orderby = 'meta_value';
+
+$args = new Args\WP_Query();
+$args->orderby = 'rand';
+
+$args = new Args\WP_Query();
+$args->orderby = 'meta_value_num';
