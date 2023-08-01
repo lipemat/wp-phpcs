@@ -27,7 +27,6 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  *
  * @code   `NonPerformant` - For slow meta queries.
  * @code   `DynamicValue` - For dynamic values.
- * @code   `slow_query_meta_value' - For meta_value queries.
  */
 class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
@@ -41,6 +40,22 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 * @var int
 	 */
 	protected $stackPtr;
+
+
+	/**
+	 * Include object operators in the list of tokens to check.
+	 *
+	 * Adds support for checking fluent interfaces such as:
+	 * - johnbillion/args
+	 * - lipemat/wp-libs
+	 *
+	 * @return array
+	 */
+	public function register() : array {
+		$tokens = parent::register();
+		$tokens[] = T_OBJECT_OPERATOR;
+		return $tokens;
+	}
 
 
 	/**
@@ -67,11 +82,35 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * Overrides the parent to store the stackPtr for later use.
 	 *
-	 * @param int $stackPtr The position of the current token in the stack.
+	 * @param int $stackPtr - Current position in the stack.
 	 */
 	public function process_token( $stackPtr ) {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
+
+		// Check for fluent interface use.
+		if ( T_OBJECT_OPERATOR === $this->tokens[ $stackPtr ]['code'] ) {
+			$prop = $this->phpcsFile->findNext( \T_STRING, ( $stackPtr + 1 ) );
+
+			// Object assignment of meta_value.
+			if ( 'meta_value' === $this->tokens[ $prop ]['content'] ) {
+				$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
+				$this->callback( 'meta_value', $this->strip_quotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_query'] );
+				// Fluent interface callback.
+			} elseif ( 'meta_query' === $this->tokens[ $prop ]['content'] && T_OPEN_PARENTHESIS === $this->tokens[ $prop + 1 ]['code'] ) {
+				$call = $this->phpcsFile->findNext( \T_STRING, ( $prop + 2 ) );
+				if ( ! in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists' ], true ) ) {
+					$this->addMessage(
+						'Using %s comparison in `meta_query` is non-performant.',
+						$call,
+						true,
+						'NonPerformant',
+						[ $this->tokens[ $call ]['content'] ]
+					);
+				}
+			}
+		}
+
 		unset( $this->stackPtr );
 	}
 
@@ -90,9 +129,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	public function callback( $key, $val, $line, $group ) : bool {
 		switch ( $key ) {
 			case 'meta_value':
-				// When meta_value is specified, the query operates on the value,
-				// and is hence expensive. (UNLESS: meta_compare is set).
-				return true;
+				return $this->check_meta_compare();
 
 			case 'meta_query':
 				return $this->check_meta_query();
@@ -101,6 +138,41 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 				// Unknown key, assume it's an error.
 				return true;
 		}
+	}
+
+
+	/**
+	 * Check if we have an allowed meta_compare somewhere in the meta_query.
+	 *
+	 * @return bool
+	 */
+	protected function check_meta_compare() : bool {
+		// Unable to determine if there is a compare somewhere.
+		if ( T_DOUBLE_ARROW !== $this->tokens[ $this->stackPtr ]['code'] ) {
+			$this->addMessage(
+				$this->groups_cache['slow_query']['message'],
+				$this->stackPtr + 1,
+				false,
+				'NonPerformant',
+				[ $this->tokens[ $this->stackPtr + 1 ]['content'] ]
+			);
+			return false;
+		}
+
+		$array_open = $this->phpcsFile->findPrevious( [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], $this->stackPtr - 1 );
+		$array_bounds = $this->find_array_open_close( $array_open );
+		$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
+
+		$compare_element = $this->find_key_in_array( $elements, 'meta_compare' );
+
+		if ( empty( $compare_element ) ) {
+			$compare = 'default';
+		} else {
+			$compare = $this->get_static_value_for_element( $compare_element );
+		}
+		$this->check_compare_value( $compare, $compare_element['value_start'] );
+
+		return false;
 	}
 
 

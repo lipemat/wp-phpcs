@@ -7,7 +7,7 @@
   ],
   "7": [
     {
-      "source": "Lipe.DB.SlowMetaQuery.slow_query_meta_value",
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
       "type": "error"
     }
   ],

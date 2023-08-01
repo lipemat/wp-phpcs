@@ -1,7 +1,7 @@
 {
   "7": [
     {
-      "source": "Lipe.DB.SlowMetaQuery.slow_query_meta_value",
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
       "type": "error"
     }
   ],
@@ -39,6 +39,42 @@
     {
       "source": "Lipe.DB.SlowMetaQuery.Dynamic",
       "type": "warning"
+    }
+  ],
+  "75": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.meta_value",
+      "type": "error"
+    }
+  ],
+  "81": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "warning"
+    }
+  ],
+  "91": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "95": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "106": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "warning"
+    }
+  ],
+  "109": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "error"
     }
   ]
 }

@@ -69,3 +69,42 @@ new WP_Query(
 		'meta_query' => $meta_query,
 	]
 );
+
+new WP_Query( [
+	'meta_key'     => 'foo',
+	'orderby'      => 'meta_value',
+	'meta_value'   => 'bar',
+	'meta_compare' => 'EXISTS',
+] );
+
+$args = new Args\WP_Query();
+$args->meta_value = 'bar';
+
+// Not supported.
+$clause = new Args\MetaQuery\Clause();
+$clause->key = 'foo';
+$clause->value = 'bar';
+$args->meta_query = $clause;
+
+$args = new Lipe\Lib\Query\Args();
+$args->meta_query()
+     ->equals( 'foo', 'bar' );
+
+$args = new Lipe\Lib\Query\Args();
+$args->meta_query()
+     ->between( 'foo', [ 'bar', 'rock' ] );
+
+$args = new Lipe\Lib\Query\Args();
+$args->meta_query()
+     ->not_exists( 'foo' );
+
+$args = new Lipe\Lib\Query\Args();
+$args->meta_query()
+     ->exists( 'foo' );
+
+$what = new stdClass();
+$what->meta_value = 'bar';
+
+$args = [
+	'meta_value' => 'bar',
+];
