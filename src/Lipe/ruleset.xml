@@ -71,7 +71,6 @@
     <rule ref="WordPress.Security.ValidatedSanitizedInput">
         <properties>
             <property name="customUnslashingSanitizingFunctions" type="array">
-                <element value="wp_verify_nonce" />
                 <element value="sn" />
             </property>
         </properties>

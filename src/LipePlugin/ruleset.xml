@@ -57,14 +57,4 @@
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals.InvalidPrefixPassed" />
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound" />
     </rule>
-
-    <!-- These don't require extra un-slashing and sanitization -->
-    <rule ref="WordPress.Security.ValidatedSanitizedInput">
-        <properties>
-            <property name="customUnslashingSanitizingFunctions" type="array">
-                <element value="wp_verify_nonce" />
-            </property>
-        </properties>
-    </rule>
-
 </ruleset>
