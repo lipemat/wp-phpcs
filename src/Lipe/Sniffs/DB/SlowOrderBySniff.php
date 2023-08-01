@@ -37,6 +37,22 @@ final class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 
 
 	/**
+	 * Include object operators in the list of tokens to check.
+	 *
+	 * Adds support for checking fluent interfaces such as:
+	 * - johnbillion/args
+	 * - lipemat/wp-libs
+	 *
+	 * @return array
+	 */
+	public function register() : array {
+		$tokens = parent::register();
+		$tokens[] = T_OBJECT_OPERATOR;
+		return $tokens;
+	}
+
+
+	/**
 	 * Groups of variables to restrict.
 	 *
 	 * @return array
@@ -64,6 +80,16 @@ final class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	public function process_token( $stackPtr ) {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
+
+		// Check for fluent interface use of the parameters.
+		if ( T_OBJECT_OPERATOR === $this->tokens[ $stackPtr ]['code'] ) {
+			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true );
+			if ( 'orderby' === $this->tokens[ $prop ]['content'] ) {
+				$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
+				$this->callback( 'orderby', $this->strip_quotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_orderby'] );
+			}
+		}
+
 		unset( $this->stackPtr );
 	}
 

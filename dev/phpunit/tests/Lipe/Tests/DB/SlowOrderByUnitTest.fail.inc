@@ -13,3 +13,27 @@ new WP_Query( [
 new WP_Query( [
 	'orderby' => 'meta_value_num',
 ] );
+
+$args = new Args\WP_Query();
+$args->orderby = 'meta_value';
+$args->post__in = [ 1, 2, 3, 4 ];
+$args = new Args\WP_Query();
+$args->orderby = 'rand';
+$args = new Args\WP_Query();
+$args->orderby = 'meta_value_num';
+
+$args = new Lipe\Lib\Query\Args();
+$args->orderby = 'rand';
+$args->post__in = [ 1, 2, 3, 4 ];
+$args = new Lipe\Lib\Query\Args();
+$args->orderby = 'meta_value';
+$args->paged = true;
+$args = new Lipe\Lib\Query\Args();
+$args->orderby = 'meta_value_num';
+
+$what = new stdClass();
+$what->orderby = 'meta_value_num';
+
+$args = [
+	'orderby' => 'rand',
+];

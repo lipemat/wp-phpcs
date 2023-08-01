@@ -22,6 +22,14 @@ final class SlowOrderByUnitTest extends AbstractSniffUnitTest {
 					4  => 1,
 					10 => 1,
 					14 => 1,
+					18 => 1,
+					21 => 1,
+					23 => 1,
+					26 => 1,
+					29 => 1,
+					32 => 1,
+					35 => 1,
+					38 => 1,
 				];
 		}
 		return [];

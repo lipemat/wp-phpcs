@@ -7,13 +7,43 @@
   ],
   "7": [
     {
+      "source": "Lipe.DB.SlowMetaQuery.slow_query_meta_value",
+      "type": "error"
+    }
+  ],
+  "8": [
+    {
       "source": "Lipe.DB.SlowOrderBy.meta_value",
       "type": "error"
     }
   ],
-  "10": [
+  "11": [
     {
       "source": "Lipe.DB.SlowOrderBy.meta_value_num",
+      "type": "error"
+    }
+  ],
+  "15": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.meta_value",
+      "type": "error"
+    }
+  ],
+  "18": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.rand",
+      "type": "error"
+    }
+  ],
+  "21": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.meta_value_num",
+      "type": "error"
+    }
+  ],
+  "24": [
+    {
+      "source": "Lipe.DB.SlowOrderBy.rand",
       "type": "error"
     }
   ]
