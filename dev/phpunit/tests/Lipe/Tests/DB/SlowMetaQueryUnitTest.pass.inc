@@ -85,3 +85,20 @@ new WP_Query( [
 	// phpcs:ignore Lipe.DB.SlowMetaQuery.Dynamic -- See above, performant.
 	'meta_query' => $query,
 ] );
+
+$args = new Lipe\Lib\Query\Args();
+$args->meta_query()
+     ->not_exists( 'foo' );
+
+$args = new Lipe\Lib\Query\Args();
+$args->meta_query()
+     ->exists( 'foo' );
+
+$what = new stdClass();
+$what->meta_query = [
+	[
+		'key'     => 'foo',
+		'value'   => 'bar',
+		'compare' => 'EXISTS',
+	],
+];

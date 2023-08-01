@@ -53,6 +53,12 @@
       "type": "warning"
     }
   ],
+  "87": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.Dynamic",
+      "type": "warning"
+    }
+  ],
   "91": [
     {
       "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
@@ -72,6 +78,12 @@
     }
   ],
   "109": [
+    {
+      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "125": [
     {
       "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
       "type": "error"

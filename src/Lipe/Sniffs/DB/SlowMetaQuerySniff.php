@@ -96,17 +96,32 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 			if ( 'meta_value' === $this->tokens[ $prop ]['content'] ) {
 				$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
 				$this->callback( 'meta_value', $this->strip_quotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_query'] );
+			} elseif ( 'meta_query' === $this->tokens[ $prop ]['content'] ) {
 				// Fluent interface callback.
-			} elseif ( 'meta_query' === $this->tokens[ $prop ]['content'] && T_OPEN_PARENTHESIS === $this->tokens[ $prop + 1 ]['code'] ) {
-				$call = $this->phpcsFile->findNext( \T_STRING, ( $prop + 2 ) );
-				if ( ! in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists' ], true ) ) {
-					$this->addMessage(
-						'Using %s comparison in `meta_query` is non-performant.',
-						$call,
-						true,
-						'NonPerformant',
-						[ $this->tokens[ $call ]['content'] ]
-					);
+				if ( T_OPEN_PARENTHESIS === $this->tokens[ $prop + 1 ]['code'] ) {
+					$call = $this->phpcsFile->findNext( \T_STRING, ( $prop + 2 ) );
+					if ( ! in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists' ], true ) ) {
+						$this->addMessage(
+							'Using %s comparison in `meta_query` is non-performant.',
+							$call,
+							true,
+							'NonPerformant',
+							[ $this->tokens[ $call ]['content'] ]
+						);
+					}
+				} else {
+					// Object assignment of meta_query.
+					$next = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_DOUBLE_ARROW ] ), $prop + 1, null, true );
+					if ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
+						$this->addMessage(
+							'Using a dynamic comparison in `meta_query` cannot be checked automatically, and may be non-performant.',
+							$prop,
+							'warning',
+							'Dynamic'
+						);
+					} else {
+						$this->check_meta_query_item( $next );
+					}
 				}
 			}
 		}

@@ -80,7 +80,7 @@ new WP_Query( [
 $args = new Args\WP_Query();
 $args->meta_value = 'bar';
 
-// Not supported.
+// Only partially supported.
 $clause = new Args\MetaQuery\Clause();
 $clause->key = 'foo';
 $clause->value = 'bar';
@@ -107,4 +107,21 @@ $what->meta_value = 'bar';
 
 $args = [
 	'meta_value' => 'bar',
+];
+
+$what->meta_query = [
+	[
+		'key'     => 'foo',
+		'value'   => 'bar',
+		'compare' => 'EXISTS',
+	],
+];
+
+$what = new stdClass();
+$what->meta_query = [
+	[
+		'key'     => 'foo',
+		'value'   => 'bar',
+		'compare' => 'LIKE',
+	],
 ];
