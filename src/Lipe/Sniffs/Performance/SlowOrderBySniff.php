@@ -27,7 +27,7 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  * @code   `meta_value`
  * @code   `meta_value_num`
  */
-final class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
+class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
 	 * Current stack pointer.
 	 *

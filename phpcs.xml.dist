@@ -21,6 +21,10 @@
 
     <exclude-pattern>dev/*</exclude-pattern>
 
+    <rule ref="Universal.Classes.DisallowFinalClass">
+        <type>error</type>
+    </rule>
+
     <rule ref="WordPress-Extra">
         <exclude-pattern>*.js</exclude-pattern>
         <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
