@@ -13,6 +13,7 @@
         <testsuite name="Fixtures">
             <file>tests/FixtureTests.php</file>
             <file>tests/RulesetFixtureLipeTest.php</file>
+            <file>tests/RulesetFixtureLipePluginTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

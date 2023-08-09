@@ -1,0 +1,34 @@
+{
+  "3": [
+    {
+      "source": "Squiz.Commenting.ClassComment.Missing",
+      "type": "error"
+    },
+    {
+      "source": "Universal.Classes.DisallowFinalClass.FinalClassFound",
+      "type": "error"
+    }
+  ],
+  "13": [
+    {
+      "source": "Universal.Classes.DisallowFinalClass.FinalClassFound",
+      "type": "error"
+    },
+    {
+      "source": "Generic.Files.OneObjectStructurePerFile.MultipleFound",
+      "type": "warning"
+    }
+  ],
+  "17": [
+    {
+      "source": "Generic.Commenting.DocComment.MissingShort",
+      "type": "error"
+    }
+  ],
+  "21": [
+    {
+      "source": "Generic.Files.OneObjectStructurePerFile.MultipleFound",
+      "type": "warning"
+    }
+  ]
+}
