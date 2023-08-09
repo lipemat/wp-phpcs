@@ -52,7 +52,7 @@ class FixtureTests extends TestCase {
 				continue;
 			}
 
-			$files[] = [ $path ];
+			$files[ $file->getFilename() ] = [ $path ];
 		}
 
 		return $files;
