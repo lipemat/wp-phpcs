@@ -21,7 +21,7 @@
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "repositories": [
     {
       "type": "vcs",
@@ -39,6 +39,8 @@
   },
   "require-dev": {
     "ext-json": "*",
+    "johnbillion/args": "dev-trunk",
+    "lipemat/wordpress-libs": "dev-master",
     "roave/security-advisories": "dev-latest"
   },
   "scripts": {

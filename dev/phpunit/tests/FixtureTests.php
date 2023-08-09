@@ -41,7 +41,7 @@ class FixtureTests extends TestCase {
 	 *
 	 * @return array List of files to run.
 	 */
-	public static function get_files_from_dir( string $directory ) {
+	public static function get_files_from_dir( string $directory ) : array {
 		$files = [];
 		$iterator = new RecursiveIteratorIterator(
 			new RecursiveDirectoryIterator( $directory )
@@ -92,7 +92,7 @@ class FixtureTests extends TestCase {
 		$this->config->standards = [ 'Lipe' ];
 		$this->config->tabWidth = 4;
 
-		// We want to setup our tests to only load our standards in for testing.
+		// We want to set up our tests to only load our standards in for testing.
 		$this->config->sniffs = [
 			'Lipe.DB.CalcFoundRows',
 			'Lipe.DB.SlowMetaQuery',
