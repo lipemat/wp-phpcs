@@ -62,7 +62,7 @@ new WP_Query( [
 	'meta_query' => [
 		'key'     => 'foo',
 		'value'   => 'bar',
-		// phpcs:ignore Lipe.DB.SlowMetaQuery.NonPerformant -- Only a few records, so performant.
+		// phpcs:ignore Lipe.Performance.SlowMetaQuery.NonPerformant -- Only a few records, so performant.
 		'compare' => '!=',
 	],
 ] );
@@ -72,6 +72,6 @@ $meta_query = [
 	'compare' => 'EXISTS',
 ];
 new WP_Query( [
-	// phpcs:ignore Lipe.DB.SlowMetaQuery.Dynamic -- See above, performant.
+	// phpcs:ignore Lipe.Performance.SlowMetaQuery.Dynamic -- See above, performant.
 	'meta_query' => $query,
 ] );

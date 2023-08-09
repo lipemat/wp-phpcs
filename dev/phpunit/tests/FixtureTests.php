@@ -95,8 +95,8 @@ class FixtureTests extends TestCase {
 		// We want to set up our tests to only load our standards in for testing.
 		$this->config->sniffs = [
 			'Lipe.DB.CalcFoundRows',
-			'Lipe.DB.SlowMetaQuery',
-			'Lipe.DB.SlowOrderBy',
+			'Lipe.Performance.SlowMetaQuery',
+			'Lipe.Performance.SlowOrderBy',
 			'Lipe.JS.DangerouslySetInnerHTML',
 			'Lipe.JS.HTMLExecutingFunctions',
 			'Lipe.JS.InnerHTML',

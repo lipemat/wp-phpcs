@@ -1,11 +1,11 @@
 <?php
 /**
- * Lipe.DB.SlowOrderBy
+ * Lipe.Performance.SlowOrderBy
  *
  * @package Lipe
  */
 
-namespace Lipe\Sniffs\DB;
+namespace Lipe\Sniffs\Performance;
 
 use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
 

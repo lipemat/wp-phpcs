@@ -1,11 +1,11 @@
 <?php
 /**
- * Lipe.DB.SlowMetaQuery
+ * Lipe.Performance.SlowMetaQuery
  *
  * @package Lipe
  */
 
-namespace Lipe\Sniffs\DB;
+namespace Lipe\Sniffs\Performance;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;

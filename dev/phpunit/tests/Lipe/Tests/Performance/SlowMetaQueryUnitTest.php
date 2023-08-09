@@ -1,13 +1,13 @@
 <?php
 /**
- * Lipe.DB.SlowMetaQuery
+ * Lipe.Performance.SlowMetaQuery
  *
  * @package Lipe
  */
 
 declare( strict_types=1 );
 
-namespace Lipe\Tests\DB;
+namespace Lipe\Tests\Performance;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 

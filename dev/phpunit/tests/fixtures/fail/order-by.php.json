@@ -1,91 +1,91 @@
 {
   "4": [
     {
-      "source": "Lipe.DB.SlowOrderBy.rand",
+      "source": "Lipe.Performance.SlowOrderBy.rand",
       "type": "error"
     }
   ],
   "7": [
     {
-      "source": "Lipe.DB.SlowMetaQuery.NonPerformant",
+      "source": "Lipe.Performance.SlowMetaQuery.NonPerformant",
       "type": "error"
     }
   ],
   "8": [
     {
-      "source": "Lipe.DB.SlowOrderBy.meta_value",
+      "source": "Lipe.Performance.SlowOrderBy.meta_value",
       "type": "error"
     }
   ],
   "11": [
     {
-      "source": "Lipe.DB.SlowOrderBy.meta_value_num",
+      "source": "Lipe.Performance.SlowOrderBy.meta_value_num",
       "type": "error"
     }
   ],
   "15": [
     {
-      "source": "Lipe.DB.SlowOrderBy.meta_value",
+      "source": "Lipe.Performance.SlowOrderBy.meta_value",
       "type": "error"
     }
   ],
   "18": [
     {
-      "source": "Lipe.DB.SlowOrderBy.rand",
+      "source": "Lipe.Performance.SlowOrderBy.rand",
       "type": "error"
     }
   ],
   "21": [
     {
-      "source": "Lipe.DB.SlowOrderBy.meta_value_num",
+      "source": "Lipe.Performance.SlowOrderBy.meta_value_num",
       "type": "error"
     }
   ],
   "24": [
     {
-      "source": "Lipe.DB.SlowOrderBy.rand",
+      "source": "Lipe.Performance.SlowOrderBy.rand",
       "type": "error"
     }
   ],
   "28": [
     {
-      "source": "Lipe.DB.SlowOrderBy.meta_value",
+      "source": "Lipe.Performance.SlowOrderBy.meta_value",
       "type": "error"
     }
   ],
   "29": [
     {
-      "source": "Lipe.DB.SlowOrderBy.rand",
+      "source": "Lipe.Performance.SlowOrderBy.rand",
       "type": "error"
     }
   ],
   "30": [
     {
-      "source": "Lipe.DB.SlowOrderBy.meta_value_num",
+      "source": "Lipe.Performance.SlowOrderBy.meta_value_num",
       "type": "error"
     }
   ],
   "33": [
     {
-      "source": "Lipe.DB.SlowOrderBy.rand",
+      "source": "Lipe.Performance.SlowOrderBy.rand",
       "type": "error"
     }
   ],
   "37": [
     {
-      "source": "Lipe.DB.SlowOrderBy.meta_value",
+      "source": "Lipe.Performance.SlowOrderBy.meta_value",
       "type": "error"
     }
   ],
   "40": [
     {
-      "source": "Lipe.DB.SlowOrderBy.rand",
+      "source": "Lipe.Performance.SlowOrderBy.rand",
       "type": "error"
     }
   ],
   "43": [
     {
-      "source": "Lipe.DB.SlowOrderBy.meta_value_num",
+      "source": "Lipe.Performance.SlowOrderBy.meta_value_num",
       "type": "error"
     }
   ]
