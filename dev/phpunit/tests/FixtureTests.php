@@ -48,7 +48,7 @@ class FixtureTests extends TestCase {
 		);
 
 		foreach ( $iterator as $path => $file ) {
-			if ( ! $file->isFile() || 'json' === $file->getExtension() ) {
+			if ( ! $file->isFile() || 'json' === $file->getExtension() || '.gitkeep' === $file->getFilename() ) {
 				continue;
 			}
 
@@ -95,6 +95,7 @@ class FixtureTests extends TestCase {
 		// We want to set up our tests to only load our standards in for testing.
 		$this->config->sniffs = [
 			'Lipe.DB.CalcFoundRows',
+			'Lipe.Performance.PostNotIn',
 			'Lipe.Performance.SlowMetaQuery',
 			'Lipe.Performance.SlowOrderBy',
 			'Lipe.JS.DangerouslySetInnerHTML',
