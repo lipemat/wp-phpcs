@@ -27,6 +27,13 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 	 */
 	public $supportedTokenizers = [ 'PHP' ];
 
+	/**
+	 * The current stack pointer.
+	 *
+	 * @var int
+	 */
+	protected $stackPtr;
+
 
 	/**
 	 * Include object operators in the list of tokens to check.
