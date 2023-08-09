@@ -44,6 +44,7 @@
     </rule>
 
     <rule ref="Lipe.DB" />
+    <rule ref="Lipe.Performance" />
     <rule ref="Lipe.PHP" />
 
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
