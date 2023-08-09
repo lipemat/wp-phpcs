@@ -30,6 +30,13 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  */
 class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
+	 * A list of tokenizers this sniff supports.
+	 *
+	 * @var string[]
+	 */
+	public $supportedTokenizers = [ 'PHP' ];
+
+	/**
 	 * Indicates a dynamic value.
 	 */
 	const DYNAMIC_VALUE = '__dynamic';

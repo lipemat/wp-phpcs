@@ -29,6 +29,13 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  */
 class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
+	 * A list of tokenizers this sniff supports.
+	 *
+	 * @var string[]
+	 */
+	public $supportedTokenizers = [ 'PHP' ];
+
+	/**
 	 * Current stack pointer.
 	 *
 	 * @var int

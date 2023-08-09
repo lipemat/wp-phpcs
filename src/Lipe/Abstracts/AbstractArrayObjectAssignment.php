@@ -20,6 +20,13 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  * @since  3.1.0
  */
 abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRestrictionsSniff {
+	/**
+	 * A list of tokenizers this sniff supports.
+	 *
+	 * @var string[]
+	 */
+	public $supportedTokenizers = [ 'PHP' ];
+
 
 	/**
 	 * Include object operators in the list of tokens to check.
