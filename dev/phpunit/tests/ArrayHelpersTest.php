@@ -2,6 +2,7 @@
 declare( strict_types=1 );
 
 use Lipe\Traits\ArrayHelpers;
+use Lipe\Traits\VariableHelpers;
 use PHP_CodeSniffer\Files\LocalFile;
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +16,7 @@ require_once dirname( __DIR__, 3 ) . '/src/Lipe/traits/ArrayHelpers.php';
  */
 class ArrayHelpersTest extends TestCase {
 	use ArrayHelpers;
+	use VariableHelpers;
 
 	/**
 	 * @var array|array[]

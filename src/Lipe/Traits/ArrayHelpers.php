@@ -2,7 +2,7 @@
 /**
  * Helpers for working with arrays.
  *
- * @since   3.10.0
+ * @since   3.1.0
  * @package Lipe
  */
 
@@ -16,10 +16,9 @@ use VariableAnalysis\Lib\Helpers;
  * Helpers for working with arrays.
  *
  * @author Mat Lipe
- * @since  3.10.0
+ * @since  3.1.0
  */
 trait ArrayHelpers {
-	use ObjectHelpers;
 
 	/**
 	 * A list of tokenizers this sniff supports.

@@ -8,6 +8,8 @@
 namespace Lipe\Sniffs\Performance;
 
 use Lipe\Traits\ArrayHelpers;
+use Lipe\Traits\ObjectHelpers;
+use Lipe\Traits\VariableHelpers;
 use PHP_CodeSniffer\Util\Tokens;
 use VariableAnalysis\Lib\Helpers;
 use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
@@ -22,6 +24,8 @@ use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
  */
 class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 	use ArrayHelpers;
+	use ObjectHelpers;
+	use VariableHelpers;
 
 	/**
 	 * Groups of functions to restrict.
