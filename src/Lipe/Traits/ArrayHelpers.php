@@ -74,28 +74,30 @@ trait ArrayHelpers {
 			return [];
 		}
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
+
+		$values = [];
 		if ( \in_array( $this->tokens[ $array_open ]['code'], [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], true ) ) {
-			return $this->get_assigned_keys( $array_open );
+			$values = $this->get_assigned_keys( $array_open );
 		}
 
-		return $this->get_array_access_values( $token );
+		return $this->get_array_access_values( $token, $values );
 	}
 
 
 	/**
 	 * Get values from array access assignment using square brackets.
 	 *
-	 * @param int $token - Position of the variable usage.
+	 * @param int   $token  - Position of the variable usage.
+	 * @param array $values - Array of values to add to.
 	 *
 	 * @return array
 	 */
-	protected function get_array_access_values( int $token ) : array {
+	protected function get_array_access_values( int $token, array $values ) : array {
 		$assignment = $this->get_variable_assignment( $token );
 		if ( false === $assignment ) {
 			return [];
 		}
 
-		$values = [];
 		while ( $assignment && $assignment < $token ) {
 			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, null, false, $this->tokens[ $token ]['content'] );
 			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, null, false, null, true );
