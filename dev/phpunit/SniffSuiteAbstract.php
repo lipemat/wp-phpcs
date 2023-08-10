@@ -43,7 +43,7 @@ abstract class SniffSuiteAbstract {
 		Autoload::addSearchPath( $details['path'], $details['namespace'] );
 		Autoload::addSearchPath( $details['path'], $details['namespace'] );
 
-		$test_dir = __DIR__ . '/' . static::STANDARD . '/Tests/';
+		$test_dir = __DIR__ . '/tests/' . static::STANDARD . '/Tests/';
 		if ( false === is_dir( $test_dir ) ) {
 			// No tests for this standard.
 			return $suite;
