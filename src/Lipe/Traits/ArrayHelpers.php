@@ -10,6 +10,7 @@ namespace Lipe\Traits;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use VariableAnalysis\Lib\Helpers;
 
 /**
  * Helpers for working with arrays.
@@ -47,6 +48,16 @@ trait ArrayHelpers {
 		if ( \in_array( $this->tokens[ $array_open ]['code'], [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], true ) ) {
 			return true;
 		}
+
+		// If the next token is a parenthesis, we're probably in a function call.
+		if ( Helpers::isTokenFunctionParameter( $this->phpcsFile, $array_open ) ) {
+			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, null, false, $this->tokens[ $token ]['content'] );
+			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, null, false, null, true );
+			if ( $bracket && $bracket < $token ) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 
@@ -67,7 +78,40 @@ trait ArrayHelpers {
 		if ( \in_array( $this->tokens[ $array_open ]['code'], [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], true ) ) {
 			return $this->get_assigned_keys( $array_open );
 		}
-		return [];
+
+		return $this->get_array_access_values( $token );
+	}
+
+
+	/**
+	 * Get values from array access assignment using square brackets.
+	 *
+	 * @param int $token - Position of the variable usage.
+	 *
+	 * @return array
+	 */
+	protected function get_array_access_values( int $token ) : array {
+		$assignment = $this->get_variable_assignment( $token );
+		if ( false === $assignment ) {
+			return [];
+		}
+
+		$values = [];
+		while ( $assignment && $assignment < $token ) {
+			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, null, false, $this->tokens[ $token ]['content'] );
+			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, null, false, null, true );
+
+			$key = $this->phpcsFile->findNext( Tokens::$emptyTokens, $bracket + 1, null, true );
+			if ( T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $key ]['code'] ) {
+				$index = $this->strip_quotes( $this->tokens[ $key ]['content'] );
+				$value = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_CLOSE_SQUARE_BRACKET ] ), $key + 1, null, true );
+				if ( $value ) {
+					$values[ $index ] = $value;
+				}
+			}
+		}
+
+		return $values;
 	}
 
 

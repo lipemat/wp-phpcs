@@ -9,6 +9,7 @@
 namespace Lipe\Traits;
 
 use PHP_CodeSniffer\Util\Tokens;
+use VariableAnalysis\Lib\Helpers;
 use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
 
 /**
@@ -58,6 +59,10 @@ trait ObjectHelpers {
 
 			$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
 			if ( $next && T_EQUAL === $this->tokens[ $next ]['code'] ) {
+				return $stackPtr;
+			}
+
+			if ( Helpers::isTokenFunctionParameter( $this->phpcsFile, $stackPtr ) ) {
 				return $stackPtr;
 			}
 		}

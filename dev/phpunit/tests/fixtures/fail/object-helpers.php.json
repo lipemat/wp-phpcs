@@ -1,0 +1,38 @@
+{
+  "7": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "warning"
+    }
+  ],
+  "20": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ],
+  "28": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ],
+  "45": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ],
+  "59": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ],
+  "72": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ]
+}

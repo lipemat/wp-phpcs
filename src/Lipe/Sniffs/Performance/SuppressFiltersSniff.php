@@ -9,6 +9,7 @@ namespace Lipe\Sniffs\Performance;
 
 use Lipe\Traits\ArrayHelpers;
 use PHP_CodeSniffer\Util\Tokens;
+use VariableAnalysis\Lib\Helpers;
 use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
 
 /**
@@ -88,7 +89,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 			return;
 		}
 
-		if ( \T_VARIABLE === $this->tokens[ $array_open ]['code'] ) {
+		if ( Helpers::isTokenInsideFunctionCallArgument( $this->phpcsFile, $array_open ) ) {
 			$variable = $array_open;
 			// Unable to determine if suppress_filters is set to false.
 			if ( $variable < $stackPtr ) {
