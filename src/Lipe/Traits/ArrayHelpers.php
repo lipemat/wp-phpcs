@@ -27,6 +27,18 @@ trait ArrayHelpers {
 	 */
 	public $supportedTokenizers = [ 'PHP' ];
 
+	/**
+	 * Tokens that indicate an array.
+	 *
+	 * @var array
+	 */
+	public static $array_tokens = [
+		T_ARRAY,
+		T_OPEN_SHORT_ARRAY,
+		T_OPEN_SQUARE_BRACKET,
+		T_ARRAY_HINT,
+	];
+
 
 	/**
 	 * Is a variable an array?
@@ -44,7 +56,7 @@ trait ArrayHelpers {
 			return false;
 		}
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
-		if ( \in_array( $this->tokens[ $array_open ]['code'], [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], true ) ) {
+		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
 			return true;
 		}
 
@@ -76,7 +88,7 @@ trait ArrayHelpers {
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
 
 		$values = [];
-		if ( \in_array( $this->tokens[ $array_open ]['code'], [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], true ) ) {
+		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
 			$values = $this->get_assigned_keys( $array_open );
 		}
 

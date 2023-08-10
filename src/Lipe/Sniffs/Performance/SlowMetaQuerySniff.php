@@ -172,7 +172,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 			return false;
 		}
 
-		$array_open = $this->phpcsFile->findPrevious( [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], $this->stackPtr - 1 );
+		$array_open = $this->phpcsFile->findPrevious( static::$array_tokens, $this->stackPtr - 1 );
 		$array_bounds = $this->find_array_open_close( $array_open );
 		$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
 

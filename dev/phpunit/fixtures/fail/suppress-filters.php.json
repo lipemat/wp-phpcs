@@ -70,5 +70,11 @@
       "source": "Lipe.Performance.SuppressFilters.get_children",
       "type": "warning"
     }
+  ],
+  "76": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
   ]
 }

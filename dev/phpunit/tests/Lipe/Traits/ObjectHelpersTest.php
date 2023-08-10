@@ -12,9 +12,7 @@ require_once dirname( __DIR__, 5 ) . '/src/Lipe/traits/ArrayHelpers.php';
  *
  */
 class ObjectHelpersTest extends \HelpersAbstract {
-	use ArrayHelpers;
 	use ObjectHelpers;
-	use VariableHelpers;
 
 	/**
 	 * @var array|array[]

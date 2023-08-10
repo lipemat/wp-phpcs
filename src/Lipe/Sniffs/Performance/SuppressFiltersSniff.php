@@ -62,7 +62,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 	public function process_matched_token( $stackPtr, $group_name, $matched_content ) {
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_OPEN_PARENTHESIS ] ), $stackPtr + 1, null, true );
 
-		if ( \in_array( $this->tokens[ $array_open ]['code'], [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], true ) ) {
+		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
 			$array_bounds = $this->find_array_open_close( $array_open );
 			$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
 			$compare_element = $this->find_key_in_array( $elements, 'suppress_filters' );

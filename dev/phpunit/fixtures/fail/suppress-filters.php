@@ -50,10 +50,10 @@ $args->suppress_filters = false;
 
 get_posts( $args );
 
-wp_get_recent_posts( [
+wp_get_recent_posts( array(
 	'post_type'        => 'page',
 	'suppress_filters' => true,
-] );
+) );
 
 wp_get_recent_posts( [
 	'post_type' => 'page',
@@ -67,3 +67,10 @@ get_children( [
 get_children( [
 	'post_type' => 'page',
 ] );
+
+$array = array(
+	'post_type'        => 'page',
+	'suppress_filters' => true,
+);
+
+get_posts( $array );
