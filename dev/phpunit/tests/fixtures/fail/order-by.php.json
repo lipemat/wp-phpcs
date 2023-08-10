@@ -65,6 +65,12 @@
       "type": "error"
     }
   ],
+  "32": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "warning"
+    }
+  ],
   "33": [
     {
       "source": "Lipe.Performance.SlowOrderBy.rand",

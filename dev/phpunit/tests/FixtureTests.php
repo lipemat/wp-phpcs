@@ -98,6 +98,7 @@ class FixtureTests extends TestCase {
 			'Lipe.Performance.PostNotIn',
 			'Lipe.Performance.SlowMetaQuery',
 			'Lipe.Performance.SlowOrderBy',
+			'Lipe.Performance.SuppressFilters',
 			'Lipe.JS.DangerouslySetInnerHTML',
 			'Lipe.JS.HTMLExecutingFunctions',
 			'Lipe.JS.InnerHTML',

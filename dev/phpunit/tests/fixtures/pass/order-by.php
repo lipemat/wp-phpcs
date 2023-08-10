@@ -11,7 +11,8 @@ new WP_Query( [
 ] );
 
 get_posts( [
-	'orderby' => 'modified',
+	'orderby'          => 'modified',
+	'suppress_filters' => false,
 ] );
 
 $args2 = new Lipe\Lib\Query\Args();

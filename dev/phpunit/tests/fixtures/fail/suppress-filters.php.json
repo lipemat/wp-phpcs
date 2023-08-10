@@ -1,7 +1,73 @@
 {
-  "3": [
+  "8": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ],
+  "14": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "warning"
+    }
+  ],
+  "16": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "warning"
+    }
+  ],
+  "21": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ],
+  "31": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ],
+  "39": [
     {
       "source": "Lipe.Performance.PostNotIn.exclude",
+      "type": "warning"
+    }
+  ],
+  "41": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "warning"
+    }
+  ],
+  "46": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "error"
+    }
+  ],
+  "53": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.wp_get_recent_posts",
+      "type": "error"
+    }
+  ],
+  "58": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.wp_get_recent_posts",
+      "type": "warning"
+    }
+  ],
+  "62": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_children",
+      "type": "error"
+    }
+  ],
+  "67": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_children",
       "type": "warning"
     }
   ]

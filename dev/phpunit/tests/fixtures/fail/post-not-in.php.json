@@ -65,6 +65,12 @@
       "type": "warning"
     }
   ],
+  "38": [
+    {
+      "source": "Lipe.Performance.SuppressFilters.get_posts",
+      "type": "warning"
+    }
+  ],
   "39": [
     {
       "source": "Lipe.Performance.PostNotIn.exclude",

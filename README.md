@@ -76,6 +76,7 @@ This package ships with some _optional_ `Lipe` namespaced sniffs.
     1. Like `WordPress.DB.SlowDBQuery.slow_db_query_meta_query` but supports using `EXISTS` and `NOT_EXISTS` meta queries.
 6. `<rule ref="Lipe.Performance.SlowOrderBy" />` for detecting slow `ORDER BY` clauses in WP_Query.
 7. `<rule ref="Lipe.Performance.PostNotIn" />` for detecting uses of `post__not_in` clauses in WP_Query.
+8. `<rule ref="Lipe.Performance.SuppressFilters" />` for detecting missing uses of `suppress_filters` clauses in get_posts.
 
 ## LipePlugin Sniffs
 
