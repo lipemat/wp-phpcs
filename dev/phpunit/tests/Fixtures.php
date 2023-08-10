@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @group fixtures
  */
-class FixtureTests extends TestCase {
+class Fixtures extends TestCase {
 	/**
 	 * Config instance.
 	 *

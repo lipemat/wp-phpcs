@@ -16,14 +16,14 @@
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Ruleset;
 
-require_once __DIR__ . '/FixtureTests.php';
+require_once __DIR__ . '/Fixtures.php';
 
 /**
  * Class tests\RulesetTests
  *
  * @group  ruleset
  */
-class RulesetFixtureLipeTest extends FixtureTests {
+class RulesetFixtureLipe extends Fixtures {
 	/**
 	 * Get files from the pass fixtures directory.
 	 *

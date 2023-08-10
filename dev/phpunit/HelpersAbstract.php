@@ -17,9 +17,9 @@ abstract class HelpersAbstract extends TestCase {
 	use ArrayHelpers;
 	use VariableHelpers;
 
-	protected function convert_file_to_tokens( $file ) : array {
+	protected function convert_file_to_tokens( $file, $path = __DIR__ . '/data/' ) : array {
 		$this->phpcsFile = new LocalFile(
-			__DIR__ . '/data/' . $file . '.php',
+			$path . $file . '.php',
 			new Ruleset( new Config() ),
 			new Config()
 		);

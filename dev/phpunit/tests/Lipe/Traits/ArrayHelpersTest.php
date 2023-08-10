@@ -1,6 +1,8 @@
 <?php
 declare( strict_types=1 );
 
+namespace Lipe\Traits;
+
 use PHP_CodeSniffer\Files\LocalFile;
 
 /**
@@ -8,7 +10,7 @@ use PHP_CodeSniffer\Files\LocalFile;
  * @since  August 2023
  *
  */
-class ArrayHelpersTest extends HelpersAbstract {
+class ArrayHelpersTest extends \HelpersAbstract {
 	/**
 	 * @var array|array[]
 	 */

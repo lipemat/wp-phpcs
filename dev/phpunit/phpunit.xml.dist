@@ -11,13 +11,13 @@
             <file>tests/LipePluginSniffs.php</file>
         </testsuite>
         <testsuite name="Fixtures">
-            <file>tests/FixtureTests.php</file>
-            <file>tests/RulesetFixtureLipeTest.php</file>
-            <file>tests/RulesetFixtureLipePluginTest.php</file>
+            <file>tests/Fixtures.php</file>
+            <file>tests/RulesetFixtureLipe.php</file>
+            <file>tests/RulesetFixtureLipePlugin.php</file>
         </testsuite>
-        <testsuite name="Traits">
-            <file>tests/ObjectHelpersTest.php</file>
-            <file>tests/ArrayHelpersTest.php</file>
+        <testsuite name="Unit Tests">
+            <directory>./tests/Lipe/Traits</directory>
+            <directory>./tests/Misc</directory>
         </testsuite>
     </testsuites>
 </phpunit>

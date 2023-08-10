@@ -1,19 +1,17 @@
 <?php
 declare( strict_types=1 );
 
-use Lipe\Traits\ArrayHelpers;
-use Lipe\Traits\ObjectHelpers;
-use Lipe\Traits\VariableHelpers;
+namespace Lipe\Traits;
 
-require_once dirname( __DIR__, 3 ) . '/src/Lipe/traits/ObjectHelpers.php';
-require_once dirname( __DIR__, 3 ) . '/src/Lipe/traits/ArrayHelpers.php';
+require_once dirname( __DIR__, 5 ) . '/src/Lipe/traits/ObjectHelpers.php';
+require_once dirname( __DIR__, 5 ) . '/src/Lipe/traits/ArrayHelpers.php';
 
 /**
  * @author Mat Lipe
  * @since  August 2023
  *
  */
-class ObjectHelpersTest extends HelpersAbstract {
+class ObjectHelpersTest extends \HelpersAbstract {
 	use ArrayHelpers;
 	use ObjectHelpers;
 	use VariableHelpers;
