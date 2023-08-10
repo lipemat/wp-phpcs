@@ -18,6 +18,7 @@ if ( ! file_exists( $phpcs_dir ) ) {
 }
 
 // Require the autoloader and bootstrap.
+require __DIR__ . '/helpers.php';
 require __DIR__ . '/tests/SniffSuiteAbstract.php';
 require dirname( __DIR__, 2 ) . '/vendor/autoload.php';
 require $phpcs_dir . '/autoload.php';

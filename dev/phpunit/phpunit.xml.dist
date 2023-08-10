@@ -15,5 +15,9 @@
             <file>tests/RulesetFixtureLipeTest.php</file>
             <file>tests/RulesetFixtureLipePluginTest.php</file>
         </testsuite>
+        <testsuite name="Traits">
+            <file>tests/ObjectHelpersTest.php</file>
+            <file>tests/ArrayHelpersTest.php</file>
+        </testsuite>
     </testsuites>
 </phpunit>

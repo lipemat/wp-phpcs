@@ -1,5 +1,10 @@
 <?php
-declare( strict_types=1 );
+/**
+ * Helpers for working with arrays.
+ *
+ * @since   3.10.0
+ * @package Lipe
+ */
 
 namespace Lipe\Traits;
 
@@ -13,12 +18,95 @@ use PHP_CodeSniffer\Util\Tokens;
  * @since  3.10.0
  */
 trait ArrayHelpers {
+	use ObjectHelpers;
+
 	/**
 	 * A list of tokenizers this sniff supports.
 	 *
 	 * @var string[]
 	 */
 	public $supportedTokenizers = [ 'PHP' ];
+
+
+	/**
+	 * Is a variable an array?
+	 *
+	 * Finds the position of the variable assignment and then
+	 * checks if the next token is an array.
+	 *
+	 * @param int $token - Position of the variable usage.
+	 *
+	 * @return bool
+	 */
+	protected function is_variable_an_array( int $token ) : bool {
+		$assignment = $this->get_variable_assignment( $token );
+		if ( false === $assignment ) {
+			return false;
+		}
+		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
+		if ( \in_array( $this->tokens[ $array_open ]['code'], [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], true ) ) {
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
+	 * Get the keys assigned to an array based on the variable usage.
+	 *
+	 * @param int $token - Position of the variable usage.
+	 *
+	 * @return array
+	 */
+	protected function get_assigned_keys_from_variable( int $token ) : array {
+		$assignment = $this->get_variable_assignment( $token );
+		if ( false === $assignment ) {
+			return [];
+		}
+		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
+		if ( \in_array( $this->tokens[ $array_open ]['code'], [ T_ARRAY_HINT, T_OPEN_SHORT_ARRAY ], true ) ) {
+			return $this->get_assigned_keys( $array_open );
+		}
+		return [];
+	}
+
+
+	/**
+	 * Get the keys and position of their values assigned to an array.
+	 *
+	 * @param int $array_open - Position of the array opener.
+	 *
+	 * @return array
+	 */
+	protected function get_assigned_keys( int $array_open ) : array {
+		$array_bounds = $this->find_array_open_close( $array_open );
+		$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
+
+		$properties = [];
+		foreach ( $elements as $element ) {
+			if ( ! isset( $element['index_start'] ) ) {
+				continue;
+			}
+
+			// Ensure the index is a static string first.
+			$start = $element['index_start'];
+			if ( T_CONSTANT_ENCAPSED_STRING !== $this->tokens[ $start ]['code'] ) {
+				// Dynamic key.
+				continue;
+			}
+
+			$maybe_index_end = $this->phpcsFile->findNext( Tokens::$emptyTokens, $start + 1, null, true );
+			if ( T_DOUBLE_ARROW !== $this->tokens[ $maybe_index_end ]['code'] ) {
+				// Dynamic key, maybe? This is probably not valid syntax.
+				continue;
+			}
+
+			$index = $this->strip_quotes( $this->tokens[ $start ]['content'] );
+			$properties[ $index ] = $element['value_start'];
+		}
+
+		return $properties;
+	}
 
 
 	/**
