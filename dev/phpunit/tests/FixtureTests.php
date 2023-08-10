@@ -65,7 +65,7 @@ class FixtureTests extends TestCase {
 	 * @return array List of parameters to provide.
 	 */
 	public static function failing_files() : array {
-		$directory = __DIR__ . '/fixtures/fail';
+		$directory = dirname( __DIR__ ) . '/fixtures/fail';
 
 		return static::get_files_from_dir( $directory );
 	}
@@ -77,7 +77,7 @@ class FixtureTests extends TestCase {
 	 * @return array List of parameters to provide.
 	 */
 	public static function passing_files() : array {
-		$directory = __DIR__ . '/fixtures/pass';
+		$directory = dirname( __DIR__ ) . '/fixtures/pass';
 
 		return static::get_files_from_dir( $directory );
 	}

@@ -30,7 +30,7 @@ class RulesetFixtureLipePluginTest extends FixtureTests {
 	 * @return array List of parameters to provide.
 	 */
 	public static function failing_files() : array {
-		$directory = __DIR__ . '/fixtures/ruleset/LipePlugin/fail';
+		$directory = dirname( __DIR__ ) . '/fixtures/ruleset/LipePlugin/fail';
 
 		return static::get_files_from_dir( $directory );
 	}
@@ -42,7 +42,7 @@ class RulesetFixtureLipePluginTest extends FixtureTests {
 	 * @return array List of parameters to provide.
 	 */
 	public static function passing_files() : array {
-		$directory = __DIR__ . '/fixtures/ruleset/LipePlugin/pass';
+		$directory = dirname( __DIR__ ) . '/fixtures/ruleset/LipePlugin/pass';
 
 		return static::get_files_from_dir( $directory );
 	}

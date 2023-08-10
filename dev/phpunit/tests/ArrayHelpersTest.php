@@ -1,35 +1,38 @@
 <?php
 declare( strict_types=1 );
 
-use Lipe\Traits\ArrayHelpers;
-use Lipe\Traits\VariableHelpers;
 use PHP_CodeSniffer\Files\LocalFile;
-use PHPUnit\Framework\TestCase;
-
-require_once dirname( __DIR__, 3 ) . '/src/Lipe/traits/ObjectHelpers.php';
-require_once dirname( __DIR__, 3 ) . '/src/Lipe/traits/ArrayHelpers.php';
 
 /**
  * @author Mat Lipe
  * @since  August 2023
  *
  */
-class ArrayHelpersTest extends TestCase {
-	use ArrayHelpers;
-	use VariableHelpers;
-
+class ArrayHelpersTest extends HelpersAbstract {
 	/**
 	 * @var array|array[]
 	 */
 	protected $tokens;
 
 
-	public function test_get_assigned_properties() {
+	public function test_get_assigned_keys_from_variables() {
 		$this->tokens = $this->get_tokens();
 		$this->assertEquals( [
 			'suppress_filters' => 21,
 			'post_type'        => 13,
 		], $this->get_assigned_keys_from_variable( 31 ) );
+	}
+
+
+	public function test_get_array_access_values() {
+		$this->tokens = $this->convert_file_to_tokens( 'array-helpers-array-access' );
+		$this->assertEquals( [
+			'first'      => 13,
+			'fourth'     => 65,
+			'not-usable' => 45,
+			'second'     => 21,
+			'third'      => 35,
+		], $this->get_assigned_keys_from_variable( 72 ) );
 	}
 
 

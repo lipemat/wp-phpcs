@@ -36,7 +36,7 @@ abstract class SniffSuiteAbstract {
 
 		$suite = new TestSuite( static::STANDARD . ' Standards' );
 
-		$standards_dir = dirname( __DIR__, 3 ) . '/src';
+		$standards_dir = dirname( __DIR__, 2 ) . '/src';
 		$all_details = Standards::getInstalledStandardDetails( false, $standards_dir );
 		$details = $all_details[ static::STANDARD ];
 

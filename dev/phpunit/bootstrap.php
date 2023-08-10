@@ -19,7 +19,6 @@ if ( ! file_exists( $phpcs_dir ) ) {
 
 // Require the autoloader and bootstrap.
 require __DIR__ . '/helpers.php';
-require __DIR__ . '/tests/SniffSuiteAbstract.php';
 require dirname( __DIR__, 2 ) . '/vendor/autoload.php';
 require $phpcs_dir . '/autoload.php';
 require $phpcs_dir . '/tests/bootstrap.php';
@@ -30,6 +29,11 @@ require dirname( __DIR__, 2 ) . '/vendor/wp-coding-standards/wpcs/WordPress/Snif
 require dirname( __DIR__, 2 ) . '/vendor/wp-coding-standards/wpcs/WordPress/AbstractArrayAssignmentRestrictionsSniff.php';
 
 // Add paths of vendor sniffs to the autoloader.
+Autoload::addSearchPath( dirname( __DIR__, 2 ) . '/src/Lipe', 'Lipe' );
+Autoload::addSearchPath( dirname( __DIR__, 2 ) . '/src/LipePlugin', 'LipePlugin' );
 Autoload::addSearchPath( dirname( __DIR__, 2 ) . '/vendor/wp-coding-standards/wpcs/WordPress', 'WordPressCS\WordPress' );
 Autoload::addSearchPath( dirname( __DIR__, 2 ) . '/vendor/automattic/vipwpcs/WordPressVIPMinimum', 'WordPressVIPMinimum' );
 Autoload::addSearchPath( dirname( __DIR__, 2 ) . '/vendor/phpcompatibility/php-compatibility/PHPCompatibility', 'PHPCompatibility' );
+
+require __DIR__ . '/HelpersAbstract.php';
+require __DIR__ . '/SniffSuiteAbstract.php';
