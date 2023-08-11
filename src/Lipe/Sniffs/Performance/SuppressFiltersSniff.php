@@ -111,6 +111,13 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 				$assigned = $this->get_assigned_keys_from_variable( $variable );
 			} else {
 				$assigned = $this->get_assigned_properties( $variable );
+				// Special case for any fluent interfaces' `get_light_args` methods.
+				if ( ! isset( $assigned['suppress_filters'] ) && T_OBJECT_OPERATOR === $this->tokens[ $variable + 1 ]['code'] ) {
+					$call = $this->phpcsFile->findNext( \T_STRING, ( $variable + 2 ) );
+					if ( $call && 'get_light_args' === $this->tokens[ $call ]['content'] ) {
+						return;
+					}
+				}
 			}
 
 			// Not assigned to anything.

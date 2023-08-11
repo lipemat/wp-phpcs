@@ -18,3 +18,13 @@ class WP_SEO_Settings {
 		) );
 	}
 }
+
+use Lipe\Lib\Query\Get_Posts;
+
+$args = new Get_Posts();
+$args->orderby = 'whatever';
+
+get_posts( $args->get_light_args() );
+
+$args = new Get_Posts();
+get_posts( $args->get_light_args() );
