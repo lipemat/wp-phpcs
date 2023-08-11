@@ -2,6 +2,7 @@
 declare( strict_types=1 );
 
 use Lipe\Traits\ArrayHelpers;
+use Lipe\Traits\ObjectHelpers;
 use Lipe\Traits\VariableHelpers;
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\LocalFile;
@@ -15,7 +16,11 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class HelpersAbstract extends TestCase {
 	use ArrayHelpers;
+	use ObjectHelpers;
 	use VariableHelpers;
+
+	public $tokens = [];
+
 
 	protected function convert_file_to_tokens( $file, $path = __DIR__ . '/data/' ) : array {
 		$this->phpcsFile = new LocalFile(
@@ -28,7 +33,7 @@ abstract class HelpersAbstract extends TestCase {
 	}
 
 
-	protected function get_raw_tokens( $file ) : array {
+	protected function get_raw_tokens_file( $file ) : array {
 		$this->phpcsFile = new class extends LocalFile {
 			public function __construct() {
 			}

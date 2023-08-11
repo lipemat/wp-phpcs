@@ -7,6 +7,9 @@
 
 namespace Lipe\Sniffs\Performance;
 
+use Lipe\Traits\ArrayHelpers;
+use Lipe\Traits\ObjectHelpers;
+use Lipe\Traits\VariableHelpers;
 use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
 
 /**
@@ -28,6 +31,9 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  * @code   `meta_value_num`
  */
 class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
+	use ObjectHelpers;
+	use VariableHelpers;
+
 	/**
 	 * A list of tokenizers this sniff supports.
 	 *
@@ -88,8 +94,8 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
 
-		// Check for fluent interface use of the parameters.
-		if ( T_OBJECT_OPERATOR === $this->tokens[ $stackPtr ]['code'] ) {
+		// Check if a fluent interface is using the parameters.
+		if ( $this->is_object_assignment( $stackPtr ) ) {
 			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true );
 			if ( 'orderby' === $this->tokens[ $prop ]['content'] ) {
 				$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );

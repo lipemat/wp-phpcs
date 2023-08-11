@@ -14,7 +14,7 @@ class ArrayHelpersTest extends \HelpersAbstract {
 	/**
 	 * @var array|array[]
 	 */
-	protected $tokens;
+	public $tokens;
 
 
 	public function test_get_assigned_keys_from_variables() {

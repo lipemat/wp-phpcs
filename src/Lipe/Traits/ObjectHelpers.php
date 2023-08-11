@@ -9,17 +9,18 @@
 namespace Lipe\Traits;
 
 use PHP_CodeSniffer\Util\Tokens;
-use VariableAnalysis\Lib\Helpers;
 use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
 
 /**
  * Helpers for working with objects.
  *
- * @author Mat Lipe
- * @since  3.1.0
+ * @author   Mat Lipe
+ * @since    3.1.0
+ *
+ * @property $phpcsFile File
+ * @property $tokens    array
  */
 trait ObjectHelpers {
-
 	/**
 	 * Override the parent method to also exclude `new` statements
 	 * for things like `new Get_Posts()`.
@@ -30,12 +31,40 @@ trait ObjectHelpers {
 	 *
 	 * @return bool
 	 */
-	public function is_targetted_token( $stackPtr ) {
+	public function is_targetted_token( $stackPtr ) : bool {
 		if ( method_exists( parent::class, 'is_targetted_token' ) && ! parent::is_targetted_token( $stackPtr ) ) {
 			return false;
 		}
 		$prev = $this->phpcsFile->findPrevious( Tokens::$emptyTokens, ( $stackPtr - 1 ), null, true, null, true );
 		return T_NEW !== $this->tokens[ $prev ]['code'];
+	}
+
+
+	/**
+	 * Is this variable or `->` part of an object assigment created
+	 * most likely by a fluent interface.
+	 *
+	 * @param int $token - Position of the variable usage.
+	 *
+	 * @return bool
+	 */
+	protected function is_object_assignment( int $token ) : bool {
+		if ( T_VARIABLE === $this->tokens[ $token ]['code'] ) {
+			$variable = $token;
+			if ( ! $this->phpcsFile->findNext( [ T_OBJECT_OPERATOR ], $token + 1, $token + 5, false, null, true ) ) {
+				return false;
+			}
+		} elseif ( T_OBJECT_OPERATOR === $this->tokens[ $token ]['code'] ) {
+			$variable = $this->phpcsFile->findPrevious( [ T_VARIABLE ], $token - 1, $token - 5, false, null, true );
+		} else {
+			return false;
+		}
+
+		$assignment = $this->get_variable_assignment( $variable );
+		if ( false === $assignment ) {
+			return false;
+		}
+		return false !== $this->phpcsFile->findNext( [ T_NEW ], $assignment, null, false, null, true );
 	}
 
 

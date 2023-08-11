@@ -7,6 +7,8 @@
 
 namespace Lipe\Abstracts;
 
+use Lipe\Traits\ObjectHelpers;
+use Lipe\Traits\VariableHelpers;
 use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
 
 /**
@@ -20,6 +22,9 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  * @since  3.1.0
  */
 abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRestrictionsSniff {
+	use VariableHelpers;
+	use ObjectHelpers;
+
 	/**
 	 * A list of tokenizers this sniff supports.
 	 *
@@ -63,13 +68,13 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 		parent::process_token( $stackPtr );
 
 		// Check for a fluent interface using the parameters.
-		if ( T_OBJECT_OPERATOR === $this->tokens[ $stackPtr ]['code'] ) {
+		if ( $this->is_object_assignment( $stackPtr ) ) {
 			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true );
 			foreach ( $this->groups_cache as $groupName => $group ) {
-				foreach ( $group['keys'] as $occurance ) {
-					if ( $this->tokens[ $prop ]['content'] === $occurance ) {
+				foreach ( $group['keys'] as $occurrence ) {
+					if ( $this->tokens[ $prop ]['content'] === $occurrence ) {
 						$message = $group ['message'];
-						$this->addMessage( $message, $prop, ( 'error' === $group['type'] ), $this->string_to_errorcode( $groupName . '_' . $occurance ) );
+						$this->addMessage( $message, $prop, ( 'error' === $group['type'] ), $this->string_to_errorcode( $groupName . '_' . $occurrence ) );
 					}
 				}
 			}

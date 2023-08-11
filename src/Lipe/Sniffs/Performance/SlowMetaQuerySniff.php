@@ -8,6 +8,8 @@
 namespace Lipe\Sniffs\Performance;
 
 use Lipe\Traits\ArrayHelpers;
+use Lipe\Traits\ObjectHelpers;
+use Lipe\Traits\VariableHelpers;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
@@ -31,6 +33,8 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  */
 class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	use ArrayHelpers;
+	use ObjectHelpers;
+	use VariableHelpers;
 
 	/**
 	 * Current stack pointer.
@@ -87,7 +91,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 		parent::process_token( $stackPtr );
 
 		// Check for fluent interface use.
-		if ( T_OBJECT_OPERATOR === $this->tokens[ $stackPtr ]['code'] ) {
+		if ( $this->is_object_assignment( $stackPtr ) ) {
 			$prop = $this->phpcsFile->findNext( \T_STRING, ( $stackPtr + 1 ) );
 
 			// Object assignment of meta_value.
