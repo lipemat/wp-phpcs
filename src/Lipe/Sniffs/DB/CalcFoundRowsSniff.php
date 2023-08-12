@@ -31,9 +31,9 @@ class CalcFoundRowsSniff implements Sniff {
 	/**
 	 * Returns an array of tokens this test wants to listen for.
 	 *
-	 * @return array
+	 * @return array<string|int>
 	 */
-	public function register() {
+	public function register() : array {
 		return [
 			\T_DOUBLE_QUOTED_STRING,
 			\T_CONSTANT_ENCAPSED_STRING,

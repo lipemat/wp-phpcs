@@ -21,6 +21,7 @@ RESET_COLOR="$(tput sgr0)"
 PHP='php 7.0'
 PHPCS='phpcs'
 PHPUNIT='phpunit 7.0'
+PHPSTAN='phpstan'
 
 PROJECT=$(${PHP} -r "echo dirname(realpath('$0'), 3);")
 ## Fix windows paths
@@ -102,6 +103,21 @@ function php_code_sniffer() {
     fi
 }
 php_code_sniffer &
+
+function php_stan() {
+	if [[ "$PHP_FILES" ]]; then
+		echo "${YELLOW}[pre-commit]${BLUE} Running PHP Stan... ${WHITE}"
+		OUTPUT=$(${PHPSTAN} analyse --no-progress --memory-limit=2G)
+		if [[ $? != 0 ]]; then
+			echo
+			echo "${BLUE}PHP Stan Failed. Fix the error before commit."
+			echo "${RED}$OUTPUT"
+			exit_reset_colors
+		fi
+		echo "${YELLOW}[pre-commit]${GREEN} PHP Stan Passed!${WHITE}"
+	fi
+}
+php_stan &
 
 # Go through each background task
 # If it sent exit code 1, it failed and the result from `wait` will be false.

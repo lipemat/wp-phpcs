@@ -31,9 +31,9 @@ class PreventStrictTypesSniff implements Sniff {
 	 * Look for <?php tags only.
 	 * `declare` is always after the first one.
 	 *
-	 * @return array<int, (int|string)>
+	 * @return array<int|string>
 	 */
-	public function register() {
+	public function register() : array {
 		return [
 			T_OPEN_TAG,
 		];
@@ -47,7 +47,7 @@ class PreventStrictTypesSniff implements Sniff {
 	 * @param int  $stackPtr                         The position of the current token
 	 *                                               in the stack passed in $tokens.
 	 *
-	 * @return int|void Integer stack pointer to skip forward or void to continue
+	 * @return void Integer stack pointer to skip forward or void to continue
 	 *                  normal file processing.
 	 */
 	public function process( File $phpcsFile, $stackPtr ) {
@@ -56,7 +56,7 @@ class PreventStrictTypesSniff implements Sniff {
 		/**
 		 * We only care about the first <?php tag in the file.
 		 */
-		if ( $phpcsFile->findPrevious( [ T_OPEN_TAG ], $stackPtr - 1, null, true ) !== false ) {
+		if ( false !== $phpcsFile->findPrevious( [ T_OPEN_TAG ], $stackPtr - 1, null, true ) ) {
 			return;
 		}
 
@@ -66,7 +66,7 @@ class PreventStrictTypesSniff implements Sniff {
 		}
 		$type    = $phpcsFile->findNext( [ T_STRING ], $declare + 1 );
 		$enabled = $phpcsFile->findNext( [ T_LNUMBER ], $declare + 1 );
-		if ( \strtolower( $tokens[ $type ]['content'] ) === 'strict_types' && \strtolower( $tokens[ $enabled ]['content'] ) === '1'
+		if ( 'strict_types' === \strtolower( $tokens[ $type ]['content'] ) && '1' === \strtolower( $tokens[ $enabled ]['content'] )
 		) {
 			$this->handleError( $phpcsFile, $declare, 'Found', 'declare( strict_types=1 );' );
 		}
@@ -94,9 +94,12 @@ class PreventStrictTypesSniff implements Sniff {
 		);
 
 		if ( true === $fix ) {
-			$end = ( $phpcsFile->findNext( [ T_SEMICOLON ], $stackPtr ) + 1 );
-			for ( $i = $stackPtr; $i <= $end; $i ++ ) {
-				$phpcsFile->fixer->replaceToken( $i, '' );
+			$semicolon = $phpcsFile->findNext( [ T_SEMICOLON ], $stackPtr );
+			if ( false !== $semicolon ) {
+				$end = $semicolon + 1;
+				for ( $i = $stackPtr; $i <= $end; $i ++ ) {
+					$phpcsFile->fixer->replaceToken( $i, '' );
+				}
 			}
 		}
 	}

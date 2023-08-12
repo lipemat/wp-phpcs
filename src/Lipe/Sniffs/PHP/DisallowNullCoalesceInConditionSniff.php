@@ -47,9 +47,9 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 	/**
 	 * Returns an array of tokens this test wants to listen for.
 	 *
-	 * @return array
+	 * @return array<string|int>
 	 */
-	public function register() {
+	public function register() : array {
 		$tokens = [
 			\T_INLINE_ELSE,
 		];

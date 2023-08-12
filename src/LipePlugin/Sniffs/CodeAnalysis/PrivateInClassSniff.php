@@ -31,9 +31,9 @@ class PrivateInClassSniff implements Sniff {
 	 * Look for <?php tags only.
 	 * `declare` is always after the first one.
 	 *
-	 * @return array<int, (int|string)>
+	 * @return list<int|string>
 	 */
-	public function register() {
+	public function register() : array {
 		return [
 			T_PRIVATE,
 		];
@@ -47,13 +47,15 @@ class PrivateInClassSniff implements Sniff {
 	 * @param int  $stackPtr                         The position of the current token
 	 *                                               in the stack passed in $tokens.
 	 *
-	 * @return int|void Integer stack pointer to skip forward or void to continue
-	 *                  normal file processing.
+	 * @return void
 	 */
 	public function process( File $phpcsFile, $stackPtr ) {
 		$tokens = $phpcsFile->getTokens();
 
 		$next = $phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true );
+		if ( false === $next ) {
+			return;
+		}
 
 		if ( T_FUNCTION === $tokens[ $next ]['code'] ) {
 			$name = $tokens[ $phpcsFile->findNext( [ T_WHITESPACE ], $next + 1, null, true ) ]['content'];

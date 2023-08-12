@@ -14,12 +14,14 @@ use Lipe\Abstracts\AbstractArrayObjectAssignment;
  *
  * @author Mat Lipe
  * @since  3.1.0
+ *
+ * @phpstan-type Group array{keys:array<int, string>, message:string, type:'error'|'warning'}
  */
 class PostNotInSniff extends AbstractArrayObjectAssignment {
 	/**
 	 * Groups of variables to restrict.
 	 *
-	 * @return array
+	 * @return array<string, Group>
 	 */
 	public function getGroups() : array {
 		return [
@@ -44,15 +46,14 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 	/**
 	 * Callback to process a confirmed key which doesn't need custom logic, but should always error.
 	 *
-	 * @param string $key   Array index / key.
-	 * @param mixed  $val   Assigned value.
-	 * @param int    $line  Token line.
-	 * @param array  $group Group definition.
+	 * @param string       $key   Array index / key.
+	 * @param mixed        $val   Assigned value.
+	 * @param int          $line  Token line.
+	 * @param array<mixed> $group Group definition.
 	 *
-	 * @return mixed         FALSE if no match, TRUE if matches, STRING if matches
-	 *                       with custom error message passed to ->process().
+	 * @return true
 	 */
-	public function callback( $key, $val, $line, $group ) {
+	public function callback( $key, $val, $line, $group ) : bool {
 		return true;
 	}
 }

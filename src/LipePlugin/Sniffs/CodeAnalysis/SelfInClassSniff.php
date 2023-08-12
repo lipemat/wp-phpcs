@@ -37,7 +37,7 @@ class SelfInClassSniff implements Sniff {
 	/**
 	 * OO Scopes in which late static binding is useless.
 	 *
-	 * @var int|string[]
+	 * @var list<int|string>
 	 */
 	private $validOOScopes = [
 		\T_CLASS,      // Only if final.
@@ -45,12 +45,13 @@ class SelfInClassSniff implements Sniff {
 		\T_ENUM,       // Final by design.
 	];
 
+
 	/**
 	 * Returns an array of tokens this test wants to listen for.
 	 *
-	 * @return array
+	 * @return list<int|string>
 	 */
-	public function register() {
+	public function register() : array {
 		return [
 			// These tokens are used to retrieve return types reliably.
 			\T_FUNCTION,
@@ -88,7 +89,7 @@ class SelfInClassSniff implements Sniff {
 			 * Will return the scope opener of the function to prevent potential duplicate notifications.
 			 */
 			$scopeOpener = $stackPtr;
-			if ( isset( $tokens[ $stackPtr ]['scope_opener'] ) === true ) {
+			if ( true === isset( $tokens[ $stackPtr ]['scope_opener'] ) ) {
 				$scopeOpener = $tokens[ $stackPtr ]['scope_opener'];
 			}
 
@@ -135,11 +136,15 @@ class SelfInClassSniff implements Sniff {
 			return $scopeOpener;
 		}
 
-		/*
+		/**
 		 * Check other uses of self.
 		 */
 		$functionPtr = Conditions::getLastCondition( $phpcsFile, $stackPtr, [ \T_FUNCTION, \T_CLOSURE ] );
-		$ooPtr       = Scopes::validDirectScope( $phpcsFile, $functionPtr, $this->validOOScopes );
+		if ( false === $functionPtr ) {
+			// Not in a function or closure.
+			return;
+		}
+		$ooPtr = Scopes::validDirectScope( $phpcsFile, $functionPtr, $this->validOOScopes );
 		if ( false === $ooPtr ) {
 			// Not in an OO context.
 			return;
@@ -156,6 +161,9 @@ class SelfInClassSniff implements Sniff {
 		if ( false !== $prevNonEmpty ) {
 			if ( \T_INSTANCEOF === $tokens[ $prevNonEmpty ]['code'] ) {
 				$prevPrevNonEmpty = $phpcsFile->findPrevious( Tokens::$emptyTokens, ( $prevNonEmpty - 1 ), null, true );
+				if ( false === $prevPrevNonEmpty ) {
+					return;
+				}
 				$extraMsg = GetTokensAsString::compact( $phpcsFile, $prevPrevNonEmpty, $stackPtr, true );
 				$this->handleError( $phpcsFile, $stackPtr, 'InstanceOf', '"' . $extraMsg . '"' );
 				return;
@@ -170,6 +178,9 @@ class SelfInClassSniff implements Sniff {
 		$nextNonEmpty = $phpcsFile->findNext( Tokens::$emptyTokens, ( $stackPtr + 1 ), null, true );
 		if ( false !== $nextNonEmpty && \T_DOUBLE_COLON === $tokens[ $nextNonEmpty ]['code'] ) {
 			$nextNextNonEmpty = $phpcsFile->findNext( Tokens::$emptyTokens, ( $nextNonEmpty + 1 ), null, true );
+			if ( false === $nextNextNonEmpty ) {
+				return;
+			}
 			$extraMsg = GetTokensAsString::compact( $phpcsFile, $stackPtr, $nextNextNonEmpty, true );
 			$this->handleError( $phpcsFile, $stackPtr, 'ScopeResolution', '"' . $extraMsg . '"' );
 		}

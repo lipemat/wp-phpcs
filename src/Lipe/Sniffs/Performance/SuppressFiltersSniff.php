@@ -30,7 +30,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 	/**
 	 * Groups of functions to restrict.
 	 *
-	 * @return array
+	 * @return array<string, array<mixed>>
 	 */
 	public function getGroups() : array {
 		return [
@@ -56,17 +56,21 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 	 * @param string $group_name      The name of the group which was matched.
 	 * @param string $matched_content The token content (function name) which was matched.
 	 *
-	 * @return int|void Integer stack pointer to skip forward or void to continue
+	 * @return void Integer stack pointer to skip forward or void to continue
 	 *                  normal file processing.
 	 */
 	public function process_matched_token( $stackPtr, $group_name, $matched_content ) {
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_OPEN_PARENTHESIS ] ), $stackPtr + 1, null, true );
 
+		if ( false === $array_open ) {
+			return;
+		}
+
 		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
 			$compare_element = $this->find_key_in_array( $array_open, 'suppress_filters' );
 
 			// No suppress_filters key found.
-			if ( empty( $compare_element ) ) {
+			if ( false === $compare_element ) {
 				$this->addMessage(
 					$this->groups[ $group_name ]['message'],
 					$stackPtr,
@@ -100,7 +104,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 				// Special case for any fluent interfaces' `get_light_args` methods.
 				if ( ! isset( $assigned['suppress_filters'] ) && T_OBJECT_OPERATOR === $this->tokens[ $variable + 1 ]['code'] ) {
 					$call = $this->phpcsFile->findNext( \T_STRING, ( $variable + 2 ) );
-					if ( $call && 'get_light_args' === $this->tokens[ $call ]['content'] ) {
+					if ( false !== $call && 'get_light_args' === $this->tokens[ $call ]['content'] ) {
 						return;
 					}
 				}

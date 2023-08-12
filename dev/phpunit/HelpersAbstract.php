@@ -88,6 +88,7 @@ abstract class HelpersAbstract extends TestCase {
 	 *
 	 * For mocking purposes.
 	 *
+	 * @return string|null
 	 */
 	public function strip_quotes( $string ) {
 		return preg_replace( '`^([\'"])(.*)\1$`Ds', '$2', $string );

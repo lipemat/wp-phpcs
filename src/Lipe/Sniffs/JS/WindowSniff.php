@@ -19,7 +19,7 @@ class WindowSniff extends \WordPressVIPMinimum\Sniffs\JS\WindowSniff {
 	/**
 	 * List of window properties that need to be flagged.
 	 *
-	 * @var array
+	 * @var array<string, bool|array<string,bool>>
 	 */
 	private $windowProperties = [
 		'location' => [
@@ -47,31 +47,34 @@ class WindowSniff extends \WordPressVIPMinimum\Sniffs\JS\WindowSniff {
 	 * @return void
 	 */
 	public function process_token( $stackPtr ) {
-		if ( $this->tokens[ $stackPtr ]['content'] !== 'window' ) {
+		if ( 'window' !== $this->tokens[ $stackPtr ]['content'] ) {
 			// Doesn't begin with 'window', bail.
 			return;
 		}
 
 		$nextTokenPtr = $this->phpcsFile->findNext( Tokens::$emptyTokens, ( $stackPtr + 1 ), null, true, null, true );
-		$nextToken    = $this->tokens[ $nextTokenPtr ]['code'];
-		if ( $nextToken !== T_OBJECT_OPERATOR && $nextToken !== T_OPEN_SQUARE_BRACKET ) {
+		if ( false === $nextTokenPtr ) {
+			return;
+		}
+		$nextToken = $this->tokens[ $nextTokenPtr ]['code'];
+		if ( T_OBJECT_OPERATOR !== $nextToken && T_OPEN_SQUARE_BRACKET !== $nextToken ) {
 			// No . or [' next, bail.
 			return;
 		}
 
 		$nextNextTokenPtr = $this->phpcsFile->findNext( Tokens::$emptyTokens, ( $nextTokenPtr + 1 ), null, true, null, true );
-		if ( $nextNextTokenPtr === false ) {
+		if ( false === $nextNextTokenPtr ) {
 			// Something went wrong, bail.
 			return;
 		}
 
 		$nextNextToken = \str_replace( [ '"', "'" ], '', $this->tokens[ $nextNextTokenPtr ]['content'] );
 
-		if ( isset( $this->windowProperties[ $nextNextToken ] ) ) {
+		if ( is_string( $nextNextToken ) && isset( $this->windowProperties[ $nextNextToken ] ) ) {
 			$functionToken = $this->phpcsFile->findNext( Tokens::$functionNameTokens, ( $nextNextTokenPtr + 3 ) );
 
 			// Wrapped in escape function.
-			if ( ! empty( $this->tokens[ $nextTokenPtr ]['nested_parenthesis'] ) ) {
+			if ( isset( $this->tokens[ $nextTokenPtr ]['nested_parenthesis'] ) ) {
 				$functionBefore = $this->phpcsFile->findNext( Tokens::$functionNameTokens, $stackPtr - 3 );
 				if ( $this->isEscapeFunction( $functionBefore ) ) {
 					return;

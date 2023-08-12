@@ -47,7 +47,7 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 	 * - johnbillion/args
 	 * - lipemat/wp-libs
 	 *
-	 * @return array
+	 * @return array<int|string>
 	 */
 	public function register() : array {
 		$tokens = parent::register();
@@ -69,7 +69,10 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 
 		// Check for a fluent interface using the parameters.
 		if ( $this->is_object_assignment( $stackPtr ) ) {
-			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true );
+			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true, null, true );
+			if ( false === $prop ) {
+				return;
+			}
 			foreach ( $this->groups_cache as $groupName => $group ) {
 				foreach ( $group['keys'] as $occurrence ) {
 					if ( $this->tokens[ $prop ]['content'] === $occurrence ) {
@@ -89,9 +92,13 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 	 *
 	 * @param string $base_string - String provide by parent class with the group included.
 	 *
-	 * @return array|null|string|string[]
+	 * @return string
 	 */
 	protected function string_to_errorcode( $base_string ) {
-		return preg_replace( '/.+?_/', '', $base_string, 1 );
+		$result = preg_replace( '/.+?_/', '', $base_string, 1 );
+		if ( is_string( $result ) ) {
+			return $result;
+		}
+		return '';
 	}
 }

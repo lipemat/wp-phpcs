@@ -23,7 +23,7 @@ trait EscapeOutputFunctions {
 	 *
 	 * Prevents having to do the same merges over and over.
 	 *
-	 * @var array
+	 * @var array<string, array<string>>
 	 */
 	private $addedCustomFunctions = [
 		'escape' => [],
@@ -44,11 +44,14 @@ trait EscapeOutputFunctions {
 	/**
 	 * Detect if current position is an escape function
 	 *
-	 * @param int $functionToken token amount scape function.
+	 * @param int|false $functionToken token amount scape function.
 	 *
 	 * @return bool
 	 */
 	protected function isEscapeFunction( $functionToken ) {
+		if ( false === $functionToken ) {
+			return false;
+		}
 		$this->mergeFunctionLists();
 
 		$openParenthesis = $this->phpcsFile->findNext( Tokens::$emptyTokens, $functionToken + 1, null, true, null, true );

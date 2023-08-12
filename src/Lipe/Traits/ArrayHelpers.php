@@ -15,6 +15,8 @@ use VariableAnalysis\Lib\Helpers;
 /**
  * Helpers for working with arrays.
  *
+ * @phpstan-type ArrayElement array{index_start?: int, index_end?: int|false, arrow?: int, value_start: int|false}
+ *
  * @author Mat Lipe
  * @since  3.1.0
  */
@@ -30,7 +32,7 @@ trait ArrayHelpers {
 	/**
 	 * Tokens that indicate an array.
 	 *
-	 * @var array
+	 * @var array<int|string>
 	 */
 	public static $array_tokens = [
 		T_ARRAY,
@@ -51,7 +53,7 @@ trait ArrayHelpers {
 	 * @return bool
 	 */
 	protected function is_variable_an_array( int $token ) : bool {
-		if ( null !== $this->get_array_opener( $token ) ) {
+		if ( false !== $this->get_array_opener( $token ) ) {
 			return true;
 		}
 		$assignment = $this->get_variable_assignment( $token );
@@ -60,10 +62,13 @@ trait ArrayHelpers {
 		}
 		$next = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
 		// If the next token is a parenthesis, we're probably in a function call.
-		if ( Helpers::isTokenFunctionParameter( $this->phpcsFile, $next ) ) {
+		if ( false !== $next && Helpers::isTokenFunctionParameter( $this->phpcsFile, $next ) ) {
 			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, null, false, $this->tokens[ $token ]['content'] );
+			if ( false === $assignment ) {
+				return false;
+			}
 			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, null, false, null, true );
-			if ( $bracket && $bracket < $token ) {
+			if ( false !== $bracket && $bracket < $token ) {
 				return true;
 			}
 		}
@@ -77,7 +82,7 @@ trait ArrayHelpers {
 	 *
 	 * @param int $token - Position of the variable usage.
 	 *
-	 * @return array
+	 * @return array<string, int>
 	 */
 	protected function get_assigned_keys_from_variable( int $token ) : array {
 		$assignment = $this->get_variable_assignment( $token );
@@ -87,7 +92,7 @@ trait ArrayHelpers {
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
 
 		$values = [];
-		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
+		if ( false !== $array_open && \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
 			$values = $this->get_assigned_keys( $array_open );
 		}
 
@@ -96,12 +101,12 @@ trait ArrayHelpers {
 
 
 	/**
-	 * Get values from array access assignment using square brackets.
+	 * Get value tokens from array access assignment using square brackets.
 	 *
-	 * @param int   $token  - Position of the variable usage.
-	 * @param array $values - Array of values to add to.
+	 * @param int                $token  - Position of the variable usage.
+	 * @param array<string, int> $values - Array of values to add to.
 	 *
-	 * @return array
+	 * @return array<string, int>
 	 */
 	protected function get_array_access_values( int $token, array $values ) : array {
 		$assignment = $this->get_variable_assignment( $token );
@@ -109,15 +114,22 @@ trait ArrayHelpers {
 			return [];
 		}
 
-		while ( $assignment && $assignment < $token ) {
+		while ( $assignment < $token ) {
 			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, null, false, $this->tokens[ $token ]['content'] );
+			if ( false === $assignment ) {
+				break;
+			}
+
 			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, null, false, null, true );
+			if ( false === $bracket ) {
+				break;
+			}
 
 			$key = $this->phpcsFile->findNext( Tokens::$emptyTokens, $bracket + 1, null, true );
-			if ( T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $key ]['code'] ) {
+			if ( false !== $key && T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $key ]['code'] ) {
 				$index = $this->strip_quotes( $this->tokens[ $key ]['content'] );
 				$value = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_CLOSE_SQUARE_BRACKET ] ), $key + 1, null, true );
-				if ( $value ) {
+				if ( false !== $value ) {
 					$values[ $index ] = $value;
 				}
 			}
@@ -132,10 +144,13 @@ trait ArrayHelpers {
 	 *
 	 * @param int $array_open - Position of the array opener.
 	 *
-	 * @return array
+	 * @return array<string, int>
 	 */
 	protected function get_assigned_keys( int $array_open ) : array {
 		$array_bounds = $this->find_array_open_close( $array_open );
+		if ( false === $array_bounds || ! isset( $array_bounds['opener'], $array_bounds['closer'] ) ) {
+			return [];
+		}
 		$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
 
 		$properties = [];
@@ -158,7 +173,9 @@ trait ArrayHelpers {
 			}
 
 			$index = $this->strip_quotes( $this->tokens[ $start ]['content'] );
-			$properties[ $index ] = $element['value_start'];
+			if ( false !== $element['value_start'] ) {
+				$properties[ $index ] = $element['value_start'];
+			}
 		}
 
 		return $properties;
@@ -173,21 +190,21 @@ trait ArrayHelpers {
 	 * @param int    $token - Position of the variable usage.
 	 * @param string $key   - Key to search for.
 	 *
-	 * @return int|null
+	 * @return int|false
 	 */
 	protected function find_key_in_array( int $token, string $key ) {
 		$array_open = $this->get_array_opener( $token );
-		if ( null === $array_open ) {
-			return null;
+		if ( false === $array_open ) {
+			return false;
 		}
 		$array_bounds = $this->find_array_open_close( $array_open );
-		if ( null === $array_bounds ) {
-			return null;
+		if ( false === $array_bounds || ! isset( $array_bounds['opener'], $array_bounds['closer'] ) ) {
+			return false;
 		}
 		$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
 		$element = $this->find_key_in_array_elements( $elements, $key );
 		if ( null === $element ) {
-			return null;
+			return false;
 		}
 		return $element['value_start'];
 	}
@@ -198,10 +215,10 @@ trait ArrayHelpers {
 	 *
 	 * Searches a list of elements for a given (static) index.
 	 *
-	 * @param array<array> $elements  Elements from the array (from get_array_indices()).
-	 * @param string       $array_key Key to find in the array.
+	 * @param ArrayElement[] $elements  Elements from the array (from get_array_indices()).
+	 * @param string         $array_key Key to find in the array.
 	 *
-	 * @return array|null Static value if available, null otherwise.
+	 * @return ArrayElement|null Static value if available, null otherwise.
 	 */
 	protected function find_key_in_array_elements( array $elements, string $array_key ) {
 		foreach ( $elements as $element ) {
@@ -244,7 +261,7 @@ trait ArrayHelpers {
 	 * @param integer $array_start Position in the stack of the array opener.
 	 * @param integer $array_end   Position in the stack of the array closer.
 	 *
-	 * @return array
+	 * @return ArrayElement[]
 	 */
 	protected function get_array_indices( int $array_start, int $array_end ) : array {
 		$indices = [];
@@ -270,7 +287,9 @@ trait ArrayHelpers {
 					'value_start' => $value_start,
 				];
 			}
-
+			if ( false === $value_start ) {
+				break;
+			}
 			$current = $this->get_next( $this->phpcsFile, $value_start, $array_end );
 			$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, ( $current + 1 ), $array_end, true );
 		}
@@ -351,14 +370,14 @@ trait ArrayHelpers {
 	 *
 	 * @param int $token Position in the stack of the array opener or variable assignment.
 	 *
-	 * @return int|null
+	 * @return int|false
 	 */
 	protected function get_array_opener( int $token ) {
 		$array_open = $token;
 		if ( T_VARIABLE === $this->tokens[ $token ]['code'] ) {
 			$assignment = $this->get_variable_assignment( $token );
 			if ( false === $assignment ) {
-				return null;
+				return false;
 			}
 			$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
 		}
@@ -366,6 +385,6 @@ trait ArrayHelpers {
 		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
 			return $array_open;
 		}
-		return null;
+		return false;
 	}
 }

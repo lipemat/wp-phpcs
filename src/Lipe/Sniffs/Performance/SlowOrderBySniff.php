@@ -29,6 +29,8 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
  * @code   `rand`
  * @code   `meta_value`
  * @code   `meta_value_num`
+ *
+ * @phpstan-type Group array{keys:array<int, string>, message:string, type:'error'|'warning'}
  */
 class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	use ObjectHelpers;
@@ -56,7 +58,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 * - johnbillion/args
 	 * - lipemat/wp-libs
 	 *
-	 * @return array
+	 * @return array<string|int>
 	 */
 	public function register() : array {
 		$tokens = parent::register();
@@ -68,7 +70,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
 	 * Groups of variables to restrict.
 	 *
-	 * @return array
+	 * @return array<string, Group>
 	 */
 	public function getGroups() : array {
 		return [
@@ -97,7 +99,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 		// Check if a fluent interface is using the parameters.
 		if ( $this->is_object_assignment( $stackPtr ) ) {
 			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true );
-			if ( 'orderby' === $this->tokens[ $prop ]['content'] ) {
+			if ( false !== $prop && 'orderby' === $this->tokens[ $prop ]['content'] ) {
 				$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
 				$this->callback( 'orderby', $this->strip_quotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_orderby'] );
 			}
@@ -110,10 +112,10 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
 	 * Callback to process each confirmed key, to check value.
 	 *
-	 * @param string $key   Array index / key.
-	 * @param mixed  $val   Assigned value.
-	 * @param int    $line  Token line.
-	 * @param array  $group Group definition.
+	 * @param string       $key   Array index / key.
+	 * @param mixed        $val   Assigned value.
+	 * @param int          $line  Token line.
+	 * @param array<mixed> $group Group definition.
 	 *
 	 * @return bool
 	 */

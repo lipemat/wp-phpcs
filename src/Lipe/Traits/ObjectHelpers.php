@@ -8,6 +8,7 @@
 
 namespace Lipe\Traits;
 
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
 
@@ -17,8 +18,8 @@ use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
  * @author   Mat Lipe
  * @since    3.1.0
  *
- * @property $phpcsFile File
- * @property $tokens    array
+ * @property File  $phpcsFile
+ * @property array $tokens
  */
 trait ObjectHelpers {
 	/**
@@ -32,6 +33,7 @@ trait ObjectHelpers {
 	 * @return bool
 	 */
 	public function is_targetted_token( $stackPtr ) : bool {
+		// @phpstan-ignore-next-line -- Some classes have this, some don't.
 		if ( method_exists( parent::class, 'is_targetted_token' ) && ! parent::is_targetted_token( $stackPtr ) ) {
 			return false;
 		}
@@ -52,12 +54,12 @@ trait ObjectHelpers {
 		if ( T_VARIABLE === $this->tokens[ $token ]['code'] ) {
 			$variable = $token;
 			$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $token + 1, null, true, null, true );
-			if ( ! $next || T_OBJECT_OPERATOR !== $this->tokens[ $next ]['code'] ) {
+			if ( false === $next || T_OBJECT_OPERATOR !== $this->tokens[ $next ]['code'] ) {
 				return false;
 			}
 		} elseif ( T_OBJECT_OPERATOR === $this->tokens[ $token ]['code'] ) {
 			$variable = $this->phpcsFile->findPrevious( Tokens::$emptyTokens, $token + - 1, null, true, null, true );
-			if ( ! $variable || T_VARIABLE !== $this->tokens[ $variable ]['code'] ) {
+			if ( false === $variable || T_VARIABLE !== $this->tokens[ $variable ]['code'] ) {
 				return false;
 			}
 		} else {
@@ -87,7 +89,7 @@ trait ObjectHelpers {
 
 		$next = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ T_EQUAL ] ), $assignment + 1, null, true, null, true );
 
-		return $next && T_NEW === $this->tokens[ $next ]['code'];
+		return false !== $next && T_NEW === $this->tokens[ $next ]['code'];
 	}
 
 
@@ -96,7 +98,7 @@ trait ObjectHelpers {
 	 *
 	 * @param int $token - Position of the variable usage.
 	 *
-	 * @return string[]
+	 * @return array<string|int, int>
 	 */
 	protected function get_assigned_properties( int $token ) : array {
 		$assignment = $this->get_variable_assignment( $token );
@@ -106,9 +108,9 @@ trait ObjectHelpers {
 
 		$properties = [];
 		$stackPtr = $assignment;
-		while ( $stackPtr > 0 && ! empty( $stackPtr ) && $stackPtr < $token ) {
+		while ( $stackPtr > 0 && $stackPtr < $token ) {
 			$stackPtr = $this->phpcsFile->findNext( T_VARIABLE, $stackPtr + 1, null, false, $this->tokens[ $token ]['content'] );
-			if ( ! $stackPtr ) {
+			if ( false === $stackPtr ) {
 				break;
 			}
 			$operator = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
@@ -117,12 +119,12 @@ trait ObjectHelpers {
 			}
 
 			$property = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 2, null, true, null, true );
-			if ( ! $property ) {
+			if ( false === $property ) {
 				continue;
 			}
 
 			$value = $this->phpcsFile->findNext( array_merge( [ T_EQUAL ], Tokens::$emptyTokens ), $property + 1, null, true, null, true );
-			if ( ! $value ) {
+			if ( false === $value ) {
 				continue;
 			}
 

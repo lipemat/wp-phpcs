@@ -1,0 +1,10 @@
+parameters:
+  level: 8
+  paths:
+    - src
+  bootstrapFiles:
+    - vendor/autoload.php
+  scanDirectories:
+    - vendor/squizlabs/php_codesniffer
+    - vendor/wp-coding-standards/wpcs
+    - vendor/automattic/vipwpcs

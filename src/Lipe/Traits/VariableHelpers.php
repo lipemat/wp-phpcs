@@ -33,19 +33,19 @@ trait VariableHelpers {
 
 		// This is the assignment statement.
 		$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
-		if ( $next && T_EQUAL === $this->tokens[ $next ]['code'] ) {
+		if ( false !== $next && T_EQUAL === $this->tokens[ $next ]['code'] ) {
 			return $stackPtr;
 		}
 
-		while ( $stackPtr > 0 && ! empty( $stackPtr ) ) {
+		while ( $stackPtr > 0 ) {
 			$stackPtr = $this->phpcsFile->findPrevious( T_VARIABLE, $stackPtr - 1, null, false, $content );
 
-			if ( ! $stackPtr ) {
+			if ( false === $stackPtr ) {
 				return false;
 			}
 
 			$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
-			if ( $next && T_EQUAL === $this->tokens[ $next ]['code'] ) {
+			if ( false !== $next && T_EQUAL === $this->tokens[ $next ]['code'] ) {
 				return $stackPtr;
 			}
 
@@ -77,12 +77,12 @@ trait VariableHelpers {
 			return null;
 		}
 		$assignment = $this->get_variable_assignment( $token );
-		if ( null === $assignment ) {
+		if ( false === $assignment ) {
 			return null;
 		}
 
 		$next = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL ] ), $assignment + 1, null, true, null, true );
-		if ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
+		if ( false !== $next && T_VARIABLE === $this->tokens[ $next ]['code'] ) {
 			return $this->get_static_value_from_variable( $next );
 		}
 		if ( T_CONSTANT_ENCAPSED_STRING !== $this->tokens[ $next ]['code'] ) {
