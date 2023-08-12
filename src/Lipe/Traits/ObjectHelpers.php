@@ -51,11 +51,16 @@ trait ObjectHelpers {
 	protected function is_object_assignment( int $token ) : bool {
 		if ( T_VARIABLE === $this->tokens[ $token ]['code'] ) {
 			$variable = $token;
-			if ( ! $this->phpcsFile->findNext( [ T_OBJECT_OPERATOR ], $token + 1, $token + 5, false, null, true ) ) {
+			$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $token + 1, null, true, null, true );
+			if ( ! $next || T_OBJECT_OPERATOR !== $this->tokens[ $next ]['code'] ) {
 				return false;
 			}
 		} elseif ( T_OBJECT_OPERATOR === $this->tokens[ $token ]['code'] ) {
-			$variable = $this->phpcsFile->findPrevious( [ T_VARIABLE ], $token - 1, $token - 5, false, null, true );
+			$prev = $this->phpcsFile->findPrevious( Tokens::$emptyTokens, $token + - 1, null, true, null, true );
+			if ( ! $prev || T_VARIABLE !== $this->tokens[ $prev ]['code'] ) {
+				return false;
+			}
+			$variable = $prev;
 		} else {
 			return false;
 		}
