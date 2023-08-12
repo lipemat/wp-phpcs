@@ -91,3 +91,8 @@ $another = (object) [
 
 $args = new get_posts();
 $args->orderby = $another->meta_value;
+
+$clause = new Args\MetaQuery\Clause();
+$clause->key = 'foo';
+$clause->compare = 'EXISTS';
+$args->meta_query = $clause;

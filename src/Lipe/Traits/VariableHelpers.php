@@ -30,6 +30,13 @@ trait VariableHelpers {
 	protected function get_variable_assignment( int $token ) {
 		$content = $this->tokens[ $token ]['content'];
 		$stackPtr = $token;
+
+		// This is the assignment statement.
+		$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
+		if ( $next && T_EQUAL === $this->tokens[ $next ]['code'] ) {
+			return $stackPtr;
+		}
+
 		while ( $stackPtr > 0 && ! empty( $stackPtr ) ) {
 			$stackPtr = $this->phpcsFile->findPrevious( T_VARIABLE, $stackPtr - 1, null, false, $content );
 

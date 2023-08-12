@@ -56,20 +56,38 @@ trait ObjectHelpers {
 				return false;
 			}
 		} elseif ( T_OBJECT_OPERATOR === $this->tokens[ $token ]['code'] ) {
-			$prev = $this->phpcsFile->findPrevious( Tokens::$emptyTokens, $token + - 1, null, true, null, true );
-			if ( ! $prev || T_VARIABLE !== $this->tokens[ $prev ]['code'] ) {
+			$variable = $this->phpcsFile->findPrevious( Tokens::$emptyTokens, $token + - 1, null, true, null, true );
+			if ( ! $variable || T_VARIABLE !== $this->tokens[ $variable ]['code'] ) {
 				return false;
 			}
-			$variable = $prev;
 		} else {
 			return false;
 		}
 
-		$assignment = $this->get_variable_assignment( $variable );
+		return $this->is_class_object( $variable );
+	}
+
+
+	/**
+	 * Is this variable an instance of a class.
+	 *
+	 * @param int $token - Position of the variable token.
+	 *
+	 * @return bool
+	 */
+	protected function is_class_object( int $token ) : bool {
+		if ( T_VARIABLE !== $this->tokens[ $token ]['code'] ) {
+			return false;
+		}
+
+		$assignment = $this->get_variable_assignment( $token );
 		if ( false === $assignment ) {
 			return false;
 		}
-		return false !== $this->phpcsFile->findNext( [ T_NEW ], $assignment, null, false, null, true );
+
+		$next = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ T_EQUAL ] ), $assignment + 1, null, true, null, true );
+
+		return $next && T_NEW === $this->tokens[ $next ]['code'];
 	}
 
 

@@ -38,7 +38,7 @@ class ObjectHelpersTest extends \HelpersAbstract {
 	}
 
 
-	public function test_get_assignment() {
+	public function test_get_variable_assignment() {
 		$this->tokens = $this->get_raw_tokens_file( 'object-helpers-complex' );
 		$this->assertEquals( 30, $this->get_variable_assignment( 40 ) );
 		$this->assertEquals( 153, $this->get_variable_assignment( 194 ) );
@@ -46,6 +46,49 @@ class ObjectHelpersTest extends \HelpersAbstract {
 
 		$this->tokens = $this->get_raw_tokens_file( 'object-helpers-simple' );
 		$this->assertEquals( 14, $this->get_variable_assignment( 38 ) );
+
+		$this->tokens = $this->convert_file_to_tokens( 'fluent-interface' );
+		$this->assertEquals( 14, $this->get_variable_assignment( 14 ) );
+		$this->assertEquals( 14, $this->get_variable_assignment( 29 ) );
+
+		$this->assertEquals( 39, $this->get_variable_assignment( 39 ) );
+		$this->assertEquals( 39, $this->get_variable_assignment( 48 ) );
+
+		$this->assertEquals( 140, $this->get_variable_assignment( 140 ) );
+		$this->assertEquals( 140, $this->get_variable_assignment( 151 ) );
+		$this->assertEquals( 140, $this->get_variable_assignment( 160 ) );
+
+		$this->assertEquals( 172, $this->get_variable_assignment( 172 ) );
+		$this->assertEquals( 172, $this->get_variable_assignment( 183 ) );
+		$this->assertEquals( 172, $this->get_variable_assignment( 228 ) );
+
+		$this->assertEquals( 195, $this->get_variable_assignment( 195 ) );
+		$this->assertEquals( 195, $this->get_variable_assignment( 210 ) );
+		$this->assertEquals( 195, $this->get_variable_assignment( 219 ) );
+		$this->assertEquals( 195, $this->get_variable_assignment( 234 ) );
+	}
+
+
+	public function test_is_class_object() {
+		$this->tokens = $this->convert_file_to_tokens( 'fluent-interface' );
+		$this->assertTrue( $this->is_class_object( 14 ) );
+		$this->assertTrue( $this->is_class_object( 29 ) );
+
+		$this->assertFalse( $this->is_class_object( 39 ) );
+		$this->assertFalse( $this->is_class_object( 48 ) );
+
+		$this->assertTrue( $this->is_class_object( 140 ) );
+		$this->assertTrue( $this->is_class_object( 151 ) );
+		$this->assertTrue( $this->is_class_object( 160 ) );
+		$this->assertTrue( $this->is_class_object( 172 ) );
+
+		$this->assertTrue( $this->is_class_object( 195 ) );
+		$this->assertTrue( $this->is_class_object( 210 ) );
+		$this->assertTrue( $this->is_class_object( 219 ) );
+		$this->assertTrue( $this->is_class_object( 234 ) );
+
+		$this->assertTrue( $this->is_class_object( 183 ) );
+		$this->assertTrue( $this->is_class_object( 228 ) );
 	}
 
 

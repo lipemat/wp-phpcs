@@ -115,6 +115,15 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 					// Object assignment of meta_query.
 					$next = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_DOUBLE_ARROW ] ), $prop + 1, null, true );
 					if ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
+						// Attempt to detect a sub fluent interface.
+						if ( $this->is_class_object( $next ) ) {
+							$compare = $this->get_assigned_properties( $next );
+							if ( isset( $compare['compare'] ) ) {
+								$this->check_compare_value( $this->tokens[ $compare['compare'] ]['content'], $next );
+								return;
+							}
+						}
+
 						$this->addMessage(
 							'Using a dynamic comparison in `meta_query` cannot be checked automatically, and may be non-performant.',
 							$prop,
@@ -271,6 +280,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 		if ( null === $stackPtr ) {
 			$stackPtr = $this->stackPtr;
 		}
+		$compare = $this->strip_quotes( $compare );
 
 		if ( '__dynamic' === $compare ) {
 			$this->addMessage(
