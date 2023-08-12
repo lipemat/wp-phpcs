@@ -1,0 +1,258 @@
+{
+  "9": [
+    {
+      "source": "Lipe.JS.DangerouslySetInnerHTML.Found",
+      "type": "error"
+    }
+  ],
+  "33": [
+    {
+      "source": "Lipe.JS.StringConcat.Found",
+      "type": "error"
+    }
+  ],
+  "36": [
+    {
+      "source": "Lipe.JS.StrippingTags.VulnerableTagStripping",
+      "type": "error"
+    },
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.html",
+      "type": "warning"
+    }
+  ],
+  "39": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "40": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "41": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "42": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "43": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "44": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "45": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "46": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "47": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "48": [
+    {
+      "source": "Lipe.JS.Window.location",
+      "type": "error"
+    }
+  ],
+  "49": [
+    {
+      "source": "Lipe.JS.Window.name",
+      "type": "error"
+    }
+  ],
+  "50": [
+    {
+      "source": "Lipe.JS.Window.status",
+      "type": "error"
+    }
+  ],
+  "15": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.after",
+      "type": "warning"
+    }
+  ],
+  "16": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.append",
+      "type": "warning"
+    }
+  ],
+  "17": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.appendTo",
+      "type": "warning"
+    }
+  ],
+  "18": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.before",
+      "type": "warning"
+    }
+  ],
+  "19": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.html",
+      "type": "warning"
+    }
+  ],
+  "20": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.insertAfter",
+      "type": "warning"
+    }
+  ],
+  "21": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.insertBefore",
+      "type": "warning"
+    }
+  ],
+  "22": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.prepend",
+      "type": "warning"
+    }
+  ],
+  "23": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.prependTo",
+      "type": "warning"
+    }
+  ],
+  "24": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.replaceAll",
+      "type": "warning"
+    }
+  ],
+  "25": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.replaceWith",
+      "type": "warning"
+    }
+  ],
+  "26": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.write",
+      "type": "warning"
+    }
+  ],
+  "27": [
+    {
+      "source": "Lipe.JS.HTMLExecutingFunctions.writeln",
+      "type": "warning"
+    }
+  ],
+  "30": [
+    {
+      "source": "Lipe.JS.InnerHTML.Found",
+      "type": "warning"
+    }
+  ],
+  "53": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "54": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "55": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "56": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "57": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "58": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "59": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "60": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "61": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "62": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "63": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "64": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ],
+  "65": [
+    {
+      "source": "Lipe.JS.Window.VarAssignment",
+      "type": "warning"
+    }
+  ]
+}
