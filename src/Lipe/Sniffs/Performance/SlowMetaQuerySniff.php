@@ -115,7 +115,6 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 					// Object assignment of meta_query.
 					$next = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_DOUBLE_ARROW ] ), $prop + 1, null, true );
 					if ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
-
 						// Attempt to detect a sub fluent interface.
 						if ( $this->is_class_object( $next ) ) {
 							$compare = $this->get_assigned_properties( $next );
@@ -126,8 +125,11 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 						} elseif ( $this->is_variable_an_array( $next ) ) {
 							$compare = $this->find_key_in_array( $next, 'compare' );
 							if ( null !== $compare ) {
-								$this->check_compare_value( $this->tokens[ $compare ]['content'], $next );
-								return;
+								$compare = $this->get_static_value_from_variable( $compare );
+								if ( null !== $compare ) {
+									$this->check_compare_value( $compare, $next );
+									return;
+								}
 							}
 						}
 

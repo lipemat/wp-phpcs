@@ -135,3 +135,24 @@ $array_clause = [
 ];
 
 $dynamic->meta_query = $array_clause;
+
+$compare = 'EXISTS';
+$first_level = $compare;
+$deep_dynamic = new get_posts();
+$array_clause = [
+	'key'     => 'foo',
+	'compare' => '=',
+];
+
+$deep_dynamic->meta_query = $array_clause;
+
+$outside = new stdClass();
+$outside->value = 'NOT EXISTS';
+
+$out_dynamic = new get_posts();
+$out_clause = [
+	'key'     => 'foo',
+	'compare' => $outside->value, // Can't determine this.
+];
+
+$out_dynamic->meta_query = $out_clause;

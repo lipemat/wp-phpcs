@@ -104,3 +104,13 @@ $array_clause = [
 ];
 
 $dynamic->meta_query = $array_clause;
+
+$compare = 'EXISTS';
+$first_level = $compare;
+$deep_dynamic = new get_posts();
+$array_clause = [
+	'key'     => 'foo',
+	'compare' => $first_level,
+];
+
+$deep_dynamic->meta_query = $array_clause;

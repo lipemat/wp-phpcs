@@ -89,6 +89,9 @@ class ObjectHelpersTest extends \HelpersAbstract {
 
 		$this->assertTrue( $this->is_class_object( 183 ) );
 		$this->assertTrue( $this->is_class_object( 228 ) );
+		$this->assertTrue( $this->is_class_object( 336 ) );
+
+		$this->assertfalse( $this->is_class_object( 342 ) );
 	}
 
 

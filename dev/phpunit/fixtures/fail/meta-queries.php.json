@@ -94,5 +94,17 @@
       "source": "Lipe.Performance.SlowMetaQuery.NonPerformant",
       "type": "error"
     }
+  ],
+  "147": [
+    {
+      "source": "Lipe.Performance.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "158": [
+    {
+      "source": "Lipe.Performance.SlowMetaQuery.Dynamic",
+      "type": "warning"
+    }
   ]
 }
