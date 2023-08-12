@@ -115,6 +115,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 					// Object assignment of meta_query.
 					$next = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_DOUBLE_ARROW ] ), $prop + 1, null, true );
 					if ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
+
 						// Attempt to detect a sub fluent interface.
 						if ( $this->is_class_object( $next ) ) {
 							$compare = $this->get_assigned_properties( $next );
@@ -122,14 +123,15 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 								$this->check_compare_value( $this->tokens[ $compare['compare'] ]['content'], $next );
 								return;
 							}
+						} elseif ( $this->is_variable_an_array( $next ) ) {
+							$compare = $this->find_key_in_array( $next, 'compare' );
+							if ( null !== $compare ) {
+								$this->check_compare_value( $this->tokens[ $compare ]['content'], $next );
+								return;
+							}
 						}
 
-						$this->addMessage(
-							'Using a dynamic comparison in `meta_query` cannot be checked automatically, and may be non-performant.',
-							$prop,
-							'warning',
-							'Dynamic'
-						);
+						$this->check_compare_value( '__dynamic', $prop );
 					} else {
 						$this->check_meta_query_item( $next );
 					}
@@ -186,10 +188,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 		}
 
 		$array_open = $this->phpcsFile->findPrevious( static::$array_tokens, $this->stackPtr - 1 );
-		$array_bounds = $this->find_array_open_close( $array_open );
-		$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
-
-		$compare_element = $this->find_key_in_array( $elements, 'meta_compare' );
+		$compare_element = $this->find_key_in_array( $array_open, 'meta_compare' );
 
 		if ( empty( $compare_element ) ) {
 			$compare = 'default';
@@ -238,12 +237,12 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 
 		// Is this a "first-order" query?
 		// @see WP_Meta_Query::is_first_order_clause.
-		$first_order_key = $this->find_key_in_array( $elements, 'key' );
-		$first_order_value = $this->find_key_in_array( $elements, 'value' );
+		$first_order_key = $this->find_key_in_array_elements( $elements, 'key' );
+		$first_order_value = $this->find_key_in_array_elements( $elements, 'value' );
 		if ( $first_order_key || $first_order_value ) {
-			$compare_element = $this->find_key_in_array( $elements, 'compare' );
+			$compare_element = $this->find_key_in_array_elements( $elements, 'compare' );
 			if ( ! empty( $compare_element ) ) {
-				$compare = $this->get_static_value_for_element( $compare_element );
+				$compare = $this->get_static_value_for_element( $compare_element['value_start'] );
 			}
 			if ( empty( $compare ) ) {
 				// The default is either IN or = depending on whether value is

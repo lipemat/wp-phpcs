@@ -31,8 +31,8 @@
   ],
   "59": [
     {
-      "source": "Lipe.Performance.SlowMetaQuery.Dynamic",
-      "type": "warning"
+      "source": "Lipe.Performance.SlowMetaQuery.NonPerformant",
+      "type": "error"
     }
   ],
   "69": [
@@ -84,6 +84,12 @@
     }
   ],
   "125": [
+    {
+      "source": "Lipe.Performance.SlowMetaQuery.NonPerformant",
+      "type": "error"
+    }
+  ],
+  "137": [
     {
       "source": "Lipe.Performance.SlowMetaQuery.NonPerformant",
       "type": "error"

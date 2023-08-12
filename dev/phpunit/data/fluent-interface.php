@@ -32,3 +32,21 @@ $clause = new Args\MetaQuery\Clause();
 $clause->key = 'foo';
 $clause->compare = 'EXISTS';
 $args->meta_query = $clause;
+
+$dynamic = new get_posts();
+$array_clause = [
+	'key'     => 'foo',
+	'compare' => 'EXISTS',
+];
+
+$dynamic->meta_query = $array_clause;
+
+$compare = 'EXISTS';
+$first_level = $compare;
+$deep_dynamic = new get_posts();
+$array_clause = [
+	'key'     => 'foo',
+	'compare' => $first_level,
+];
+
+$deep_dynamic->meta_query = $array_clause;

@@ -125,3 +125,13 @@ $what->meta_query = [
 		'compare' => 'LIKE',
 	],
 ];
+
+use Args\get_posts;
+
+$dynamic = new get_posts();
+$array_clause = [
+	'key'     => 'foo',
+	'compare' => '!=',
+];
+
+$dynamic->meta_query = $array_clause;

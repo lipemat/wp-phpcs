@@ -63,9 +63,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_OPEN_PARENTHESIS ] ), $stackPtr + 1, null, true );
 
 		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
-			$array_bounds = $this->find_array_open_close( $array_open );
-			$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
-			$compare_element = $this->find_key_in_array( $elements, 'suppress_filters' );
+			$compare_element = $this->find_key_in_array( $array_open, 'suppress_filters' );
 
 			// No suppress_filters key found.
 			if ( empty( $compare_element ) ) {
@@ -80,7 +78,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 			}
 
 			// suppress_filters key found, but not set to false.
-			if ( 'false' !== $this->tokens[ $compare_element['value_start'] ]['content'] ) {
+			if ( 'false' !== $this->tokens[ $compare_element ]['content'] ) {
 				$this->addMessage(
 					'Setting "suppress_filters" parameter to true in %s() is prohibited. More Info: https://docs.wpvip.com/technical-references/caching/uncached-functions/.',
 					$stackPtr,
@@ -95,18 +93,6 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 
 		if ( Helpers::isTokenInsideFunctionCallArgument( $this->phpcsFile, $array_open ) ) {
 			$variable = $array_open;
-			// Unable to determine if suppress_filters is set to false.
-			if ( $variable < $stackPtr ) {
-				$this->addMessage(
-					$this->groups[ $group_name ]['message'],
-					$stackPtr,
-					( 'error' === $this->groups[ $group_name ]['type'] ),
-					$this->string_to_errorcode( $matched_content ),
-					[ $matched_content ]
-				);
-				return;
-			}
-
 			if ( $this->is_variable_an_array( $variable ) ) {
 				$assigned = $this->get_assigned_keys_from_variable( $variable );
 			} else {

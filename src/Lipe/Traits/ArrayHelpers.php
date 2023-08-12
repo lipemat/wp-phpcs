@@ -51,17 +51,16 @@ trait ArrayHelpers {
 	 * @return bool
 	 */
 	protected function is_variable_an_array( int $token ) : bool {
+		if ( null !== $this->get_array_opener( $token ) ) {
+			return true;
+		}
 		$assignment = $this->get_variable_assignment( $token );
 		if ( false === $assignment ) {
 			return false;
 		}
-		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
-		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
-			return true;
-		}
-
+		$next = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
 		// If the next token is a parenthesis, we're probably in a function call.
-		if ( Helpers::isTokenFunctionParameter( $this->phpcsFile, $array_open ) ) {
+		if ( Helpers::isTokenFunctionParameter( $this->phpcsFile, $next ) ) {
 			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, null, false, $this->tokens[ $token ]['content'] );
 			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, null, false, null, true );
 			if ( $bracket && $bracket < $token ) {
@@ -167,6 +166,34 @@ trait ArrayHelpers {
 
 
 	/**
+	 * Get the token for the value in an array by key.
+	 *
+	 * Returns null if the key is not found.
+	 *
+	 * @param int    $token - Position of the variable usage.
+	 * @param string $key   - Key to search for.
+	 *
+	 * @return int|null
+	 */
+	protected function find_key_in_array( int $token, string $key ) {
+		$array_open = $this->get_array_opener( $token );
+		if ( null === $array_open ) {
+			return null;
+		}
+		$array_bounds = $this->find_array_open_close( $array_open );
+		if ( null === $array_bounds ) {
+			return null;
+		}
+		$elements = $this->get_array_indices( $array_bounds['opener'], $array_bounds['closer'] );
+		$element = $this->find_key_in_array_elements( $elements, $key );
+		if ( null === $element ) {
+			return null;
+		}
+		return $element['value_start'];
+	}
+
+
+	/**
 	 * Find a given key in an array.
 	 *
 	 * Searches a list of elements for a given (static) index.
@@ -176,7 +203,7 @@ trait ArrayHelpers {
 	 *
 	 * @return array|null Static value if available, null otherwise.
 	 */
-	protected function find_key_in_array( array $elements, string $array_key ) {
+	protected function find_key_in_array_elements( array $elements, string $array_key ) {
 		foreach ( $elements as $element ) {
 			if ( ! isset( $element['index_start'] ) ) {
 				// Numeric item, skip.
@@ -289,15 +316,18 @@ trait ArrayHelpers {
 	/**
 	 * Get a static value from an array.
 	 *
-	 * @param array $element Elements from the array (from get_array_indices()).
+	 * @param int $value_start Position in the stack of the value.
 	 *
 	 * @return string|null Static value if available, null otherwise.
 	 */
-	protected function get_static_value_for_element( array $element ) {
-		// Got the compare, grab the value.
-		$value_start = $element['value_start'];
+	protected function get_static_value_for_element( int $value_start ) {
 		if ( T_CONSTANT_ENCAPSED_STRING !== $this->tokens[ $value_start ]['code'] ) {
-			// Dynamic value.
+			if ( T_VARIABLE === $this->tokens[ $value_start ]['code'] ) {
+				$value = $this->get_static_value_from_variable( $value_start );
+				if ( null !== $value ) {
+					return $value;
+				}
+			}
 			return '__dynamic';
 		}
 
@@ -313,5 +343,29 @@ trait ArrayHelpers {
 		}
 
 		return $this->strip_quotes( $this->tokens[ $value_start ]['content'] );
+	}
+
+
+	/**
+	 * Based on either the array opener or the variable assignment, find the array opener.
+	 *
+	 * @param int $token Position in the stack of the array opener or variable assignment.
+	 *
+	 * @return int|null
+	 */
+	protected function get_array_opener( int $token ) {
+		$array_open = $token;
+		if ( T_VARIABLE === $this->tokens[ $token ]['code'] ) {
+			$assignment = $this->get_variable_assignment( $token );
+			if ( false === $assignment ) {
+				return null;
+			}
+			$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
+		}
+
+		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
+			return $array_open;
+		}
+		return null;
 	}
 }

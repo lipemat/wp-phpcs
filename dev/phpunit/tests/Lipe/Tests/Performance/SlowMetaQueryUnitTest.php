@@ -33,6 +33,7 @@ class SlowMetaQueryUnitTest extends AbstractSniffUnitTest {
 					27  => 1,
 					37  => 1,
 					47  => 1,
+					59  => 1,
 					78  => 1,
 					94  => 1,
 					98  => 1,
@@ -56,7 +57,6 @@ class SlowMetaQueryUnitTest extends AbstractSniffUnitTest {
 
 			case 'SlowMetaQueryUnitTest.fail.inc':
 				return [
-					59  => 1,
 					69  => 1,
 					84  => 1,
 					90  => 1,

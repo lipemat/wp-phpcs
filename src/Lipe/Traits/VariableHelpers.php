@@ -56,4 +56,38 @@ trait VariableHelpers {
 
 		return false;
 	}
+
+
+	/**
+	 * Get the static value of a variable.
+	 *
+	 * - If the token is already a static variable return it.
+	 * - If the token is a variable, find the assignment and return the static value.
+	 * - If the variable is not assigned a static value return false.
+	 *
+	 * @param int $token - Position of the variable usage.
+	 *
+	 * @return null|string
+	 */
+	protected function get_static_value_from_variable( int $token ) {
+		if ( T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $token ]['code'] ) {
+			return $this->strip_quotes( $this->tokens[ $token ]['content'] );
+		}
+		if ( T_VARIABLE !== $this->tokens[ $token ]['code'] ) {
+			return null;
+		}
+		$assignment = $this->get_variable_assignment( $token );
+		if ( null === $assignment ) {
+			return null;
+		}
+
+		$next = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL ] ), $assignment + 1, null, true, null, true );
+		if ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
+			return $this->get_static_value_from_variable( $next );
+		}
+		if ( T_CONSTANT_ENCAPSED_STRING !== $this->tokens[ $next ]['code'] ) {
+			return null;
+		}
+		return $this->strip_quotes( $this->tokens[ $next ]['content'] );
+	}
 }
