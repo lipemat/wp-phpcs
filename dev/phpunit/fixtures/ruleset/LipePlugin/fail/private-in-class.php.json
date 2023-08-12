@@ -1,0 +1,86 @@
+{
+  "3": [
+    {
+      "source": "Squiz.Commenting.ClassComment.Missing",
+      "type": "error"
+    }
+  ],
+  "4": [
+    {
+      "source": "Squiz.Commenting.VariableComment.Missing",
+      "type": "error"
+    },
+    {
+      "source": "LipePlugin.CodeAnalysis.PrivateInClass.Found",
+      "type": "warning"
+    }
+  ],
+  "7": [
+    {
+      "source": "Squiz.Commenting.FunctionComment.Missing",
+      "type": "error"
+    }
+  ],
+  "8": [
+    {
+      "source": "LipePlugin.CodeAnalysis.SelfInClass.ScopeResolution",
+      "type": "warning"
+    }
+  ],
+  "12": [
+    {
+      "source": "Squiz.Commenting.FunctionComment.Missing",
+      "type": "error"
+    },
+    {
+      "source": "LipePlugin.CodeAnalysis.PrivateInClass.Found",
+      "type": "warning"
+    }
+  ],
+  "13": [
+    {
+      "source": "LipePlugin.CodeAnalysis.SelfInClass.ScopeResolution",
+      "type": "warning"
+    }
+  ],
+  "17": [
+    {
+      "source": "Squiz.Commenting.FunctionComment.Missing",
+      "type": "error"
+    }
+  ],
+  "18": [
+    {
+      "source": "LipePlugin.CodeAnalysis.SelfInClass.ScopeResolution",
+      "type": "warning"
+    }
+  ],
+  "27": [
+    {
+      "source": "Universal.Classes.DisallowFinalClass.FinalClassFound",
+      "type": "error"
+    },
+    {
+      "source": "Generic.Files.OneObjectStructurePerFile.MultipleFound",
+      "type": "warning"
+    }
+  ],
+  "32": [
+    {
+      "source": "Squiz.Commenting.VariableComment.MissingVar",
+      "type": "error"
+    }
+  ],
+  "33": [
+    {
+      "source": "LipePlugin.CodeAnalysis.PrivateInClass.Found",
+      "type": "warning"
+    }
+  ],
+  "51": [
+    {
+      "source": "LipePlugin.CodeAnalysis.PrivateInClass.Found",
+      "type": "warning"
+    }
+  ]
+}
