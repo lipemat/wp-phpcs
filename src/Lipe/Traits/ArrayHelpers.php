@@ -89,9 +89,9 @@ trait ArrayHelpers {
 		if ( false === $assignment ) {
 			return [];
 		}
-		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
 
 		$values = [];
+		$array_open = $this->get_array_opener( $assignment );
 		if ( false !== $array_open && \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
 			$values = $this->get_assigned_keys( $array_open );
 		}
@@ -380,6 +380,13 @@ trait ArrayHelpers {
 				return false;
 			}
 			$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
+			if ( false !== $array_open && T_ARRAY_CAST === $this->tokens[ $array_open ]['code'] ) {
+				$array_open = $this->phpcsFile->findNext( static::$array_tokens, $array_open + 1, null, false, null, true );
+			}
+		}
+
+		if ( false === $array_open ) {
+			return false;
 		}
 
 		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
