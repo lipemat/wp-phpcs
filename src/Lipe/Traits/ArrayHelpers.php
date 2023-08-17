@@ -61,8 +61,11 @@ trait ArrayHelpers {
 			return false;
 		}
 		$next = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
-		// If the next token is a parenthesis, we're probably in a function call.
-		if ( false !== $next && Helpers::isTokenFunctionParameter( $this->phpcsFile, $next ) ) {
+		if ( false === $next ) {
+			return false;
+		}
+
+		if ( T_VARIABLE === $this->tokens[ $next ]['code'] || Helpers::isTokenFunctionParameter( $this->phpcsFile, $next ) ) {
 			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, null, false, $this->tokens[ $token ]['content'] );
 			if ( false === $assignment ) {
 				return false;
@@ -70,6 +73,11 @@ trait ArrayHelpers {
 			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, null, false, null, true );
 			if ( false !== $bracket && $bracket < $token ) {
 				return true;
+			}
+
+			// See if we can determine if the assigned variable is an array.
+			if ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
+				return $this->is_variable_an_array( $next );
 			}
 		}
 

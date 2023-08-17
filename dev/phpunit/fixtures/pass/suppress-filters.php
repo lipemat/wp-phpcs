@@ -19,6 +19,7 @@ class WP_SEO_Settings {
 	}
 }
 
+use Advanced_Sidebar_Menu\Cache;
 use Advanced_Sidebar_Menu\Widget_Options\Category\Display_Posts;
 use Lipe\Lib\Query\Get_Posts;
 
@@ -45,3 +46,15 @@ $_args = (array) apply_filters( 'advanced-sidebar-menu-pro/walker/display-posts/
 	],
 ] );
 $children = get_posts( $_args );
+
+$cache = Cache::instance();
+$child_pages = $cache->get_child_pages( $this );
+if ( false === $child_pages ) {
+	$args = $this->args;
+	$args['post_parent'] = $parent_page_id;
+	$args['fields'] = 'ids';
+	$args['suppress_filters'] = false;
+	$child_pages = get_posts( $args );
+
+	$cache->add_child_pages( $this, $child_pages );
+}
