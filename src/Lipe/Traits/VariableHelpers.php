@@ -151,10 +151,12 @@ trait VariableHelpers {
 
 			$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
 			if ( false !== $next && T_EQUAL === $this->tokens[ $next ]['code'] ) {
-				$modifier = $this->phpcsFile->findPrevious( Tokens::$emptyTokens, $stackPtr - 1, null, true, null, true );
-				if ( false !== $modifier && \in_array( $this->tokens[ $modifier ]['code'], $this->property_tokens, true ) ) {
-					return $stackPtr;
+				try {
+					$this->phpcsFile->getMemberProperties( $stackPtr );
+				} catch ( \RuntimeException $e ) {
+					return false;
 				}
+				return $stackPtr;
 			}
 		}
 
