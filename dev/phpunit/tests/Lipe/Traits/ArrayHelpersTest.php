@@ -3,8 +3,6 @@ declare( strict_types=1 );
 
 namespace Lipe\Traits;
 
-use PHP_CodeSniffer\Files\LocalFile;
-
 /**
  * @author Mat Lipe
  * @since  August 2023
@@ -43,6 +41,22 @@ class ArrayHelpersTest extends \HelpersAbstract {
 			'second'     => 21,
 			'third'      => 35,
 		], $this->get_assigned_keys_from_variable( 72 ) );
+
+		$this->tokens = $this->convert_file_to_tokens( 'array-helpers-array-opener' );
+		$this->assertEquals( [
+			'numberposts'      => 13,
+			'post_type'        => 21,
+			'fields'           => 89,
+			'suppress_filters' => 99,
+			'post_parent'      => 79,
+		], $this->get_assigned_keys_from_variable( 109 ) );
+	}
+
+
+	public function test_get_array_opener() {
+		$this->tokens = $this->convert_file_to_tokens( 'array-helpers-array-opener' );
+		$this->assertEquals( 6, $this->get_array_opener( 109 ) );
+		$this->assertEquals( 119, $this->get_array_opener( 143 ) );
 	}
 
 

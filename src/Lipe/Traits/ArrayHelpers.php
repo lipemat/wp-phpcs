@@ -400,6 +400,11 @@ trait ArrayHelpers {
 		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
 			return $array_open;
 		}
+
+		if ( T_VARIABLE === $this->tokens[ $array_open ]['code'] ) {
+			return $this->get_array_opener( $array_open );
+		}
+
 		return false;
 	}
 }
