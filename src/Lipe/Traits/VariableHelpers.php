@@ -100,7 +100,7 @@ trait VariableHelpers {
 	 *
 	 * @return null|string
 	 */
-	protected function get_static_value_from_variable( int $token ) {
+	protected function get_static_value_from_variable( int $token ) : ?string {
 		if ( T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $token ]['code'] ) {
 			return $this->strip_quotes( $this->tokens[ $token ]['content'] );
 		}
