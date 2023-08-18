@@ -70,3 +70,27 @@ $args = $higher;
 $args['post_parent'] = $parent_page_id;
 $args['fields'] = 'ids';
 $child_pages = get_posts( $args );
+
+class Parseable {
+	private $args = [
+		'post_type'        => 'page',
+		'suppress_filters' => false,
+	];
+
+
+	public function get_args() {
+		return get_posts( $this->args );
+	}
+
+
+	public $local = [
+		'post_type'        => 'page',
+		'suppress_filters' => false,
+	];
+
+
+	public function get_other() {
+		$this->local['suppress_filters'] = true;
+		return get_posts( $this->local );
+	}
+}

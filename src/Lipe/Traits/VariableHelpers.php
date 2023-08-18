@@ -18,6 +18,31 @@ use VariableAnalysis\Lib\Helpers;
  * @since  3.1.0
  */
 trait VariableHelpers {
+	/**
+	 * A list of tokenizers this sniff supports.
+	 *
+	 * @var string[]
+	 */
+	public $supportedTokenizers = [ 'PHP' ];
+
+	/**
+	 * Class property token types.
+	 *
+	 * - Access modifiers.
+	 * - Variable types. (T_STRING) is the only thing available.
+	 *
+	 * @var list<int|string>
+	 */
+	public $property_tokens = [
+		T_PRIVATE,
+		T_PROTECTED,
+		T_PUBLIC,
+		T_READONLY,
+		T_STATIC,
+		T_STRING,
+		T_VAR,
+	];
+
 
 	/**
 	 * Get the position of a variable assignment based
@@ -28,8 +53,14 @@ trait VariableHelpers {
 	 * @return int|false
 	 */
 	protected function get_variable_assignment( int $token ) {
-		$content = $this->tokens[ $token ]['content'];
-		$stackPtr = $token;
+		$property = $this->get_class_property( $token );
+		if ( false !== $property ) {
+			$stackPtr = $property;
+			$content = $this->tokens[ $property ]['content'];
+		} else {
+			$content = $this->tokens[ $token ]['content'];
+			$stackPtr = $token;
+		}
 
 		// This is the assignment statement.
 		$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
@@ -89,5 +120,65 @@ trait VariableHelpers {
 			return null;
 		}
 		return $this->strip_quotes( $this->tokens[ $next ]['content'] );
+	}
+
+
+	/**
+	 * Get the position of a class property declaration based on
+	 * the usage of $this.
+	 *
+	 * @param int $token - Position of the $this token.
+	 *
+	 * @return false|int
+	 */
+	protected function get_class_property( int $token ) {
+		if ( '$this' !== $this->tokens[ $token ]['content'] ) {
+			return false;
+		}
+		$name = $this->phpcsFile->findNext( [ T_STRING ], $token + 1, null, false, null, true );
+		$class_start = $this->get_start_of_class( $token );
+		if ( false === $name || false === $class_start ) {
+			return false;
+		}
+		$content = '$' . $this->tokens[ $name ]['content'];
+		$stackPtr = $token;
+
+		while ( $stackPtr > 0 ) {
+			$stackPtr = $this->phpcsFile->findPrevious( T_VARIABLE, $stackPtr - 1, $class_start, false, $content );
+			if ( false === $stackPtr ) {
+				return false;
+			}
+
+			$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
+			if ( false !== $next && T_EQUAL === $this->tokens[ $next ]['code'] ) {
+				$modifier = $this->phpcsFile->findPrevious( Tokens::$emptyTokens, $stackPtr - 1, null, true, null, true );
+				if ( false !== $modifier && \in_array( $this->tokens[ $modifier ]['code'], $this->property_tokens, true ) ) {
+					return $stackPtr;
+				}
+			}
+		}
+
+		return false;
+	}
+
+
+	/**
+	 * Get the start of a class based on the usage of $this.
+	 *
+	 * @param int $this_variable - Position of the $this token.
+	 *
+	 * @return false|int
+	 */
+	protected function get_start_of_class( int $this_variable ) {
+		if ( '$this' !== $this->tokens[ $this_variable ]['content'] ) {
+			return false;
+		}
+
+		$conditions = \array_keys( $this->tokens[ $this_variable ]['conditions'] );
+		$ptr = (int) \reset( $conditions );
+		if ( ! isset( $this->tokens[ $ptr ] ) || ! in_array( $this->tokens[ $ptr ]['code'], [ T_CLASS, T_ANON_CLASS, T_TRAIT ], true ) ) {
+			return false;
+		}
+		return $ptr;
 	}
 }

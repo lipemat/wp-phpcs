@@ -118,8 +118,8 @@ trait ArrayHelpers {
 	 */
 	protected function get_array_access_values( int $token, array $values ) : array {
 		$assignment = $this->get_variable_assignment( $token );
-		if ( false === $assignment ) {
-			return [];
+		if ( false === $assignment || '$this' === $this->tokens[ $token ]['content'] ) {
+			return $values;
 		}
 
 		while ( $assignment < $token ) {
