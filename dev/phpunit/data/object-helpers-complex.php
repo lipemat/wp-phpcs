@@ -14,10 +14,10 @@ return [
 				[
 				],
 		],
-	1   =>
+	1                          =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 2,
@@ -41,9 +41,9 @@ return [
 				[
 				],
 		],
-	3   =>
+	3                          =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 3,
@@ -54,10 +54,10 @@ return [
 				[
 				],
 		],
-	4   =>
+	4                          =>
 		[
 			'content'    => 'Lipe',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 3,
 			'column'     => 5,
@@ -67,9 +67,9 @@ return [
 				[
 				],
 		],
-	5   =>
+	5                          =>
 		[
-			'code'       => 390,
+			'code'       => 393,
 			'type'       => 'T_NS_SEPARATOR',
 			'content'    => '\\',
 			'line'       => 3,
@@ -80,10 +80,10 @@ return [
 				[
 				],
 		],
-	6   =>
+	6                          =>
 		[
 			'content'    => 'Lib',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 3,
 			'column'     => 10,
@@ -93,9 +93,9 @@ return [
 				[
 				],
 		],
-	7   =>
+	7                          =>
 		[
-			'code'       => 390,
+			'code'       => 393,
 			'type'       => 'T_NS_SEPARATOR',
 			'content'    => '\\',
 			'line'       => 3,
@@ -106,10 +106,10 @@ return [
 				[
 				],
 		],
-	8   =>
+	8                          =>
 		[
 			'content'    => 'Query',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 3,
 			'column'     => 14,
@@ -119,9 +119,9 @@ return [
 				[
 				],
 		],
-	9   =>
+	9                          =>
 		[
-			'code'       => 390,
+			'code'       => 393,
 			'type'       => 'T_NS_SEPARATOR',
 			'content'    => '\\',
 			'line'       => 3,
@@ -132,10 +132,10 @@ return [
 				[
 				],
 		],
-	10  =>
+	10                         =>
 		[
 			'content'    => 'Get_Posts',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 3,
 			'column'     => 20,
@@ -158,10 +158,10 @@ return [
 				[
 				],
 		],
-	12  =>
+	12                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 3,
@@ -172,10 +172,10 @@ return [
 				[
 				],
 		],
-	13  =>
+	13                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 4,
@@ -186,9 +186,9 @@ return [
 				[
 				],
 		],
-	14  =>
+	14                         =>
 		[
-			'code'            => 361,
+			'code'            => T_CLASS,
 			'type'            => 'T_CLASS',
 			'content'         => 'class',
 			'line'            => 5,
@@ -202,9 +202,9 @@ return [
 				[
 				],
 		],
-	15  =>
+	15                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 5,
@@ -215,10 +215,10 @@ return [
 				[
 				],
 		],
-	16  =>
+	16                         =>
 		[
 			'content'    => 'Complex',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 5,
 			'column'     => 7,
@@ -228,9 +228,9 @@ return [
 				[
 				],
 		],
-	17  =>
+	17                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 5,
@@ -259,10 +259,10 @@ return [
 				[
 				],
 		],
-	19  =>
+	19                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 5,
@@ -271,13 +271,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	20  =>
+	20                         =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 6,
 			'column'       => 1,
@@ -286,12 +286,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	21  =>
+	21                         =>
 		[
-			'code'       => 314,
+			'code'       => T_PRIVATE,
 			'type'       => 'T_PRIVATE',
 			'content'    => 'private',
 			'line'       => 6,
@@ -300,12 +300,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	22  =>
+	22                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 6,
@@ -314,12 +314,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	23  =>
+	23                         =>
 		[
-			'code'               => 346,
+			'code'               => T_FUNCTION,
 			'type'               => 'T_FUNCTION',
 			'content'            => 'function',
 			'line'               => 6,
@@ -334,12 +334,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	24  =>
+	24                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 6,
@@ -348,13 +348,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	25  =>
+	25                         =>
 		[
 			'content'    => 'get_items',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 6,
 			'column'     => 22,
@@ -362,10 +362,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	26  =>
+	26                         =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -379,12 +379,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	27  =>
+	27                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 6,
@@ -397,12 +397,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	28  =>
+	28                         =>
 		[
-			'code'               => 319,
+			'code'               => T_STRING,
 			'type'               => 'T_STRING',
 			'content'            => 'array',
 			'line'               => 6,
@@ -415,12 +415,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	29  =>
+	29                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 6,
@@ -433,12 +433,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	30  =>
+	30                         =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 6,
@@ -451,12 +451,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	31  =>
+	31                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 6,
@@ -469,10 +469,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	32  =>
+	32                         =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -486,12 +486,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	33  =>
+	33                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 6,
@@ -500,10 +500,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	34  =>
+	34                         =>
 		[
 			'type'            => 'T_OPEN_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_OPEN_CURLY_BRACKET',
@@ -519,13 +519,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	35  =>
+	35                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 6,
@@ -534,14 +534,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	36  =>
+	36                         =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 7,
 			'column'       => 1,
@@ -550,14 +550,14 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	37  =>
+	37                         =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 7,
 			'column'     => 9,
@@ -565,11 +565,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	38  =>
+	38                         =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -582,13 +582,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	39  =>
+	39                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 7,
@@ -601,13 +601,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	40  =>
+	40                         =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 7,
@@ -620,13 +620,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	41  =>
+	41                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 7,
@@ -639,11 +639,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	42  =>
+	42                         =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -656,11 +656,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	43  =>
+	43                         =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -671,14 +671,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	44  =>
+	44                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 7,
@@ -687,14 +687,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	45  =>
+	45                         =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 8,
 			'column'       => 1,
@@ -703,11 +703,11 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					23 => 346,
+					14 => T_CLASS,
+					23 => T_FUNCTION,
 				],
 		],
-	46  =>
+	46                         =>
 		[
 			'type'            => 'T_CLOSE_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_CLOSE_CURLY_BRACKET',
@@ -723,13 +723,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	47  =>
+	47                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 8,
@@ -738,13 +738,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	48  =>
+	48                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 9,
@@ -753,13 +753,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	49  =>
+	49                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 10,
@@ -768,13 +768,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	50  =>
+	50                         =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 11,
 			'column'       => 1,
@@ -783,12 +783,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	51  =>
+	51                         =>
 		[
-			'code'       => 316,
+			'code'       => T_PUBLIC,
 			'type'       => 'T_PUBLIC',
 			'content'    => 'public',
 			'line'       => 11,
@@ -797,12 +797,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	52  =>
+	52                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 11,
@@ -811,12 +811,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	53  =>
+	53                         =>
 		[
-			'code'               => 346,
+			'code'               => T_FUNCTION,
 			'type'               => 'T_FUNCTION',
 			'content'            => 'function',
 			'line'               => 11,
@@ -831,12 +831,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	54  =>
+	54                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 11,
@@ -845,13 +845,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	55  =>
+	55                         =>
 		[
 			'content'    => 'get_items_public',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 11,
 			'column'     => 21,
@@ -859,10 +859,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	56  =>
+	56                         =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -876,12 +876,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	57  =>
+	57                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 11,
@@ -894,12 +894,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	58  =>
+	58                         =>
 		[
-			'code'               => 319,
+			'code'               => T_STRING,
 			'type'               => 'T_STRING',
 			'content'            => 'array',
 			'line'               => 11,
@@ -912,12 +912,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	59  =>
+	59                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 11,
@@ -930,12 +930,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	60  =>
+	60                         =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 11,
@@ -948,12 +948,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	61  =>
+	61                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 11,
@@ -966,10 +966,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	62  =>
+	62                         =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -983,12 +983,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	63  =>
+	63                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 11,
@@ -997,10 +997,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	64  =>
+	64                         =>
 		[
 			'type'            => 'T_OPEN_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_OPEN_CURLY_BRACKET',
@@ -1016,13 +1016,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	65  =>
+	65                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 11,
@@ -1031,14 +1031,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	66  =>
+	66                         =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 12,
 			'column'       => 1,
@@ -1047,13 +1047,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	67  =>
+	67                         =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 12,
@@ -1062,11 +1062,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	68  =>
+	68                         =>
 		[
 			'type'           => 'T_OPEN_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_OPEN_SQUARE_BRACKET',
@@ -1079,13 +1079,13 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	69  =>
+	69                         =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'suppress_filters\'',
 			'line'       => 12,
@@ -1094,11 +1094,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	70  =>
+	70                         =>
 		[
 			'type'           => 'T_CLOSE_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_CLOSE_SQUARE_BRACKET',
@@ -1111,13 +1111,13 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	71  =>
+	71                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 12,
@@ -1126,11 +1126,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	72  =>
+	72                         =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -1141,13 +1141,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	73  =>
+	73                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 12,
@@ -1156,11 +1156,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	74  =>
+	74                         =>
 		[
 			'type'       => 'T_FALSE',
 			'code'       => 'PHPCS_T_FALSE',
@@ -1171,11 +1171,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	75  =>
+	75                         =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -1186,14 +1186,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	76  =>
+	76                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 12,
@@ -1202,14 +1202,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	77  =>
+	77                         =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 13,
 			'column'       => 1,
@@ -1218,14 +1218,14 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	78  =>
+	78                         =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 13,
 			'column'     => 9,
@@ -1233,11 +1233,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	79  =>
+	79                         =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -1250,13 +1250,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	80  =>
+	80                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 13,
@@ -1269,13 +1269,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	81  =>
+	81                         =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 13,
@@ -1288,13 +1288,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	82  =>
+	82                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 13,
@@ -1307,11 +1307,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	83  =>
+	83                         =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -1324,11 +1324,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	84  =>
+	84                         =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -1339,14 +1339,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	85  =>
+	85                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 13,
@@ -1355,14 +1355,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	86  =>
+	86                         =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 14,
 			'column'       => 1,
@@ -1371,11 +1371,11 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					53 => 346,
+					14 => T_CLASS,
+					53 => T_FUNCTION,
 				],
 		],
-	87  =>
+	87                         =>
 		[
 			'type'            => 'T_CLOSE_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_CLOSE_CURLY_BRACKET',
@@ -1391,13 +1391,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	88  =>
+	88                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 14,
@@ -1406,13 +1406,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	89  =>
+	89                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 15,
@@ -1421,13 +1421,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	90  =>
+	90                         =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 16,
@@ -1436,13 +1436,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	91  =>
+	91                         =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 17,
 			'column'       => 1,
@@ -1451,12 +1451,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	92  =>
+	92                         =>
 		[
-			'code'       => 314,
+			'code'       => T_PRIVATE,
 			'type'       => 'T_PRIVATE',
 			'content'    => 'private',
 			'line'       => 17,
@@ -1465,12 +1465,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	93  =>
+	93                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 17,
@@ -1479,12 +1479,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	94  =>
+	94                         =>
 		[
-			'code'               => 346,
+			'code'               => T_FUNCTION,
 			'type'               => 'T_FUNCTION',
 			'content'            => 'function',
 			'line'               => 17,
@@ -1499,12 +1499,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	95  =>
+	95                         =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 17,
@@ -1513,13 +1513,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	96  =>
+	96                         =>
 		[
 			'content'    => 'more_items',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 17,
 			'column'     => 22,
@@ -1527,10 +1527,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	97  =>
+	97                         =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -1544,12 +1544,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	98  =>
+	98                         =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 17,
@@ -1562,12 +1562,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	99  =>
+	99                         =>
 		[
-			'code'               => 319,
+			'code'               => T_STRING,
 			'type'               => 'T_STRING',
 			'content'            => 'array',
 			'line'               => 17,
@@ -1580,12 +1580,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	100 =>
+	100                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 17,
@@ -1598,12 +1598,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	101 =>
+	101                        =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 17,
@@ -1616,12 +1616,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	102 =>
+	102                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 17,
@@ -1634,10 +1634,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	103 =>
+	103                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -1651,12 +1651,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	104 =>
+	104                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 17,
@@ -1665,10 +1665,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	105 =>
+	105                        =>
 		[
 			'type'            => 'T_OPEN_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_OPEN_CURLY_BRACKET',
@@ -1684,13 +1684,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	106 =>
+	106                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 17,
@@ -1699,14 +1699,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	107 =>
+	107                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 18,
 			'column'       => 1,
@@ -1715,13 +1715,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	108 =>
+	108                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 18,
@@ -1730,11 +1730,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	109 =>
+	109                        =>
 		[
 			'type'           => 'T_OPEN_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_OPEN_SQUARE_BRACKET',
@@ -1747,13 +1747,13 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	110 =>
+	110                        =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'suppress_filters\'',
 			'line'       => 18,
@@ -1762,11 +1762,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	111 =>
+	111                        =>
 		[
 			'type'           => 'T_CLOSE_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_CLOSE_SQUARE_BRACKET',
@@ -1779,13 +1779,13 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	112 =>
+	112                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 18,
@@ -1794,11 +1794,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	113 =>
+	113                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -1809,13 +1809,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	114 =>
+	114                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 18,
@@ -1824,11 +1824,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	115 =>
+	115                        =>
 		[
 			'type'       => 'T_TRUE',
 			'code'       => 'PHPCS_T_TRUE',
@@ -1839,11 +1839,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	116 =>
+	116                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -1854,14 +1854,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	117 =>
+	117                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 18,
@@ -1870,14 +1870,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	118 =>
+	118                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 19,
 			'column'       => 1,
@@ -1886,13 +1886,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	119 =>
+	119                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 19,
@@ -1901,11 +1901,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	120 =>
+	120                        =>
 		[
 			'type'           => 'T_OPEN_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_OPEN_SQUARE_BRACKET',
@@ -1918,13 +1918,13 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	121 =>
+	121                        =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'post_type\'',
 			'line'       => 19,
@@ -1933,11 +1933,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	122 =>
+	122                        =>
 		[
 			'type'           => 'T_CLOSE_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_CLOSE_SQUARE_BRACKET',
@@ -1950,13 +1950,13 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	123 =>
+	123                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 19,
@@ -1965,11 +1965,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	124 =>
+	124                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -1980,13 +1980,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	125 =>
+	125                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 19,
@@ -1995,13 +1995,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	126 =>
+	126                        =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'post\'',
 			'line'       => 19,
@@ -2010,11 +2010,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	127 =>
+	127                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -2025,14 +2025,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	128 =>
+	128                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 19,
@@ -2041,14 +2041,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	129 =>
+	129                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 20,
 			'column'       => 1,
@@ -2057,14 +2057,14 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	130 =>
+	130                        =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 20,
 			'column'     => 9,
@@ -2072,11 +2072,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	131 =>
+	131                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -2089,13 +2089,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	132 =>
+	132                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 20,
@@ -2108,13 +2108,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	133 =>
+	133                        =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 20,
@@ -2127,13 +2127,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	134 =>
+	134                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 20,
@@ -2146,11 +2146,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	135 =>
+	135                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -2163,11 +2163,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	136 =>
+	136                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -2178,14 +2178,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	137 =>
+	137                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 20,
@@ -2194,14 +2194,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	138 =>
+	138                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 21,
 			'column'       => 1,
@@ -2210,11 +2210,11 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14 => 361,
-					94 => 346,
+					14 => T_CLASS,
+					94 => T_FUNCTION,
 				],
 		],
-	139 =>
+	139                        =>
 		[
 			'type'            => 'T_CLOSE_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_CLOSE_CURLY_BRACKET',
@@ -2230,13 +2230,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	140 =>
+	140                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 21,
@@ -2245,13 +2245,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	141 =>
+	141                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 22,
@@ -2260,13 +2260,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	142 =>
+	142                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 23,
@@ -2275,13 +2275,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	143 =>
+	143                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 24,
 			'column'       => 1,
@@ -2290,12 +2290,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	144 =>
+	144                        =>
 		[
-			'code'       => 314,
+			'code'       => T_PRIVATE,
 			'type'       => 'T_PRIVATE',
 			'content'    => 'private',
 			'line'       => 24,
@@ -2304,12 +2304,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	145 =>
+	145                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 24,
@@ -2318,12 +2318,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	146 =>
+	146                        =>
 		[
-			'code'               => 346,
+			'code'               => T_FUNCTION,
 			'type'               => 'T_FUNCTION',
 			'content'            => 'function',
 			'line'               => 24,
@@ -2338,12 +2338,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	147 =>
+	147                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 24,
@@ -2352,13 +2352,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	148 =>
+	148                        =>
 		[
 			'content'    => 'get_items_with_filter',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 24,
 			'column'     => 22,
@@ -2366,10 +2366,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	149 =>
+	149                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -2383,12 +2383,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	150 =>
+	150                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 24,
@@ -2401,13 +2401,13 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	151 =>
+	151                        =>
 		[
 			'type'               => 'T_STRING',
-			'code'               => 319,
+			'code'               => T_STRING,
 			'content'            => 'Get_Posts',
 			'line'               => 24,
 			'column'             => 45,
@@ -2419,12 +2419,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	152 =>
+	152                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 24,
@@ -2437,12 +2437,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	153 =>
+	153                        =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 24,
@@ -2455,12 +2455,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	154 =>
+	154                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 24,
@@ -2473,10 +2473,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	155 =>
+	155                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -2490,12 +2490,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	156 =>
+	156                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 24,
@@ -2504,10 +2504,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	157 =>
+	157                        =>
 		[
 			'type'            => 'T_OPEN_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_OPEN_CURLY_BRACKET',
@@ -2523,13 +2523,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	158 =>
+	158                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 24,
@@ -2538,14 +2538,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	159 =>
+	159                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 25,
 			'column'       => 1,
@@ -2554,13 +2554,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	160 =>
+	160                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 25,
@@ -2569,13 +2569,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	161 =>
+	161                        =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 25,
@@ -2584,14 +2584,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	162 =>
+	162                        =>
 		[
 			'content'    => 'suppress_filters',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 25,
 			'column'     => 16,
@@ -2599,13 +2599,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	163 =>
+	163                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 25,
@@ -2614,11 +2614,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	164 =>
+	164                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -2629,13 +2629,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	165 =>
+	165                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 25,
@@ -2644,11 +2644,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	166 =>
+	166                        =>
 		[
 			'type'       => 'T_TRUE',
 			'code'       => 'PHPCS_T_TRUE',
@@ -2659,11 +2659,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	167 =>
+	167                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -2674,14 +2674,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	168 =>
+	168                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 25,
@@ -2690,14 +2690,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	169 =>
+	169                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 26,
 			'column'       => 1,
@@ -2706,13 +2706,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	170 =>
+	170                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 26,
@@ -2721,13 +2721,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	171 =>
+	171                        =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 26,
@@ -2736,14 +2736,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	172 =>
+	172                        =>
 		[
 			'content'    => 'post__in',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 26,
 			'column'     => 16,
@@ -2751,13 +2751,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	173 =>
+	173                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 26,
@@ -2766,11 +2766,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	174 =>
+	174                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -2781,13 +2781,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	175 =>
+	175                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 26,
@@ -2796,11 +2796,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	176 =>
+	176                        =>
 		[
 			'type'           => 'T_OPEN_SHORT_ARRAY',
 			'code'           => 'PHPCS_T_OPEN_SHORT_ARRAY',
@@ -2813,13 +2813,13 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	177 =>
+	177                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 26,
@@ -2828,11 +2828,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	178 =>
+	178                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -2843,11 +2843,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	179 =>
+	179                        =>
 		[
 			'type'       => 'T_COMMA',
 			'code'       => 'PHPCS_T_COMMA',
@@ -2858,13 +2858,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	180 =>
+	180                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 26,
@@ -2873,11 +2873,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	181 =>
+	181                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -2888,11 +2888,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	182 =>
+	182                        =>
 		[
 			'type'       => 'T_COMMA',
 			'code'       => 'PHPCS_T_COMMA',
@@ -2903,13 +2903,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	183 =>
+	183                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 26,
@@ -2918,11 +2918,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	184 =>
+	184                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -2933,13 +2933,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	185 =>
+	185                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 26,
@@ -2948,11 +2948,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	186 =>
+	186                        =>
 		[
 			'type'           => 'T_CLOSE_SHORT_ARRAY',
 			'code'           => 'PHPCS_T_CLOSE_SHORT_ARRAY',
@@ -2965,11 +2965,11 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	187 =>
+	187                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -2980,14 +2980,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	188 =>
+	188                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 26,
@@ -2996,14 +2996,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	189 =>
+	189                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 27,
@@ -3012,14 +3012,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	190 =>
+	190                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 28,
 			'column'       => 1,
@@ -3028,14 +3028,14 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	191 =>
+	191                        =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 28,
 			'column'     => 9,
@@ -3043,11 +3043,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	192 =>
+	192                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -3060,13 +3060,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	193 =>
+	193                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 28,
@@ -3079,13 +3079,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	194 =>
+	194                        =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 28,
@@ -3098,13 +3098,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	195 =>
+	195                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 28,
@@ -3117,11 +3117,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	196 =>
+	196                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -3134,11 +3134,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	197 =>
+	197                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -3149,14 +3149,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	198 =>
+	198                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 28,
@@ -3165,14 +3165,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	199 =>
+	199                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 29,
 			'column'       => 1,
@@ -3181,11 +3181,11 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					146 => 346,
+					14  => T_CLASS,
+					146 => T_FUNCTION,
 				],
 		],
-	200 =>
+	200                        =>
 		[
 			'type'            => 'T_CLOSE_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_CLOSE_CURLY_BRACKET',
@@ -3201,13 +3201,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	201 =>
+	201                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 29,
@@ -3216,13 +3216,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	202 =>
+	202                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 30,
@@ -3231,13 +3231,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	203 =>
+	203                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 31,
@@ -3246,13 +3246,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	204 =>
+	204                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 32,
 			'column'       => 1,
@@ -3261,12 +3261,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	205 =>
+	205                        =>
 		[
-			'code'       => 314,
+			'code'       => T_PRIVATE,
 			'type'       => 'T_PRIVATE',
 			'content'    => 'private',
 			'line'       => 32,
@@ -3275,12 +3275,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	206 =>
+	206                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 32,
@@ -3289,12 +3289,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	207 =>
+	207                        =>
 		[
-			'code'               => 346,
+			'code'               => T_FUNCTION,
 			'type'               => 'T_FUNCTION',
 			'content'            => 'function',
 			'line'               => 32,
@@ -3309,12 +3309,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	208 =>
+	208                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 32,
@@ -3323,13 +3323,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	209 =>
+	209                        =>
 		[
 			'content'    => 'get_items_with_filter_2',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 32,
 			'column'     => 22,
@@ -3337,10 +3337,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	210 =>
+	210                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -3354,12 +3354,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	211 =>
+	211                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 32,
@@ -3372,13 +3372,13 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	212 =>
+	212                        =>
 		[
 			'type'               => 'T_STRING',
-			'code'               => 319,
+			'code'               => T_STRING,
 			'content'            => 'Get_Posts',
 			'line'               => 32,
 			'column'             => 47,
@@ -3390,12 +3390,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	213 =>
+	213                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 32,
@@ -3408,12 +3408,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	214 =>
+	214                        =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 32,
@@ -3426,12 +3426,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	215 =>
+	215                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 32,
@@ -3444,10 +3444,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	216 =>
+	216                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -3461,12 +3461,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	217 =>
+	217                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 32,
@@ -3475,10 +3475,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	218 =>
+	218                        =>
 		[
 			'type'            => 'T_OPEN_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_OPEN_CURLY_BRACKET',
@@ -3494,13 +3494,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	219 =>
+	219                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 32,
@@ -3509,14 +3509,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	220 =>
+	220                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 33,
 			'column'       => 1,
@@ -3525,13 +3525,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	221 =>
+	221                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 33,
@@ -3540,13 +3540,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	222 =>
+	222                        =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 33,
@@ -3555,14 +3555,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	223 =>
+	223                        =>
 		[
 			'content'    => 'suppress_filters',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 33,
 			'column'     => 16,
@@ -3570,13 +3570,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	224 =>
+	224                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 33,
@@ -3585,11 +3585,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	225 =>
+	225                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -3600,13 +3600,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	226 =>
+	226                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 33,
@@ -3615,11 +3615,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	227 =>
+	227                        =>
 		[
 			'type'       => 'T_FALSE',
 			'code'       => 'PHPCS_T_FALSE',
@@ -3630,11 +3630,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	228 =>
+	228                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -3645,14 +3645,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	229 =>
+	229                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 33,
@@ -3661,14 +3661,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	230 =>
+	230                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 34,
 			'column'       => 1,
@@ -3677,13 +3677,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	231 =>
+	231                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 34,
@@ -3692,13 +3692,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	232 =>
+	232                        =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 34,
@@ -3707,14 +3707,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	233 =>
+	233                        =>
 		[
 			'content'    => 'post__in',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 34,
 			'column'     => 16,
@@ -3722,13 +3722,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	234 =>
+	234                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 34,
@@ -3737,11 +3737,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	235 =>
+	235                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -3752,13 +3752,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	236 =>
+	236                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 34,
@@ -3767,11 +3767,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	237 =>
+	237                        =>
 		[
 			'type'           => 'T_OPEN_SHORT_ARRAY',
 			'code'           => 'PHPCS_T_OPEN_SHORT_ARRAY',
@@ -3784,13 +3784,13 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	238 =>
+	238                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 34,
@@ -3799,11 +3799,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	239 =>
+	239                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -3814,11 +3814,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	240 =>
+	240                        =>
 		[
 			'type'       => 'T_COMMA',
 			'code'       => 'PHPCS_T_COMMA',
@@ -3829,13 +3829,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	241 =>
+	241                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 34,
@@ -3844,11 +3844,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	242 =>
+	242                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -3859,11 +3859,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	243 =>
+	243                        =>
 		[
 			'type'       => 'T_COMMA',
 			'code'       => 'PHPCS_T_COMMA',
@@ -3874,13 +3874,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	244 =>
+	244                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 34,
@@ -3889,11 +3889,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	245 =>
+	245                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -3904,13 +3904,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	246 =>
+	246                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 34,
@@ -3919,11 +3919,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	247 =>
+	247                        =>
 		[
 			'type'           => 'T_CLOSE_SHORT_ARRAY',
 			'code'           => 'PHPCS_T_CLOSE_SHORT_ARRAY',
@@ -3936,11 +3936,11 @@ return [
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	248 =>
+	248                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -3951,14 +3951,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	249 =>
+	249                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 34,
@@ -3967,14 +3967,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	250 =>
+	250                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 35,
@@ -3983,14 +3983,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	251 =>
+	251                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 36,
 			'column'       => 1,
@@ -3999,14 +3999,14 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	252 =>
+	252                        =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 36,
 			'column'     => 9,
@@ -4014,11 +4014,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	253 =>
+	253                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -4031,13 +4031,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	254 =>
+	254                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 36,
@@ -4050,13 +4050,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	255 =>
+	255                        =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 36,
@@ -4069,13 +4069,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	256 =>
+	256                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 36,
@@ -4088,11 +4088,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	257 =>
+	257                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -4105,11 +4105,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	258 =>
+	258                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -4120,14 +4120,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	259 =>
+	259                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 36,
@@ -4136,14 +4136,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	260 =>
+	260                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 37,
 			'column'       => 1,
@@ -4152,11 +4152,11 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					207 => 346,
+					14  => T_CLASS,
+					207 => T_FUNCTION,
 				],
 		],
-	261 =>
+	261                        =>
 		[
 			'type'            => 'T_CLOSE_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_CLOSE_CURLY_BRACKET',
@@ -4172,13 +4172,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	262 =>
+	262                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 37,
@@ -4187,13 +4187,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	263 =>
+	263                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 38,
@@ -4202,13 +4202,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	264 =>
+	264                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 39,
@@ -4217,13 +4217,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	265 =>
+	265                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 40,
 			'column'       => 1,
@@ -4232,12 +4232,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	266 =>
+	266                        =>
 		[
-			'code'       => 314,
+			'code'       => T_PRIVATE,
 			'type'       => 'T_PRIVATE',
 			'content'    => 'private',
 			'line'       => 40,
@@ -4246,12 +4246,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	267 =>
+	267                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 40,
@@ -4260,12 +4260,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	268 =>
+	268                        =>
 		[
-			'code'               => 346,
+			'code'               => T_FUNCTION,
 			'type'               => 'T_FUNCTION',
 			'content'            => 'function',
 			'line'               => 40,
@@ -4280,12 +4280,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	269 =>
+	269                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 40,
@@ -4294,13 +4294,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	270 =>
+	270                        =>
 		[
 			'content'    => 'get_items_with_filter_and_array',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 40,
 			'column'     => 22,
@@ -4308,10 +4308,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	271 =>
+	271                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -4325,10 +4325,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	272 =>
+	272                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -4342,12 +4342,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	273 =>
+	273                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 40,
@@ -4356,10 +4356,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	274 =>
+	274                        =>
 		[
 			'type'            => 'T_OPEN_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_OPEN_CURLY_BRACKET',
@@ -4375,13 +4375,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	275 =>
+	275                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 40,
@@ -4390,14 +4390,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	276 =>
+	276                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 41,
 			'column'       => 1,
@@ -4406,13 +4406,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	277 =>
+	277                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 41,
@@ -4421,13 +4421,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	278 =>
+	278                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 41,
@@ -4436,11 +4436,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	279 =>
+	279                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -4451,13 +4451,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	280 =>
+	280                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 41,
@@ -4466,11 +4466,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	281 =>
+	281                        =>
 		[
 			'code'       => 305,
 			'type'       => 'T_NEW',
@@ -4481,13 +4481,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	282 =>
+	282                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 41,
@@ -4496,14 +4496,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	283 =>
+	283                        =>
 		[
 			'content'    => 'Get_Posts',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 41,
 			'column'     => 21,
@@ -4511,11 +4511,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	284 =>
+	284                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -4528,11 +4528,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	285 =>
+	285                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -4545,11 +4545,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	286 =>
+	286                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -4560,14 +4560,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	287 =>
+	287                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 41,
@@ -4576,14 +4576,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	288 =>
+	288                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 42,
 			'column'       => 1,
@@ -4592,13 +4592,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	289 =>
+	289                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 42,
@@ -4607,13 +4607,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	290 =>
+	290                        =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 42,
@@ -4622,14 +4622,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	291 =>
+	291                        =>
 		[
 			'content'    => 'suppress_filters',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 42,
 			'column'     => 16,
@@ -4637,13 +4637,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	292 =>
+	292                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 42,
@@ -4652,11 +4652,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	293 =>
+	293                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -4667,13 +4667,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	294 =>
+	294                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 42,
@@ -4682,11 +4682,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	295 =>
+	295                        =>
 		[
 			'type'       => 'T_TRUE',
 			'code'       => 'PHPCS_T_TRUE',
@@ -4697,11 +4697,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	296 =>
+	296                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -4712,14 +4712,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	297 =>
+	297                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 42,
@@ -4728,14 +4728,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	298 =>
+	298                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 43,
 			'column'       => 1,
@@ -4744,13 +4744,13 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	299 =>
+	299                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 43,
@@ -4759,13 +4759,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	300 =>
+	300                        =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 43,
@@ -4774,14 +4774,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	301 =>
+	301                        =>
 		[
 			'content'    => 'post__in',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 43,
 			'column'     => 16,
@@ -4789,13 +4789,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	302 =>
+	302                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 43,
@@ -4804,11 +4804,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	303 =>
+	303                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -4819,13 +4819,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	304 =>
+	304                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 43,
@@ -4834,11 +4834,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	305 =>
+	305                        =>
 		[
 			'type'           => 'T_OPEN_SHORT_ARRAY',
 			'code'           => 'PHPCS_T_OPEN_SHORT_ARRAY',
@@ -4847,17 +4847,17 @@ return [
 			'column'         => 27,
 			'length'         => 1,
 			'bracket_opener' => 305,
-			'bracket_closer' => 315,
+			'bracket_closer' => T_CONSTANT_ENCAPSED_STRING,
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	306 =>
+	306                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 43,
@@ -4866,11 +4866,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	307 =>
+	307                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -4881,11 +4881,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	308 =>
+	308                        =>
 		[
 			'type'       => 'T_COMMA',
 			'code'       => 'PHPCS_T_COMMA',
@@ -4896,13 +4896,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	309 =>
+	309                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 43,
@@ -4911,11 +4911,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	310 =>
+	310                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -4926,11 +4926,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	311 =>
+	T_STRING                   =>
 		[
 			'type'       => 'T_COMMA',
 			'code'       => 'PHPCS_T_COMMA',
@@ -4941,13 +4941,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	312 =>
+	T_VARIABLE                 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 43,
@@ -4956,11 +4956,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	313 =>
+	313                        =>
 		[
 			'code'       => 317,
 			'type'       => 'T_LNUMBER',
@@ -4971,13 +4971,13 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	314 =>
+	T_PRIVATE                  =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 43,
@@ -4986,11 +4986,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	315 =>
+	T_CONSTANT_ENCAPSED_STRING =>
 		[
 			'type'           => 'T_CLOSE_SHORT_ARRAY',
 			'code'           => 'PHPCS_T_CLOSE_SHORT_ARRAY',
@@ -4999,15 +4999,15 @@ return [
 			'column'         => 37,
 			'length'         => 1,
 			'bracket_opener' => 305,
-			'bracket_closer' => 315,
+			'bracket_closer' => T_CONSTANT_ENCAPSED_STRING,
 			'level'          => 2,
 			'conditions'     =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	316 =>
+	T_PUBLIC                   =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -5018,14 +5018,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	317 =>
+	317                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 43,
@@ -5034,14 +5034,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	318 =>
+	318                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 44,
@@ -5050,14 +5050,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	319 =>
+	T_STRING                   =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '        ',
 			'line'         => 45,
 			'column'       => 1,
@@ -5066,14 +5066,14 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	320 =>
+	T_VARIABLE                 =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 45,
 			'column'     => 9,
@@ -5081,11 +5081,11 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	321 =>
+	321                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -5098,13 +5098,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	322 =>
+	322                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 45,
@@ -5117,13 +5117,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	323 =>
+	T_CONSTANT_ENCAPSED_STRING =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 45,
@@ -5136,13 +5136,13 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	324 =>
+	324                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 45,
@@ -5155,11 +5155,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	325 =>
+	325                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -5172,11 +5172,11 @@ return [
 			'level'              => 2,
 			'conditions'         =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	326 =>
+	326                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -5187,14 +5187,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	327 =>
+	327                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 45,
@@ -5203,14 +5203,14 @@ return [
 			'level'      => 2,
 			'conditions' =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	328 =>
+	328                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 46,
 			'column'       => 1,
@@ -5219,11 +5219,11 @@ return [
 			'level'        => 2,
 			'conditions'   =>
 				[
-					14  => 361,
-					268 => 346,
+					14  => T_CLASS,
+					268 => T_FUNCTION,
 				],
 		],
-	329 =>
+	329                        =>
 		[
 			'type'            => 'T_CLOSE_CURLY_BRACKET',
 			'code'            => 'PHPCS_T_CLOSE_CURLY_BRACKET',
@@ -5239,13 +5239,13 @@ return [
 			'level'           => 1,
 			'conditions'      =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
-	330 =>
+	330                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 46,
@@ -5254,7 +5254,7 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					14 => 361,
+					14 => T_CLASS,
 				],
 		],
 	331 =>
@@ -5275,10 +5275,10 @@ return [
 				[
 				],
 		],
-	332 =>
+	332                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 47,
@@ -5289,10 +5289,10 @@ return [
 				[
 				],
 		],
-	333 =>
+	333                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 48,
@@ -5303,9 +5303,9 @@ return [
 				[
 				],
 		],
-	334 =>
+	334                        =>
 		[
-			'code'               => 346,
+			'code'               => T_FUNCTION,
 			'type'               => 'T_FUNCTION',
 			'content'            => 'function',
 			'line'               => 49,
@@ -5322,9 +5322,9 @@ return [
 				[
 				],
 		],
-	335 =>
+	335                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 49,
@@ -5335,10 +5335,10 @@ return [
 				[
 				],
 		],
-	336 =>
+	336                        =>
 		[
 			'content'    => 'outside_function',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 49,
 			'column'     => 10,
@@ -5380,9 +5380,9 @@ return [
 				[
 				],
 		],
-	339 =>
+	339                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 49,
@@ -5411,10 +5411,10 @@ return [
 				[
 				],
 		],
-	341 =>
+	341                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 49,
@@ -5423,13 +5423,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	342 =>
+	T_FUNCTION                 =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 50,
 			'column'       => 1,
@@ -5438,12 +5438,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	343 =>
+	343                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 50,
@@ -5452,12 +5452,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	344 =>
+	344                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 50,
@@ -5466,10 +5466,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	345 =>
+	345                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -5480,12 +5480,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	346 =>
+	T_FUNCTION                 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 50,
@@ -5494,10 +5494,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	347 =>
+	347                        =>
 		[
 			'code'       => 305,
 			'type'       => 'T_NEW',
@@ -5508,12 +5508,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	348 =>
+	348                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 50,
@@ -5522,13 +5522,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	349 =>
+	349                        =>
 		[
 			'content'    => 'Get_Posts',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 50,
 			'column'     => 17,
@@ -5536,10 +5536,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	350 =>
+	350                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -5552,10 +5552,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	351 =>
+	351                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -5568,10 +5568,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	352 =>
+	352                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -5582,13 +5582,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	353 =>
+	353                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 50,
@@ -5597,13 +5597,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	354 =>
+	354                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 51,
 			'column'       => 1,
@@ -5612,12 +5612,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	355 =>
+	355                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 51,
@@ -5626,12 +5626,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	356 =>
+	356                        =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 51,
@@ -5640,13 +5640,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	357 =>
+	357                        =>
 		[
 			'content'    => 'suppress_filters',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 51,
 			'column'     => 12,
@@ -5654,12 +5654,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	358 =>
+	T_PUBLIC                   =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 51,
@@ -5668,10 +5668,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	359 =>
+	359                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -5682,12 +5682,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	360 =>
+	360                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 51,
@@ -5696,10 +5696,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	361 =>
+	T_CLASS                    =>
 		[
 			'type'       => 'T_FALSE',
 			'code'       => 'PHPCS_T_FALSE',
@@ -5710,10 +5710,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	362 =>
+	362                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -5724,13 +5724,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	363 =>
+	363                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 51,
@@ -5739,13 +5739,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	364 =>
+	T_CLASS                    =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 52,
@@ -5754,13 +5754,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	365 =>
+	365                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 53,
 			'column'       => 1,
@@ -5769,13 +5769,13 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	366 =>
+	T_OBJECT_OPERATOR          =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 53,
 			'column'     => 5,
@@ -5783,10 +5783,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	367 =>
+	367                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -5799,12 +5799,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	368 =>
+	368                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 53,
@@ -5817,12 +5817,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	369 =>
+	369                        =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 53,
@@ -5835,12 +5835,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	370 =>
+	370                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 53,
@@ -5853,10 +5853,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	371 =>
+	371                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -5869,10 +5869,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	372 =>
+	372                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -5883,13 +5883,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
-	373 =>
+	373                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 53,
@@ -5898,7 +5898,7 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					334 => 346,
+					334 => T_FUNCTION,
 				],
 		],
 	374 =>
@@ -5919,10 +5919,10 @@ return [
 				[
 				],
 		],
-	375 =>
+	375                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 54,
@@ -5933,10 +5933,10 @@ return [
 				[
 				],
 		],
-	376 =>
+	376                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 55,
@@ -5947,9 +5947,9 @@ return [
 				[
 				],
 		],
-	377 =>
+	377                        =>
 		[
-			'code'               => 346,
+			'code'               => T_FUNCTION,
 			'type'               => 'T_FUNCTION',
 			'content'            => 'function',
 			'line'               => 56,
@@ -5966,9 +5966,9 @@ return [
 				[
 				],
 		],
-	378 =>
+	378                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 56,
@@ -5979,10 +5979,10 @@ return [
 				[
 				],
 		],
-	379 =>
+	379                        =>
 		[
 			'content'    => 'get_children',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 56,
 			'column'     => 10,
@@ -6008,9 +6008,9 @@ return [
 				[
 				],
 		],
-	381 =>
+	381                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 56,
@@ -6025,9 +6025,9 @@ return [
 				[
 				],
 		],
-	382 =>
+	T_WHITESPACE               =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 56,
@@ -6042,9 +6042,9 @@ return [
 				[
 				],
 		],
-	383 =>
+	383                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 56,
@@ -6075,9 +6075,9 @@ return [
 				[
 				],
 		],
-	385 =>
+	T_WHITESPACE               =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 56,
@@ -6106,10 +6106,10 @@ return [
 				[
 				],
 		],
-	387 =>
+	387                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 56,
@@ -6118,13 +6118,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	388 =>
+	388                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 57,
 			'column'       => 1,
@@ -6133,12 +6133,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	389 =>
+	389                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 57,
@@ -6147,10 +6147,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	390 =>
+	393                        =>
 		[
 			'type'           => 'T_OPEN_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_OPEN_SQUARE_BRACKET',
@@ -6158,17 +6158,17 @@ return [
 			'line'           => 57,
 			'column'         => 10,
 			'length'         => 1,
-			'bracket_opener' => 390,
+			'bracket_opener' => 393,
 			'bracket_closer' => 392,
 			'level'          => 1,
 			'conditions'     =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	391 =>
+	391                        =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'suppress_filters\'',
 			'line'       => 57,
@@ -6177,10 +6177,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	392 =>
+	392                        =>
 		[
 			'type'           => 'T_CLOSE_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_CLOSE_SQUARE_BRACKET',
@@ -6188,17 +6188,17 @@ return [
 			'line'           => 57,
 			'column'         => 29,
 			'length'         => 1,
-			'bracket_opener' => 390,
+			'bracket_opener' => 393,
 			'bracket_closer' => 392,
 			'level'          => 1,
 			'conditions'     =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	393 =>
+	393                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 57,
@@ -6207,10 +6207,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	394 =>
+	394                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -6221,12 +6221,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	395 =>
+	395                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 57,
@@ -6235,10 +6235,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	396 =>
+	396                        =>
 		[
 			'type'       => 'T_TRUE',
 			'code'       => 'PHPCS_T_TRUE',
@@ -6249,10 +6249,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	397 =>
+	397                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -6263,13 +6263,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	398 =>
+	398                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 57,
@@ -6278,13 +6278,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	399 =>
+	399                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 58,
 			'column'       => 1,
@@ -6293,12 +6293,12 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	400 =>
+	400                        =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 58,
@@ -6307,10 +6307,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	401 =>
+	401                        =>
 		[
 			'type'           => 'T_OPEN_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_OPEN_SQUARE_BRACKET',
@@ -6323,12 +6323,12 @@ return [
 			'level'          => 1,
 			'conditions'     =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	402 =>
+	402                        =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'post_type\'',
 			'line'       => 58,
@@ -6337,10 +6337,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	403 =>
+	403                        =>
 		[
 			'type'           => 'T_CLOSE_SQUARE_BRACKET',
 			'code'           => 'PHPCS_T_CLOSE_SQUARE_BRACKET',
@@ -6353,12 +6353,12 @@ return [
 			'level'          => 1,
 			'conditions'     =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	404 =>
+	404                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 58,
@@ -6367,10 +6367,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	405 =>
+	405                        =>
 		[
 			'type'       => 'T_EQUAL',
 			'code'       => 'PHPCS_T_EQUAL',
@@ -6381,12 +6381,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	406 =>
+	406                        =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 58,
@@ -6395,12 +6395,12 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	407 =>
+	407                        =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'post\'',
 			'line'       => 58,
@@ -6409,10 +6409,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	408 =>
+	408                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -6423,13 +6423,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	409 =>
+	409                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 58,
@@ -6438,13 +6438,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	410 =>
+	410                        =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 59,
 			'column'       => 1,
@@ -6453,13 +6453,13 @@ return [
 			'level'        => 1,
 			'conditions'   =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	411 =>
+	411                        =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 59,
 			'column'     => 5,
@@ -6467,10 +6467,10 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	412 =>
+	412                        =>
 		[
 			'type'               => 'T_OPEN_PARENTHESIS',
 			'code'               => 'PHPCS_T_OPEN_PARENTHESIS',
@@ -6483,12 +6483,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	413 =>
+	413                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 59,
@@ -6501,12 +6501,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	414 =>
+	414                        =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 59,
@@ -6519,12 +6519,12 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	415 =>
+	415                        =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 59,
@@ -6537,10 +6537,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	416 =>
+	416                        =>
 		[
 			'type'               => 'T_CLOSE_PARENTHESIS',
 			'code'               => 'PHPCS_T_CLOSE_PARENTHESIS',
@@ -6553,10 +6553,10 @@ return [
 			'level'              => 1,
 			'conditions'         =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	417 =>
+	417                        =>
 		[
 			'type'       => 'T_SEMICOLON',
 			'code'       => 'PHPCS_T_SEMICOLON',
@@ -6567,13 +6567,13 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
-	418 =>
+	418                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 59,
@@ -6582,7 +6582,7 @@ return [
 			'level'      => 1,
 			'conditions' =>
 				[
-					377 => 346,
+					377 => T_FUNCTION,
 				],
 		],
 	419 =>
@@ -6603,10 +6603,10 @@ return [
 				[
 				],
 		],
-	420 =>
+	420                        =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 60,

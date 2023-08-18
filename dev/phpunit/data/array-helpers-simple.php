@@ -18,7 +18,7 @@ return [
 	1  =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 2,
@@ -31,7 +31,7 @@ return [
 		],
 	2  =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$array',
 			'line'       => 3,
@@ -44,7 +44,7 @@ return [
 		],
 	3  =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 3,
@@ -70,7 +70,7 @@ return [
 		],
 	5  =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 3,
@@ -99,7 +99,7 @@ return [
 	7  =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 3,
@@ -113,7 +113,7 @@ return [
 	8  =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 4,
 			'column'       => 1,
@@ -126,7 +126,7 @@ return [
 		],
 	9  =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'post_type\'',
 			'line'       => 4,
@@ -139,7 +139,7 @@ return [
 		],
 	10 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => '        ',
 			'line'       => 4,
@@ -152,7 +152,7 @@ return [
 		],
 	11 =>
 		[
-			'code'       => 268,
+			'code'       => T_DOUBLE_ARROW,
 			'type'       => 'T_DOUBLE_ARROW',
 			'content'    => '=>',
 			'line'       => 4,
@@ -165,7 +165,7 @@ return [
 		],
 	12 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 4,
@@ -178,7 +178,7 @@ return [
 		],
 	13 =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'page\'',
 			'line'       => 4,
@@ -205,7 +205,7 @@ return [
 	15 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 4,
@@ -219,7 +219,7 @@ return [
 	16 =>
 		[
 			'type'         => 'T_WHITESPACE',
-			'code'         => 382,
+			'code'         => T_WHITESPACE,
 			'content'      => '    ',
 			'line'         => 5,
 			'column'       => 1,
@@ -232,7 +232,7 @@ return [
 		],
 	17 =>
 		[
-			'code'       => 323,
+			'code'       => T_CONSTANT_ENCAPSED_STRING,
 			'type'       => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'    => '\'suppress_filters\'',
 			'line'       => 5,
@@ -245,7 +245,7 @@ return [
 		],
 	18 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 5,
@@ -258,7 +258,7 @@ return [
 		],
 	19 =>
 		[
-			'code'       => 268,
+			'code'       => T_DOUBLE_ARROW,
 			'type'       => 'T_DOUBLE_ARROW',
 			'content'    => '=>',
 			'line'       => 5,
@@ -271,7 +271,7 @@ return [
 		],
 	20 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 5,
@@ -311,7 +311,7 @@ return [
 	23 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 5,
@@ -353,7 +353,7 @@ return [
 	26 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 6,
@@ -367,7 +367,7 @@ return [
 	27 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 7,
@@ -381,7 +381,7 @@ return [
 	28 =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 8,
 			'column'     => 1,
@@ -408,7 +408,7 @@ return [
 		],
 	30 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 8,
@@ -425,7 +425,7 @@ return [
 		],
 	31 =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$array',
 			'line'               => 8,
@@ -442,7 +442,7 @@ return [
 		],
 	32 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 8,
@@ -488,7 +488,7 @@ return [
 	35 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 8,
@@ -502,7 +502,7 @@ return [
 	36 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 9,
@@ -516,7 +516,7 @@ return [
 	37 =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 10,
 			'column'     => 1,
@@ -543,7 +543,7 @@ return [
 		],
 	39 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 10,
@@ -580,7 +580,7 @@ return [
 	41 =>
 		[
 			'type'               => 'T_WHITESPACE',
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'content'            => '
 ',
 			'line'               => 10,
@@ -598,7 +598,7 @@ return [
 	42 =>
 		[
 			'type'               => 'T_WHITESPACE',
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'content'            => '    ',
 			'line'               => 11,
 			'column'             => 1,
@@ -615,7 +615,7 @@ return [
 		],
 	43 =>
 		[
-			'code'               => 323,
+			'code'               => T_CONSTANT_ENCAPSED_STRING,
 			'type'               => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'            => '\'post_type\'',
 			'line'               => 11,
@@ -632,7 +632,7 @@ return [
 		],
 	44 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => '        ',
 			'line'               => 11,
@@ -649,7 +649,7 @@ return [
 		],
 	45 =>
 		[
-			'code'               => 268,
+			'code'               => T_DOUBLE_ARROW,
 			'type'               => 'T_DOUBLE_ARROW',
 			'content'            => '=>',
 			'line'               => 11,
@@ -666,7 +666,7 @@ return [
 		],
 	46 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 11,
@@ -683,7 +683,7 @@ return [
 		],
 	47 =>
 		[
-			'code'               => 323,
+			'code'               => T_CONSTANT_ENCAPSED_STRING,
 			'type'               => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'            => '\'page\'',
 			'line'               => 11,
@@ -718,7 +718,7 @@ return [
 	49 =>
 		[
 			'type'               => 'T_WHITESPACE',
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'content'            => '
 ',
 			'line'               => 11,
@@ -736,7 +736,7 @@ return [
 	50 =>
 		[
 			'type'               => 'T_WHITESPACE',
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'content'            => '    ',
 			'line'               => 12,
 			'column'             => 1,
@@ -753,7 +753,7 @@ return [
 		],
 	51 =>
 		[
-			'code'               => 323,
+			'code'               => T_CONSTANT_ENCAPSED_STRING,
 			'type'               => 'T_CONSTANT_ENCAPSED_STRING',
 			'content'            => '\'suppress_filters\'',
 			'line'               => 12,
@@ -770,7 +770,7 @@ return [
 		],
 	52 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 12,
@@ -787,7 +787,7 @@ return [
 		],
 	53 =>
 		[
-			'code'               => 268,
+			'code'               => T_DOUBLE_ARROW,
 			'type'               => 'T_DOUBLE_ARROW',
 			'content'            => '=>',
 			'line'               => 12,
@@ -804,7 +804,7 @@ return [
 		],
 	54 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 12,
@@ -856,7 +856,7 @@ return [
 	57 =>
 		[
 			'type'               => 'T_WHITESPACE',
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'content'            => '
 ',
 			'line'               => 12,
@@ -892,7 +892,7 @@ return [
 		],
 	59 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 13,
@@ -938,7 +938,7 @@ return [
 	62 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 13,

@@ -95,13 +95,13 @@ class ObjectHelpersTest extends \HelpersAbstract {
 	}
 
 
-	public function test_get_assignment_no_assignment() {
+	public function test_get_assignment_no_assignment() : void {
 		$this->tokens = $this->get_raw_tokens_file( 'object-helpers-simple' );
 		$this->assertFalse( $this->get_variable_assignment( 13 ) );
 	}
 
 
-	public function test_get_assigned_properties() {
+	public function test_get_assigned_properties() : void {
 		$this->tokens = $this->get_raw_tokens_file( 'object-helpers-complex' );
 		$this->assertEquals( [], $this->get_assigned_properties( 40 ) );
 		$this->assertEquals( [

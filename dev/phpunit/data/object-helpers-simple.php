@@ -3,7 +3,7 @@ return [
 	0  =>
 		[
 			'type'       => 'T_OPEN_TAG',
-			'code'       => 379,
+			'code'       => T_OPEN_TAG,
 			'content'    => '<?php
 ',
 			'line'       => 1,
@@ -17,7 +17,7 @@ return [
 	1  =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 2,
@@ -30,7 +30,7 @@ return [
 		],
 	2  =>
 		[
-			'code'       => 353,
+			'code'       => T_USE,
 			'type'       => 'T_USE',
 			'content'    => 'use',
 			'line'       => 3,
@@ -43,7 +43,7 @@ return [
 		],
 	3  =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 3,
@@ -57,7 +57,7 @@ return [
 	4  =>
 		[
 			'content'    => 'Lipe',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 3,
 			'column'     => 5,
@@ -69,7 +69,7 @@ return [
 		],
 	5  =>
 		[
-			'code'       => 390,
+			'code'       => T_NS_SEPARATOR,
 			'type'       => 'T_NS_SEPARATOR',
 			'content'    => '\\',
 			'line'       => 3,
@@ -83,7 +83,7 @@ return [
 	6  =>
 		[
 			'content'    => 'Lib',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 3,
 			'column'     => 10,
@@ -95,7 +95,7 @@ return [
 		],
 	7  =>
 		[
-			'code'       => 390,
+			'code'       => T_NS_SEPARATOR,
 			'type'       => 'T_NS_SEPARATOR',
 			'content'    => '\\',
 			'line'       => 3,
@@ -109,7 +109,7 @@ return [
 	8  =>
 		[
 			'content'    => 'Query',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 3,
 			'column'     => 14,
@@ -121,7 +121,7 @@ return [
 		],
 	9  =>
 		[
-			'code'       => 390,
+			'code'       => T_NS_SEPARATOR,
 			'type'       => 'T_NS_SEPARATOR',
 			'content'    => '\\',
 			'line'       => 3,
@@ -135,7 +135,7 @@ return [
 	10 =>
 		[
 			'content'    => 'Get_Posts',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 3,
 			'column'     => 20,
@@ -161,7 +161,7 @@ return [
 	12 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 3,
@@ -175,7 +175,7 @@ return [
 	13 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 4,
@@ -188,7 +188,7 @@ return [
 		],
 	14 =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 5,
@@ -201,7 +201,7 @@ return [
 		],
 	15 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 5,
@@ -227,7 +227,7 @@ return [
 		],
 	17 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 5,
@@ -240,7 +240,7 @@ return [
 		],
 	18 =>
 		[
-			'code'       => 305,
+			'code'       => T_NEW,
 			'type'       => 'T_NEW',
 			'content'    => 'new',
 			'line'       => 5,
@@ -253,7 +253,7 @@ return [
 		],
 	19 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 5,
@@ -267,7 +267,7 @@ return [
 	20 =>
 		[
 			'content'    => 'Get_Posts',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 5,
 			'column'     => 13,
@@ -323,7 +323,7 @@ return [
 	24 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 5,
@@ -336,7 +336,7 @@ return [
 		],
 	25 =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 6,
@@ -349,7 +349,7 @@ return [
 		],
 	26 =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 6,
@@ -363,7 +363,7 @@ return [
 	27 =>
 		[
 			'content'    => 'suppress_filters',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 6,
 			'column'     => 8,
@@ -375,7 +375,7 @@ return [
 		],
 	28 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 6,
@@ -401,7 +401,7 @@ return [
 		],
 	30 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 6,
@@ -441,7 +441,7 @@ return [
 	33 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 6,
@@ -455,7 +455,7 @@ return [
 	34 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 7,
@@ -469,7 +469,7 @@ return [
 	35 =>
 		[
 			'type'       => 'T_STRING',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'content'    => 'get_posts',
 			'line'       => 8,
 			'column'     => 1,
@@ -496,7 +496,7 @@ return [
 		],
 	37 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 8,
@@ -513,7 +513,7 @@ return [
 		],
 	38 =>
 		[
-			'code'               => 320,
+			'code'               => T_VARIABLE,
 			'type'               => 'T_VARIABLE',
 			'content'            => '$args',
 			'line'               => 8,
@@ -530,7 +530,7 @@ return [
 		],
 	39 =>
 		[
-			'code'               => 382,
+			'code'               => T_WHITESPACE,
 			'type'               => 'T_WHITESPACE',
 			'content'            => ' ',
 			'line'               => 8,
@@ -576,7 +576,7 @@ return [
 	42 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 8,
@@ -590,7 +590,7 @@ return [
 	43 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 9,
@@ -603,7 +603,7 @@ return [
 		],
 	44 =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 10,
@@ -616,7 +616,7 @@ return [
 		],
 	45 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 10,
@@ -642,7 +642,7 @@ return [
 		],
 	47 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 10,
@@ -655,7 +655,7 @@ return [
 		],
 	48 =>
 		[
-			'code'       => 305,
+			'code'       => T_NEW,
 			'type'       => 'T_NEW',
 			'content'    => 'new',
 			'line'       => 10,
@@ -668,7 +668,7 @@ return [
 		],
 	49 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 10,
@@ -682,7 +682,7 @@ return [
 	50 =>
 		[
 			'content'    => 'Get_Posts',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 10,
 			'column'     => 13,
@@ -738,7 +738,7 @@ return [
 	54 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 10,
@@ -751,7 +751,7 @@ return [
 		],
 	55 =>
 		[
-			'code'       => 320,
+			'code'       => T_VARIABLE,
 			'type'       => 'T_VARIABLE',
 			'content'    => '$args',
 			'line'       => 11,
@@ -764,7 +764,7 @@ return [
 		],
 	56 =>
 		[
-			'code'       => 366,
+			'code'       => T_OBJECT_OPERATOR,
 			'type'       => 'T_OBJECT_OPERATOR',
 			'content'    => '->',
 			'line'       => 11,
@@ -778,7 +778,7 @@ return [
 	57 =>
 		[
 			'content'    => 'suppress_filters',
-			'code'       => 319,
+			'code'       => T_STRING,
 			'type'       => 'T_STRING',
 			'line'       => 11,
 			'column'     => 8,
@@ -790,7 +790,7 @@ return [
 		],
 	58 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 11,
@@ -816,7 +816,7 @@ return [
 		],
 	60 =>
 		[
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'type'       => 'T_WHITESPACE',
 			'content'    => ' ',
 			'line'       => 11,
@@ -856,7 +856,7 @@ return [
 	63 =>
 		[
 			'type'       => 'T_WHITESPACE',
-			'code'       => 382,
+			'code'       => T_WHITESPACE,
 			'content'    => '
 ',
 			'line'       => 11,
