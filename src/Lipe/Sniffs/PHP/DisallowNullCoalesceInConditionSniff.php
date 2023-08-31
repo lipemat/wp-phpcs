@@ -100,7 +100,7 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 
 		if ( $error ) {
 			if ( \T_INLINE_ELSE === $tokens[ $stackPtr ]['code'] ) {
-				$phpcsFile->addError(
+				$phpcsFile->addWarning(
 					'Using ternary in a condition is not allowed.',
 					$stackPtr,
 					'Ternary'
@@ -108,14 +108,14 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 				return;
 			}
 			if ( \T_COALESCE_EQUAL === $tokens[ $stackPtr ]['code'] ) {
-				$phpcsFile->addError(
+				$phpcsFile->addWarning(
 					'Using null coalesce equal in a condition is not allowed.',
 					$stackPtr,
 					'CoalesceEqual'
 				);
 				return;
 			}
-			$phpcsFile->addError(
+			$phpcsFile->addWarning(
 				'Using null coalesce in a condition is not allowed.',
 				$stackPtr,
 				'Coalesce'

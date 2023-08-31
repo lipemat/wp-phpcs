@@ -1,0 +1,38 @@
+{
+  "4": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInCondition.Coalesce",
+      "type": "warning"
+    }
+  ],
+  "6": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInCondition.Ternary",
+      "type": "warning"
+    }
+  ],
+  "8": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInCondition.Ternary",
+      "type": "warning"
+    }
+  ],
+  "10": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInCondition.Coalesce",
+      "type": "warning"
+    }
+  ],
+  "12": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInCondition.CoalesceEqual",
+      "type": "warning"
+    }
+  ],
+  "14": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInCondition.Ternary",
+      "type": "warning"
+    }
+  ]
+}
