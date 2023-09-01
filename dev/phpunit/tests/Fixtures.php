@@ -106,6 +106,7 @@ class Fixtures extends TestCase {
 			'Lipe.JS.StrippingTags',
 			'Lipe.JS.Window',
 			'Lipe.PHP.DisallowNullCoalesceInCondition',
+			'Lipe.PHP.DisallowNullCoalesceInForLoops',
 		];
 
 		$this->ruleset = new Ruleset( $this->config );

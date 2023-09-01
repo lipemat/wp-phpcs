@@ -1,0 +1,44 @@
+{
+  "4": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInForLoops.Coalesce",
+      "type": "warning"
+    }
+  ],
+  "7": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInForLoops.CoalesceEqual",
+      "type": "warning"
+    }
+  ],
+  "10": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInForLoops.Coalesce",
+      "type": "warning"
+    }
+  ],
+  "13": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInForLoops.CoalesceEqual",
+      "type": "warning"
+    }
+  ],
+  "16": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInForLoops.Ternary",
+      "type": "warning"
+    }
+  ],
+  "19": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInForLoops.Ternary",
+      "type": "warning"
+    }
+  ],
+  "22": [
+    {
+      "source": "Lipe.PHP.DisallowNullCoalesceInForLoops.Ternary",
+      "type": "warning"
+    }
+  ]
+}

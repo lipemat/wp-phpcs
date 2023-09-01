@@ -1,6 +1,6 @@
 <?php
 /**
- * Lipe.PHP.DisallowNullCoalesceInCondition
+ * Lipe.PHP.DisallowNullCoalesceInForLoops
  *
  * @package Lipe
  */
@@ -9,40 +9,53 @@ namespace Lipe\Sniffs\PHP;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
-use PHP_CodeSniffer\Util\Tokens;
 
 /**
- * Disallow null coalesce in condition sniff.
+ * Disallow null coalesce in for loops sniff.
  *
- * Prevents using null coalesce in conditions.
+ * Prevents issues where variables are not checked for an array
+ * but are used as arrays because the null coalesce operator is
+ * checking for null only.
+ *
  *
  * ```php
- * // Failures
- * if ( $foo ?? false )
- * if ( $foo ?: false )
- * if ( $foo ? true : false )
- * if ( $post['post_type'] ?? 'page' === 'page' )
- * if ( $post['post_type'] ??= 'page' === 'page' )
- * if ( 0 !== $update_id ? 'updated' : 'added' )
+ * $foo = 'some string';
+ * foreach( $foo ?? [] as $key => $value ){
+ *    // Type error: Cannot use string as array.
+ * }
  *
- * // Pass
- * 0 !== $update_id ? 'updated' : 'added'
- * ```
+ * // Proper
+ * $foo = 'some string';
+ * if ( is_array( $foo ) ) {
+ *    foreach( $foo as $key => $value ){
+ *    }
+ * }
+ *  ```
  *
- * @author Mat Lipe
- * @since  3.0.0
+ * @author      Mat Lipe
+ * @since       3.2.0
  *
- * @code   `Ternary` - For ternary in condition.
- * @code   `Coalesce` - For null coalesce in condition.
- * @code   `CoalesceEqual` - For null coalesce equal in condition.
+ * @code        `Ternary` - For ternary in for loops.
+ * @code        `Coalesce` - For null coalesce in for loops.
+ * @code        `CoalesceEqual` - For null coalesce equal in for loops.
  */
-class DisallowNullCoalesceInConditionSniff implements Sniff {
+class DisallowNullCoalesceInForLoopsSniff implements Sniff {
 	/**
 	 * A list of tokenizers this sniff supports.
 	 *
-	 * @var string[]
+	 * @var list<string>
 	 */
 	public $supportedTokenizers = [ 'PHP' ];
+
+	/**
+	 * A list of tokens that which start a for statement.
+	 *
+	 * @var list<int>
+	 */
+	protected $disallowedStartTokens = [
+		\T_FOREACH,
+		\T_FOR,
+	];
 
 
 	/**
@@ -83,16 +96,15 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 			\T_OPEN_SQUARE_BRACKET,
 		];
 		$statement_start = $phpcsFile->findStartOfStatement( $stackPtr, $skip_in_statement );
-		$statement_end = $phpcsFile->findEndOfStatement( $stackPtr, $skip_in_statement );
 
 		$error = false;
-		if ( \T_IF === $tokens[ $statement_start ]['code'] ) {
+		if ( \in_array( $tokens[ $statement_start ]['code'], $this->disallowedStartTokens, true ) ) {
 			$error = true;
-			// We allow ternary in conditions if it is outside an if statement.
-		} elseif ( \T_INLINE_ELSE !== $tokens[ $stackPtr ]['code'] ) {
-			// Loop through the tokens with the statement and check for equality tokens.
-			for ( $i = $statement_start; $i < $statement_end; $i ++ ) {
-				if ( \in_array( $tokens[ $i ]['code'], Tokens::$equalityTokens, true ) ) {
+		} elseif ( isset( $tokens[ $statement_start ]['nested_parenthesis'] ) ) {
+			$parenthesis = $tokens[ $statement_start ]['nested_parenthesis'];
+			foreach ( $parenthesis as $start => $end ) {
+				$previous = $phpcsFile->findPrevious( \T_WHITESPACE, ( $start - 1 ), null, true );
+				if ( false !== $previous && \T_FOR === $tokens[ $previous ]['code'] ) {
 					$error = true;
 					break;
 				}
@@ -102,7 +114,7 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 		if ( $error ) {
 			if ( \T_INLINE_ELSE === $tokens[ $stackPtr ]['code'] ) {
 				$phpcsFile->addWarning(
-					'Using ternary in a condition is not allowed.',
+					'Using ternary in a for loop is not allowed.',
 					$stackPtr,
 					'Ternary'
 				);
@@ -110,18 +122,17 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 			}
 			if ( \T_COALESCE_EQUAL === $tokens[ $stackPtr ]['code'] ) {
 				$phpcsFile->addWarning(
-					'Using null coalesce equal in a condition is not allowed.',
+					'Using null coalesce equal in a for loop is not allowed.',
 					$stackPtr,
 					'CoalesceEqual'
 				);
 				return;
 			}
 			$phpcsFile->addWarning(
-				'Using null coalesce in a condition is not allowed.',
+				'Using null coalesce in a for loop is not allowed.',
 				$stackPtr,
 				'Coalesce'
 			);
 		}
 	}
-
 }
