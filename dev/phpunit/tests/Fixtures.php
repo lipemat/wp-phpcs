@@ -35,7 +35,7 @@ class Fixtures extends TestCase {
 
 
 	/**
-	 * Get a lit of files from a directory path.
+	 * Get a list of files from a directory path.
 	 *
 	 * @param string $directory Directory to recursively look through.
 	 *
@@ -86,7 +86,7 @@ class Fixtures extends TestCase {
 	/**
 	 * Setup our ruleset.
 	 */
-	public function setUp() {
+	public function setUp() : void {
 		$this->config = new Config();
 		$this->config->cache = false;
 		$this->config->standards = [ 'Lipe' ];
@@ -116,7 +116,7 @@ class Fixtures extends TestCase {
 	/**
 	 * @dataProvider passing_files
 	 */
-	public function test_passing_files( $file ) {
+	public function test_passing_files( $file ) : void {
 		$phpcsFile = new LocalFile( $file, $this->ruleset, $this->config );
 		$phpcsFile->process();
 
@@ -131,11 +131,11 @@ class Fixtures extends TestCase {
 	/**
 	 * @dataProvider failing_files
 	 */
-	public function test_failing_files( $file ) {
+	public function test_failing_files( $file ) : void {
 		$phpcsFile = new LocalFile( $file, $this->ruleset, $this->config );
 		$phpcsFile->process();
 
-		$rel_file = substr( $file, strlen( __DIR__ ) );
+		$rel_file = str_replace( '\\', '/', substr( $file, strlen( str_replace( 'tests', 'fixtures', __DIR__ ) ) ) );
 		$foundErrors = $phpcsFile->getErrors();
 		$foundWarnings = $phpcsFile->getWarnings();
 
