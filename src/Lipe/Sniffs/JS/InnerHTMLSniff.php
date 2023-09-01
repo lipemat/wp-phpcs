@@ -9,6 +9,7 @@ namespace Lipe\Sniffs\JS;
 
 use Lipe\Traits\EscapeOutputFunctions;
 use PHP_CodeSniffer\Util\Tokens;
+use WordPressCS\WordPress\Helpers\EscapingFunctionsTrait;
 
 /**
  * Looks for instances of .innerHMTL.
