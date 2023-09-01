@@ -7,4 +7,3 @@ parameters:
   scanDirectories:
     - vendor/squizlabs/php_codesniffer
     - vendor/wp-coding-standards/wpcs
-    - vendor/automattic/vipwpcs

@@ -7,14 +7,13 @@
 
 namespace Lipe\Sniffs\JS;
 
-use Lipe\Traits\EscapeOutputFunctions;
+use Lipe\Abstracts\AbstractEscapeOutputFunctions;
 use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Looks for instances of React's dangerouslySetInnerHTML.
  */
-class DangerouslySetInnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\DangerouslySetInnerHTMLSniff {
-	use EscapeOutputFunctions;
+class DangerouslySetInnerHTMLSniff extends AbstractEscapeOutputFunctions {
 
 	/**
 	 * Processes this test, when one of its tokens is encountered.
@@ -23,7 +22,7 @@ class DangerouslySetInnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\Danger
 	 *
 	 * @return void
 	 */
-	public function process_token( $stackPtr ) : void {
+	public function process_token( $stackPtr ): void {
 		if ( 'dangerouslySetInnerHTML' !== $this->tokens[ $stackPtr ]['content'] ) {
 			// Looking for dangerouslySetInnerHTML only.
 			return;
@@ -34,6 +33,22 @@ class DangerouslySetInnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\Danger
 			return;
 		}
 
-		parent::process_token( $stackPtr );
+		$nextToken = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
+
+		if ( false === $nextToken || T_EQUAL !== $this->tokens[ $nextToken ]['code'] ) {
+			// Not an assignment.
+			return;
+		}
+
+		$nextNextToken = $this->phpcsFile->findNext( Tokens::$emptyTokens, $nextToken + 1, null, true, null, true );
+
+		if ( T_OBJECT !== $this->tokens[ $nextNextToken ]['code'] ) {
+			// Not react syntax.
+			return;
+		}
+
+		$message = "Any HTML passed to `%s` gets executed. Please make sure it's properly escaped.";
+		$data = [ $this->tokens[ $stackPtr ]['content'] ];
+		$this->phpcsFile->addError( $message, $stackPtr, 'Found', $data );
 	}
 }
