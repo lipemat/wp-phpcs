@@ -11,7 +11,7 @@ use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
  * @since 3.1.0
  */
 final class SlowOrderByUnitTest extends AbstractSniffUnitTest {
-	protected function getErrorList() : array {
+	protected function getErrorList(): array {
 		$file = func_get_arg( 0 );
 		switch ( $file ) {
 			case 'SlowOrderByUnitTest.success.inc':
@@ -39,7 +39,7 @@ final class SlowOrderByUnitTest extends AbstractSniffUnitTest {
 	}
 
 
-	protected function getWarningList() : array {
+	protected function getWarningList(): array {
 		$file = func_get_arg( 0 );
 		switch ( $file ) {
 			case 'SlowOrderByUnitTest.success.inc':

@@ -16,7 +16,7 @@ final class PostNotInUnitTest extends AbstractSniffUnitTest {
 	 *
 	 * @return array <int line number> => <int number of errors>
 	 */
-	public function getErrorList() : array {
+	public function getErrorList(): array {
 		$file = func_get_arg( 0 );
 		switch ( $file ) {
 			case 'PostNotInt.success.inc':
@@ -35,7 +35,7 @@ final class PostNotInUnitTest extends AbstractSniffUnitTest {
 	 *
 	 * @return array <int line number> => <int number of warnings>
 	 */
-	public function getWarningList() : array {
+	public function getWarningList(): array {
 		$file = func_get_arg( 0 );
 		switch ( $file ) {
 			case 'PostNotInUnitTest.success.inc':

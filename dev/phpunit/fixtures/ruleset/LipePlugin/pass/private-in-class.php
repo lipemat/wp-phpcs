@@ -28,7 +28,7 @@ class Yep {
 	 *
 	 * @return string
 	 */
-	public function get_stuck() : string {
+	public function get_stuck(): string {
 		return static::$stuck;
 	}
 }

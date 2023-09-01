@@ -29,7 +29,7 @@ class RulesetFixtureLipePlugin extends Fixtures {
 	 *
 	 * @return array List of parameters to provide.
 	 */
-	public static function failing_files() : array {
+	public static function failing_files(): array {
 		$directory = dirname( __DIR__ ) . '/fixtures/ruleset/LipePlugin/fail';
 
 		return static::get_files_from_dir( $directory );
@@ -41,7 +41,7 @@ class RulesetFixtureLipePlugin extends Fixtures {
 	 *
 	 * @return array List of parameters to provide.
 	 */
-	public static function passing_files() : array {
+	public static function passing_files(): array {
 		$directory = dirname( __DIR__ ) . '/fixtures/ruleset/LipePlugin/pass';
 
 		return static::get_files_from_dir( $directory );
@@ -51,7 +51,7 @@ class RulesetFixtureLipePlugin extends Fixtures {
 	/**
 	 * Setup our ruleset.
 	 */
-	public function setUp() : void {
+	public function setUp(): void {
 		$this->config = new Config();
 		$this->config->cache = false;
 		$this->config->standards = [ 'LipePlugin' ];

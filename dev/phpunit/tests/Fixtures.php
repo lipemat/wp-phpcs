@@ -41,7 +41,7 @@ class Fixtures extends TestCase {
 	 *
 	 * @return array List of files to run.
 	 */
-	public static function get_files_from_dir( string $directory ) : array {
+	public static function get_files_from_dir( string $directory ): array {
 		$files = [];
 		$iterator = new RecursiveIteratorIterator(
 			new RecursiveDirectoryIterator( $directory )
@@ -64,7 +64,7 @@ class Fixtures extends TestCase {
 	 *
 	 * @return array List of parameters to provide.
 	 */
-	public static function failing_files() : array {
+	public static function failing_files(): array {
 		$directory = dirname( __DIR__ ) . '/fixtures/fail';
 
 		return static::get_files_from_dir( $directory );
@@ -76,7 +76,7 @@ class Fixtures extends TestCase {
 	 *
 	 * @return array List of parameters to provide.
 	 */
-	public static function passing_files() : array {
+	public static function passing_files(): array {
 		$directory = dirname( __DIR__ ) . '/fixtures/pass';
 
 		return static::get_files_from_dir( $directory );
@@ -86,7 +86,7 @@ class Fixtures extends TestCase {
 	/**
 	 * Setup our ruleset.
 	 */
-	public function setUp() : void {
+	public function setUp(): void {
 		$this->config = new Config();
 		$this->config->cache = false;
 		$this->config->standards = [ 'Lipe' ];
@@ -116,7 +116,7 @@ class Fixtures extends TestCase {
 	/**
 	 * @dataProvider passing_files
 	 */
-	public function test_passing_files( $file ) : void {
+	public function test_passing_files( $file ): void {
 		$phpcsFile = new LocalFile( $file, $this->ruleset, $this->config );
 		$phpcsFile->process();
 
@@ -131,7 +131,7 @@ class Fixtures extends TestCase {
 	/**
 	 * @dataProvider failing_files
 	 */
-	public function test_failing_files( $file ) : void {
+	public function test_failing_files( $file ): void {
 		$phpcsFile = new LocalFile( $file, $this->ruleset, $this->config );
 		$phpcsFile->process();
 
