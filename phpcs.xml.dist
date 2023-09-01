@@ -27,8 +27,13 @@
 
     <rule ref="WordPress-Extra">
         <exclude-pattern>*.js</exclude-pattern>
-        <exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
+
+        <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
+
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+
         <exclude name="WordPress.Files.FileName" />
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
         <exclude name="WordPress.NamingConventions.ValidVariableName" />

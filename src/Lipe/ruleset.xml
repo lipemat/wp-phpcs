@@ -37,7 +37,6 @@
     <rule ref="WordPress">
         <exclude-pattern>*/js/*</exclude-pattern>
 
-        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
         <exclude name="Generic.Commenting" />
         <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
@@ -52,6 +51,9 @@
         <exclude name="Squiz.Commenting" />
         <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine" />
 
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
+        <exclude name="Universal.WhiteSpace.PrecisionAlignment.Found" />
+
         <exclude name="WordPress.Arrays.ArrayIndentation" />
         <exclude name="WordPress.DB.SlowDBQuery" />
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
@@ -61,7 +63,7 @@
     </rule>
 
     <!-- Requires local "prefixes" -->
-    <!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#naming-conventions-prefix-everything-in-the-global-namespace -->
+    <!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#wordpressnamingconventionsprefixallglobals-prefix-everything-in-the-global-namespace -->
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals.InvalidPrefixPassed" />
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound" />

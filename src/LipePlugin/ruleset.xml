@@ -23,7 +23,6 @@
     <rule ref="WordPress">
         <exclude-pattern>*/js/*</exclude-pattern>
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
-        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 
         <exclude name="PEAR.Functions.FunctionCallSignature" />
         <exclude name="PEAR.NamingConventions.ValidClassName" />
@@ -32,12 +31,13 @@
         <exclude name="Squiz.Commenting.FileComment.WrongStyle" />
         <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType" />
 
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
+
         <exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
         <exclude name="WordPress.Arrays.MultipleStatementAlignment.LongIndexSpaceBeforeDoubleArrow" />
         <exclude name="WordPress.DB.SlowDBQuery" />
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-
         <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
     </rule>
 
@@ -55,7 +55,7 @@
     </rule>
 
     <!-- Requires local "prefixes" -->
-    <!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#naming-conventions-prefix-everything-in-the-global-namespace -->
+    <!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#wordpressnamingconventionsprefixallglobals-prefix-everything-in-the-global-namespace -->
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals.InvalidPrefixPassed" />
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound" />
