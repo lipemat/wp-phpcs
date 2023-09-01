@@ -60,8 +60,15 @@
         <exclude name="WordPress.DB.SlowDBQuery" />
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
         <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
+    </rule>
+
+    <!-- Allow using dashes and slashes in hook names -->
+    <!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#wordpressnamingconventionsvalidhookname-custom-word-delimiters-in-hook-names -->
+    <rule ref="WordPress.NamingConventions.ValidHookName">
+        <properties>
+            <property name="additionalWordDelimiters" value="/-" />
+        </properties>
     </rule>
 
     <!-- Requires local "prefixes" -->
