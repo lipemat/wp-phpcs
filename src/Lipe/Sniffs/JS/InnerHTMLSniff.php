@@ -23,8 +23,8 @@ class InnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\InnerHTMLSniff {
 	 *
 	 * @return void
 	 */
-	public function process_token( $stackPtr ) {
-		if ( $this->tokens[ $stackPtr ]['content'] !== 'innerHTML' ) {
+	public function process_token( $stackPtr ) : void {
+		if ( 'innerHTML' !== $this->tokens[ $stackPtr ]['content'] ) {
 			// Looking for .innerHTML only.
 			return;
 		}

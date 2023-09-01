@@ -11,7 +11,7 @@ use Lipe\Traits\EscapeOutputFunctions;
 use PHP_CodeSniffer\Util\Tokens;
 
 /**
- * Looks for instances of React's dangerouslySetInnerHMTL.
+ * Looks for instances of React's dangerouslySetInnerHTML.
  */
 class DangerouslySetInnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\DangerouslySetInnerHTMLSniff {
 	use EscapeOutputFunctions;
@@ -23,8 +23,8 @@ class DangerouslySetInnerHTMLSniff extends \WordPressVIPMinimum\Sniffs\JS\Danger
 	 *
 	 * @return void
 	 */
-	public function process_token( $stackPtr ) {
-		if ( $this->tokens[ $stackPtr ]['content'] !== 'dangerouslySetInnerHTML' ) {
+	public function process_token( $stackPtr ) : void {
+		if ( 'dangerouslySetInnerHTML' !== $this->tokens[ $stackPtr ]['content'] ) {
 			// Looking for dangerouslySetInnerHTML only.
 			return;
 		}

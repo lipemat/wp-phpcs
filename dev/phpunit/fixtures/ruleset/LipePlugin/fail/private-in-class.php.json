@@ -57,12 +57,12 @@
   ],
   "27": [
     {
-      "source": "Universal.Classes.DisallowFinalClass.FinalClassFound",
+      "source": "Generic.Files.OneObjectStructurePerFile.MultipleFound",
       "type": "error"
     },
     {
-      "source": "Generic.Files.OneObjectStructurePerFile.MultipleFound",
-      "type": "warning"
+      "source": "Universal.Classes.DisallowFinalClass.FinalClassFound",
+      "type": "error"
     }
   ],
   "32": [

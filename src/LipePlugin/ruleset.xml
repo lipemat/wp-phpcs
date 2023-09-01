@@ -27,6 +27,8 @@
         <exclude name="PEAR.Functions.FunctionCallSignature" />
         <exclude name="PEAR.NamingConventions.ValidClassName" />
 
+        <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
+
         <exclude name="Squiz.Commenting.FileComment.Missing" />
         <exclude name="Squiz.Commenting.FileComment.WrongStyle" />
         <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType" />

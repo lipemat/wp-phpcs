@@ -9,6 +9,7 @@
 namespace Lipe\Traits;
 
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\TextStrings;
 use VariableAnalysis\Lib\Helpers;
 
 /**
@@ -102,7 +103,7 @@ trait VariableHelpers {
 	 */
 	protected function get_static_value_from_variable( int $token ) : ?string {
 		if ( T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $token ]['code'] ) {
-			return $this->strip_quotes( $this->tokens[ $token ]['content'] );
+			return TextStrings::stripQuotes( $this->tokens[ $token ]['content'] );
 		}
 		if ( T_VARIABLE !== $this->tokens[ $token ]['code'] ) {
 			return null;
@@ -119,7 +120,7 @@ trait VariableHelpers {
 		if ( T_CONSTANT_ENCAPSED_STRING !== $this->tokens[ $next ]['code'] ) {
 			return null;
 		}
-		return $this->strip_quotes( $this->tokens[ $next ]['content'] );
+		return TextStrings::stripQuotes( $this->tokens[ $next ]['content'] );
 	}
 
 

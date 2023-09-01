@@ -11,6 +11,7 @@ use Lipe\Traits\ArrayHelpers;
 use Lipe\Traits\ObjectHelpers;
 use Lipe\Traits\VariableHelpers;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\MessageHelper;
 use VariableAnalysis\Lib\Helpers;
 use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
 
@@ -59,7 +60,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 	 * @return void Integer stack pointer to skip forward or void to continue
 	 *                  normal file processing.
 	 */
-	public function process_matched_token( $stackPtr, $group_name, $matched_content ) {
+	public function process_matched_token( $stackPtr, $group_name, $matched_content ) : void {
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_OPEN_PARENTHESIS ] ), $stackPtr + 1, null, true );
 
 		if ( false === $array_open ) {
@@ -71,11 +72,12 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 
 			// No suppress_filters key found.
 			if ( false === $compare_element ) {
-				$this->addMessage(
+				MessageHelper::addMessage(
+					$this->phpcsFile,
 					$this->groups[ $group_name ]['message'],
 					$stackPtr,
 					( 'error' === $this->groups[ $group_name ]['type'] ),
-					$this->string_to_errorcode( $matched_content ),
+					MessageHelper::stringToErrorcode( $matched_content ),
 					[ $matched_content ]
 				);
 				return;
@@ -83,11 +85,12 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 
 			// suppress_filters key found, but not set to false.
 			if ( 'false' !== $this->tokens[ $compare_element ]['content'] ) {
-				$this->addMessage(
+				MessageHelper::addMessage(
+					$this->phpcsFile,
 					'Setting "suppress_filters" parameter to true in %s() is prohibited. More Info: https://docs.wpvip.com/technical-references/caching/uncached-functions/.',
 					$stackPtr,
 					true,
-					$this->string_to_errorcode( $matched_content ),
+					MessageHelper::stringToErrorcode( $matched_content ),
 					[ $matched_content ]
 				);
 			}
@@ -112,11 +115,12 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 
 			// Not assigned to anything.
 			if ( ! isset( $assigned['suppress_filters'] ) ) {
-				$this->addMessage(
+				MessageHelper::addMessage(
+					$this->phpcsFile,
 					$this->groups[ $group_name ]['message'],
 					$stackPtr,
 					( 'error' === $this->groups[ $group_name ]['type'] ),
-					$this->string_to_errorcode( $matched_content ),
+					MessageHelper::stringToErrorcode( $matched_content ),
 					[ $matched_content ]
 				);
 				return;
@@ -124,11 +128,12 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 
 			// Assigned to something other than false.
 			if ( 'false' !== $this->tokens[ $assigned['suppress_filters'] ]['content'] ) {
-				$this->addMessage(
+				MessageHelper::addMessage(
+					$this->phpcsFile,
 					'Setting "suppress_filters" parameter to true in %s() is prohibited. More Info: https://docs.wpvip.com/technical-references/caching/uncached-functions/.',
 					$stackPtr,
 					true,
-					$this->string_to_errorcode( $matched_content ),
+					MessageHelper::stringToErrorcode( $matched_content ),
 					[ $matched_content ]
 				);
 				return;
@@ -137,11 +142,12 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 
 		// Used without arguments.
 		if ( \T_CLOSE_PARENTHESIS === $this->tokens[ $array_open ]['code'] ) {
-			$this->addMessage(
+			MessageHelper::addMessage(
+				$this->phpcsFile,
 				$this->groups[ $group_name ]['message'],
 				$stackPtr,
 				( 'error' === $this->groups[ $group_name ]['type'] ),
-				$this->string_to_errorcode( $matched_content ),
+				MessageHelper::stringToErrorcode( $matched_content ),
 				[ $matched_content ]
 			);
 		}

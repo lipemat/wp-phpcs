@@ -90,5 +90,4 @@ class PrivateInClassSniff implements Sniff {
 			$phpcsFile->fixer->replaceToken( $stackPtr, 'protected' );
 		}
 	}
-
 }

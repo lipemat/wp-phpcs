@@ -103,5 +103,4 @@ class PreventStrictTypesSniff implements Sniff {
 			}
 		}
 	}
-
 }

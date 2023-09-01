@@ -64,5 +64,4 @@ class CalcFoundRowsSniff implements Sniff {
 			'Found'
 		);
 	}
-
 }

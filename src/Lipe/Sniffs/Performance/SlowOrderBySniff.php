@@ -10,6 +10,8 @@ namespace Lipe\Sniffs\Performance;
 use Lipe\Traits\ArrayHelpers;
 use Lipe\Traits\ObjectHelpers;
 use Lipe\Traits\VariableHelpers;
+use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\TextStrings;
 use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
 
 /**
@@ -35,13 +37,6 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
 class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	use ObjectHelpers;
 	use VariableHelpers;
-
-	/**
-	 * A list of tokenizers this sniff supports.
-	 *
-	 * @var string[]
-	 */
-	public $supportedTokenizers = [ 'PHP' ];
 
 	/**
 	 * Current stack pointer.
@@ -92,7 +87,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @param int $stackPtr - Current position in the stack.
 	 */
-	public function process_token( $stackPtr ) {
+	public function process_token( $stackPtr ) : void {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
 
@@ -101,7 +96,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true );
 			if ( false !== $prop && 'orderby' === $this->tokens[ $prop ]['content'] ) {
 				$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
-				$this->callback( 'orderby', $this->strip_quotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_orderby'] );
+				$this->callback( 'orderby', $this->tokens[ $value ]['content'], $this->tokens[ $prop ]['line'], $this->groups_cache['slow_orderby'] );
 			}
 		}
 
@@ -120,11 +115,15 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 * @return bool
 	 */
 	public function callback( $key, $val, $line, $group ) : bool {
+		if ( is_string( $val ) ) {
+			$val = TextStrings::stripQuotes( $val );
+		}
 		switch ( $val ) {
 			case 'rand':
 			case 'meta_value':
 			case 'meta_value_num':
-				$this->addMessage(
+				MessageHelper::addMessage(
+					$this->phpcsFile,
 					'Ordering query results by %s is not performant.',
 					$this->stackPtr,
 					true,

@@ -153,7 +153,7 @@ class Fixtures extends TestCase {
 
 		$found = [];
 		foreach ( $foundErrors as $line => $columns ) {
-			foreach ( $columns as $column => $errors ) {
+			foreach ( $columns as $errors ) {
 				foreach ( $errors as $error ) {
 					$found[ $line ][] = [
 						'source' => $error['source'],
@@ -163,7 +163,7 @@ class Fixtures extends TestCase {
 			}
 		}
 		foreach ( $foundWarnings as $line => $columns ) {
-			foreach ( $columns as $column => $errors ) {
+			foreach ( $columns as $errors ) {
 				foreach ( $errors as $error ) {
 					$found[ $line ][] = [
 						'source' => $error['source'],

@@ -9,6 +9,7 @@ namespace Lipe\Abstracts;
 
 use Lipe\Traits\ObjectHelpers;
 use Lipe\Traits\VariableHelpers;
+use PHPCSUtils\Utils\MessageHelper;
 use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
 
 /**
@@ -24,13 +25,6 @@ use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
 abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRestrictionsSniff {
 	use VariableHelpers;
 	use ObjectHelpers;
-
-	/**
-	 * A list of tokenizers this sniff supports.
-	 *
-	 * @var string[]
-	 */
-	public $supportedTokenizers = [ 'PHP' ];
 
 	/**
 	 * The current stack pointer.
@@ -63,7 +57,7 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 	 *
 	 * @param int $stackPtr - Current position in the stack.
 	 */
-	public function process_token( $stackPtr ) {
+	public function process_token( $stackPtr ) : void {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
 
@@ -77,28 +71,12 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 				foreach ( $group['keys'] as $occurrence ) {
 					if ( $this->tokens[ $prop ]['content'] === $occurrence ) {
 						$message = $group ['message'];
-						$this->addMessage( $message, $prop, ( 'error' === $group['type'] ), $this->string_to_errorcode( $groupName . '_' . $occurrence ) );
+						MessageHelper::addMessage( $this->phpcsFile, $message, $prop, ( 'error' === $group['type'] ), MessageHelper::stringToErrorcode( $groupName . '_' . $occurrence ) );
 					}
 				}
 			}
 		}
 
 		unset( $this->stackPtr );
-	}
-
-
-	/**
-	 * Simplify the error code to just the code and not the group.
-	 *
-	 * @param string $base_string - String provide by parent class with the group included.
-	 *
-	 * @return string
-	 */
-	protected function string_to_errorcode( $base_string ) {
-		$result = preg_replace( '/.+?_/', '', $base_string, 1 );
-		if ( is_string( $result ) ) {
-			return $result;
-		}
-		return '';
 	}
 }

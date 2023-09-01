@@ -10,6 +10,8 @@ namespace Lipe\Traits;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\Arrays;
+use PHPCSUtils\Utils\TextStrings;
 use VariableAnalysis\Lib\Helpers;
 
 /**
@@ -135,7 +137,7 @@ trait ArrayHelpers {
 
 			$key = $this->phpcsFile->findNext( Tokens::$emptyTokens, $bracket + 1, null, true );
 			if ( false !== $key && T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $key ]['code'] ) {
-				$index = $this->strip_quotes( $this->tokens[ $key ]['content'] );
+				$index = TextStrings::stripQuotes( $this->tokens[ $key ]['content'] );
 				$value = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_CLOSE_SQUARE_BRACKET ] ), $key + 1, null, true );
 				if ( false !== $value ) {
 					$values[ $index ] = $value;
@@ -155,7 +157,7 @@ trait ArrayHelpers {
 	 * @return array<string, int>
 	 */
 	protected function get_assigned_keys( int $array_open ) : array {
-		$array_bounds = $this->find_array_open_close( $array_open );
+		$array_bounds = Arrays::getOpenClose( $this->phpcsFile, $array_open );
 		if ( false === $array_bounds || ! isset( $array_bounds['opener'], $array_bounds['closer'] ) ) {
 			return [];
 		}
@@ -180,7 +182,7 @@ trait ArrayHelpers {
 				continue;
 			}
 
-			$index = $this->strip_quotes( $this->tokens[ $start ]['content'] );
+			$index = TextStrings::stripQuotes( $this->tokens[ $start ]['content'] );
 			if ( false !== $element['value_start'] ) {
 				$properties[ $index ] = $element['value_start'];
 			}
@@ -205,7 +207,7 @@ trait ArrayHelpers {
 		if ( false === $array_open ) {
 			return false;
 		}
-		$array_bounds = $this->find_array_open_close( $array_open );
+		$array_bounds = Arrays::getOpenClose( $this->phpcsFile, $array_open );
 		if ( false === $array_bounds || ! isset( $array_bounds['opener'], $array_bounds['closer'] ) ) {
 			return false;
 		}
@@ -223,10 +225,14 @@ trait ArrayHelpers {
 	 *
 	 * Searches a list of elements for a given (static) index.
 	 *
-	 * @param ArrayElement[] $elements  Elements from the array (from get_array_indices()).
-	 * @param string         $array_key Key to find in the array.
+	 * @phpstan-param ArrayElement[] $elements
 	 *
-	 * @return ArrayElement|null Static value if available, null otherwise.
+	 * @param array  $elements  Elements from the array (from get_array_indices()).
+	 * @param string $array_key Key to find in the array.
+	 *
+	 * @phpstan-return ArrayElement|null
+	 *
+	 * @return array|null -Static value if available, null otherwise.
 	 */
 	protected function find_key_in_array_elements( array $elements, string $array_key ) {
 		foreach ( $elements as $element ) {
@@ -248,7 +254,7 @@ trait ArrayHelpers {
 				continue;
 			}
 
-			$index = $this->strip_quotes( $this->tokens[ $start ]['content'] );
+			$index = TextStrings::stripQuotes( $this->tokens[ $start ]['content'] );
 			if ( $index !== $array_key ) {
 				// Not the item we want, skip.
 				continue;
@@ -369,7 +375,7 @@ trait ArrayHelpers {
 			return '__dynamic';
 		}
 
-		return $this->strip_quotes( $this->tokens[ $value_start ]['content'] );
+		return TextStrings::stripQuotes( $this->tokens[ $value_start ]['content'] );
 	}
 
 

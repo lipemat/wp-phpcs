@@ -29,6 +29,7 @@
         <exclude-pattern>*.js</exclude-pattern>
 
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
+        <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing.SpaceAfterIncrement" />
 
         <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
 

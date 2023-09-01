@@ -46,7 +46,7 @@ class WindowSniff extends \WordPressVIPMinimum\Sniffs\JS\WindowSniff {
 	 *
 	 * @return void
 	 */
-	public function process_token( $stackPtr ) {
+	public function process_token( $stackPtr ) : void {
 		if ( 'window' !== $this->tokens[ $stackPtr ]['content'] ) {
 			// Doesn't begin with 'window', bail.
 			return;

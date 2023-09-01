@@ -23,7 +23,7 @@ class HTMLExecutingFunctionsSniff extends \WordPressVIPMinimum\Sniffs\JS\HTMLExe
 	 *
 	 * @return void
 	 */
-	public function process_token( $stackPtr ) {
+	public function process_token( $stackPtr ) : void {
 		if ( ! isset( $this->HTMLExecutingFunctions[ $this->tokens[ $stackPtr ]['content'] ] ) ) {
 			// Looking for specific functions only.
 			return;

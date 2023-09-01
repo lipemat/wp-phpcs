@@ -8,15 +8,25 @@
 namespace Lipe\Traits;
 
 use PHP_CodeSniffer\Util\Tokens;
+use WordPressCS\WordPress\Helpers\RulesetPropertyHelper;
 
 trait EscapeOutputFunctions {
 
 	/**
 	 * Custom list of functions, which escape values for output.
 	 *
-	 * @var string[]
+	 * @var list<string>
 	 */
 	public $customEscapingFunctions = [];
+
+	/**
+	 * List of functions, which escape values for output.
+	 *
+	 * @var array<string, bool>
+	 */
+	public $escapingFunctions = [
+		'sanitize' => true,
+	];
 
 	/**
 	 * Cache of previously added custom functions.
@@ -31,24 +41,13 @@ trait EscapeOutputFunctions {
 
 
 	/**
-	 * Set the default value for `escapingFunctions`.
-	 *
-	 * We do it here instead of a property because the Trait
-	 * classes with the abstract otherwise.
-	 */
-	public function __construct() {
-		$this->escapingFunctions = [ 'sanitize' => true ];
-	}
-
-
-	/**
 	 * Detect if current position is an escape function
 	 *
 	 * @param int|false $functionToken token amount scape function.
 	 *
 	 * @return bool
 	 */
-	protected function isEscapeFunction( $functionToken ) {
+	protected function isEscapeFunction( $functionToken ) : bool {
 		if ( false === $functionToken ) {
 			return false;
 		}
@@ -68,11 +67,11 @@ trait EscapeOutputFunctions {
 	 *
 	 * @return void
 	 */
-	protected function mergeFunctionLists() {
+	protected function mergeFunctionLists() : void {
 		if ( $this->customEscapingFunctions !== $this->addedCustomFunctions['escape'] ) {
-			$customEscapeFunctions = static::merge_custom_array( $this->customEscapingFunctions, [], false );
+			$customEscapeFunctions = RulesetPropertyHelper::merge_custom_array( $this->customEscapingFunctions, [], false );
 
-			$this->escapingFunctions = static::merge_custom_array(
+			$this->escapingFunctions = RulesetPropertyHelper::merge_custom_array(
 				$customEscapeFunctions,
 				$this->escapingFunctions
 			);

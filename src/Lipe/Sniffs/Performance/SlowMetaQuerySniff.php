@@ -12,6 +12,9 @@ use Lipe\Traits\ObjectHelpers;
 use Lipe\Traits\VariableHelpers;
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\Arrays;
+use PHPCSUtils\Utils\MessageHelper;
+use PHPCSUtils\Utils\TextStrings;
 use WordPressCS\WordPress\AbstractArrayAssignmentRestrictionsSniff;
 
 /**
@@ -88,7 +91,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @param int $stackPtr - Current position in the stack.
 	 */
-	public function process_token( $stackPtr ) {
+	public function process_token( $stackPtr ) : void {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
 
@@ -104,13 +107,14 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 		// Object assignment of meta_value.
 		if ( 'meta_value' === $this->tokens[ $prop ]['content'] ) {
 			$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
-			$this->callback( 'meta_value', $this->strip_quotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_query'] );
+			$this->callback( 'meta_value', TextStrings::stripQuotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_query'] );
 		} elseif ( 'meta_query' === $this->tokens[ $prop ]['content'] ) {
 			// Fluent interface callback.
 			if ( T_OPEN_PARENTHESIS === $this->tokens[ $prop + 1 ]['code'] ) {
 				$call = $this->phpcsFile->findNext( \T_STRING, ( $prop + 2 ) );
 				if ( ! in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists' ], true ) ) {
-					$this->addMessage(
+					MessageHelper::addMessage(
+						$this->phpcsFile,
 						'Using %s comparison in `meta_query` is non-performant.',
 						false === $call ? $prop : $call,
 						true,
@@ -184,7 +188,8 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	protected function check_meta_compare() : bool {
 		// Unable to determine if there is a compare somewhere.
 		if ( T_DOUBLE_ARROW !== $this->tokens[ $this->stackPtr ]['code'] ) {
-			$this->addMessage(
+			MessageHelper::addMessage(
+				$this->phpcsFile,
 				$this->groups_cache['slow_query']['message'],
 				$this->stackPtr + 1,
 				false,
@@ -231,10 +236,11 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return void
 	 */
-	protected function check_meta_query_item( int $array_open ) {
+	protected function check_meta_query_item( int $array_open ) : void {
 		$array_open_token = $this->tokens[ $array_open ];
 		if ( T_ARRAY !== $array_open_token['code'] && T_OPEN_SHORT_ARRAY !== $array_open_token['code'] ) {
-			$this->addMessage(
+			MessageHelper::addMessage(
+				$this->phpcsFile,
 				'Using a dynamic comparison in `meta_query` cannot be checked automatically, and may be non-performant.',
 				$array_open,
 				false,
@@ -244,7 +250,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 			return;
 		}
 
-		$array_bounds = $this->find_array_open_close( $array_open );
+		$array_bounds = Arrays::getOpenClose( $this->phpcsFile, $array_open );
 		if ( false === $array_bounds || ! isset( $array_bounds['opener'], $array_bounds['closer'] ) ) {
 			return;
 		}
@@ -270,7 +276,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 
 		foreach ( $elements as $element ) {
 			if ( isset( $element['index_start'] ) ) {
-				$index = $this->strip_quotes( $this->tokens[ $element['index_start'] ]['content'] );
+				$index = TextStrings::stripQuotes( $this->tokens[ $element['index_start'] ]['content'] );
 				if ( 'relation' === strtolower( $index ) ) {
 					continue;
 				}
@@ -286,19 +292,20 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
 	 * Add an error if the comparison isn't allowed.
 	 *
-	 * @param string $compare  Comparison value.
-	 * @param int    $stackPtr The position in the stack where the token was found.
+	 * @param string   $compare  Comparison value.
+	 * @param int|null $stackPtr The position in the stack where the token was found.
 	 *
 	 * @return void
 	 */
-	protected function check_compare_value( string $compare, int $stackPtr = null ) {
+	protected function check_compare_value( string $compare, int $stackPtr = null ) : void {
 		if ( null === $stackPtr ) {
 			$stackPtr = $this->stackPtr;
 		}
-		$compare = $this->strip_quotes( $compare );
+		$compare = TextStrings::stripQuotes( $compare );
 
 		if ( '__dynamic' === $compare ) {
-			$this->addMessage(
+			MessageHelper::addMessage(
+				$this->phpcsFile,
 				'Using a dynamic comparison in `meta_query` cannot be checked automatically, and may be non-performant.',
 				$stackPtr,
 				false,
@@ -306,7 +313,8 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 			);
 		} elseif ( 'EXISTS' !== $compare && 'NOT EXISTS' !== $compare ) {
 			// Add a message ourselves.
-			$this->addMessage(
+			MessageHelper::addMessage(
+				$this->phpcsFile,
 				'Using %s comparison in `meta_query` is non-performant.',
 				$stackPtr,
 				true,

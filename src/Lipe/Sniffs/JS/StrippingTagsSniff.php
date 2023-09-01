@@ -23,8 +23,8 @@ class StrippingTagsSniff extends \WordPressVIPMinimum\Sniffs\JS\StrippingTagsSni
 	 *
 	 * @return void
 	 */
-	public function process_token( $stackPtr ) {
-		if ( $this->tokens[ $stackPtr ]['content'] !== 'html' ) {
+	public function process_token( $stackPtr ) : void {
+		if ( 'html' !== $this->tokens[ $stackPtr ]['content'] ) {
 			// Looking for html() only.
 			return;
 		}
