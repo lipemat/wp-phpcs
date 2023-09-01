@@ -54,7 +54,7 @@ trait ArrayHelpers {
 	 *
 	 * @return bool
 	 */
-	protected function is_variable_an_array( int $token ) : bool {
+	protected function is_variable_an_array( int $token ): bool {
 		if ( false !== $this->get_array_opener( $token ) ) {
 			return true;
 		}
@@ -94,7 +94,7 @@ trait ArrayHelpers {
 	 *
 	 * @return array<string, int>
 	 */
-	protected function get_assigned_keys_from_variable( int $token ) : array {
+	protected function get_assigned_keys_from_variable( int $token ): array {
 		$assignment = $this->get_variable_assignment( $token );
 		if ( false === $assignment ) {
 			return [];
@@ -118,7 +118,7 @@ trait ArrayHelpers {
 	 *
 	 * @return array<string, int>
 	 */
-	protected function get_array_access_values( int $token, array $values ) : array {
+	protected function get_array_access_values( int $token, array $values ): array {
 		$assignment = $this->get_variable_assignment( $token );
 		if ( false === $assignment || '$this' === $this->tokens[ $token ]['content'] ) {
 			return $values;
@@ -156,7 +156,7 @@ trait ArrayHelpers {
 	 *
 	 * @return array<string, int>
 	 */
-	protected function get_assigned_keys( int $array_open ) : array {
+	protected function get_assigned_keys( int $array_open ): array {
 		$array_bounds = Arrays::getOpenClose( $this->phpcsFile, $array_open );
 		if ( false === $array_bounds || ! isset( $array_bounds['opener'], $array_bounds['closer'] ) ) {
 			return [];
@@ -277,7 +277,7 @@ trait ArrayHelpers {
 	 *
 	 * @return ArrayElement[]
 	 */
-	protected function get_array_indices( int $array_start, int $array_end ) : array {
+	protected function get_array_indices( int $array_start, int $array_end ): array {
 		$indices = [];
 
 		$current = $array_start;
@@ -323,7 +323,7 @@ trait ArrayHelpers {
 	 *
 	 * @return int
 	 */
-	protected function get_next( File $phpcsFile, int $ptr, int $arrayEnd ) : int {
+	protected function get_next( File $phpcsFile, int $ptr, int $arrayEnd ): int {
 		$tokens = $phpcsFile->getTokens();
 
 		while ( $ptr < $arrayEnd ) {

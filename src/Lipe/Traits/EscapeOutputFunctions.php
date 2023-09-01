@@ -30,7 +30,7 @@ trait EscapeOutputFunctions {
 	 *
 	 * @return bool
 	 */
-	protected function isEscapeFunction( $functionToken ) : bool {
+	protected function isEscapeFunction( $functionToken ): bool {
 		if ( false === $functionToken ) {
 			return false;
 		}

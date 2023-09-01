@@ -23,7 +23,7 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 	 *
 	 * @return array<string, Group>
 	 */
-	public function getGroups() : array {
+	public function getGroups(): array {
 		return [
 			'found'   => [
 				'type'    => 'warning',
@@ -53,7 +53,7 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 	 *
 	 * @return true
 	 */
-	public function callback( $key, $val, $line, $group ) : bool {
+	public function callback( $key, $val, $line, $group ): bool {
 		return true;
 	}
 }

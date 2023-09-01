@@ -33,7 +33,7 @@ class PrivateInClassSniff implements Sniff {
 	 *
 	 * @return list<int|string>
 	 */
-	public function register() : array {
+	public function register(): array {
 		return [
 			T_PRIVATE,
 		];

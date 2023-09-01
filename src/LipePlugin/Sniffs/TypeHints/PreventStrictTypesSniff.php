@@ -33,7 +33,7 @@ class PreventStrictTypesSniff implements Sniff {
 	 *
 	 * @return array<int|string>
 	 */
-	public function register() : array {
+	public function register(): array {
 		return [
 			T_OPEN_TAG,
 		];

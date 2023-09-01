@@ -63,7 +63,7 @@ class DisallowNullCoalesceInForLoopsSniff implements Sniff {
 	 *
 	 * @return array<string|int>
 	 */
-	public function register() : array {
+	public function register(): array {
 		$tokens = [
 			\T_INLINE_ELSE,
 		];
@@ -88,7 +88,7 @@ class DisallowNullCoalesceInForLoopsSniff implements Sniff {
 	 *
 	 * @return void
 	 */
-	public function process( File $phpcsFile, $stackPtr ) : void {
+	public function process( File $phpcsFile, $stackPtr ): void {
 		$tokens = $phpcsFile->getTokens();
 		$skip_in_statement = [
 			\T_COLON,

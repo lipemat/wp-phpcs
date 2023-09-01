@@ -55,7 +55,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return array<string|int>
 	 */
-	public function register() : array {
+	public function register(): array {
 		$tokens = parent::register();
 		$tokens[] = T_OBJECT_OPERATOR;
 		return $tokens;
@@ -67,7 +67,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return array<string, Group>
 	 */
-	public function getGroups() : array {
+	public function getGroups(): array {
 		return [
 			'slow_orderby' => [
 				'type'    => 'error',
@@ -87,7 +87,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @param int $stackPtr - Current position in the stack.
 	 */
-	public function process_token( $stackPtr ) : void {
+	public function process_token( $stackPtr ): void {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
 
@@ -114,7 +114,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return bool
 	 */
-	public function callback( $key, $val, $line, $group ) : bool {
+	public function callback( $key, $val, $line, $group ): bool {
 		if ( is_string( $val ) ) {
 			$val = TextStrings::stripQuotes( $val );
 		}

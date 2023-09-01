@@ -101,7 +101,7 @@ trait VariableHelpers {
 	 *
 	 * @return null|string
 	 */
-	protected function get_static_value_from_variable( int $token ) : ?string {
+	protected function get_static_value_from_variable( int $token ): ?string {
 		if ( T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $token ]['code'] ) {
 			return TextStrings::stripQuotes( $this->tokens[ $token ]['content'] );
 		}

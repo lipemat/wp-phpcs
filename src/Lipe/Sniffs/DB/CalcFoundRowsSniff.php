@@ -33,7 +33,7 @@ class CalcFoundRowsSniff implements Sniff {
 	 *
 	 * @return array<string|int>
 	 */
-	public function register() : array {
+	public function register(): array {
 		return [
 			\T_DOUBLE_QUOTED_STRING,
 			\T_CONSTANT_ENCAPSED_STRING,

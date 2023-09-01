@@ -31,8 +31,6 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing.SpaceAfterIncrement" />
 
-        <exclude name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon" />
-
         <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
 
         <exclude name="WordPress.Files.FileName" />

@@ -43,7 +43,7 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 	 *
 	 * @return array<int|string>
 	 */
-	public function register() : array {
+	public function register(): array {
 		$tokens = parent::register();
 		$tokens[] = T_OBJECT_OPERATOR;
 		return $tokens;
@@ -57,7 +57,7 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 	 *
 	 * @param int $stackPtr - Current position in the stack.
 	 */
-	public function process_token( $stackPtr ) : void {
+	public function process_token( $stackPtr ): void {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
 

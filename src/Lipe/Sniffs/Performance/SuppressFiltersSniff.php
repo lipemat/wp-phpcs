@@ -33,7 +33,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 	 *
 	 * @return array<string, array<mixed>>
 	 */
-	public function getGroups() : array {
+	public function getGroups(): array {
 		return [
 			'get_posts' => [
 				'type'      => 'warning',
@@ -60,7 +60,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 	 * @return void Integer stack pointer to skip forward or void to continue
 	 *                  normal file processing.
 	 */
-	public function process_matched_token( $stackPtr, $group_name, $matched_content ) : void {
+	public function process_matched_token( $stackPtr, $group_name, $matched_content ): void {
 		$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_OPEN_PARENTHESIS ] ), $stackPtr + 1, null, true );
 
 		if ( false === $array_open ) {

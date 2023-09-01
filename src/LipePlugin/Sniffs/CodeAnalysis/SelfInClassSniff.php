@@ -51,7 +51,7 @@ class SelfInClassSniff implements Sniff {
 	 *
 	 * @return list<int|string>
 	 */
-	public function register() : array {
+	public function register(): array {
 		return [
 			// These tokens are used to retrieve return types reliably.
 			\T_FUNCTION,

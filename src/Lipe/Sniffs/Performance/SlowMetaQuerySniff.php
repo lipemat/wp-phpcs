@@ -58,7 +58,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return array<int|string>
 	 */
-	public function register() : array {
+	public function register(): array {
 		$tokens = parent::register();
 		$tokens[] = T_OBJECT_OPERATOR;
 		return $tokens;
@@ -70,7 +70,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return array<string, Group>
 	 */
-	public function getGroups() : array {
+	public function getGroups(): array {
 		return [
 			'slow_query' => [
 				'type'    => 'error',
@@ -91,7 +91,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @param int $stackPtr - Current position in the stack.
 	 */
-	public function process_token( $stackPtr ) : void {
+	public function process_token( $stackPtr ): void {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
 
@@ -165,7 +165,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return bool
 	 */
-	public function callback( $key, $val, $line, $group ) : bool {
+	public function callback( $key, $val, $line, $group ): bool {
 		switch ( $key ) {
 			case 'meta_value':
 				return $this->check_meta_compare();
@@ -185,7 +185,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return bool
 	 */
-	protected function check_meta_compare() : bool {
+	protected function check_meta_compare(): bool {
 		// Unable to determine if there is a compare somewhere.
 		if ( T_DOUBLE_ARROW !== $this->tokens[ $this->stackPtr ]['code'] ) {
 			MessageHelper::addMessage(
@@ -218,7 +218,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
 	 * Recursively check a meta_query value.
 	 */
-	protected function check_meta_query() : bool {
+	protected function check_meta_query(): bool {
 		$array_open = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_COMMA, T_CLOSE_SHORT_ARRAY ] ), $this->stackPtr + 1, null, true );
 		if ( false !== $array_open ) {
 			$this->check_meta_query_item( $array_open );
@@ -236,7 +236,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return void
 	 */
-	protected function check_meta_query_item( int $array_open ) : void {
+	protected function check_meta_query_item( int $array_open ): void {
 		$array_open_token = $this->tokens[ $array_open ];
 		if ( T_ARRAY !== $array_open_token['code'] && T_OPEN_SHORT_ARRAY !== $array_open_token['code'] ) {
 			MessageHelper::addMessage(
@@ -297,7 +297,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return void
 	 */
-	protected function check_compare_value( string $compare, int $stackPtr = null ) : void {
+	protected function check_compare_value( string $compare, int $stackPtr = null ): void {
 		if ( null === $stackPtr ) {
 			$stackPtr = $this->stackPtr;
 		}

@@ -32,7 +32,7 @@ trait ObjectHelpers {
 	 *
 	 * @return bool
 	 */
-	public function is_targetted_token( $stackPtr ) : bool {
+	public function is_targetted_token( $stackPtr ): bool {
 		// @phpstan-ignore-next-line -- Some classes have this, some don't.
 		if ( method_exists( parent::class, 'is_targetted_token' ) && ! parent::is_targetted_token( $stackPtr ) ) {
 			return false;
@@ -50,7 +50,7 @@ trait ObjectHelpers {
 	 *
 	 * @return bool
 	 */
-	protected function is_object_assignment( int $token ) : bool {
+	protected function is_object_assignment( int $token ): bool {
 		if ( T_VARIABLE === $this->tokens[ $token ]['code'] ) {
 			$variable = $token;
 			$next = $this->phpcsFile->findNext( Tokens::$emptyTokens, $token + 1, null, true, null, true );
@@ -77,7 +77,7 @@ trait ObjectHelpers {
 	 *
 	 * @return bool
 	 */
-	protected function is_class_object( int $token ) : bool {
+	protected function is_class_object( int $token ): bool {
 		if ( T_VARIABLE !== $this->tokens[ $token ]['code'] ) {
 			return false;
 		}
@@ -100,7 +100,7 @@ trait ObjectHelpers {
 	 *
 	 * @return array<string|int, int>
 	 */
-	protected function get_assigned_properties( int $token ) : array {
+	protected function get_assigned_properties( int $token ): array {
 		$assignment = $this->get_variable_assignment( $token );
 		if ( false === $assignment ) {
 			return [];
