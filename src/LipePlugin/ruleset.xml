@@ -35,7 +35,6 @@
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
 
         <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
-        <exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames" />
 
         <exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
         <exclude name="WordPress.Arrays.MultipleStatementAlignment.LongIndexSpaceBeforeDoubleArrow" />
