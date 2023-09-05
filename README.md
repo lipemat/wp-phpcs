@@ -60,8 +60,9 @@ Copy the pre-commit file to your plugin's .git/hooks directory, and the rest is 
 
 ## Included Sniffs
 1. [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards#rulesets)
-2. [PHPCompatibilityWP](https://github.com/PHPCompatibility/PHPCompatibilityWP)
-3. [PHPCSExtra](https://github.com/PHPCSStandards/PHPCSExtra#sniffs)
+2. [WordPress VIP Coding Standards](https://github.com/Automattic/VIP-Coding-Standards)
+3. [PHPCompatibilityWP](https://github.com/PHPCompatibility/PHPCompatibilityWP)
+4. [PHPCSExtra](https://github.com/PHPCSStandards/PHPCSExtra#sniffs)
 
 ## Lipe Sniffs
 

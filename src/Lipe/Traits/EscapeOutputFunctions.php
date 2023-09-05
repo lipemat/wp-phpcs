@@ -1,43 +1,16 @@
 <?php
 /**
- * Sniffs which check for escaping function with JS output.
+ * Trait used by escape sniffs.
  *
  * @package wp-phpcs\Lipe
  */
 
-namespace Lipe\Abstracts;
+namespace Lipe\Traits;
 
 use WordPressCS\WordPress\Helpers\EscapingFunctionsTrait;
-use WordPressCS\WordPress\Sniff;
 
-/**
- * Support checking if a user value is escaped in JS files.
- *
- * @author Mat Lipe
- * @since  4.0.0
- */
-abstract class AbstractEscapeOutputFunctions extends Sniff {
+trait EscapeOutputFunctions {
 	use EscapingFunctionsTrait;
-
-	/**
-	 * A list of tokenizers this sniff supports.
-	 *
-	 * @var string[]
-	 */
-	public $supportedTokenizers = [ 'JS' ];
-
-
-	/**
-	 * Returns an array of tokens this test wants to listen for.
-	 *
-	 * @return array<int|string>
-	 */
-	public function register(): array {
-		return [
-			T_STRING,
-		];
-	}
-
 
 	/**
 	 * Set the escaping functions when the class is constructed

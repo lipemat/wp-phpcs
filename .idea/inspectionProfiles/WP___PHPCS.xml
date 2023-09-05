@@ -88,7 +88,7 @@
       <option name="IGNORE_GLOBAL_NAMESPACE" value="true" />
     </inspection_tool>
     <inspection_tool class="PhpPluralMixedCanBeReplacedWithArrayInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
-    <inspection_tool class="PhpStanGlobal" enabled="true" level="ERROR" enabled_by_default="true" editorAttributes="ERRORS_ATTRIBUTES">
+    <inspection_tool class="PhpStanGlobal" enabled="false" level="ERROR" enabled_by_default="true" editorAttributes="ERRORS_ATTRIBUTES">
       <scope name="Core Files" level="ERROR" enabled="true" editorAttributes="ERRORS_ATTRIBUTES" />
       <scope name="Project Files" level="ERROR" enabled="false" />
     </inspection_tool>

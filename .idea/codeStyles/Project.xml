@@ -72,6 +72,7 @@
       <option name="SPACE_BEFORE_UNARY_NOT" value="true" />
       <option name="SPACE_AFTER_UNARY_NOT" value="true" />
       <option name="SPACE_BEFORE_CLOSURE_LEFT_PARENTHESIS" value="false" />
+      <option name="SPACE_BEFORE_COLON_IN_RETURN_TYPE" value="true" />
       <option name="SPACES_AROUND_PIPE_IN_UNION_TYPE" value="true" />
       <option name="NULL_TYPE_POSITION" value="DONT_FORCE" />
     </PHPCodeStyleSettings>
