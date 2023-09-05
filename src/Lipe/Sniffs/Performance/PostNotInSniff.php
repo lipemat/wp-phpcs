@@ -8,6 +8,9 @@
 namespace Lipe\Sniffs\Performance;
 
 use Lipe\Abstracts\AbstractArrayObjectAssignment;
+use PHPCSUtils\Utils\TextStrings;
+use WordPressCS\WordPress\Helpers\ContextHelper;
+use WordPressVIPMinimum\Sniffs\Performance\WPQueryParamsSniff;
 
 /**
  * Check for uses of post__not_in and exclude in WP_Query and get_posts.
@@ -15,9 +18,19 @@ use Lipe\Abstracts\AbstractArrayObjectAssignment;
  * @author Mat Lipe
  * @since  3.1.0
  *
+ * @see    WPQueryParamsSniff
+ *
  * @phpstan-type Group array{keys:array<int, string>, message:string, type:'error'|'warning'}
  */
 class PostNotInSniff extends AbstractArrayObjectAssignment {
+	/**
+	 * Whether the current $stackPtr being scanned is nested in a function call to get_users().
+	 *
+	 * @var bool
+	 */
+	private $in_get_users = false;
+
+
 	/**
 	 * Groups of variables to restrict.
 	 *
@@ -44,6 +57,22 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 
 
 	/**
+	 * Processes this test, when one of its tokens is encountered.
+	 *
+	 * @param int $stackPtr The position of the current token in the stack.
+	 *
+	 * @return void
+	 */
+	public function process_token( $stackPtr ): void {
+		if ( 'exclude' === TextStrings::stripQuotes( $this->tokens[ $stackPtr ]['content'] ) ) {
+			$this->in_get_users = (bool) ContextHelper::is_in_function_call( $this->phpcsFile, $stackPtr, [ 'get_users' => true ], true, true );
+		}
+
+		parent::process_token( $stackPtr );
+	}
+
+
+	/**
 	 * Callback to process a confirmed key which doesn't need custom logic, but should always error.
 	 *
 	 * @param string       $key   Array index / key.
@@ -51,9 +80,9 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 	 * @param int          $line  Token line.
 	 * @param array<mixed> $group Group definition.
 	 *
-	 * @return true
+	 * @return bool
 	 */
 	public function callback( $key, $val, $line, $group ): bool {
-		return true;
+		return ! ( 'exclude' === $key && false !== $this->in_get_users );
 	}
 }
