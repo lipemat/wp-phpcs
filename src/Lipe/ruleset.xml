@@ -62,6 +62,7 @@
         <exclude name="WordPress.DB.SlowDBQuery" />
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+        <exclude name="WordPress.PHP.DevelopmentFunctions.error_log_error_log" />
         <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
     </rule>
 
