@@ -36,10 +36,9 @@
     <rule ref="Universal.UseStatements.LowercaseFunctionConst" />
     <rule ref="Universal.UseStatements.NoLeadingBackslash" />
 
-    <rule ref="WordPress">
+    <rule ref="WordPress-Extra">
         <exclude-pattern>*/js/*</exclude-pattern>
 
-        <exclude name="Generic.Commenting" />
         <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
@@ -51,7 +50,6 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
         <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent" />
 
-        <exclude name="Squiz.Commenting" />
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
 
         <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
@@ -60,8 +58,9 @@
 
         <exclude name="WordPress.Arrays.ArrayIndentation" />
         <exclude name="WordPress.DB.SlowDBQuery" />
-        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+
+        <exclude name="WordPress.Files" />
+
         <exclude name="WordPress.PHP.DevelopmentFunctions.error_log_error_log" />
         <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
     </rule>
@@ -81,20 +80,20 @@
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound" />
     </rule>
 
-    <!-- These don't require extra un-slashing and sanitization -->
-    <rule ref="WordPress.Security.ValidatedSanitizedInput">
-        <properties>
-            <property name="customUnslashingSanitizingFunctions" type="array">
-                <element value="sn" />
-            </property>
-        </properties>
-    </rule>
-
     <!-- All our own escaping functions -->
     <rule ref="WordPress.Security.EscapeOutput">
         <properties>
             <property name="customEscapingFunctions" type="array">
                 <element value="es" />
+            </property>
+        </properties>
+    </rule>
+
+    <!-- These don't require extra un-slashing and sanitization -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput">
+        <properties>
+            <property name="customUnslashingSanitizingFunctions" type="array">
+                <element value="sn" />
             </property>
         </properties>
     </rule>
