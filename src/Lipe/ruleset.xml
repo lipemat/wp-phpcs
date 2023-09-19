@@ -53,7 +53,6 @@
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
 
         <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
-        <exclude name="Universal.Operators.TypeSeparatorSpacing" />
         <exclude name="Universal.WhiteSpace.PrecisionAlignment.Found" />
 
         <exclude name="WordPress.Arrays.ArrayIndentation" />
