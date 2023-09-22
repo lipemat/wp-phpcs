@@ -97,6 +97,17 @@
         </properties>
     </rule>
 
+    <!-- Disallow functions where WordPress has an alternative. -->
+    <rule ref="WordPress.WP.AlternativeFunctions">
+        <!-- ...but, allow some back in. -->
+        <properties>
+            <property name="exclude" type="array">
+                <!-- Not using for remote requests -->
+                <element value="file_get_contents" />
+            </property>
+        </properties>
+    </rule>
+
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
     <rule ref="Lipe.JS">
         <type>error</type>
