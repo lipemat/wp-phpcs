@@ -22,6 +22,9 @@
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
     <rule ref="PHPCompatibilityWP">
         <include-pattern>*\.php$</include-pattern>
+        <!-- @todo Remove this exclude when phpcompatibility/php-compatibility is updated to 9.4.0+
+                   Issue is resolve on develop branch, just waiting for a release to support enums -->
+        <exclude name="PHPCompatibility.Variables.ForbiddenThisUseContexts.OutsideObjectContext" />
     </rule>
 
     <!-- Rules available from PHPCSExtra -->
