@@ -60,9 +60,7 @@
 
         <exclude name="WordPress.Arrays.ArrayIndentation" />
         <exclude name="WordPress.DB.SlowDBQuery" />
-
         <exclude name="WordPress.Files" />
-
         <exclude name="WordPress.PHP.DevelopmentFunctions.error_log_error_log" />
         <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
     </rule>
