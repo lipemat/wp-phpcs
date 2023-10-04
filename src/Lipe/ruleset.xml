@@ -42,8 +42,8 @@
     <rule ref="WordPress-Extra">
         <exclude-pattern>*/js/*</exclude-pattern>
 
-        <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
+        <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing" />
 
