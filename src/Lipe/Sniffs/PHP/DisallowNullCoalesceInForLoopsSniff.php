@@ -91,7 +91,6 @@ class DisallowNullCoalesceInForLoopsSniff implements Sniff {
 	public function process( File $phpcsFile, $stackPtr ): void {
 		$tokens = $phpcsFile->getTokens();
 		$skip_in_statement = [
-			\T_COLON,
 			\T_OPEN_PARENTHESIS,
 			\T_OPEN_SQUARE_BRACKET,
 		];

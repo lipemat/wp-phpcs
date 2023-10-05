@@ -23,3 +23,15 @@ foreach ( $attributes['properties'] as $property => $value ) {
 for ( $i = 1; $i < $attributes['properties']; $i ++ ) {
 	$attributes['properties'] ? 4 : 3;
 }
+
+foreach ( $group as $closing ) :
+	$content = $closing['content'] ?? null;
+endforeach;
+
+foreach ( $group as $closing ) :
+	$content = $closing['content'] ??= null;
+endforeach;
+
+for ( $i = 1; $i < $attributes['properties']; $i ++ ) :
+	$attributes['properties'] ? 4 : 3;
+endfor;
