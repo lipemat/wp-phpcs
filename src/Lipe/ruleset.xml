@@ -19,6 +19,12 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/wp/*</exclude-pattern>
 
+    <!-- Disallow long array syntax. -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+
+    <!-- Enforce PSR1 compatible namespaces. -->
+    <rule ref="PSR1.Classes.ClassDeclaration" />
+
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
     <rule ref="PHPCompatibilityWP">
         <include-pattern>*\.php$</include-pattern>
