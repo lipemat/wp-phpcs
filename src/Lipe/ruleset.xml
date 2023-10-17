@@ -12,11 +12,13 @@
     <!-- Exclude paths -->
     <exclude-pattern>*/dev/*</exclude-pattern>
     <exclude-pattern>*/dist/*</exclude-pattern>
-    <exclude-pattern>*/wp-unit/*</exclude-pattern>
+    <exclude-pattern>*/jest/*</exclude-pattern>
     <exclude-pattern>*/js/tests/*</exclude-pattern>
     <exclude-pattern>*/local-config\.php</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/phpunit/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/wp-unit/*</exclude-pattern>
     <exclude-pattern>*/wp/*</exclude-pattern>
 
     <!-- Disallow long array syntax. -->
