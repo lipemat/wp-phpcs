@@ -1,6 +1,10 @@
 {
   "3": [
     {
+      "source": "PSR1.Classes.ClassDeclaration.MissingNamespace",
+      "type": "error"
+    },
+    {
       "source": "Squiz.Commenting.ClassComment.Missing",
       "type": "error"
     }
@@ -57,7 +61,15 @@
   ],
   "27": [
     {
+      "source": "PSR1.Classes.ClassDeclaration.MultipleClasses",
+      "type": "error"
+    },
+    {
       "source": "Generic.Files.OneObjectStructurePerFile.MultipleFound",
+      "type": "error"
+    },
+    {
+      "source": "PSR1.Classes.ClassDeclaration.MissingNamespace",
       "type": "error"
     },
     {
