@@ -62,3 +62,31 @@ final class NopeFinal {
 		return self::get_stuck_static();
 	}
 }
+
+/**
+ * Class with constants.
+ */
+class Class_Constants {
+	private const FOO = 'foo';
+
+
+	/**
+	 * Get the value of class constant.
+	 *
+	 * @return string
+	 */
+	public function get_foo(): string {
+		self::get_stuck_static();
+		return self::FOO;
+	}
+
+
+	/**
+	 * Get stuck static.
+	 *
+	 * @return string
+	 */
+	protected static function get_stuck_static(): string {
+		return static::FOO;
+	}
+}

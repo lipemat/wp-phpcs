@@ -27,7 +27,7 @@
   ],
   "8": [
     {
-      "source": "LipePlugin.CodeAnalysis.SelfInClass.ScopeResolution",
+      "source": "LipePlugin.CodeAnalysis.SelfInClass.ClassProperty",
       "type": "warning"
     }
   ],
@@ -43,7 +43,7 @@
   ],
   "13": [
     {
-      "source": "LipePlugin.CodeAnalysis.SelfInClass.ScopeResolution",
+      "source": "LipePlugin.CodeAnalysis.SelfInClass.ClassProperty",
       "type": "warning"
     }
   ],
@@ -55,7 +55,7 @@
   ],
   "18": [
     {
-      "source": "LipePlugin.CodeAnalysis.SelfInClass.ScopeResolution",
+      "source": "LipePlugin.CodeAnalysis.SelfInClass.ClassMethod",
       "type": "warning"
     }
   ],
@@ -92,6 +92,38 @@
   "51": [
     {
       "source": "LipePlugin.CodeAnalysis.PrivateInClass.Found",
+      "type": "warning"
+    }
+  ],
+  "69": [
+    {
+      "source": "PSR1.Classes.ClassDeclaration.MultipleClasses",
+      "type": "error"
+    },
+    {
+      "source": "Generic.Files.OneObjectStructurePerFile.MultipleFound",
+      "type": "error"
+    },
+    {
+      "source": "PSR1.Classes.ClassDeclaration.MissingNamespace",
+      "type": "error"
+    }
+  ],
+  "70": [
+    {
+      "source": "LipePlugin.CodeAnalysis.PrivateInClass.Found",
+      "type": "warning"
+    }
+  ],
+  "79": [
+    {
+      "source": "LipePlugin.CodeAnalysis.SelfInClass.ClassMethod",
+      "type": "warning"
+    }
+  ],
+  "80": [
+    {
+      "source": "LipePlugin.CodeAnalysis.SelfInClass.ClassConstant",
       "type": "warning"
     }
   ]

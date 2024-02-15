@@ -17,6 +17,7 @@ namespace Test;
  * @package    WordPress
  */
 class Yep {
+	protected const FOO = 'bar';
 	/**
 	 * Stuck.
 	 *
@@ -32,5 +33,15 @@ class Yep {
 	 */
 	public function get_stuck(): string {
 		return static::$stuck;
+	}
+
+
+	/**
+	 * Get foo constant
+	 *
+	 * @return string
+	 */
+	public function get_foo(): string {
+		return static::FOO;
 	}
 }

@@ -182,7 +182,16 @@ class SelfInClassSniff implements Sniff {
 				return;
 			}
 			$extraMsg = GetTokensAsString::compact( $phpcsFile, $stackPtr, $nextNextNonEmpty, true );
-			$this->handleError( $phpcsFile, $stackPtr, 'ScopeResolution', '"' . $extraMsg . '"' );
+			if ( \T_VARIABLE === $tokens[ $nextNextNonEmpty ]['code'] ) {
+				$this->handleError( $phpcsFile, $stackPtr, 'ClassProperty', '"' . $extraMsg . '"' );
+			} else {
+				$possibleFunction = $phpcsFile->findNext( Tokens::$emptyTokens, ( $nextNextNonEmpty + 1 ), null, true );
+				if ( false !== $possibleFunction && \T_OPEN_PARENTHESIS === $tokens[ $possibleFunction ]['code'] ) {
+					$this->handleError( $phpcsFile, $stackPtr, 'ClassMethod', '"' . $extraMsg . '"' );
+				} else {
+					$this->handleError( $phpcsFile, $stackPtr, 'ClassConstant', '"' . $extraMsg . '"' );
+				}
+			}
 		}
 	}
 
