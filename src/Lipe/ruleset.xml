@@ -64,6 +64,9 @@
         <exclude name="PSR12.Files.FileHeader.IncorrectOrder" />
 
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
+        <exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterOpen" />
+        <exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeEnd" />
+        <exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeOpen" />
         <exclude name="Squiz.PHP.EmbeddedPhp.ShortOpenEchoNoSemicolon" />
 
         <exclude name="Universal.Arrays.DisallowShortArraySyntax" />
