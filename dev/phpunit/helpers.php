@@ -4,16 +4,15 @@
  *
  * @noinspection PhpUnhandledExceptionInspection
  *
- * @param object $object   An instantiated object to set property on.
- * @param string $property Property name to set.
- * @param mixed  $value    Value to set.
+ * @param class-string|object $object   An instantiated object to set property on.
+ * @param string              $property Property name to set.
+ * @param mixed               $value    Value to set.
  *
- * @throws ReflectionException
  * @return void
  */
-function set_private_property( $object, string $property, $value ) {
-	$reflection = new \ReflectionClass( get_class( $object ) );
+function set_private_property( $object, string $property, $value ): void {
+	$reflection = new \ReflectionClass( is_string( $object ) ? $object : get_class( $object ) );
 	$reflection_property = $reflection->getProperty( $property );
 	$reflection_property->setAccessible( true );
-	$reflection_property->setValue( $object, $value );
+	$reflection_property->setValue( is_string( $object ) ? new $object() : $object, $value );
 }

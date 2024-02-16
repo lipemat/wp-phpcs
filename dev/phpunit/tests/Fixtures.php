@@ -11,6 +11,7 @@
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Ruleset;
 use PHP_CodeSniffer\Files\LocalFile;
+use PHP_CodeSniffer\Tests\ConfigDouble;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -87,6 +88,8 @@ class Fixtures extends TestCase {
 	 * Setup our ruleset.
 	 */
 	public function setUp(): void {
+		set_private_property( Config::class, 'configData', null );
+
 		$this->config = new Config();
 		$this->config->cache = false;
 		$this->config->standards = [ 'Lipe' ];

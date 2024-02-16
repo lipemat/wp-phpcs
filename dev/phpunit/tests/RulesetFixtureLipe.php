@@ -15,6 +15,7 @@
 
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Ruleset;
+use PHP_CodeSniffer\Tests\ConfigDouble;
 
 require_once __DIR__ . '/Fixtures.php';
 
@@ -52,6 +53,8 @@ class RulesetFixtureLipe extends Fixtures {
 	 * Setup our ruleset.
 	 */
 	public function setUp(): void {
+		set_private_property( Config::class, 'configData', null );
+
 		$this->config = new Config();
 		$this->config->cache = false;
 		$this->config->standards = [ 'Lipe' ];

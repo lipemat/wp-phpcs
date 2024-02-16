@@ -52,6 +52,8 @@ class RulesetFixtureLipePlugin extends Fixtures {
 	 * Setup our ruleset.
 	 */
 	public function setUp(): void {
+		set_private_property( Config::class, 'configData', null );
+
 		$this->config = new Config();
 		$this->config->cache = false;
 		$this->config->standards = [ 'LipePlugin' ];
