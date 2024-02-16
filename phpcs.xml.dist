@@ -25,6 +25,8 @@
         <type>error</type>
     </rule>
 
+    <config name="minimum_wp_version" value="6.4" />
+
     <rule ref="WordPress-Extra">
         <exclude-pattern>*.js</exclude-pattern>
 

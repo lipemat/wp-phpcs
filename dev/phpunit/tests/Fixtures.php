@@ -97,6 +97,7 @@ class Fixtures extends TestCase {
 
 		// We want to set up our tests to only load our standards in for testing.
 		$this->config->sniffs = [
+			'Lipe.Config.WpMinimumVersion',
 			'Lipe.DB.CalcFoundRows',
 			'Lipe.Performance.PostNotIn',
 			'Lipe.Performance.SlowMetaQuery',

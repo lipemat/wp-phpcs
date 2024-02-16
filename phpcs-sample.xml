@@ -19,10 +19,10 @@
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
 
-    <config name="minimum_supported_wp_version" value="5.9.3" />
+    <config name="minimum_supported_wp_version" value="5.9" />
 
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibility#using-a-custom-ruleset -->
-    <config name="testVersion" value="8.0-" />
+    <config name="testVersion" value="8.0" />
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
     <rule ref="PHPCompatibilityWP" />
 
