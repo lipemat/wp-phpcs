@@ -32,14 +32,14 @@
 
     <rule ref="WordPress">
         <exclude-pattern>*/js/*</exclude-pattern>
+        <exclude name="Generic.Commenting.DocComment" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing" />
 
         <exclude name="PEAR.Functions.FunctionCallSignature" />
         <exclude name="PEAR.NamingConventions.ValidClassName" />
 
-        <exclude name="Squiz.Commenting.FileComment.Missing" />
-        <exclude name="Squiz.Commenting.FileComment.WrongStyle" />
+        <exclude name="Squiz.Commenting.FileComment" />
         <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType" />
 
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
