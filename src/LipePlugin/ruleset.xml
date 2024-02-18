@@ -65,6 +65,7 @@
         <type>error</type>
     </rule>
 
+    <rule ref="Lipe.Config" />
     <rule ref="Lipe.DB" />
     <rule ref="Lipe.Performance" />
     <rule ref="Lipe.PHP" />
