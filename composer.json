@@ -36,7 +36,8 @@
     "ext-json": "*",
     "johnbillion/args": "dev-trunk",
     "lipemat/wordpress-libs": "dev-master",
-    "roave/security-advisories": "dev-latest"
+    "roave/security-advisories": "dev-latest",
+    "phpcompatibility/php-compatibility": "dev-develop as 9.4.0"
   },
   "scripts": {
     "git-hooks": "dev/bin/git-hooks.sh"
