@@ -39,6 +39,8 @@
         <exclude name="PEAR.Functions.FunctionCallSignature" />
         <exclude name="PEAR.NamingConventions.ValidClassName" />
 
+        <exclude name="PHPCompatibility.Attributes.NewAttributes.Found" />
+
         <exclude name="Squiz.Commenting.FileComment" />
         <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType" />
 
