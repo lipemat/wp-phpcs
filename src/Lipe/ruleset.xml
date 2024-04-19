@@ -17,7 +17,7 @@
     <exclude-pattern>*/local-config\.php</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/phpunit/*</exclude-pattern>
-    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern type="relative">vendor/*</exclude-pattern>
     <exclude-pattern>*/wp-unit/*</exclude-pattern>
     <exclude-pattern>*/wp/*</exclude-pattern>
 
