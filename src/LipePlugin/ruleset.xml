@@ -78,6 +78,17 @@
         <type>error</type>
     </rule>
 
+    <!-- Disallow functions where WordPress has an alternative. -->
+    <rule ref="WordPress.WP.AlternativeFunctions">
+        <!-- Allow specified functions to be used. -->
+        <properties>
+            <property name="exclude" type="array">
+                <!-- Not using for remote requests -->
+                <element value="file_get_contents" />
+            </property>
+        </properties>
+    </rule>
+
     <!-- Requires local "prefixes" -->
     <!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#wordpressnamingconventionsprefixallglobals-prefix-everything-in-the-global-namespace -->
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">

@@ -111,7 +111,7 @@
 
     <!-- Disallow functions where WordPress has an alternative. -->
     <rule ref="WordPress.WP.AlternativeFunctions">
-        <!-- ...but, allow some back in. -->
+        <!-- Allow specified functions to be used. -->
         <properties>
             <property name="exclude" type="array">
                 <!-- Not using for remote requests -->
