@@ -3,8 +3,6 @@ declare( strict_types=1 );
 
 namespace Lipe\Traits;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * @author Mat Lipe
  * @since  August 2023

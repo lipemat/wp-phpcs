@@ -111,6 +111,7 @@ class Fixtures extends TestCase {
 			'Lipe.JS.Window',
 			'Lipe.PHP.DisallowNullCoalesceInCondition',
 			'Lipe.PHP.DisallowNullCoalesceInForLoops',
+			'Lipe.WhiteSpace.OperatorSpacing',
 		];
 
 		$this->ruleset = new Ruleset( $this->config );

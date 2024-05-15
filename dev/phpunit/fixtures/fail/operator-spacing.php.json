@@ -1,0 +1,22 @@
+{
+  "11": [
+    {
+      "source": "Lipe.WhiteSpace.OperatorSpacing.NoSpaceBefore",
+      "type": "error"
+    },
+    {
+      "source": "Lipe.WhiteSpace.OperatorSpacing.NoSpaceAfter",
+      "type": "error"
+    }
+  ],
+  "18": [
+    {
+      "source": "Lipe.WhiteSpace.OperatorSpacing.NoSpaceBefore",
+      "type": "error"
+    },
+    {
+      "source": "Lipe.WhiteSpace.OperatorSpacing.NoSpaceAfter",
+      "type": "error"
+    }
+  ]
+}

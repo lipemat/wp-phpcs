@@ -31,12 +31,6 @@
       "type": "error"
     }
   ],
-  "17": [
-    {
-      "source": "Generic.Commenting.DocComment.MissingShort",
-      "type": "error"
-    }
-  ],
   "21": [
     {
       "source": "PSR1.Classes.ClassDeclaration.MultipleClasses",

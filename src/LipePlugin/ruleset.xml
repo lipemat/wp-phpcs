@@ -54,6 +54,7 @@
         <exclude name="WordPress.DB.SlowDBQuery" />
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+        <exclude name="WordPress.WhiteSpace.OperatorSpacing" />
     </rule>
 
     <!-- Allow using dashes and slashes in hook names -->
@@ -72,6 +73,7 @@
     <rule ref="Lipe.DB" />
     <rule ref="Lipe.Performance" />
     <rule ref="Lipe.PHP" />
+    <rule ref="Lipe.WhiteSpace" />
 
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
     <rule ref="Lipe.JS">
