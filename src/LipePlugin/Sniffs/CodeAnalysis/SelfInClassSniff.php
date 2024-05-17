@@ -107,6 +107,11 @@ class SelfInClassSniff implements Sniff {
 				}
 			}
 
+			if ( \T_ENUM === $tokens[ $ooPtr ]['code'] ) {
+				// Methods in enums are final by design.
+				return $scopeOpener;
+			}
+
 			if ( \T_CLASS === $tokens[ $ooPtr ]['code'] ) {
 				$classProps = ObjectDeclarations::getClassProperties( $phpcsFile, $ooPtr );
 				if ( true === $classProps['is_final'] ) {
@@ -149,6 +154,11 @@ class SelfInClassSniff implements Sniff {
 			// Not in an OO context.
 			return;
 		}
+		if ( \T_ENUM === $tokens[ $ooPtr ]['code'] ) {
+			// Methods in enums are final by design.
+			return;
+		}
+
 		if ( \T_CLASS === $tokens[ $ooPtr ]['code'] ) {
 			$classProps = ObjectDeclarations::getClassProperties( $phpcsFile, $ooPtr );
 			if ( true === $classProps['is_final'] ) {
