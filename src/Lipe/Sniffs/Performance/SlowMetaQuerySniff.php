@@ -297,7 +297,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 *
 	 * @return void
 	 */
-	protected function check_compare_value( string $compare, int $stackPtr = null ): void {
+	protected function check_compare_value( string $compare, ?int $stackPtr = null ): void {
 		if ( null === $stackPtr ) {
 			$stackPtr = $this->stackPtr;
 		}

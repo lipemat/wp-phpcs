@@ -14,7 +14,9 @@
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibility#using-a-custom-ruleset -->
     <config name="testVersion" value="7.2-" />
     <!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
-    <rule ref="PHPCompatibilityWP" />
+    <rule ref="PHPCompatibilityWP">
+        <exclude name="PHPCompatibility.Constants.NewConstants" />
+    </rule>
 
     <!-- Include when not specified -->
     <file>./src</file>
