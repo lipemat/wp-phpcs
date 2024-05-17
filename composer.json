@@ -24,7 +24,7 @@
   "minimum-stability": "stable",
   "require": {
     "php": ">=7.2.0",
-    "automattic/vipwpcs": "^3.0.0",
+    "automattic/vipwpcs": "^3.0.1",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
     "phpcompatibility/phpcompatibility-wp": "^2.1.2",
     "phpcsstandards/phpcsextra": "^1.0.2",
