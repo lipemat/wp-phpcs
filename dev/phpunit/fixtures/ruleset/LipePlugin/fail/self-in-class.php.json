@@ -120,11 +120,5 @@
       "source": "LipePlugin.CodeAnalysis.SelfInClass.ClassMethod",
       "type": "warning"
     }
-  ],
-  "80": [
-    {
-      "source": "LipePlugin.CodeAnalysis.SelfInClass.ClassConstant",
-      "type": "warning"
-    }
   ]
 }

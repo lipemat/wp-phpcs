@@ -25,6 +25,8 @@ use PHPCSUtils\Utils\Scopes;
 
 /**
  * Forbid the `self` keyword for any classes.
+ *
+ * @since 4.1.15 - Allow `self` when accessing constants.
  */
 class SelfInClassSniff implements Sniff {
 	/**
@@ -198,8 +200,6 @@ class SelfInClassSniff implements Sniff {
 				$possibleFunction = $phpcsFile->findNext( Tokens::$emptyTokens, ( $nextNextNonEmpty + 1 ), null, true );
 				if ( false !== $possibleFunction && \T_OPEN_PARENTHESIS === $tokens[ $possibleFunction ]['code'] ) {
 					$this->handleError( $phpcsFile, $stackPtr, 'ClassMethod', '"' . $extraMsg . '"' );
-				} else {
-					$this->handleError( $phpcsFile, $stackPtr, 'ClassConstant', '"' . $extraMsg . '"' );
 				}
 			}
 		}
