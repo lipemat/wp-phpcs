@@ -20,7 +20,7 @@ use WordPressVIPMinimum\Sniffs\Performance\WPQueryParamsSniff;
  *
  * @see    WPQueryParamsSniff
  *
- * @phpstan-type Group array{keys:array<int, string>, message:string, type:'error'|'warning'}
+ * @phpstan-type Group array{keys: array<int, string>, message: string, type: 'error'|'warning'}
  */
 class PostNotInSniff extends AbstractArrayObjectAssignment {
 	/**
@@ -28,7 +28,7 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 	 *
 	 * @var bool
 	 */
-	private $in_get_users = false;
+	private $in_non_post_calls = false;
 
 
 	/**
@@ -64,8 +64,24 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 	 * @return void
 	 */
 	public function process_token( $stackPtr ): void {
-		if ( 'exclude' === TextStrings::stripQuotes( $this->tokens[ $stackPtr ]['content'] ) ) {
-			$this->in_get_users = (bool) ContextHelper::is_in_function_call( $this->phpcsFile, $stackPtr, [ 'get_users' => true ], true, true );
+		$content = $this->tokens[ $stackPtr ]['content'];
+		if ( T_OBJECT_OPERATOR === $this->tokens[ $stackPtr ]['code'] ) {
+			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true, null, true );
+			if ( false !== $prop ) {
+				$content = $this->tokens[ $prop ]['content'];
+			}
+		}
+
+		if ( 'exclude' === TextStrings::stripQuotes( $content ) ) {
+			$this->in_non_post_calls = (bool) ContextHelper::is_in_function_call( $this->phpcsFile, $stackPtr, [ 'get_users' => true ], true, true );
+
+			if ( false === $this->in_non_post_calls ) {
+				$this->in_non_post_calls = (bool) ContextHelper::is_in_function_call( $this->phpcsFile, $stackPtr, [ 'get_terms' => true ], true, true );
+			}
+
+			if ( false === $this->in_non_post_calls ) {
+				$this->in_non_post_calls = $this->is_in_class( 'Get_Terms', $stackPtr );
+			}
 		}
 
 		parent::process_token( $stackPtr );
@@ -82,7 +98,7 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 	 *
 	 * @return bool
 	 */
-	public function callback( $key, $val, $line, $group ): bool {
-		return ! ( 'exclude' === $key && false !== $this->in_get_users );
+	public function callback( $key, $val, $line, $group ) {
+		return ! ( 'exclude' === $key && false !== $this->in_non_post_calls );
 	}
 }
