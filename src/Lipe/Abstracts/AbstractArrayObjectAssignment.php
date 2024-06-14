@@ -51,8 +51,6 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 
 
 	/**
-	 * Process a token.
-	 *
 	 * Overrides the parent to store the stackPtr for later use.
 	 *
 	 * @param int $stackPtr - Current position in the stack.
@@ -70,7 +68,16 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 			foreach ( $this->groups_cache as $groupName => $group ) {
 				foreach ( $group['keys'] as $occurrence ) {
 					if ( $this->tokens[ $prop ]['content'] === $occurrence ) {
-						$message = $group ['message'];
+						$value = $this->get_value_from_prop( $prop );
+						$output = $this->callback( $occurrence, $value, $this->tokens[ $prop ]['line'], $group );
+						if ( ! isset( $output ) || false === $output ) {
+							continue;
+						}
+						if ( true === $output ) {
+							$message = $group['message'];
+						} else {
+							$message = $output;
+						}
 						MessageHelper::addMessage( $this->phpcsFile, $message, $prop, ( 'error' === $group['type'] ), MessageHelper::stringToErrorcode( $groupName . '_' . $occurrence ) );
 					}
 				}

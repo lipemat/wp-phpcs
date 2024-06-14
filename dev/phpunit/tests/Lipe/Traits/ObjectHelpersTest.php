@@ -20,7 +20,7 @@ class ObjectHelpersTest extends \HelpersAbstract {
 	public $tokens;
 
 
-	public function test_detect_fluent_interface_usage() {
+	public function test_detect_fluent_interface_usage(): void {
 		$this->tokens = $this->convert_file_to_tokens( 'fluent-interface' );
 		$this->assertEquals( 14, $this->get_variable_assignment( 29 ) );
 		$this->assertEquals( 39, $this->get_variable_assignment( 48 ) );
@@ -38,7 +38,7 @@ class ObjectHelpersTest extends \HelpersAbstract {
 	}
 
 
-	public function test_get_variable_assignment() {
+	public function test_get_variable_assignment(): void {
 		$this->tokens = $this->get_raw_tokens_file( 'object-helpers-complex' );
 		$this->assertEquals( 30, $this->get_variable_assignment( 40 ) );
 		$this->assertEquals( 153, $this->get_variable_assignment( 194 ) );
@@ -69,29 +69,29 @@ class ObjectHelpersTest extends \HelpersAbstract {
 	}
 
 
-	public function test_is_class_object() {
+	public function test_get_class_name(): void {
 		$this->tokens = $this->convert_file_to_tokens( 'fluent-interface' );
-		$this->assertTrue( $this->is_class_object( 14 ) );
-		$this->assertTrue( $this->is_class_object( 29 ) );
+		$this->assertSame( 'Args', $this->get_class_name( 14 ) );
+		$this->assertSame( 'Args', $this->get_class_name( 29 ) );
 
-		$this->assertFalse( $this->is_class_object( 39 ) );
-		$this->assertFalse( $this->is_class_object( 48 ) );
+		$this->assertFalse( $this->get_class_name( 39 ) );
+		$this->assertFalse( $this->get_class_name( 48 ) );
 
-		$this->assertTrue( $this->is_class_object( 140 ) );
-		$this->assertTrue( $this->is_class_object( 151 ) );
-		$this->assertTrue( $this->is_class_object( 160 ) );
-		$this->assertTrue( $this->is_class_object( 172 ) );
+		$this->assertSame( 'get_posts', $this->get_class_name( 140 ) );
+		$this->assertSame( 'get_posts', $this->get_class_name( 151 ) );
+		$this->assertSame( 'get_posts', $this->get_class_name( 160 ) );
+		$this->assertSame( 'get_posts', $this->get_class_name( 172 ) );
 
-		$this->assertTrue( $this->is_class_object( 195 ) );
-		$this->assertTrue( $this->is_class_object( 210 ) );
-		$this->assertTrue( $this->is_class_object( 219 ) );
-		$this->assertTrue( $this->is_class_object( 234 ) );
+		$this->assertSame( 'Args', $this->get_class_name( 195 ) );
+		$this->assertSame( 'Args', $this->get_class_name( 210 ) );
+		$this->assertSame( 'Args', $this->get_class_name( 219 ) );
+		$this->assertSame( 'Args', $this->get_class_name( 234 ) );
 
-		$this->assertTrue( $this->is_class_object( 183 ) );
-		$this->assertTrue( $this->is_class_object( 228 ) );
-		$this->assertTrue( $this->is_class_object( 336 ) );
+		$this->assertSame( 'get_posts', $this->get_class_name( 183 ) );
+		$this->assertSame( 'get_posts', $this->get_class_name( 228 ) );
+		$this->assertSame( 'get_posts', $this->get_class_name( 336 ) );
 
-		$this->assertfalse( $this->is_class_object( 342 ) );
+		$this->assertfalse( $this->get_class_name( 342 ) );
 	}
 
 
@@ -118,5 +118,15 @@ class ObjectHelpersTest extends \HelpersAbstract {
 
 		$this->tokens = $this->get_raw_tokens_file( 'object-helpers-simple' );
 		$this->assertEquals( [ 'suppress_filters' => 31 ], $this->get_assigned_properties( 38 ) );
+	}
+
+
+	public function test_get_value_from_prop(): void {
+		$this->tokens = $this->convert_file_to_tokens( 'fluent-interface' );
+		$this->assertSame( 'fail', $this->get_value_from_prop( 31 ) );
+		$this->assertFalse( $this->get_value_from_prop( 89 ) );
+		$this->assertSame( '$array_clause', $this->get_value_from_prop( 277 ) );
+		$this->assertFalse( $this->get_value_from_prop( 325 ) );
+		$this->assertSame( '$array_clause', $this->get_value_from_prop( 338 ) );
 	}
 }

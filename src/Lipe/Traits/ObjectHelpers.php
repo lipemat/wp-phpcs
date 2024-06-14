@@ -10,6 +10,7 @@ namespace Lipe\Traits;
 
 use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
+use PHPCSUtils\Utils\TextStrings;
 use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
 
 /**
@@ -66,31 +67,42 @@ trait ObjectHelpers {
 			return false;
 		}
 
-		return $this->is_class_object( $variable );
+		return false !== $this->get_class_name( $variable );
 	}
 
 
 	/**
-	 * Is this variable an instance of a class.
+	 * Get the name of the class a variable is an instance of.
 	 *
 	 * @param int $token - Position of the variable token.
 	 *
-	 * @return bool
+	 * @return false|string
 	 */
-	protected function is_class_object( int $token ): bool {
+	protected function get_class_name( int $token ) {
+		$variable = $token;
 		if ( T_VARIABLE !== $this->tokens[ $token ]['code'] ) {
+			$variable = $this->phpcsFile->findPrevious( [ T_VARIABLE ], $token - 1, null, false, null, true );
+		}
+		if ( false === $variable ) {
 			return false;
 		}
 
-		$assignment = $this->get_variable_assignment( $token );
+		$assignment = $this->get_variable_assignment( $variable );
 		if ( false === $assignment ) {
 			return false;
 		}
 
 		$next = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ T_EQUAL ] ), $assignment + 1, null, true, null, true );
-
-		return false !== $next && T_NEW === $this->tokens[ $next ]['code'];
+		if ( false === $next ) {
+			return false;
+		}
+		if ( T_NEW !== $this->tokens[ $next ]['code'] ) {
+			return false;
+		}
+		$class = $this->phpcsFile->findNext( T_STRING, $next + 1 );
+		return $this->tokens[ $class ]['content'];
 	}
+
 
 
 	/**
@@ -123,7 +135,7 @@ trait ObjectHelpers {
 				continue;
 			}
 
-			$value = $this->phpcsFile->findNext( array_merge( [ T_EQUAL ], Tokens::$emptyTokens ), $property + 1, null, true, null, true );
+			$value = $this->phpcsFile->findNext( \array_merge( [ T_EQUAL ], Tokens::$emptyTokens ), $property + 1, null, true, null, true );
 			if ( false === $value ) {
 				continue;
 			}
@@ -132,5 +144,46 @@ trait ObjectHelpers {
 		}
 
 		return $properties;
+	}
+
+
+	/**
+	 * Is this variable an instance of a class.
+	 *
+	 * @param string $name  - Name of the class.
+	 * @param int    $token - Position of the variable token.
+	 *
+	 * @return bool
+	 */
+	protected function is_in_class( string $name, int $token ): bool {
+		$class = $this->get_class_name( $token );
+		return false !== $class && $name === $class;
+	}
+
+
+	/**
+	 * Get the full value assigned to an object property from the token of
+	 * the property.
+	 *
+	 * @param int $prop_token - Token of the property name.
+	 *
+	 * @return string|false
+	 */
+	protected function get_value_from_prop( int $prop_token ) {
+		$prev = $this->phpcsFile->findPrevious( [ T_OBJECT_OPERATOR ], $prop_token - 1, null, false, null, true );
+		// Not an object assignment.
+		if ( false === $prev || $prev < $prop_token - 1 ) {
+			return false;
+		}
+		$end = $this->phpcsFile->findEndOfStatement( $prop_token );
+		$start = $this->phpcsFile->findNext( \array_merge( [ T_EQUAL ], Tokens::$emptyTokens ), $prop_token + 1, null, true, null, true );
+		if ( false === $start ) {
+			return false;
+		}
+		$value = '';
+		for ( $i = $start; $i < $end; $i ++ ) {
+			$value .= $this->tokens[ $i ]['content'];
+		}
+		return TextStrings::stripQuotes( $value );
 	}
 }

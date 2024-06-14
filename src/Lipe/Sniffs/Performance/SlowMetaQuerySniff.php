@@ -85,8 +85,6 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 
 
 	/**
-	 * Process a token.
-	 *
 	 * Overrides the parent to store the stackPtr for later use.
 	 *
 	 * @param int $stackPtr - Current position in the stack.
@@ -129,7 +127,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 					$this->check_compare_value( '__dynamic', $prop );
 				} elseif ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
 					// Attempt to detect a sub fluent interface.
-					if ( $this->is_class_object( $next ) ) {
+					if ( false !== $this->get_class_name( $next ) ) {
 						$compare = $this->get_assigned_properties( $next );
 						if ( isset( $compare['compare'] ) ) {
 							$this->check_compare_value( $this->tokens[ $compare['compare'] ]['content'], $next );
