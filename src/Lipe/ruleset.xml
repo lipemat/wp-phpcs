@@ -12,6 +12,7 @@
     <!-- Exclude paths -->
     <exclude-pattern>*/dev/*</exclude-pattern>
     <exclude-pattern>*/dist/*</exclude-pattern>
+    <exclude-pattern>*/*.l10n.php</exclude-pattern>
     <exclude-pattern>*/jest/*</exclude-pattern>
     <exclude-pattern>*/js/tests/*</exclude-pattern>
     <exclude-pattern>*/local-config\.php</exclude-pattern>
