@@ -23,7 +23,7 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": ">=7.2.0",
+    "php": ">=7.4.0",
     "automattic/vipwpcs": "^3.0.1",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
     "phpcompatibility/phpcompatibility-wp": "^2.1.2",
@@ -34,8 +34,8 @@
   },
   "require-dev": {
     "ext-json": "*",
-    "johnbillion/args": "dev-trunk",
-    "lipemat/wordpress-libs": "dev-master",
+    "johnbillion/args": "^1",
+    "lipemat/wordpress-libs": "^4",
     "roave/security-advisories": "dev-latest",
     "phpcompatibility/php-compatibility": "dev-develop as 9.4.0"
   },

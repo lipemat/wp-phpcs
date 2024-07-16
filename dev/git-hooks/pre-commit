@@ -18,9 +18,9 @@ RED="$(tput setaf 1)"
 BLUE="$(tput setaf 6)"
 RESET_COLOR="$(tput sgr0)"
 
-PHP='php 7.3'
+PHP='php 7.4'
 PHPCS='phpcs'
-PHPUNIT='phpunit 7.2'
+PHPUNIT='phpunit 7.4'
 PHPSTAN='phpstan'
 
 PROJECT=$(${PHP} -r "echo dirname(realpath('$0'), 3);")
