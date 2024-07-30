@@ -46,6 +46,7 @@
     <rule ref="Universal.UseStatements.NoLeadingBackslash" />
 
     <rule ref="WordPress-Extra">
+        <exclude-pattern>*/*.ts</exclude-pattern>
         <exclude-pattern>*/js/*</exclude-pattern>
 
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
