@@ -111,6 +111,7 @@ class Fixtures extends TestCase {
 			'Lipe.JS.Window',
 			'Lipe.PHP.DisallowNullCoalesceInCondition',
 			'Lipe.PHP.DisallowNullCoalesceInForLoops',
+			'Lipe.Security.NonceVerification',
 			'Lipe.WhiteSpace.OperatorSpacing',
 		];
 

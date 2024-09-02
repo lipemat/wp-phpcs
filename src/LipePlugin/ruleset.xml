@@ -74,6 +74,7 @@
     <rule ref="Lipe.DB" />
     <rule ref="Lipe.Performance" />
     <rule ref="Lipe.PHP" />
+    <rule ref="Lipe.Security" />
     <rule ref="Lipe.WhiteSpace" />
 
     <rule ref="WordPressVIPMinimum.Security.PHPFilterFunctions" />

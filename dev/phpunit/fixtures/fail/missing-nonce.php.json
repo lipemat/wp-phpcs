@@ -1,0 +1,38 @@
+{
+  "4": [
+    {
+      "source": "Lipe.Security.NonceVerification.Recommended",
+      "type": "warning"
+    }
+  ],
+  "5": [
+    {
+      "source": "Lipe.Security.NonceVerification.Missing",
+      "type": "error"
+    }
+  ],
+  "6": [
+    {
+      "source": "Lipe.Security.NonceVerification.Recommended",
+      "type": "warning"
+    }
+  ],
+  "7": [
+    {
+      "source": "Lipe.Security.NonceVerification.Missing",
+      "type": "error"
+    }
+  ],
+  "8": [
+    {
+      "source": "Lipe.Security.NonceVerification.Recommended",
+      "type": "warning"
+    }
+  ],
+  "9": [
+    {
+      "source": "Lipe.Security.NonceVerification.Recommended",
+      "type": "warning"
+    }
+  ]
+}
