@@ -36,6 +36,7 @@
     <!-- Rules available from PHPCSExtra -->
     <!-- @link https://github.com/PHPCSStandards/PHPCSExtra#sniffs -->
     <rule ref="Modernize.FunctionCalls.Dirname" />
+
     <rule ref="Universal.Arrays.DuplicateArrayKey" />
     <rule ref="Universal.CodeAnalysis" />
     <rule ref="Universal.Namespaces.DisallowCurlyBraceSyntax" />
@@ -44,6 +45,12 @@
     <rule ref="Universal.PHP.OneStatementInShortEchoTag" />
     <rule ref="Universal.UseStatements.LowercaseFunctionConst" />
     <rule ref="Universal.UseStatements.NoLeadingBackslash" />
+
+    <rule ref="WordPressVIPMinimum.Security.PHPFilterFunctions" />
+    <rule ref="WordPressVIPMinimum.Security.EscapingVoidReturnFunctions" />
+    <rule ref="WordPressVIPMinimum.Security.ExitAfterRedirect" />
+    <rule ref="WordPressVIPMinimum.Security.ProperEscapingFunction" />
+    <rule ref="WordPressVIPMinimum.Security.StaticStrreplace" />
 
     <rule ref="WordPress-Extra">
         <exclude-pattern>*/js/*</exclude-pattern>

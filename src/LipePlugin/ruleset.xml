@@ -76,6 +76,12 @@
     <rule ref="Lipe.PHP" />
     <rule ref="Lipe.WhiteSpace" />
 
+    <rule ref="WordPressVIPMinimum.Security.PHPFilterFunctions" />
+    <rule ref="WordPressVIPMinimum.Security.EscapingVoidReturnFunctions" />
+    <rule ref="WordPressVIPMinimum.Security.ExitAfterRedirect" />
+    <rule ref="WordPressVIPMinimum.Security.ProperEscapingFunction" />
+    <rule ref="WordPressVIPMinimum.Security.StaticStrreplace" />
+
     <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
     <rule ref="Lipe.JS">
         <type>error</type>
