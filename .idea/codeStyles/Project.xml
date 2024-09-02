@@ -46,6 +46,7 @@
       <option name="ALIGN_KEY_VALUE_PAIRS" value="true" />
       <option name="ALIGN_PHPDOC_PARAM_NAMES" value="true" />
       <option name="ALIGN_PHPDOC_COMMENTS" value="true" />
+      <option name="COMMA_AFTER_LAST_ARRAY_ELEMENT" value="true" />
       <option name="PHPDOC_BLANK_LINE_BEFORE_TAGS" value="true" />
       <option name="PHPDOC_BLANK_LINES_AROUND_PARAMETERS" value="true" />
       <option name="PHPDOC_WRAP_LONG_LINES" value="true" />
@@ -76,6 +77,7 @@
       <option name="SPACE_BEFORE_UNARY_NOT" value="true" />
       <option name="SPACE_AFTER_UNARY_NOT" value="true" />
       <option name="SPACE_BEFORE_CLOSURE_LEFT_PARENTHESIS" value="false" />
+      <option name="FORCE_SHORT_DECLARATION_ARRAY_STYLE" value="true" />
       <option name="SPACES_AROUND_PIPE_IN_UNION_TYPE" value="true" />
       <option name="NULL_TYPE_POSITION" value="DONT_FORCE" />
     </PHPCodeStyleSettings>
