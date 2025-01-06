@@ -102,7 +102,7 @@ trait VariableHelpers {
 	 * @return null|string
 	 */
 	protected function get_static_value_from_variable( int $token ): ?string {
-		if ( T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $token ]['code'] ) {
+		if ( $this->is_scalar( $token ) ) {
 			return TextStrings::stripQuotes( $this->tokens[ $token ]['content'] );
 		}
 		if ( T_VARIABLE !== $this->tokens[ $token ]['code'] ) {
@@ -117,7 +117,9 @@ trait VariableHelpers {
 		if ( false !== $next && T_VARIABLE === $this->tokens[ $next ]['code'] ) {
 			return $this->get_static_value_from_variable( $next );
 		}
-		if ( T_CONSTANT_ENCAPSED_STRING !== $this->tokens[ $next ]['code'] ) {
+		if ( ! $this->is_scalar(
+			$next
+		) ) {
 			return null;
 		}
 		return TextStrings::stripQuotes( $this->tokens[ $next ]['content'] );
@@ -183,5 +185,20 @@ trait VariableHelpers {
 			return false;
 		}
 		return $ptr;
+	}
+
+
+	/**
+	 * Is this value a constant string, number, true, or false?
+	 *
+	 * @param int|false $token - Position of the token.
+	 *
+	 * @return bool
+	 */
+	protected function is_scalar( $token ): bool {
+		if ( false === $token ) {
+			return false;
+		}
+		return \in_array( $this->tokens[ $token ]['code'], [ T_TRUE, T_CONSTANT_ENCAPSED_STRING, T_FALSE, T_LNUMBER, T_DNUMBER ], true );
 	}
 }

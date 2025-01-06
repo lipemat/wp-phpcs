@@ -42,3 +42,17 @@ class UnableToParse {
 		return get_posts( $this->local );
 	}
 }
+
+class Scalar {
+	public $local = 'page';
+
+	public $other = 1;
+
+	public $different = true;
+
+	public $another = false;
+
+	public $last = null;
+
+	public $floain = 1.1;
+}

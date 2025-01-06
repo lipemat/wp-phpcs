@@ -44,4 +44,21 @@ class VariableHelpersTest extends \HelpersAbstract {
 		$this->assertEquals( 204, $this->get_start_of_class( 227 ) );
 	}
 
+
+	public function test_is_scalar(): void {
+		$this->tokens = $this->convert_file_to_tokens( 'variable-helpers-class-property' );
+		$this->assertTrue( $this->is_scalar( 32 ) );
+
+		$this->assertTrue( $this->is_scalar( 144 ) );
+		$this->assertTrue( $this->is_scalar( 152 ) );
+		$this->assertFalse( $this->is_scalar( 178 ) );
+		$this->assertFalse( $this->is_scalar( 204 ) );
+		$this->assertTrue( $this->is_scalar( 308 ) );
+		$this->assertFalse( $this->is_scalar( 297 ) );
+		$this->assertTrue( $this->is_scalar( 286 ) );
+		$this->assertTrue( $this->is_scalar( 275 ) );
+		$this->assertTrue( $this->is_scalar( 264 ) );
+		$this->assertTrue( $this->is_scalar( 253 ) );
+	}
+
 }

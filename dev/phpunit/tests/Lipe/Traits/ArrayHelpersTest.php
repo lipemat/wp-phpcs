@@ -60,6 +60,14 @@ class ArrayHelpersTest extends \HelpersAbstract {
 	}
 
 
+	public function test_get_static_value_for_element(): void {
+		$this->tokens = $this->convert_file_to_tokens( 'array-helpers-array-access' );
+		$this->assertEquals( 'true', $this->get_static_value_for_element( 13 ) );
+		$this->assertEquals( 'false', $this->get_static_value_for_element( 21 ) );
+		$this->assertEquals( 'layer', $this->get_static_value_for_element( 52 ) );
+	}
+
+
 	/**
 	 * Copied verbatim from the WordPress-Core sniff.
 	 *

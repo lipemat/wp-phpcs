@@ -23,6 +23,7 @@ use VariableAnalysis\Lib\Helpers;
  * @since  3.1.0
  */
 trait ArrayHelpers {
+	use VariableHelpers;
 
 	/**
 	 * A list of tokenizers this sniff supports.
@@ -354,7 +355,7 @@ trait ArrayHelpers {
 	 * @return string|null Static value if available, null otherwise.
 	 */
 	protected function get_static_value_for_element( int $value_start ) {
-		if ( T_CONSTANT_ENCAPSED_STRING !== $this->tokens[ $value_start ]['code'] ) {
+		if ( ! $this->is_scalar( $value_start ) ) {
 			if ( T_VARIABLE === $this->tokens[ $value_start ]['code'] ) {
 				$value = $this->get_static_value_from_variable( $value_start );
 				if ( null !== $value ) {
