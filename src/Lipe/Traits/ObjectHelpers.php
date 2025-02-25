@@ -19,8 +19,19 @@ use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
  * @author   Mat Lipe
  * @since    3.1.0
  *
+ * @phpstan-type TOKEN array{
+ *     code: int|string,
+ *     column: int,
+ *     conditions: array<mixed>,
+ *     content: string,
+ *     length: int,
+ *     level: int,
+ *     line: int,
+ *     type: string,
+ * }
+ *
  * @property File  $phpcsFile
- * @property array $tokens
+ * @property list<TOKEN> $tokens
  */
 trait ObjectHelpers {
 	/**
