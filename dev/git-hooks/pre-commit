@@ -61,7 +61,7 @@ function php_unit() {
         echo "${RED}$OUTPUT"
         exit_reset_colors
     fi
-    echo "${YELLOW}[pre-commit]${GREEN} PHP Unit Tests Passed!${WHITE}"
+    echo "${YELLOW}[pre-commit]${GREEN} PHP Unit Tests Passed!${RESET_COLOR}"
 }
 php_unit &
 
@@ -78,7 +78,7 @@ function php_lint() {
 				exit_reset_colors
 			fi
 		done
-		echo "${YELLOW}[pre-commit]${GREEN} ${1} Lint Passed!${WHITE}"
+		echo "${YELLOW}[pre-commit]${GREEN} ${1} Lint Passed!${RESET_COLOR}"
 	fi
 }
 
