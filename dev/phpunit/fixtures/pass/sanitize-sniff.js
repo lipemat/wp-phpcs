@@ -1,4 +1,6 @@
-import {sanitize} from 'dompurify';
+import DOMPurify from 'dompurify';
+
+const sanitize = DOMPurify.sanitize;
 
 let arbitrary = 'First &middot; Second';
 
@@ -25,18 +27,23 @@ const Test = ( {} ) => {
 	$( body ).replaceWith( sanitize( arbitrary ) );
 	$( body ).write( sanitize( arbitrary ) );
 	$( body ).writeln( sanitize( arbitrary ) );
+	$( body ).writeln( DOMPurify.sanitize( arbitrary ) );
 
 	// InnerHTMLSniff.
 	document.getElementById( 'body' ).innerHTML = sanitize( arbitrary );
+	document.getElementById( 'body' ).innerHTML = DOMPurify.sanitize( arbitrary );
 
 	// StringConcatSniff.
 	const str = 'test' + sanitize( '<concat>' ) + sanitize( 'test' ) + snx( '</concat>' );
+	const strv = 'test' + DOMPurify.sanitize( '<concat>' ) + DOMPurify.sanitize( 'test' ) + snx( '</concat>' );
 
 	// StrippingTagsSniff.
 	$( body ).html( sanitize( arbitrary ) ).text();
+	$( body ).html( DOMPurify.sanitize( arbitrary ) ).text();
 
 	// WindowSniff.
 	window.location.href = sanitize( arbitrary );
+	window.location.href = DOMPurify.sanitize( arbitrary );
 	window.location.protocol = sanitize( arbitrary );
 	window.location.host = sanitize( arbitrary );
 	window.location.hostname = sanitize( arbitrary );
@@ -63,4 +70,18 @@ const Test = ( {} ) => {
 	w = sanitize( window.location.password );
 	w = sanitize( window.name );
 	w = sanitize( window.status );
+
+	w = DomPurify.sanitize( window.location.href );
+	w = DomPurify.sanitize( window.location.href );
+	w = DomPurify.sanitize( window.location.protocol );
+	w = DomPurify.sanitize( window.location.host );
+	w = DomPurify.sanitize( window.location.hostname );
+	w = DomPurify.sanitize( window.location.pathname );
+	w = DomPurify.sanitize( window.location.search );
+	w = DomPurify.sanitize( window.location.hash );
+	w = DomPurify.sanitize( window.location.username );
+	w = DomPurify.sanitize( window.location.port );
+	w = DomPurify.sanitize( window.location.password );
+	w = DomPurify.sanitize( window.name );
+	w = DomPurify.sanitize( window.status );
 };

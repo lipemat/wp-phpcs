@@ -18,7 +18,8 @@ trait EscapeOutputFunctions {
 	 */
 	public function __construct() {
 		$this->escapingFunctions = [
-			'sanitize' => true,
+			'sanitize'  => true,
+			'dompurify' => true,
 		];
 	}
 
