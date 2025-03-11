@@ -93,7 +93,7 @@ trait VariableHelpers {
 	/**
 	 * Get the static value of a variable.
 	 *
-	 * - If the token is already a static variable return it.
+	 * - If the token is already a static value return it.
 	 * - If the token is a variable, find the assignment and return the static value.
 	 * - If the variable is not assigned a static value return false.
 	 *
