@@ -24,7 +24,7 @@ RESET_COLOR="$(tput sgr0)"
 if [[ "true" == "$PHP_MULTI_VERSION_SUPPORT" ]]; then
     PHP="php ${PHP_VERSION}"
     PHPCS="phpcs ${PHP_VERSION}"
-    PHPSTAN="phpstan ${PHP_VERSION}"
+    PHPSTAN="phpstan 8.1"
     PHPUNIT="phpunit ${PHP_VERSION}"
 else
     PHP='php'
