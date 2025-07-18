@@ -56,6 +56,7 @@
         <exclude-pattern>*/js/*</exclude-pattern>
 
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
+        <exclude name="Generic.Functions.CallTimePassByReference" />
         <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing" />

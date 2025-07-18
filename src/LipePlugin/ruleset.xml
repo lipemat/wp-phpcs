@@ -35,6 +35,7 @@
         <exclude-pattern>*/js/*</exclude-pattern>
         <exclude name="Generic.Commenting.DocComment" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
+        <exclude name="Generic.Functions.CallTimePassByReference" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing" />
 
         <exclude name="PEAR.Functions.FunctionCallSignature" />
