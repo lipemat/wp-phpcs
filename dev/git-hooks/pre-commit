@@ -66,7 +66,6 @@ function php_unit() {
 php_unit &
 
 function php_lint() {
-	if [[ "$PHP_FILES" ]]; then
 		# Run php lint.
 		echo "${YELLOW}[pre-commit]${BLUE} Checking ${1} Lint... ${WHITE}"
 		for FILE in ${PHP_FILES}; do
@@ -78,11 +77,10 @@ function php_lint() {
 				exit_reset_colors
 			fi
 		done
-		echo "${YELLOW}[pre-commit]${GREEN} ${1} Lint Passed!${RESET_COLOR}"
-	fi
+    echo "${YELLOW}[pre-commit]${GREEN} ${1} Lint Passed!${RESET_COLOR}"
 }
-
-php_lint 'php' &
+php_lint "${PHP}" &
+php_lint 'php 8.4' &
 
 function php_code_sniffer() {
     if [[ "$PHP_FILES" ]]; then
