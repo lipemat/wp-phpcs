@@ -13,7 +13,7 @@
     <exclude-pattern>*/dist/*</exclude-pattern>
     <exclude-pattern>*/*.l10n.php</exclude-pattern>
     <exclude-pattern>*/jest/*</exclude-pattern>
-    <exclude-pattern>*/js/tests/*</exclude-pattern>
+    <exclude-pattern>*/js/*</exclude-pattern>
     <exclude-pattern>*/local-config\.php</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
     <exclude-pattern>*/phpunit/*</exclude-pattern>
@@ -52,8 +52,6 @@
     <rule ref="WordPressVIPMinimum.Security.StaticStrreplace" />
 
     <rule ref="WordPress-Extra">
-        <exclude-pattern>*/js/*</exclude-pattern>
-
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.Functions.CallTimePassByReference" />
         <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
