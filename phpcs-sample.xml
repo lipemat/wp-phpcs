@@ -8,8 +8,7 @@
     <file>./wp-content/plugins</file>
     <file>./wp-content/themes</file>
 
-    <!-- Sniff both PHP and JS. -->
-    <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS" />
+    <arg name="extensions" value="php/PHP" />
 
     <!-- Exclude paths -->
     <exclude-pattern>*/dev/*</exclude-pattern>
@@ -38,10 +37,5 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
         <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
         <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent" />
-    </rule>
-
-    <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
-    <rule ref="Lipe.JS">
-        <type>error</type>
     </rule>
 </ruleset>

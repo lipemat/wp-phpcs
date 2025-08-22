@@ -2,9 +2,8 @@
 <ruleset name="Lipe" namespace="Lipe">
     <description>Lipe Project - Rules</description>
 
-    <!-- Sniff both PHP and JS. -->
-    <arg name="extensions" value="php/PHP,js/JS,jsx/JS,ts/JS,tsx/JS" />
-    <!-- Show sniff codes in all reports, and progress when running. -->
+    <arg name="extensions" value="php/PHP" />
+    <!-- Show sniff codes in all reports and progress when running. -->
     <arg value="sp" />
     <!-- Show colors in reports -->
     <arg name="colors" />
@@ -128,10 +127,5 @@
                 <element value="file_get_contents" />
             </property>
         </properties>
-    </rule>
-
-    <!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
-    <rule ref="Lipe.JS">
-        <type>error</type>
     </rule>
 </ruleset>
