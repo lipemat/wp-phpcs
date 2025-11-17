@@ -110,7 +110,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 			// Fluent interface callback.
 			if ( T_OPEN_PARENTHESIS === $this->tokens[ $prop + 1 ]['code'] ) {
 				$call = $this->phpcsFile->findNext( \T_STRING, ( $prop + 2 ) );
-				if ( ! in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists' ], true ) ) {
+				if ( ! in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists', 'relation' ], true ) ) {
 					MessageHelper::addMessage(
 						$this->phpcsFile,
 						'Using %s comparison in `meta_query` is non-performant.',

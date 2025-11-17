@@ -85,6 +85,8 @@ if ( true === $meta->meta_value ) {
 }
 
 use Args\get_posts;
+use Lipe\Lib\User\Get_Users;
+use Lipe\Project\Meta\User_Fields;
 
 $another = (object) [
 ];
@@ -114,3 +116,10 @@ $array_clause = [
 ];
 
 $deep_dynamic->meta_query = $array_clause;
+
+$args = new Get_Users( [] );
+$args->fields = 'all';
+$args->meta_query()
+     ->relation( 'OR' )
+     ->not_exists( 'outhere' )
+     ->not_exists( 'outthere' );
