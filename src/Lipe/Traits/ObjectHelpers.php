@@ -46,10 +46,13 @@ trait ObjectHelpers {
 	 */
 	public function is_targetted_token( $stackPtr ): bool {
 		// @phpstan-ignore-next-line -- Some classes have this, some don't.
-		if ( method_exists( parent::class, 'is_targetted_token' ) && ! parent::is_targetted_token( $stackPtr ) ) {
+		if ( \method_exists( parent::class, 'is_targetted_token' ) && ! parent::is_targetted_token( $stackPtr ) ) {
 			return false;
 		}
 		$prev = $this->phpcsFile->findPrevious( Tokens::$emptyTokens, ( $stackPtr - 1 ), null, true, null, true );
+		if ( false === $prev ) {
+			return false;
+		}
 		return T_NEW !== $this->tokens[ $prev ]['code'];
 	}
 
@@ -111,6 +114,9 @@ trait ObjectHelpers {
 			return false;
 		}
 		$class = $this->phpcsFile->findNext( T_STRING, $next + 1 );
+		if ( false === $class ) {
+			return false;
+		}
 		return $this->tokens[ $class ]['content'];
 	}
 
@@ -137,7 +143,7 @@ trait ObjectHelpers {
 				break;
 			}
 			$operator = $this->phpcsFile->findNext( Tokens::$emptyTokens, $stackPtr + 1, null, true, null, true );
-			if ( T_OBJECT_OPERATOR !== $this->tokens[ $operator ]['code'] ) {
+			if ( false === $operator || T_OBJECT_OPERATOR !== $this->tokens[ $operator ]['code'] ) {
 				continue;
 			}
 

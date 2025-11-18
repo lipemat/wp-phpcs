@@ -178,6 +178,9 @@ trait ArrayHelpers {
 			}
 
 			$maybe_index_end = $this->phpcsFile->findNext( Tokens::$emptyTokens, $start + 1, null, true );
+			if ( false === $maybe_index_end ) {
+				continue;
+			}
 			if ( T_DOUBLE_ARROW !== $this->tokens[ $maybe_index_end ]['code'] ) {
 				// Dynamic key, maybe? This is probably not valid syntax.
 				continue;
@@ -233,7 +236,7 @@ trait ArrayHelpers {
 	 *
 	 * @phpstan-return ArrayElement|null
 	 *
-	 * @return array|null -Static value if available, null otherwise.
+	 * @return array|null - Static value if available, null otherwise.
 	 */
 	protected function find_key_in_array_elements( array $elements, string $array_key ) {
 		foreach ( $elements as $element ) {
@@ -250,6 +253,9 @@ trait ArrayHelpers {
 			}
 
 			$maybe_index_end = $this->phpcsFile->findNext( Tokens::$emptyTokens, $start + 1, null, true );
+			if ( false === $maybe_index_end ) {
+				continue;
+			}
 			if ( T_DOUBLE_ARROW !== $this->tokens[ $maybe_index_end ]['code'] ) {
 				// Dynamic key, maybe? This is probably not valid syntax.
 				continue;
@@ -366,6 +372,9 @@ trait ArrayHelpers {
 		}
 
 		$maybe_value_end = $this->phpcsFile->findNext( Tokens::$emptyTokens, $value_start + 1, null, true );
+		if ( false === $maybe_value_end ) {
+			return null;
+		}
 		$expected_next = [
 			T_CLOSE_PARENTHESIS,
 			T_CLOSE_SHORT_ARRAY,

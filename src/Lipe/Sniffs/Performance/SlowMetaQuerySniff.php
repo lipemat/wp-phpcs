@@ -105,16 +105,18 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 		// Object assignment of meta_value.
 		if ( 'meta_value' === $this->tokens[ $prop ]['content'] ) {
 			$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
-			$this->callback( 'meta_value', TextStrings::stripQuotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_query'] );
+			if ( false !== $value ) {
+				$this->callback( 'meta_value', TextStrings::stripQuotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_query'] );
+			}
 		} elseif ( 'meta_query' === $this->tokens[ $prop ]['content'] ) {
 			// Fluent interface callback.
 			if ( T_OPEN_PARENTHESIS === $this->tokens[ $prop + 1 ]['code'] ) {
 				$call = $this->phpcsFile->findNext( \T_STRING, ( $prop + 2 ) );
-				if ( ! in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists', 'relation' ], true ) ) {
+				if ( false !== $call && ! \in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists', 'relation' ], true ) ) {
 					MessageHelper::addMessage(
 						$this->phpcsFile,
 						'Using %s comparison in `meta_query` is non-performant.',
-						false === $call ? $prop : $call,
+						$call,
 						true,
 						'NonPerformant',
 						[ $this->tokens[ $call ]['content'] ]

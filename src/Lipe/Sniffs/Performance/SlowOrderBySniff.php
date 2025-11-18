@@ -41,7 +41,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	/**
 	 * Current stack pointer.
 	 *
-	 * @var int
+	 * @var ?int
 	 */
 	protected $stackPtr;
 
@@ -81,8 +81,6 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 
 
 	/**
-	 * Process a token.
-	 *
 	 * Overrides the parent to store the stackPtr for later use.
 	 *
 	 * @param int $stackPtr - Current position in the stack.
@@ -96,11 +94,13 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 			$prop = $this->phpcsFile->findNext( \T_OPEN_CURLY_BRACKET, ( $stackPtr + 1 ), null, true );
 			if ( false !== $prop && 'orderby' === $this->tokens[ $prop ]['content'] ) {
 				$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
-				$this->callback( 'orderby', $this->tokens[ $value ]['content'], $this->tokens[ $prop ]['line'], $this->groups_cache['slow_orderby'] );
+				if ( false !== $value ) {
+					$this->callback( 'orderby', $this->tokens[ $value ]['content'], $this->tokens[ $prop ]['line'], $this->groups_cache['slow_orderby'] );
+				}
 			}
 		}
 
-		unset( $this->stackPtr );
+		$this->stackPtr = null;
 	}
 
 
@@ -125,7 +125,7 @@ class SlowOrderBySniff extends AbstractArrayAssignmentRestrictionsSniff {
 				MessageHelper::addMessage(
 					$this->phpcsFile,
 					'Ordering query results by %s is not performant.',
-					$this->stackPtr,
+					$this->stackPtr ?? 0,
 					true,
 					$val,
 					[ $val ]

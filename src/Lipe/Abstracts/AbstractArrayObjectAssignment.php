@@ -29,7 +29,7 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 	/**
 	 * The current stack pointer.
 	 *
-	 * @var int
+	 * @var ?int
 	 */
 	protected $stackPtr;
 
@@ -84,6 +84,6 @@ abstract class AbstractArrayObjectAssignment extends AbstractArrayAssignmentRest
 			}
 		}
 
-		unset( $this->stackPtr );
+		$this->stackPtr = null;
 	}
 }

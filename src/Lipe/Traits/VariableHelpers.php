@@ -117,9 +117,7 @@ trait VariableHelpers {
 		if ( false !== $next && T_VARIABLE === $this->tokens[ $next ]['code'] ) {
 			return $this->get_static_value_from_variable( $next );
 		}
-		if ( ! $this->is_scalar(
-			$next
-		) ) {
+		if ( false === $next || ! $this->is_scalar( $next ) ) {
 			return null;
 		}
 		return TextStrings::stripQuotes( $this->tokens[ $next ]['content'] );
