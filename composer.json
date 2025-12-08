@@ -22,6 +22,12 @@
     }
   },
   "minimum-stability": "stable",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/PHPCompatibility/PHPCompatibility"
+    }
+  ],
   "require": {
     "php": ">=7.4.0",
     "automattic/vipwpcs": "^3.0.1",
@@ -37,7 +43,7 @@
     "johnbillion/args": "^1",
     "lipemat/wordpress-libs": "^4",
     "roave/security-advisories": "dev-latest",
-    "phpcompatibility/php-compatibility": "dev-develop as 9.4.0"
+    "phpcompatibility/php-compatibility": "dev-master#9f7142356b5674164a6f6dbe12a7a1bcc632db21 as 9.4.0"
   },
   "scripts": {
     "git-hooks": "dev/bin/git-hooks.sh"
