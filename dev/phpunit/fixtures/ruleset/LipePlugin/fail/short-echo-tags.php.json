@@ -1,0 +1,38 @@
+{
+  "1": [
+    {
+      "source": "Generic.PHP.DisallowShortOpenTag.PossibleFound",
+      "type": "warning"
+    }
+  ],
+  "6": [
+    {
+      "source": "WordPress.Security.EscapeOutput.OutputNotEscaped",
+      "type": "error"
+    }
+  ],
+  "9": [
+    {
+      "source": "Universal.PHP.OneStatementInShortEchoTag.MultipleFound",
+      "type": "error"
+    },
+    {
+      "source": "Squiz.PHP.EmbeddedPhp.ContentBeforeEnd",
+      "type": "error"
+    },
+    {
+      "source": "WordPress.Security.EscapeOutput.OutputNotEscaped",
+      "type": "error"
+    }
+  ],
+  "8": [
+    {
+      "source": "WordPress.Security.EscapeOutput.OutputNotEscaped",
+      "type": "error"
+    },
+    {
+      "source": "Squiz.PHP.EmbeddedPhp.ContentAfterOpen",
+      "type": "error"
+    }
+  ]
+}

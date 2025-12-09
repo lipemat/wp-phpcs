@@ -30,10 +30,14 @@
         <include-pattern>*\.php$</include-pattern>
     </rule>
 
+    <rule ref="Universal.PHP.OneStatementInShortEchoTag" />
+
+
     <rule ref="WordPress">
         <exclude name="Generic.Commenting.DocComment" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
         <exclude name="Generic.Functions.CallTimePassByReference" />
+        <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing" />
 
         <exclude name="PEAR.Functions.FunctionCallSignature" />
