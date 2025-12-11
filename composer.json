@@ -22,12 +22,6 @@
     }
   },
   "minimum-stability": "stable",
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/PHPCompatibility/PHPCompatibility"
-    }
-  ],
   "require": {
     "php": ">=7.4.0",
     "automattic/vipwpcs": "^3.0.1",
