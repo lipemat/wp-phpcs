@@ -3,6 +3,9 @@
 composer.lock
 .phpunit.result.cache
 
+# Auto-generated benchmark fixture (re-emitted on demand).
+/.github/skills/benchmark-sniff/tools/generated-fixture.php
+
 
 # PHPStorm files
 # https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore

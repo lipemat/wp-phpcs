@@ -63,3 +63,9 @@ D:\xampp\php-8.4\php.exe E:\scripts\phpunit\phpunit-11\phpunit-11.phar
 Pipe long output through `| Out-String` (or `Select-Object -Last N`) in pwsh so it isn't truncated to an object table. The PHPUnit suite has two pre-existing warnings about `LipeSniffs` / `LipePluginSniffs` not extending `TestCase` — these are data-provider holders and are expected; only treat new failures as regressions.
 
 When adding a sniff: (1) create `Sniffs/<Cat>/<Name>Sniff.php`, (2) add unit test + fixtures, (3) add the code to `Fixtures::setUp()` sniffs list, (4) optionally add `fixtures/fail|pass` files with `.json` expectations, (5) document in `README.md`.
+
+## Performance benchmarking
+
+A per-sniff micro-benchmark harness lives in `.github/skills/benchmark-sniff/tools/` (`benchmark.php`, `compare.ps1`, `generate-fixture.php`, `diagnose.php`). Use it whenever a change touches a sniff's `register()` set, `process()` / `process_token()` body, any trait in `src/Lipe/Traits/`, or `src/Lipe/Abstracts/AbstractArrayObjectAssignment.php`. Skip for pure refactors.
+
+Full usage, noise-floor calibration (~±20ms), and reporting requirements are documented in the **`benchmark-sniff` skill** at `.github/skills/benchmark-sniff/SKILL.md`. Read that skill before running benchmarks.
