@@ -44,6 +44,21 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 	 */
 	public $supportedTokenizers = [ 'PHP' ];
 
+	/**
+	 * Tokens which `findStartOfStatement` / `findEndOfStatement` should not
+	 * treat as a statement boundary when walking out of nested constructs.
+	 *
+	 * Hoisted out of `process()` so the array is not rebuilt on every fire
+	 * (the sniff listens to `??`, `??=` and `T_INLINE_ELSE`, which are common).
+	 *
+	 * @var list<int|string>
+	 */
+	private static $skip_in_statement = [
+		\T_COLON,
+		\T_OPEN_PARENTHESIS,
+		\T_OPEN_SQUARE_BRACKET,
+	];
+
 
 	/**
 	 * Returns an array of tokens this test wants to listen for.
@@ -77,13 +92,8 @@ class DisallowNullCoalesceInConditionSniff implements Sniff {
 	 */
 	public function process( File $phpcsFile, $stackPtr ): void {
 		$tokens = $phpcsFile->getTokens();
-		$skip_in_statement = [
-			\T_COLON,
-			\T_OPEN_PARENTHESIS,
-			\T_OPEN_SQUARE_BRACKET,
-		];
-		$statement_start = $phpcsFile->findStartOfStatement( $stackPtr, $skip_in_statement );
-		$statement_end = $phpcsFile->findEndOfStatement( $stackPtr, $skip_in_statement );
+		$statement_start = $phpcsFile->findStartOfStatement( $stackPtr, self::$skip_in_statement );
+		$statement_end = $phpcsFile->findEndOfStatement( $stackPtr, self::$skip_in_statement );
 
 		$error = false;
 		if ( \T_IF === $tokens[ $statement_start ]['code'] ) {

@@ -57,6 +57,17 @@ class DisallowNullCoalesceInForLoopsSniff implements Sniff {
 		\T_FOR,
 	];
 
+	/**
+	 * Tokens which `findStartOfStatement` should not treat as a statement
+	 * boundary. Hoisted to avoid allocating on every fire.
+	 *
+	 * @var list<int|string>
+	 */
+	private static $skip_in_statement = [
+		\T_OPEN_PARENTHESIS,
+		\T_OPEN_SQUARE_BRACKET,
+	];
+
 
 	/**
 	 * Returns an array of tokens this test wants to listen for.
@@ -90,11 +101,7 @@ class DisallowNullCoalesceInForLoopsSniff implements Sniff {
 	 */
 	public function process( File $phpcsFile, $stackPtr ): void {
 		$tokens = $phpcsFile->getTokens();
-		$skip_in_statement = [
-			\T_OPEN_PARENTHESIS,
-			\T_OPEN_SQUARE_BRACKET,
-		];
-		$statement_start = $phpcsFile->findStartOfStatement( $stackPtr, $skip_in_statement );
+		$statement_start = $phpcsFile->findStartOfStatement( $stackPtr, self::$skip_in_statement );
 
 		$error = false;
 		if ( \in_array( $tokens[ $statement_start ]['code'], $this->disallowedStartTokens, true ) ) {

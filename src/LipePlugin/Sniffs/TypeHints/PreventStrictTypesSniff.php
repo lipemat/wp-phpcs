@@ -47,22 +47,28 @@ class PreventStrictTypesSniff implements Sniff {
 	 * @param int  $stackPtr                         The position of the current token
 	 *                                               in the stack passed in $tokens.
 	 *
-	 * @return void Integer stack pointer to skip forward or void to continue
-	 *                  normal file processing.
+	 * @return int|void Integer stack pointer to skip forward (we only care about
+	 *                  the first `<?php`) or void to continue normal processing.
 	 */
 	public function process( File $phpcsFile, $stackPtr ) {
 		$tokens = $phpcsFile->getTokens();
 
 		/**
-		 * We only care about the first <?php tag in the file.
+		 * `declare(strict_types=1)` is only valid in the very first PHP block
+		 * of a file. Skip everything past the first open tag — both for
+		 * correctness and to avoid a quadratic `findPrevious` walk on files
+		 * with many inline-HTML blocks.
 		 */
-		if ( false !== $phpcsFile->findPrevious( [ T_OPEN_TAG ], $stackPtr - 1, null, true ) ) {
-			return;
+		if ( $stackPtr > 0 ) {
+			$previous_tag = $phpcsFile->findPrevious( [ T_OPEN_TAG, T_OPEN_TAG_WITH_ECHO, T_INLINE_HTML ], $stackPtr - 1 );
+			if ( false !== $previous_tag ) {
+				return $phpcsFile->numTokens;
+			}
 		}
 
 		$declare = $phpcsFile->findNext( [ T_DECLARE ], $stackPtr + 1 );
 		if ( false === $declare ) {
-			return;
+			return $phpcsFile->numTokens;
 		}
 		$type    = $phpcsFile->findNext( [ T_STRING ], $declare + 1 );
 		$enabled = $phpcsFile->findNext( [ T_LNUMBER ], $declare + 1 );
@@ -70,6 +76,8 @@ class PreventStrictTypesSniff implements Sniff {
 		) {
 			$this->handleError( $phpcsFile, $declare, 'Found', 'declare( strict_types=1 );' );
 		}
+
+		return $phpcsFile->numTokens;
 	}
 
 

@@ -79,7 +79,8 @@ class SelfInClassSniff implements Sniff {
 	public function process( File $phpcsFile, $stackPtr ) {
 		$tokens = $phpcsFile->getTokens();
 
-		if ( \T_STRING === $tokens[ $stackPtr ]['code'] && 'self' !== \strtolower( $tokens[ $stackPtr ]['content'] )
+		if ( \T_STRING === $tokens[ $stackPtr ]['code'] &&
+			( 4 !== \strlen( $tokens[ $stackPtr ]['content'] ) || 0 !== \strcasecmp( $tokens[ $stackPtr ]['content'], 'self' ) )
 		) {
 			return;
 		}

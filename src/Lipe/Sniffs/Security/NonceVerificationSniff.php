@@ -72,6 +72,27 @@ class NonceVerificationSniff extends \WordPressCS\WordPress\Sniffs\Security\Nonc
 
 
 	/**
+	 * Cached anonymous-class shim exposing the protected
+	 * {@see AbstractFunctionRestrictionsSniff::is_targetted_token()} method.
+	 *
+	 * The shim is rebuilt only when the file under analysis changes (so the
+	 * inner `$phpcsFile` / `$tokens` properties stay in sync). Previously a new
+	 * instance was created on every matched `T_STRING`, which was the
+	 * dominant cost of this sniff on large files.
+	 *
+	 * @var AbstractFunctionRestrictionsSniff|null
+	 */
+	private $function_check_shim;
+
+	/**
+	 * `spl_object_id` of the file the {@see $function_check_shim} was built for.
+	 *
+	 * @var int|null
+	 */
+	private $function_check_shim_file;
+
+
+	/**
 	 * Overrides the parent to:
 	 * - Check for a proper function call.
 	 * - Point to the `INPUT_*` constant for checking superglobals.
@@ -109,28 +130,32 @@ class NonceVerificationSniff extends \WordPressCS\WordPress\Sniffs\Security\Nonc
 	 * @return bool
 	 */
 	public function is_target_function( int $stackPtr ): bool {
-		$functions = new class( $this->phpcsFile ) extends AbstractFunctionRestrictionsSniff {
-			/**
-			 * Set the `$phpcsFile` and `$tokens` properties in the way
-			 * normally done by `Sniff::process()`.
-			 *
-			 * @param File $phpcsFile - The current file being scanned.
-			 */
-			public function __construct( File $phpcsFile ) {
-				$this->phpcsFile = $phpcsFile;
-				$this->tokens = $phpcsFile->getTokens();
-			}
+		$file_id = \spl_object_id( $this->phpcsFile );
+		if ( null === $this->function_check_shim || $this->function_check_shim_file !== $file_id ) {
+			$this->function_check_shim = new class( $this->phpcsFile ) extends AbstractFunctionRestrictionsSniff {
+				/**
+				 * Set the `$phpcsFile` and `$tokens` properties in the way
+				 * normally done by `Sniff::process()`.
+				 *
+				 * @param File $phpcsFile - The current file being scanned.
+				 */
+				public function __construct( File $phpcsFile ) {
+					$this->phpcsFile = $phpcsFile;
+					$this->tokens = $phpcsFile->getTokens();
+				}
 
 
-			/**
-			 * Not applicable to the way we are using the abstract class.
-			 *
-			 * @return array{}
-			 */
-			public function getGroups(): array {
-				return [];
-			}
-		};
-		return $functions->is_targetted_token( $stackPtr );
+				/**
+				 * Not applicable to the way we are using the abstract class.
+				 *
+				 * @return array{}
+				 */
+				public function getGroups(): array {
+					return [];
+				}
+			};
+			$this->function_check_shim_file = $file_id;
+		}
+		return $this->function_check_shim->is_targetted_token( $stackPtr );
 	}
 }

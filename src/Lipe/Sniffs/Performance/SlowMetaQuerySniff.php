@@ -49,6 +49,22 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	protected $stackPtr;
 
 	/**
+	 * Cached `Tokens::$emptyTokens + T_EQUAL + T_DOUBLE_ARROW` set used in
+	 * {@see SlowMetaQuerySniff::process_token()}.
+	 *
+	 * @var array<int|string, int|string>|null
+	 */
+	private static $meta_query_assign_skip_tokens;
+
+	/**
+	 * Cached `Tokens::$emptyTokens + T_COMMA + T_CLOSE_SHORT_ARRAY` set used in
+	 * {@see SlowMetaQuerySniff::check_meta_query()}.
+	 *
+	 * @var array<int|string, int|string>|null
+	 */
+	private static $check_meta_query_skip_tokens;
+
+	/**
 	 * Include object operators in the list of tokens to check.
 	 *
 	 * Adds support for checking fluent interfaces such as:
@@ -92,62 +108,75 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 		$this->stackPtr = $stackPtr;
 		parent::process_token( $stackPtr );
 
-		// Check for fluent interface use.
-		if ( ! $this->is_object_assignment( $stackPtr ) ) {
+		// Fast-path: only T_OBJECT_OPERATOR feeds the fluent-interface branch
+		// (parent registers variable tokens). Bail before the expensive
+		// `is_object_assignment()` -> `get_class_name()` walk if the property
+		// after `->` isn't one we care about.
+		if ( T_OBJECT_OPERATOR !== $this->tokens[ $stackPtr ]['code'] ) {
 			return;
 		}
 		$prop = $this->phpcsFile->findNext( \T_STRING, ( $stackPtr + 1 ) );
 		if ( false === $prop ) {
 			return;
 		}
+		$prop_name = $this->tokens[ $prop ]['content'];
+		if ( 'meta_value' !== $prop_name && 'meta_query' !== $prop_name ) {
+			return;
+		}
+
+		// Now do the more expensive check.
+		if ( ! $this->is_object_assignment( $stackPtr ) ) {
+			return;
+		}
 
 		// Object assignment of meta_value.
-		if ( 'meta_value' === $this->tokens[ $prop ]['content'] ) {
+		if ( 'meta_value' === $prop_name ) {
 			$value = $this->phpcsFile->findNext( \T_CONSTANT_ENCAPSED_STRING, ( $prop + 1 ) );
 			if ( false !== $value ) {
 				$this->callback( 'meta_value', TextStrings::stripQuotes( $this->tokens[ $value ]['content'] ), $this->tokens[ $prop ]['line'], $this->groups_cache['slow_query'] );
 			}
-		} elseif ( 'meta_query' === $this->tokens[ $prop ]['content'] ) {
+		} elseif ( T_OPEN_PARENTHESIS === $this->tokens[ $prop + 1 ]['code'] ) {
 			// Fluent interface callback.
-			if ( T_OPEN_PARENTHESIS === $this->tokens[ $prop + 1 ]['code'] ) {
-				$call = $this->phpcsFile->findNext( \T_STRING, ( $prop + 2 ) );
-				if ( false !== $call && ! \in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists', 'relation' ], true ) ) {
-					MessageHelper::addMessage(
-						$this->phpcsFile,
-						'Using %s comparison in `meta_query` is non-performant.',
-						$call,
-						true,
-						'NonPerformant',
-						[ $this->tokens[ $call ]['content'] ]
-					);
-				}
-			} else {
-				// Object assignment of meta_query.
-				$next = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_DOUBLE_ARROW ] ), $prop + 1, null, true );
-				if ( false === $next ) {
-					$this->check_compare_value( '__dynamic', $prop );
-				} elseif ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
-					// Attempt to detect a sub fluent interface.
-					if ( false !== $this->get_class_name( $next ) ) {
-						$compare = $this->get_assigned_properties( $next );
-						if ( isset( $compare['compare'] ) ) {
-							$this->check_compare_value( $this->tokens[ $compare['compare'] ]['content'], $next );
+			$call = $this->phpcsFile->findNext( \T_STRING, ( $prop + 2 ) );
+			if ( false !== $call && ! \in_array( $this->tokens[ $call ]['content'], [ 'exists', 'not_exists', 'relation' ], true ) ) {
+				MessageHelper::addMessage(
+					$this->phpcsFile,
+					'Using %s comparison in `meta_query` is non-performant.',
+					$call,
+					true,
+					'NonPerformant',
+					[ $this->tokens[ $call ]['content'] ]
+				);
+			}
+		} else {
+			// Object assignment of meta_query.
+			if ( null === self::$meta_query_assign_skip_tokens ) {
+				self::$meta_query_assign_skip_tokens = array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_DOUBLE_ARROW ] );
+			}
+			$next = $this->phpcsFile->findNext( self::$meta_query_assign_skip_tokens, $prop + 1, null, true );
+			if ( false === $next ) {
+				$this->check_compare_value( '__dynamic', $prop );
+			} elseif ( T_VARIABLE === $this->tokens[ $next ]['code'] ) {
+				// Attempt to detect a sub fluent interface.
+				if ( false !== $this->get_class_name( $next ) ) {
+					$compare = $this->get_assigned_properties( $next );
+					if ( isset( $compare['compare'] ) ) {
+						$this->check_compare_value( $this->tokens[ $compare['compare'] ]['content'], $next );
+						return;
+					}
+				} elseif ( $this->is_variable_an_array( $next ) ) {
+					$compare = $this->find_key_in_array( $next, 'compare' );
+					if ( false !== $compare ) {
+						$compare = $this->get_static_value_from_variable( $compare );
+						if ( null !== $compare ) {
+							$this->check_compare_value( $compare, $next );
 							return;
 						}
-					} elseif ( $this->is_variable_an_array( $next ) ) {
-						$compare = $this->find_key_in_array( $next, 'compare' );
-						if ( false !== $compare ) {
-							$compare = $this->get_static_value_from_variable( $compare );
-							if ( null !== $compare ) {
-								$this->check_compare_value( $compare, $next );
-								return;
-							}
-						}
 					}
-					$this->check_compare_value( '__dynamic', $prop );
-				} else {
-					$this->check_meta_query_item( $next );
 				}
+				$this->check_compare_value( '__dynamic', $prop );
+			} else {
+				$this->check_meta_query_item( $next );
 			}
 		}
 	}
@@ -218,7 +247,10 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 * Recursively check a meta_query value.
 	 */
 	protected function check_meta_query(): bool {
-		$array_open = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_COMMA, T_CLOSE_SHORT_ARRAY ] ), $this->stackPtr + 1, null, true );
+		if ( null === self::$check_meta_query_skip_tokens ) {
+			self::$check_meta_query_skip_tokens = array_merge( Tokens::$emptyTokens, [ T_COMMA, T_CLOSE_SHORT_ARRAY ] );
+		}
+		$array_open = $this->phpcsFile->findNext( self::$check_meta_query_skip_tokens, $this->stackPtr + 1, null, true );
 		if ( false !== $array_open ) {
 			$this->check_meta_query_item( $array_open );
 		}
