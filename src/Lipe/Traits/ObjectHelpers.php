@@ -35,6 +35,16 @@ use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
  */
 trait ObjectHelpers {
 	/**
+	 * Cached "T_EQUAL + empty tokens" set used by
+	 * {@see ObjectHelpers::get_assigned_properties()} and
+	 * {@see ObjectHelpers::get_value_from_prop()}.
+	 *
+	 * @var array<int|string, int|string>|null
+	 */
+	private static $assigned_properties_equal_tokens;
+
+
+	/**
 	 * Override the parent method to also exclude `new` statements
 	 * for things like `new Get_Posts()`.
 	 *
@@ -106,14 +116,17 @@ trait ObjectHelpers {
 			return false;
 		}
 
-		$next = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ T_EQUAL ] ), $assignment + 1, null, true, null, true );
+		$next = $this->phpcsFile->findNext( $this->empty_plus_equal_tokens(), $assignment + 1, null, true, null, true );
 		if ( false === $next ) {
 			return false;
 		}
 		if ( T_NEW !== $this->tokens[ $next ]['code'] ) {
 			return false;
 		}
-		$class = $this->phpcsFile->findNext( T_STRING, $next + 1 );
+		// Bound the class-name search to the end of the statement so we don't
+		// scan the rest of the file when an assignment is malformed.
+		$statement_end = $this->phpcsFile->findEndOfStatement( $next );
+		$class = $this->phpcsFile->findNext( T_STRING, $next + 1, $statement_end + 1 );
 		if ( false === $class ) {
 			return false;
 		}
@@ -135,10 +148,16 @@ trait ObjectHelpers {
 			return [];
 		}
 
+		if ( null === self::$assigned_properties_equal_tokens ) {
+			self::$assigned_properties_equal_tokens = \array_merge( [ T_EQUAL ], Tokens::$emptyTokens );
+		}
+
 		$properties = [];
 		$stackPtr = $assignment;
+		$content = $this->tokens[ $token ]['content'];
+		// Bound at $token: properties assigned after the usage can't affect it.
 		while ( $stackPtr > 0 && $stackPtr < $token ) {
-			$stackPtr = $this->phpcsFile->findNext( T_VARIABLE, $stackPtr + 1, null, false, $this->tokens[ $token ]['content'] );
+			$stackPtr = $this->phpcsFile->findNext( T_VARIABLE, $stackPtr + 1, $token, false, $content );
 			if ( false === $stackPtr ) {
 				break;
 			}
@@ -152,7 +171,7 @@ trait ObjectHelpers {
 				continue;
 			}
 
-			$value = $this->phpcsFile->findNext( \array_merge( [ T_EQUAL ], Tokens::$emptyTokens ), $property + 1, null, true, null, true );
+			$value = $this->phpcsFile->findNext( self::$assigned_properties_equal_tokens, $property + 1, null, true, null, true );
 			if ( false === $value ) {
 				continue;
 			}
@@ -193,7 +212,10 @@ trait ObjectHelpers {
 			return false;
 		}
 		$end = $this->phpcsFile->findEndOfStatement( $prop_token );
-		$start = $this->phpcsFile->findNext( \array_merge( [ T_EQUAL ], Tokens::$emptyTokens ), $prop_token + 1, null, true, null, true );
+		if ( null === self::$assigned_properties_equal_tokens ) {
+			self::$assigned_properties_equal_tokens = \array_merge( [ T_EQUAL ], Tokens::$emptyTokens );
+		}
+		$start = $this->phpcsFile->findNext( self::$assigned_properties_equal_tokens, $prop_token + 1, null, true, null, true );
 		if ( false === $start ) {
 			return false;
 		}

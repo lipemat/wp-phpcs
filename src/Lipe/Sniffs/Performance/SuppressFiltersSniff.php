@@ -67,17 +67,22 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 			return;
 		}
 
-		if ( \in_array( $this->tokens[ $array_open ]['code'], static::$array_tokens, true ) ) {
+		$group = $this->groups[ $group_name ];
+		$is_error = ( 'error' === $group['type'] );
+		$error_code = MessageHelper::stringToErrorcode( $matched_content );
+		$open_code = $this->tokens[ $array_open ]['code'];
+
+		if ( \in_array( $open_code, static::$array_tokens, true ) ) {
 			$compare_element = $this->find_key_in_array( $array_open, 'suppress_filters' );
 
 			// No suppress_filters key found.
 			if ( false === $compare_element ) {
 				MessageHelper::addMessage(
 					$this->phpcsFile,
-					$this->groups[ $group_name ]['message'],
+					$group['message'],
 					$stackPtr,
-					( 'error' === $this->groups[ $group_name ]['type'] ),
-					MessageHelper::stringToErrorcode( $matched_content ),
+					$is_error,
+					$error_code,
 					[ $matched_content ]
 				);
 				return;
@@ -90,7 +95,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 					'Setting "suppress_filters" parameter to true in %s() is prohibited. More Info: https://docs.wpvip.com/technical-references/caching/uncached-functions/.',
 					$stackPtr,
 					true,
-					MessageHelper::stringToErrorcode( $matched_content ),
+					$error_code,
 					[ $matched_content ]
 				);
 			}
@@ -98,7 +103,10 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 			return;
 		}
 
-		if ( Helpers::isTokenInsideFunctionCallArgument( $this->phpcsFile, $array_open ) ) {
+		// Only the T_VARIABLE branch requires the (expensive) variable-tracking
+		// helpers below. Literals, nulls, function calls, etc. fall through to
+		// the "no arguments" check at the bottom (where applicable).
+		if ( T_VARIABLE === $open_code && Helpers::isTokenInsideFunctionCallArgument( $this->phpcsFile, $array_open ) ) {
 			$variable = $array_open;
 			if ( $this->is_variable_an_array( $variable ) ) {
 				$assigned = $this->get_assigned_keys_from_variable( $variable );
@@ -117,10 +125,10 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 			if ( ! isset( $assigned['suppress_filters'] ) ) {
 				MessageHelper::addMessage(
 					$this->phpcsFile,
-					$this->groups[ $group_name ]['message'],
+					$group['message'],
 					$stackPtr,
-					( 'error' === $this->groups[ $group_name ]['type'] ),
-					MessageHelper::stringToErrorcode( $matched_content ),
+					$is_error,
+					$error_code,
 					[ $matched_content ]
 				);
 				return;
@@ -133,7 +141,7 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 					'Setting "suppress_filters" parameter to true in %s() is prohibited. More Info: https://docs.wpvip.com/technical-references/caching/uncached-functions/.',
 					$stackPtr,
 					true,
-					MessageHelper::stringToErrorcode( $matched_content ),
+					$error_code,
 					[ $matched_content ]
 				);
 				return;
@@ -141,13 +149,13 @@ class SuppressFiltersSniff extends AbstractFunctionRestrictionsSniff {
 		}
 
 		// Used without arguments.
-		if ( \T_CLOSE_PARENTHESIS === $this->tokens[ $array_open ]['code'] ) {
+		if ( \T_CLOSE_PARENTHESIS === $open_code ) {
 			MessageHelper::addMessage(
 				$this->phpcsFile,
-				$this->groups[ $group_name ]['message'],
+				$group['message'],
 				$stackPtr,
-				( 'error' === $this->groups[ $group_name ]['type'] ),
-				MessageHelper::stringToErrorcode( $matched_content ),
+				$is_error,
+				$error_code,
 				[ $matched_content ]
 			);
 		}

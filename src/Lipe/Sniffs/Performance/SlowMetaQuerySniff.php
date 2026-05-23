@@ -48,7 +48,6 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 	 */
 	protected $stackPtr;
 
-
 	/**
 	 * Include object operators in the list of tokens to check.
 	 *
@@ -199,7 +198,7 @@ class SlowMetaQuerySniff extends AbstractArrayAssignmentRestrictionsSniff {
 			return false;
 		}
 
-		$array_open = $this->phpcsFile->findPrevious( static::$array_tokens, $this->stackPtr - 1 );
+		$array_open = $this->phpcsFile->findPrevious( static::$array_tokens, $this->stackPtr - 1, $this->get_enclosing_scope_start( $this->stackPtr ) );
 		if ( false !== $array_open ) {
 			$compare_element = $this->find_key_in_array( $array_open, 'meta_compare' );
 			if ( false !== $compare_element ) {

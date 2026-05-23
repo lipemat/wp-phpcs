@@ -42,7 +42,7 @@ class CalcFoundRowsSniff implements Sniff {
 
 
 	/**
-	 * Processes this test, when one of its tokens is encountered.
+	 * Processes this test when one of its tokens is encountered.
 	 *
 	 * @param File $phpcsFile                        The file being scanned.
 	 * @param int  $stackPtr                         The position of the current token

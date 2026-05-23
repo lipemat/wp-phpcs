@@ -26,23 +26,24 @@ trait ArrayHelpers {
 	use VariableHelpers;
 
 	/**
-	 * A list of tokenizers this sniff supports.
-	 *
-	 * @var string[]
-	 */
-	public $supportedTokenizers = [ 'PHP' ];
-
-	/**
 	 * Tokens that indicate an array.
 	 *
 	 * @var array<int|string>
 	 */
-	public static $array_tokens = [
+	public static array $array_tokens = [
 		T_ARRAY,
 		T_OPEN_SHORT_ARRAY,
 		T_OPEN_SQUARE_BRACKET,
 		T_ARRAY_HINT,
 	];
+
+	/**
+	 * Cached "empty + T_EQUAL_CLOSE_SQUARE_BRACKET" token set used by
+	 * {@see ArrayHelpers::get_array_access_values()}.
+	 *
+	 * @var array<int|string, int|string>
+	 */
+	private static array $array_access_skip_tokens;
 
 
 	/**
@@ -63,7 +64,7 @@ trait ArrayHelpers {
 		if ( false === $assignment ) {
 			return false;
 		}
-		$next = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
+		$next = $this->phpcsFile->findNext( $this->empty_plus_equal_tokens(), $assignment + 1, null, true, null, true );
 		if ( false === $next ) {
 			return false;
 		}
@@ -125,13 +126,17 @@ trait ArrayHelpers {
 			return $values;
 		}
 
+		if ( ! isset( self::$array_access_skip_tokens ) ) {
+			self::$array_access_skip_tokens = \array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_CLOSE_SQUARE_BRACKET ] );
+		}
+
 		while ( $assignment < $token ) {
-			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, null, false, $this->tokens[ $token ]['content'] );
+			$assignment = $this->phpcsFile->findNext( T_VARIABLE, $assignment + 1, $token, false, $this->tokens[ $token ]['content'] );
 			if ( false === $assignment ) {
 				break;
 			}
 
-			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, null, false, null, true );
+			$bracket = $this->phpcsFile->findNext( T_OPEN_SQUARE_BRACKET, $assignment + 1, $token, false, null, true );
 			if ( false === $bracket ) {
 				break;
 			}
@@ -139,7 +144,7 @@ trait ArrayHelpers {
 			$key = $this->phpcsFile->findNext( Tokens::$emptyTokens, $bracket + 1, null, true );
 			if ( false !== $key && T_CONSTANT_ENCAPSED_STRING === $this->tokens[ $key ]['code'] ) {
 				$index = TextStrings::stripQuotes( $this->tokens[ $key ]['content'] );
-				$value = $this->phpcsFile->findNext( array_merge( Tokens::$emptyTokens, [ T_EQUAL, T_CLOSE_SQUARE_BRACKET ] ), $key + 1, null, true );
+				$value = $this->phpcsFile->findNext( self::$array_access_skip_tokens, $key + 1, null, true );
 				if ( false !== $value ) {
 					$values[ $index ] = $value;
 				}
@@ -403,7 +408,7 @@ trait ArrayHelpers {
 			if ( false === $assignment ) {
 				return false;
 			}
-			$array_open = $this->phpcsFile->findNext( \array_merge( Tokens::$emptyTokens, [ \T_EQUAL ] ), $assignment + 1, null, true, null, true );
+			$array_open = $this->phpcsFile->findNext( $this->empty_plus_equal_tokens(), $assignment + 1, null, true, null, true );
 			if ( false !== $array_open && T_ARRAY_CAST === $this->tokens[ $array_open ]['code'] ) {
 				$array_open = $this->phpcsFile->findNext( static::$array_tokens, $array_open + 1, null, false, null, true );
 			}
