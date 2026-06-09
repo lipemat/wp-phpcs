@@ -38,6 +38,8 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
         <exclude name="Generic.Functions.CallTimePassByReference" />
         <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
+        <!-- Shells out to `php -l` per file (by far the most expensive sniff). -->
+        <exclude name="Generic.PHP.Syntax" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing" />
 
         <exclude name="PEAR.Functions.FunctionCallSignature" />

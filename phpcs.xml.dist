@@ -32,6 +32,9 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing.SpaceAfterIncrement" />
 
+        <!-- Shells out to `php -l` per file (by far the most expensive sniff). Syntax is already caught by the runtime, IDE, CI, and the pre-commit lint hook. -->
+        <exclude name="Generic.PHP.Syntax" />
+
         <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
 
         <exclude name="WordPress.Files.FileName" />

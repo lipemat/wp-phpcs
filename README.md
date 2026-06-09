@@ -91,6 +91,28 @@ This package ships with some _optional_ `LipePlugin` namespaced sniffs designed 
 3. `<rule ref="LipePlugin.TypeHints.PrivateInClass" />` for distributed packages, which should not use `private` to improve extensibility.
 4. `<rule ref="LipePlugin.TypeHints.PreventStrictTypes" />` for distributed packages, which should not use `strict_type` to improve compatibility.
 
+## Performance
+
+These standards are tuned to keep scans fast:
+
+1. `Generic.PHP.Syntax` is excluded. It shells out to `php -l` once per file, making it
+   by far the most expensive sniff (it accounted for ~26% of total scan time in profiling).
+   Syntax errors are already surfaced by the PHP runtime, your IDE, CI, and the included
+   `git-hooks/pre-commit` lint step, so the sniff is redundant.
+2. Enable caching in your project ruleset so unchanged files are skipped between runs:
+   ```xml
+   <arg name="cache" value="./.phpcs.cache" />
+   ```
+3. `phpcs -p` (parallel) requires the `pcntl` extension, which is not available on Windows,
+   so it silently runs serially there. Rely on caching for repeat-run speed instead.
+
+> Note: narrowing `testVersion` (e.g. `8.4` vs an open-ended `8.4-`) does **not** speed up
+> scans. `PHPCompatibility` registers and runs every one of its sniffs against every token
+> regardless of `testVersion`; the setting only filters which detected issues get reported.
+> Profiling confirmed the two are equivalent within run-to-run noise.
+
+To profile your own project, run `phpcs --report=performance --no-cache` to see per-sniff timings.
+
 ## Other Notes
 
 The `phpcs-sample.xml` has many things excluded. This is because some things don't really fit in with WordPress standards. You can remove any of `<exclude>` items to make more strict. Remove them all if you really want to make your code strict.

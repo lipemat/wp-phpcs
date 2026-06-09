@@ -31,7 +31,8 @@
     <rule ref="PHPCompatibilityWP">
         <include-pattern>*\.php$</include-pattern>
 
-        <exclude name="PHPCompatibility.Syntax.RemovedCurlyBraceArrayAccess.Removed" />
+        <exclude name="PHPCompatibility.Syntax.ForbiddenCallTimePassByReference" />
+        <exclude name="PHPCompatibility.Syntax.RemovedCurlyBraceArrayAccess" />
     </rule>
 
     <!-- Rules available from PHPCSExtra -->
@@ -57,6 +58,8 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.Functions.CallTimePassByReference" />
         <exclude name="Generic.PHP.DisallowShortOpenTag.EchoFound" />
+        <!-- Shells out to `php -l` per file (by far the most expensive sniff). -->
+        <exclude name="Generic.PHP.Syntax" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
         <exclude name="Generic.WhiteSpace.IncrementDecrementSpacing" />
 

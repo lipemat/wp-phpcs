@@ -14,10 +14,15 @@
     <exclude-pattern>*/dev/*</exclude-pattern>
     <exclude-pattern>*/dist/*</exclude-pattern>
     <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*/*.l10n.php</exclude-pattern>
+    <exclude-pattern>*/jest/*</exclude-pattern>
     <exclude-pattern>*/js/*</exclude-pattern>
     <exclude-pattern>*/local-config\.php</exclude-pattern>
     <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/phpunit/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/wp-unit/*</exclude-pattern>
+    <exclude-pattern>*/wp/*</exclude-pattern>
 
     <config name="minimum_supported_wp_version" value="5.9" />
 
@@ -30,6 +35,9 @@
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+
+        <!-- Shells out to `php -l` per file (by far the most expensive sniff). Syntax is already caught by the runtime, IDE, CI, and the pre-commit lint hook. -->
+        <exclude name="Generic.PHP.Syntax" />
 
         <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
         <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
