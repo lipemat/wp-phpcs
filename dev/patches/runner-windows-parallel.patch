@@ -1,0 +1,289 @@
+From: lipemat/wp-phpcs
+Subject: Enable --parallel on Windows via proc_open fallback
+PHPCS's Runner only parallelizes via pcntl_fork, which is unavailable on
+Windows PHP builds. This patch adds a proc_open-based strategy that is
+selected automatically when pcntl is missing. The pcntl path is left
+untouched so POSIX behaviour is unchanged.
+The Windows path re-invokes phpcs once per shard with --report=json
+--report-file=<tmp>, then merges each child's JSON report into the
+parent Reporter via DummyFile so all configured report formats receive
+the violations exactly as if the parent had processed the file.--- a/src/Runner.php
++++ b/src/Runner.php
+@@ -429,8 +429,10 @@
+             $this->config->parallel = 1;
+         }
+ 
+-        // If the PCNTL extension isn't installed, we can't fork.
+-        if (function_exists('pcntl_fork') === false) {
++        // Determine which parallelism strategy is available on this platform.
++        $canPcntl    = function_exists('pcntl_fork');
++        $canProcOpen = (function_exists('proc_open') === true && function_exists('proc_get_status') === true);
++        if ($canPcntl === false && $canProcOpen === false) {
+             $this->config->parallel = 1;
+         }
+ 
+@@ -459,7 +461,7 @@
+                 $numProcessed++;
+                 $this->printProgress($file, $numFiles, $numProcessed);
+             }
+-        } else {
++        } else if ($canPcntl === true) {
+             // Batching and forking.
+             $childProcs  = [];
+             $numPerBatch = ceil($numFiles / $this->config->parallel);
+@@ -561,6 +563,11 @@
+             if ($success === false) {
+                 throw new RuntimeException('One or more child processes failed to run');
+             }
++        } else {
++            $success = $this->runWindowsParallel($todo, $numFiles);
++            if ($success === false) {
++                throw new RuntimeException('One or more child processes failed to run');
++            }
+         }//end if
+ 
+         restore_error_handler();
+@@ -983,4 +990,243 @@
+     }//end registerOutOfMemoryShutdownMessage()
+ 
+ 
++    /**
++     * Run batched file processing using proc_open instead of pcntl_fork.
++     *
++     * Used on Windows and any other platform where the PCNTL extension is
++     * unavailable. Each batch re-invokes the same phpcs entry script with a
++     * sliced file list and --report=json, then merges the JSON output back
++     * into the parent Reporter so the configured reports include every
++     * violation reported by the children.
++     *
++     * @param \PHP_CodeSniffer\Files\FileList $todo     The full file list.
++     * @param int                             $numFiles Total non-ignored file count for progress display.
++     *
++     * @return bool True when every child exited with a phpcs-compatible status code.
++     */
++    private function runWindowsParallel($todo, $numFiles)
++    {
++        $paths = [];
++        foreach ($todo as $path => $file) {
++            if ($file->ignored === false) {
++                $paths[] = $path;
++            }
++        }
++
++        $numFiles = count($paths);
++        if ($numFiles === 0) {
++            return true;
++        }
++
++        $parallel    = max(1, (int) $this->config->parallel);
++        $numPerBatch = (int) ceil($numFiles / $parallel);
++
++        $script = '';
++        if (isset($_SERVER['SCRIPT_FILENAME']) === true && is_string($_SERVER['SCRIPT_FILENAME']) === true) {
++            $script = $_SERVER['SCRIPT_FILENAME'];
++        }
++
++        if ($script === '' || file_exists($script) === false) {
++            // Cannot locate the phpcs entry script - fall back to serial.
++            $numProcessed = 0;
++            foreach ($paths as $path) {
++                $file = $todo[$path];
++                $this->processFile($file);
++                $numProcessed++;
++                $this->printProgress($file, $numFiles, $numProcessed);
++            }
++
++            return true;
++        }
++
++        $childArgs = $this->buildWindowsChildArgs();
++
++        $children     = [];
++        $totalBatches = 0;
++        for ($batch = 0; $batch < $parallel; $batch++) {
++            $startAt = ($batch * $numPerBatch);
++            if ($startAt >= $numFiles) {
++                break;
++            }
++
++            $slice = array_slice($paths, $startAt, $numPerBatch);
++            if (count($slice) === 0) {
++                continue;
++            }
++
++            $outFile = tempnam(sys_get_temp_dir(), 'phpcs-child-');
++            $cmd     = array_merge(
++                [PHP_BINARY, $script],
++                $childArgs,
++                ['--parallel=1', '-q', '--no-cache', '--report=json', '--report-file='.$outFile],
++                $slice
++            );
++
++            $proc = proc_open(
++                $cmd,
++                [
++                    0 => ['pipe', 'r'],
++                    1 => ['pipe', 'w'],
++                    2 => ['pipe', 'w'],
++                ],
++                $pipes
++            );
++
++            if (is_resource($proc) === false) {
++                @unlink($outFile);
++                return false;
++            }
++
++            fclose($pipes[0]);
++            stream_set_blocking($pipes[1], false);
++            stream_set_blocking($pipes[2], false);
++
++            $children[]    = [
++                'proc'    => $proc,
++                'stdout'  => $pipes[1],
++                'stderr'  => $pipes[2],
++                'outFile' => $outFile,
++            ];
++            $totalBatches++;
++        }
++
++        $success      = true;
++        $numProcessed = 0;
++        foreach ($children as $child) {
++            $stderr = '';
++            while (feof($child['stderr']) === false) {
++                $chunk = fread($child['stderr'], 8192);
++                if ($chunk === false || $chunk === '') {
++                    usleep(10000);
++                    if (feof($child['stderr']) === true) {
++                        break;
++                    }
++                }
++
++                $stderr .= (string) $chunk;
++            }
++
++            while (feof($child['stdout']) === false) {
++                fread($child['stdout'], 8192);
++            }
++
++            fclose($child['stdout']);
++            fclose($child['stderr']);
++            $exit = proc_close($child['proc']);
++
++            if (file_exists($child['outFile']) === true) {
++                $raw  = file_get_contents($child['outFile']);
++                @unlink($child['outFile']);
++                $json = ($raw === false || $raw === '') ? null : json_decode($raw, true);
++                if (is_array($json) === true) {
++                    $this->mergeChildJsonReport($json);
++                }
++            }
++
++            // PHPCS exits with 1/2 when violations were found; only treat other codes as failure.
++            if ($exit !== 0 && $exit !== 1 && $exit !== 2) {
++                $success = false;
++                if ($stderr !== '') {
++                    fwrite(STDERR, $stderr);
++                }
++            }
++
++            $numProcessed++;
++            $progressFile = new DummyFile('', $this->ruleset, $this->config);
++            $progressFile->setErrorCounts(0, 0, 0, 0);
++            $this->printProgress($progressFile, $totalBatches, $numProcessed);
++        }
++
++        return $success;
++
++    }//end runWindowsParallel()
++
++
++    /**
++     * Build the CLI argument list passed to each Windows child process.
++     *
++     * Strips file path positional arguments and any --parallel flag from the
++     * current invocation so the child receives the same flags but operates
++     * only on its assigned slice.
++     *
++     * @return array<int, string>
++     */
++    private function buildWindowsChildArgs()
++    {
++        $argv = [];
++        if (isset($_SERVER['argv']) === true && is_array($_SERVER['argv']) === true) {
++            $argv = $_SERVER['argv'];
++        }
++
++        array_shift($argv);
++        $out = [];
++        foreach ($argv as $arg) {
++            if (is_string($arg) === false || $arg === '') {
++                continue;
++            }
++
++            if (strncmp($arg, '--parallel', 10) === 0) {
++                continue;
++            }
++
++            if (strncmp($arg, '-', 1) !== 0 && @file_exists($arg) === true) {
++                continue;
++            }
++
++            $out[] = $arg;
++        }
++
++        return $out;
++
++    }//end buildWindowsChildArgs()
++
++
++    /**
++     * Merge a child JSON report into the parent Reporter.
++     *
++     * Replays each child violation against a DummyFile and routes it through
++     * Reporter::cacheFileReport so every configured report format receives
++     * the data exactly as if the parent had processed the file itself.
++     *
++     * @param array<string, mixed> $json Decoded JSON report from a child phpcs invocation.
++     *
++     * @return void
++     */
++    private function mergeChildJsonReport(array $json)
++    {
++        if (isset($json['files']) === false || is_array($json['files']) === false) {
++            return;
++        }
++
++        foreach ($json['files'] as $path => $info) {
++            if (is_array($info) === false) {
++                continue;
++            }
++
++            $dummy    = new DummyFile('phpcs_input_file: '.(string) $path."\n", $this->ruleset, $this->config);
++            $messages = (isset($info['messages']) === true && is_array($info['messages']) === true) ? $info['messages'] : [];
++            foreach ($messages as $msg) {
++                if (is_array($msg) === false) {
++                    continue;
++                }
++
++                $message  = isset($msg['message']) ? (string) $msg['message'] : '';
++                $source   = isset($msg['source']) && $msg['source'] !== '' ? (string) $msg['source'] : 'Internal.Unknown';
++                $severity = isset($msg['severity']) ? (int) $msg['severity'] : 5;
++                $fixable  = isset($msg['fixable']) ? (bool) $msg['fixable'] : false;
++                $type     = isset($msg['type']) ? (string) $msg['type'] : 'ERROR';
++
++                if ($type === 'WARNING') {
++                    $dummy->addWarning($message, null, $source, [], $severity, $fixable);
++                } else {
++                    $dummy->addError($message, null, $source, [], $severity, $fixable);
++                }
++            }
++
++            $this->reporter->cacheFileReport($dummy);
++        }
++
++    }//end mergeChildJsonReport()
++
++
+ }//end class

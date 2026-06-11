@@ -103,8 +103,27 @@ These standards are tuned to keep scans fast:
    ```xml
    <arg name="cache" value="./.phpcs.cache" />
    ```
-3. `phpcs -p` (parallel) requires the `pcntl` extension, which is not available on Windows,
-   so it silently runs serially there. Rely on caching for repeat-run speed instead.
+3. `phpcs -p` (parallel) requires the `pcntl` extension, which is not available on Windows.
+   This package ships a composer patch (`dev/patches/runner-windows-parallel.patch`) that
+   adds a `proc_open`-based fallback to PHPCS's `Runner`, so `--parallel=N` works on
+   Windows too. The patch is applied automatically by `cweagans/composer-patches` during
+   `composer install` of this package. The POSIX `pcntl_fork` path is left untouched.
+   - To inherit the patch when consuming this package as a dependency, add the following
+     to your root `composer.json`:
+     ```json
+     {
+       "config": {
+         "allow-plugins": {
+           "cweagans/composer-patches": true
+         }
+       },
+       "extra": {
+         "enable-patching": true
+       }
+     }
+     ```
+   - Each Windows child re-loads the ruleset, so parallelism only pays off on larger file
+     counts (rule of thumb: > ~50 files). Combine with `--cache` for the best results.
 
 > Note: narrowing `testVersion` (e.g. `8.4` vs an open-ended `8.4-`) does **not** speed up
 > scans. `PHPCompatibility` registers and runs every one of its sniffs against every token

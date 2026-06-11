@@ -16,6 +16,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpcsstandards/phpcsextra" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dealerdirect/phpcodesniffer-composer-installer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sirbrillig/phpcs-variable-analysis" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/johnbillion/args" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/lipemat/wordpress-libs" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cweagans/composer-patches" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -18,6 +18,7 @@
     "preferred-install": "dist",
     "sort-packages": true,
     "allow-plugins": {
+      "cweagans/composer-patches": true,
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
@@ -34,7 +35,17 @@
   },
   "require-dev": {
     "ext-json": "*",
+    "cweagans/composer-patches": "^1.7",
     "roave/security-advisories": "dev-latest"
+  },
+  "extra": {
+    "patches": {
+      "squizlabs/php_codesniffer": {
+        "Enable --parallel on Windows via proc_open fallback": "dev/patches/runner-windows-parallel.patch"
+      }
+    },
+    "composer-exit-on-patch-failure": true,
+    "enable-patching": true
   },
   "scripts": {
     "git-hooks": "dev/bin/git-hooks.sh"
