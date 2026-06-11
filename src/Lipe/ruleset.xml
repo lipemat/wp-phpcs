@@ -5,8 +5,10 @@
     <arg name="extensions" value="php/PHP" />
     <!-- Show sniff codes in all reports and progress when running. -->
     <arg value="sp" />
-    <!-- Show colors in reports -->
+    <!-- Show colors in reports. -->
     <arg name="colors" />
+    <!-- Allow parallel processing to improve performance. -->
+    <arg name="parallel" value="8" />
 
     <!-- Exclude paths -->
     <exclude-pattern>*/dev/*</exclude-pattern>
