@@ -124,6 +124,11 @@ These standards are tuned to keep scans fast:
      ```
    - Each Windows child re-loads the ruleset, so parallelism only pays off on larger file
      counts (rule of thumb: > ~50 files). Combine with `--cache` for the best results.
+   - To identify slow files in a large scan, set `PHPCS_BATCH_TIMING=1` before running
+     phpcs. After the run, the slowest 7 batches (with their file lists and wall-clock
+     elapsed times) are printed to STDERR. Override the count with
+     `PHPCS_BATCH_TIMING_TOP=N`. Diagnostic is off by default and has zero overhead when
+     disabled.
 
 > Note: narrowing `testVersion` (e.g. `8.4` vs an open-ended `8.4-`) does **not** speed up
 > scans. `PHPCompatibility` registers and runs every one of its sniffs against every token

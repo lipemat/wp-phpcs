@@ -4,12 +4,22 @@ PHPCS's Runner only parallelizes via pcntl_fork, which is unavailable on
 Windows PHP builds. This patch adds a proc_open-based strategy that is
 selected automatically when pcntl is missing. The pcntl path is left
 untouched so POSIX behaviour is unchanged.
-The Windows path re-invokes phpcs once per shard with --report=json
---report-file=<tmp>, then merges each child's JSON report into the
-parent Reporter via DummyFile so all configured report formats receive
-the violations exactly as if the parent had processed the file.--- a/src/Runner.php
+Each batch is launched with proc_open, with the child's stdout/stderr
+redirected to temp FILES (not pipes) to avoid the Windows pipe-buffer
+deadlock, and the file list passed via --file-list. The child writes a
+JSON report to --report-file; the parent merges each report into its
+Reporter via DummyFile so all configured report formats receive the
+violations, and prints one progress dot per file (reflecting E/W/S).
+Caching: when --cache is enabled, each child is seeded with the parent's
+cache file and writes to its own per-shard cache; the parent merges all
+child cache entries back before Cache::save(), so consecutive runs are
+fast. Pass --no-cache to disable.
+Diagnostic: set PHPCS_BATCH_TIMING=1 to print the slowest 7 batches
+(file lists + wall-clock elapsed) to STDERR after the run. Override the
+count via PHPCS_BATCH_TIMING_TOP=N.
+--- a/src/Runner.php
 +++ b/src/Runner.php
-@@ -429,8 +429,10 @@
+@@ -429,8 +429,10 @@ class Runner
              $this->config->parallel = 1;
          }
  
@@ -22,7 +32,7 @@ the violations exactly as if the parent had processed the file.--- a/src/Runner.
              $this->config->parallel = 1;
          }
  
-@@ -459,7 +461,7 @@
+@@ -459,7 +461,7 @@ class Runner
                  $numProcessed++;
                  $this->printProgress($file, $numFiles, $numProcessed);
              }
@@ -31,7 +41,7 @@ the violations exactly as if the parent had processed the file.--- a/src/Runner.
              // Batching and forking.
              $childProcs  = [];
              $numPerBatch = ceil($numFiles / $this->config->parallel);
-@@ -561,6 +563,11 @@
+@@ -561,6 +563,11 @@ class Runner
              if ($success === false) {
                  throw new RuntimeException('One or more child processes failed to run');
              }
@@ -43,7 +53,7 @@ the violations exactly as if the parent had processed the file.--- a/src/Runner.
          }//end if
  
          restore_error_handler();
-@@ -983,4 +990,243 @@
+@@ -983,4 +990,453 @@ class Runner
      }//end registerOutOfMemoryShutdownMessage()
  
  
@@ -96,7 +106,9 @@ the violations exactly as if the parent had processed the file.--- a/src/Runner.
 +            return true;
 +        }
 +
-+        $childArgs = $this->buildWindowsChildArgs();
++        $childArgs    = $this->buildWindowsChildArgs();
++        $cacheEnabled = ($this->config->cache === true);
++        $parentCache  = $cacheEnabled === true ? $this->readParentCacheFile() : null;
 +
 +        $children     = [];
 +        $totalBatches = 0;
@@ -111,72 +123,130 @@ the violations exactly as if the parent had processed the file.--- a/src/Runner.
 +                continue;
 +            }
 +
-+            $outFile = tempnam(sys_get_temp_dir(), 'phpcs-child-');
-+            $cmd     = array_merge(
++            $outFile        = tempnam(sys_get_temp_dir(), 'phpcs-child-');
++            $errFile        = tempnam(sys_get_temp_dir(), 'phpcs-err-');
++            $listFile       = tempnam(sys_get_temp_dir(), 'phpcs-list-');
++            file_put_contents($listFile, implode("\n", $slice));
++
++            $childCacheFile = null;
++            $cacheArgs      = ['--no-cache'];
++            if ($cacheEnabled === true) {
++                $childCacheFile = tempnam(sys_get_temp_dir(), 'phpcs-cache-');
++                if ($parentCache !== null) {
++                    file_put_contents($childCacheFile, $parentCache);
++                }
++
++                $cacheArgs = ['--cache='.$childCacheFile];
++            }
++
++            $cmd = array_merge(
 +                [PHP_BINARY, $script],
 +                $childArgs,
-+                ['--parallel=1', '-q', '--no-cache', '--report=json', '--report-file='.$outFile],
-+                $slice
++                ['--parallel=1', '-q', '--report=json', '--report-file='.$outFile, '--file-list='.$listFile],
++                $cacheArgs
 +            );
 +
++            // Redirect child stdout/stderr to files rather than pipes. Pipe
++            // buffers fill up on Windows when a child writes more than the OS
++            // buffer size, which deadlocks both the child (blocked on write)
++            // and the parent (blocked waiting for exit). Files never block.
 +            $proc = proc_open(
 +                $cmd,
 +                [
 +                    0 => ['pipe', 'r'],
-+                    1 => ['pipe', 'w'],
-+                    2 => ['pipe', 'w'],
++                    1 => ['file', $outFile.'.stdout', 'w'],
++                    2 => ['file', $errFile, 'w'],
 +                ],
 +                $pipes
 +            );
 +
 +            if (is_resource($proc) === false) {
 +                @unlink($outFile);
++                @unlink($errFile);
++                @unlink($listFile);
++                if ($childCacheFile !== null) {
++                    @unlink($childCacheFile);
++                }
++
 +                return false;
 +            }
 +
-+            fclose($pipes[0]);
-+            stream_set_blocking($pipes[1], false);
-+            stream_set_blocking($pipes[2], false);
++            if (isset($pipes[0]) === true && is_resource($pipes[0]) === true) {
++                fclose($pipes[0]);
++            }
 +
 +            $children[]    = [
-+                'proc'    => $proc,
-+                'stdout'  => $pipes[1],
-+                'stderr'  => $pipes[2],
-+                'outFile' => $outFile,
++                'proc'      => $proc,
++                'outFile'   => $outFile,
++                'errFile'   => $errFile,
++                'listFile'  => $listFile,
++                'cacheFile' => $childCacheFile,
++                'files'     => $slice,
++                'started'   => microtime(true),
++                'elapsed'   => 0.0,
 +            ];
 +            $totalBatches++;
 +        }
 +
 +        $success      = true;
 +        $numProcessed = 0;
-+        foreach ($children as $child) {
-+            $stderr = '';
-+            while (feof($child['stderr']) === false) {
-+                $chunk = fread($child['stderr'], 8192);
-+                if ($chunk === false || $chunk === '') {
-+                    usleep(10000);
-+                    if (feof($child['stderr']) === true) {
-+                        break;
-+                    }
++        $pending      = $children;
++
++        while (count($pending) > 0) {
++            $finishedKey = null;
++            foreach ($pending as $key => $child) {
++                $status = proc_get_status($child['proc']);
++                if ($status === false || $status['running'] === false) {
++                    $children[$key]['elapsed'] = (microtime(true) - $child['started']);
++                    $finishedKey = $key;
++                    break;
 +                }
-+
-+                $stderr .= (string) $chunk;
 +            }
 +
-+            while (feof($child['stdout']) === false) {
-+                fread($child['stdout'], 8192);
++            if ($finishedKey === null) {
++                usleep(10000);
++                continue;
 +            }
 +
-+            fclose($child['stdout']);
-+            fclose($child['stderr']);
-+            $exit = proc_close($child['proc']);
++            $finishedChild = $pending[$finishedKey];
++            unset($pending[$finishedKey]);
 +
-+            if (file_exists($child['outFile']) === true) {
-+                $raw  = file_get_contents($child['outFile']);
-+                @unlink($child['outFile']);
++            $exit = proc_close($finishedChild['proc']);
++
++            $fileCounts = [];
++            if (file_exists($finishedChild['outFile']) === true) {
++                $raw = file_get_contents($finishedChild['outFile']);
++                @unlink($finishedChild['outFile']);
 +                $json = ($raw === false || $raw === '') ? null : json_decode($raw, true);
 +                if (is_array($json) === true) {
 +                    $this->mergeChildJsonReport($json);
++                    if (isset($json['files']) === true && is_array($json['files']) === true) {
++                        foreach ($json['files'] as $reportPath => $info) {
++                            if (is_array($info) === true) {
++                                $fileCounts[$reportPath] = [
++                                    'errors'   => (isset($info['errors']) === true ? (int) $info['errors'] : 0),
++                                    'warnings' => (isset($info['warnings']) === true ? (int) $info['warnings'] : 0),
++                                ];
++                            }
++                        }
++                    }
++                }
++            }
++
++            @unlink($finishedChild['outFile'].'.stdout');
++            @unlink($finishedChild['listFile']);
++
++            $stderr = '';
++            if (file_exists($finishedChild['errFile']) === true) {
++                $errRaw = file_get_contents($finishedChild['errFile']);
++                @unlink($finishedChild['errFile']);
++                $stderr = ($errRaw === false) ? '' : $errRaw;
++            }
++
++            if ($finishedChild['cacheFile'] !== null) {
++                if (file_exists($finishedChild['cacheFile']) === true) {
++                    $this->mergeChildCacheFile($finishedChild['cacheFile']);
++                    @unlink($finishedChild['cacheFile']);
 +                }
 +            }
 +
@@ -188,15 +258,82 @@ the violations exactly as if the parent had processed the file.--- a/src/Runner.
 +                }
 +            }
 +
-+            $numProcessed++;
-+            $progressFile = new DummyFile('', $this->ruleset, $this->config);
-+            $progressFile->setErrorCounts(0, 0, 0, 0);
-+            $this->printProgress($progressFile, $totalBatches, $numProcessed);
++            foreach ($finishedChild['files'] as $filePath) {
++                $numProcessed++;
++
++                $errors   = 0;
++                $warnings = 0;
++                if (isset($fileCounts[$filePath]) === true) {
++                    $errors   = $fileCounts[$filePath]['errors'];
++                    $warnings = $fileCounts[$filePath]['warnings'];
++                } else {
++                    $base = basename($filePath);
++                    foreach ($fileCounts as $reportPath => $counts) {
++                        if (basename($reportPath) === $base) {
++                            $errors   = $counts['errors'];
++                            $warnings = $counts['warnings'];
++                            break;
++                        }
++                    }
++                }
++
++                $progressFile = new DummyFile($filePath, $this->ruleset, $this->config);
++                $progressFile->setErrorCounts($errors, $warnings, 0, 0);
++                $this->printProgress($progressFile, $numFiles, $numProcessed);
++            }
 +        }
++
++        $this->reportSlowestBatches($children);
 +
 +        return $success;
 +
 +    }//end runWindowsParallel()
++
++
++    /**
++     * Print the slowest N parallel batches to STDERR for diagnostics.
++     *
++     * Enable by setting the PHPCS_BATCH_TIMING environment variable to a
++     * truthy value before invoking phpcs. Optionally override the number of
++     * batches reported via PHPCS_BATCH_TIMING_TOP (default 7).
++     *
++     * @param array<int, array<string, mixed>> $children Completed child batch records.
++     *
++     * @return void
++     */
++    private function reportSlowestBatches(array $children)
++    {
++        $flag = getenv('PHPCS_BATCH_TIMING');
++        if ($flag === false || $flag === '' || $flag === '0') {
++            return;
++        }
++
++        $top = (int) getenv('PHPCS_BATCH_TIMING_TOP');
++        if ($top <= 0) {
++            $top = 7;
++        }
++
++        usort(
++            $children,
++            function ($a, $b) {
++                return ($b['elapsed'] <=> $a['elapsed']);
++            }
++        );
++
++        $slice = array_slice($children, 0, $top);
++        fwrite(STDERR, PHP_EOL.sprintf('=== Slowest %d phpcs batches ===', count($slice)).PHP_EOL);
++        foreach ($slice as $rank => $batch) {
++            $elapsed = number_format((float) $batch['elapsed'], 3);
++            $count   = count($batch['files']);
++            fwrite(STDERR, sprintf('#%d  %ss  (%d files)', ($rank + 1), $elapsed, $count).PHP_EOL);
++            foreach ($batch['files'] as $path) {
++                fwrite(STDERR, '    '.$path.PHP_EOL);
++            }
++        }
++
++        fwrite(STDERR, PHP_EOL);
++
++    }//end reportSlowestBatches()
 +
 +
 +    /**
@@ -223,6 +360,21 @@ the violations exactly as if the parent had processed the file.--- a/src/Runner.
 +            }
 +
 +            if (strncmp($arg, '--parallel', 10) === 0) {
++                continue;
++            }
++
++            if (strncmp($arg, '--cache', 7) === 0 || $arg === '--no-cache') {
++                continue;
++            }
++
++            // These are set explicitly per-child; passing the parent's
++            // versions through would conflict and corrupt the JSON report.
++            if (strncmp($arg, '--report', 8) === 0
++                || strncmp($arg, '--file-list', 11) === 0
++                || strncmp($arg, '--stdin-path', 12) === 0
++                || $arg === '-p'
++                || $arg === '--progress'
++            ) {
 +                continue;
 +            }
 +
@@ -284,6 +436,74 @@ the violations exactly as if the parent had processed the file.--- a/src/Runner.
 +        }
 +
 +    }//end mergeChildJsonReport()
++
++
++    /**
++     * Read the parent's resolved cache file contents (raw JSON) if present.
++     *
++     * Each child is seeded with this content so cache hits from previous
++     * runs are preserved across the proc_open boundary. The parent's
++     * \PHP_CodeSniffer\Util\Cache class stores the resolved path in a
++     * private static property, so reflection is required to read it.
++     *
++     * @return string|null Raw cache file contents, or null when no cache file exists.
++     */
++    private function readParentCacheFile()
++    {
++        try {
++            $ref  = new \ReflectionClass(\PHP_CodeSniffer\Util\Cache::class);
++            $prop = $ref->getProperty('path');
++            if (PHP_VERSION_ID < 80100) {
++                $prop->setAccessible(true);
++            }
++
++            $path = (string) $prop->getValue();
++        } catch (\ReflectionException $e) {
++            return null;
++        }
++
++        if ($path === '' || file_exists($path) === false) {
++            return null;
++        }
++
++        $contents = file_get_contents($path);
++        return ($contents === false) ? null : $contents;
++
++    }//end readParentCacheFile()
++
++
++    /**
++     * Merge a child's cache file entries into the parent's in-memory cache.
++     *
++     * The parent's Runner::run() calls Cache::save() once after all batches
++     * complete, so populating the in-memory cache here is sufficient to
++     * persist the merged result.
++     *
++     * @param string $cacheFile Absolute path to the child's per-shard cache file.
++     *
++     * @return void
++     */
++    private function mergeChildCacheFile($cacheFile)
++    {
++        $raw = file_get_contents($cacheFile);
++        if ($raw === false || $raw === '') {
++            return;
++        }
++
++        $data = json_decode($raw, true);
++        if (is_array($data) === false) {
++            return;
++        }
++
++        foreach ($data as $key => $value) {
++            if ($key === 'config') {
++                continue;
++            }
++
++            \PHP_CodeSniffer\Util\Cache::set($key, $value);
++        }
++
++    }//end mergeChildCacheFile()
 +
 +
  }//end class
