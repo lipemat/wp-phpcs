@@ -108,20 +108,6 @@ These standards are tuned to keep scans fast:
    adds a `proc_open`-based fallback to PHPCS's `Runner`, so `--parallel=N` works on
    Windows too. The patch is applied automatically by `cweagans/composer-patches` during
    `composer install` of this package. The POSIX `pcntl_fork` path is left untouched.
-   - To inherit the patch when consuming this package as a dependency, add the following
-     to your root `composer.json`:
-     ```json
-     {
-       "config": {
-         "allow-plugins": {
-           "cweagans/composer-patches": true
-         }
-       },
-       "extra": {
-         "enable-patching": true
-       }
-     }
-     ```
    - Each Windows child re-loads the ruleset, so parallelism only pays off on larger file
      counts (rule of thumb: > ~50 files). Combine with `--cache` for the best results.
    - To identify slow files in a large scan, set `PHPCS_BATCH_TIMING=1` before running
