@@ -41,7 +41,8 @@
   "extra": {
     "patches": {
       "squizlabs/php_codesniffer": {
-        "Enable --parallel on Windows via proc_open fallback": "dev/patches/runner-windows-parallel.patch"
+        "Enable --parallel on Windows via proc_open fallback": "dev/patches/runner-windows-parallel.patch",
+        "Fix PHP warning in Cache.php": "dev/patches/cache-php-warning-fix.patch"
       }
     },
     "composer-exit-on-patch-failure": true,
