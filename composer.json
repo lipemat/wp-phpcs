@@ -21,12 +21,12 @@
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "alpha",
   "require": {
     "php": ">=7.4.0",
     "automattic/vipwpcs": "^3.0.1",
     "dealerdirect/phpcodesniffer-composer-installer": "^1.1.2",
-    "phpcompatibility/phpcompatibility-wp": "^2.1.7",
+    "phpcompatibility/phpcompatibility-wp": "^3.0.0",
     "phpcsstandards/phpcsextra": "^1.0.2",
     "sirbrillig/phpcs-variable-analysis": "^2.12.0",
     "squizlabs/php_codesniffer": "^3.13.2",
@@ -36,8 +36,7 @@
     "ext-json": "*",
     "johnbillion/args": "^1",
     "lipemat/wordpress-libs": "^4",
-    "roave/security-advisories": "dev-latest",
-    "phpcompatibility/php-compatibility": "dev-master#9f7142356b5674164a6f6dbe12a7a1bcc632db21 as 9.4.0"
+    "roave/security-advisories": "dev-latest"
   },
   "scripts": {
     "git-hooks": "dev/bin/git-hooks.sh"
