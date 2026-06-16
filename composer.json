@@ -34,8 +34,6 @@
   },
   "require-dev": {
     "ext-json": "*",
-    "johnbillion/args": "^1",
-    "lipemat/wordpress-libs": "^4",
     "roave/security-advisories": "dev-latest"
   },
   "scripts": {
