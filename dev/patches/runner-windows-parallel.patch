@@ -53,7 +53,7 @@ count via PHPCS_BATCH_TIMING_TOP=N.
          }//end if
  
          restore_error_handler();
-@@ -983,4 +990,453 @@ class Runner
+@@ -983,4 +990,479 @@ class Runner
      }//end registerOutOfMemoryShutdownMessage()
  
  
@@ -412,25 +412,51 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +                continue;
 +            }
 +
-+            $dummy    = new DummyFile('phpcs_input_file: '.(string) $path."\n", $this->ruleset, $this->config);
++            // Anonymous DummyFile that exposes the protected addMessage() so
++            // child violations keep their original line and column. addError()
++            // /addWarning() derive the position from a token pointer, so passing
++            // null collapses every violation onto line 1. Mirrors
++            // LocalFile::replayErrors().
++            $dummy = new class('phpcs_input_file: '.(string) $path."\n", $this->ruleset, $this->config) extends DummyFile {
++
++
++                /**
++                 * Replay child-reported violations at their original position.
++                 *
++                 * @param array<int, array<string, mixed>> $messages Decoded JSON report messages for one file.
++                 *
++                 * @return void
++                 */
++                public function replayMessages(array $messages)
++                {
++                    $this->replayingErrors = true;
++                    foreach ($messages as $msg) {
++                        if (is_array($msg) === false) {
++                            continue;
++                        }
++
++                        $type = isset($msg['type']) ? (string) $msg['type'] : 'ERROR';
++                        $this->addMessage(
++                            ($type !== 'WARNING'),
++                            isset($msg['message']) ? (string) $msg['message'] : '',
++                            isset($msg['line']) ? (int) $msg['line'] : 1,
++                            isset($msg['column']) ? (int) $msg['column'] : 1,
++                            (isset($msg['source']) === true && $msg['source'] !== '') ? (string) $msg['source'] : 'Internal.Unknown',
++                            [],
++                            isset($msg['severity']) ? (int) $msg['severity'] : 5,
++                            isset($msg['fixable']) ? (bool) $msg['fixable'] : false
++                        );
++                    }
++
++                    $this->replayingErrors = false;
++
++                }//end replayMessages()
++
++
++            };
++
 +            $messages = (isset($info['messages']) === true && is_array($info['messages']) === true) ? $info['messages'] : [];
-+            foreach ($messages as $msg) {
-+                if (is_array($msg) === false) {
-+                    continue;
-+                }
-+
-+                $message  = isset($msg['message']) ? (string) $msg['message'] : '';
-+                $source   = isset($msg['source']) && $msg['source'] !== '' ? (string) $msg['source'] : 'Internal.Unknown';
-+                $severity = isset($msg['severity']) ? (int) $msg['severity'] : 5;
-+                $fixable  = isset($msg['fixable']) ? (bool) $msg['fixable'] : false;
-+                $type     = isset($msg['type']) ? (string) $msg['type'] : 'ERROR';
-+
-+                if ($type === 'WARNING') {
-+                    $dummy->addWarning($message, null, $source, [], $severity, $fixable);
-+                } else {
-+                    $dummy->addError($message, null, $source, [], $severity, $fixable);
-+                }
-+            }
++            $dummy->replayMessages($messages);
 +
 +            $this->reporter->cacheFileReport($dummy);
 +        }
