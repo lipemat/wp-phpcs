@@ -10,6 +10,17 @@ deadlock, and the file list passed via --file-list. The child writes a
 JSON report to --report-file; the parent merges each report into its
 Reporter via DummyFile so all configured report formats receive the
 violations, and prints one progress dot per file (reflecting E/W/S).
+Child report paths already have --basepath stripped, so the parent maps
+them back to the dispatched path before replaying: File::addMessage()
+matches a sniff's include/exclude patterns against the file path and
+silently drops every message when a shortened path stops matching.
+PHPCBF: runPHPCBF() forces its report set to "cbf", so a child cannot
+produce a JSON report. Instead the parent passes PHPCS_PARALLEL_CBF_REPORT
+in the child environment; the child points the Cbf report at that file,
+skips printing its own summary, and writes its run totals to a sidecar
+".totals" file. The parent appends that intermediate data to its own Cbf
+report cache and folds in the totals, so the PHPCBF summary, progress
+dots and exit code match a serial run.
 Caching: when --cache is enabled, each child is seeded with the parent's
 cache file and writes to its own per-shard cache; the parent merges all
 child cache entries back before Cache::save(), so consecutive runs are
@@ -19,7 +30,71 @@ Diagnostic: set PHPCS_BATCH_TIMING=1 to print the slowest 7 batches
 count via PHPCS_BATCH_TIMING_TOP=N.
 --- a/src/Runner.php
 +++ b/src/Runner.php
-@@ -429,8 +429,10 @@ class Runner
+@@ -28,6 +28,16 @@ use PHP_CodeSniffer\Util\Tokens;
+ class Runner
+ {
+ 
++    /**
++     * Environment variable used to hand raw Cbf report data back to a parallel parent.
++     *
++     * Set by the parent process when spawning a PHPCBF child on platforms without
++     * PCNTL. The value is the path the child writes its raw per-file Cbf data to.
++     *
++     * @var string
++     */
++    const CBF_CHILD_REPORT_ENV = 'PHPCS_PARALLEL_CBF_REPORT';
++
+     /**
+      * The config data for the run.
+      *
+@@ -208,16 +218,43 @@ class Runner
+ 
+             $this->config->reports = $newReports;
+ 
++            // A parallel child hands its raw per-file Cbf data back to the parent
++            // through this file. The parent needs that intermediate data, not the
++            // formatted summary, so the report is redirected and printing skipped.
++            $childReport = getenv(self::CBF_CHILD_REPORT_ENV);
++            if (is_string($childReport) === false || $childReport === '') {
++                $childReport = null;
++            } else {
++                $newReports['cbf']     = $childReport;
++                $this->config->reports = $newReports;
++            }
++
+             // If a standard tries to set command line arguments itself, some
+             // may be blocked because PHPCBF is running, so stop the script
+             // dying if any are found.
+             $this->config->dieOnUnknownArg = false;
+ 
+             $this->run();
+-            $this->reporter->printReports();
+ 
+-            echo PHP_EOL;
+-            Timing::printRunTime();
++            if ($childReport === null) {
++                $this->reporter->printReports();
++
++                echo PHP_EOL;
++                Timing::printRunTime();
++            } else {
++                file_put_contents(
++                    $childReport.'.totals',
++                    json_encode(
++                        [
++                            'totalFiles'    => $this->reporter->totalFiles,
++                            'totalErrors'   => $this->reporter->totalErrors,
++                            'totalWarnings' => $this->reporter->totalWarnings,
++                            'totalFixable'  => $this->reporter->totalFixable,
++                            'totalFixed'    => $this->reporter->totalFixed,
++                        ]
++                    )
++                );
++            }
+         } catch (DeepExitException $e) {
+             echo $e->getMessage();
+             return $e->getCode();
+@@ -429,8 +466,10 @@ class Runner
              $this->config->parallel = 1;
          }
  
@@ -32,7 +107,7 @@ count via PHPCS_BATCH_TIMING_TOP=N.
              $this->config->parallel = 1;
          }
  
-@@ -459,7 +461,7 @@ class Runner
+@@ -459,7 +498,7 @@ class Runner
                  $numProcessed++;
                  $this->printProgress($file, $numFiles, $numProcessed);
              }
@@ -41,7 +116,7 @@ count via PHPCS_BATCH_TIMING_TOP=N.
              // Batching and forking.
              $childProcs  = [];
              $numPerBatch = ceil($numFiles / $this->config->parallel);
-@@ -561,6 +563,11 @@ class Runner
+@@ -561,6 +600,11 @@ class Runner
              if ($success === false) {
                  throw new RuntimeException('One or more child processes failed to run');
              }
@@ -53,7 +128,7 @@ count via PHPCS_BATCH_TIMING_TOP=N.
          }//end if
  
          restore_error_handler();
-@@ -983,4 +990,479 @@ class Runner
+@@ -983,4 +1027,672 @@ class Runner
      }//end registerOutOfMemoryShutdownMessage()
  
  
@@ -109,6 +184,7 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +        $childArgs    = $this->buildWindowsChildArgs();
 +        $cacheEnabled = ($this->config->cache === true);
 +        $parentCache  = $cacheEnabled === true ? $this->readParentCacheFile() : null;
++        $isCbf        = (defined('PHP_CODESNIFFER_CBF') === true && PHP_CODESNIFFER_CBF === true);
 +
 +        $children     = [];
 +        $totalBatches = 0;
@@ -139,10 +215,27 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +                $cacheArgs = ['--cache='.$childCacheFile];
 +            }
 +
++            // PHPCBF forces its own report set, so the JSON report cannot be used.
++            // The child is told where to write its raw Cbf data instead.
++            $childEnv    = null;
++            $reportFlags = ['--report=json', '--report-file='.$outFile];
++            if ($isCbf === true) {
++                $reportFlags = [];
++                $inherited   = getenv();
++                if (is_array($inherited) === false) {
++                    $inherited = [];
++                }
++
++                $inherited[self::CBF_CHILD_REPORT_ENV] = $outFile;
++                $childEnv = $inherited;
++            }
++
 +            $cmd = array_merge(
 +                [PHP_BINARY, $script],
 +                $childArgs,
-+                ['--parallel=1', '-q', '--report=json', '--report-file='.$outFile, '--file-list='.$listFile],
++                ['--parallel=1', '-q'],
++                $reportFlags,
++                ['--file-list='.$listFile],
 +                $cacheArgs
 +            );
 +
@@ -157,7 +250,9 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +                    1 => ['file', $outFile.'.stdout', 'w'],
 +                    2 => ['file', $errFile, 'w'],
 +                ],
-+                $pipes
++                $pipes,
++                null,
++                $childEnv
 +            );
 +
 +            if (is_resource($proc) === false) {
@@ -217,23 +312,35 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +            if (file_exists($finishedChild['outFile']) === true) {
 +                $raw = file_get_contents($finishedChild['outFile']);
 +                @unlink($finishedChild['outFile']);
-+                $json = ($raw === false || $raw === '') ? null : json_decode($raw, true);
-+                if (is_array($json) === true) {
-+                    $this->mergeChildJsonReport($json);
-+                    if (isset($json['files']) === true && is_array($json['files']) === true) {
-+                        foreach ($json['files'] as $reportPath => $info) {
-+                            if (is_array($info) === true) {
-+                                $fileCounts[$reportPath] = [
-+                                    'errors'   => (isset($info['errors']) === true ? (int) $info['errors'] : 0),
-+                                    'warnings' => (isset($info['warnings']) === true ? (int) $info['warnings'] : 0),
-+                                ];
++                if ($isCbf === true) {
++                    $fileCounts = $this->mergeChildCbfReport(
++                        ($raw === false) ? '' : $raw,
++                        $finishedChild['outFile'].'.totals',
++                        $finishedChild['files']
++                    );
++                } else {
++                    $json = ($raw === false || $raw === '') ? null : json_decode($raw, true);
++                    if (is_array($json) === true) {
++                        $this->mergeChildJsonReport($json, $finishedChild['files']);
++                        if (isset($json['files']) === true && is_array($json['files']) === true) {
++                            foreach ($json['files'] as $reportPath => $info) {
++                                if (is_array($info) === true) {
++                                    $resolved = $this->resolveChildReportPath((string) $reportPath, $finishedChild['files']);
++                                    $fileCounts[$resolved] = [
++                                        'errors'   => (isset($info['errors']) === true ? (int) $info['errors'] : 0),
++                                        'warnings' => (isset($info['warnings']) === true ? (int) $info['warnings'] : 0),
++                                        'fixable'  => 0,
++                                        'fixed'    => 0,
++                                    ];
++                                }
 +                            }
 +                        }
 +                    }
-+                }
-+            }
++                }//end if
++            }//end if
 +
 +            @unlink($finishedChild['outFile'].'.stdout');
++            @unlink($finishedChild['outFile'].'.totals');
 +            @unlink($finishedChild['listFile']);
 +
 +            $stderr = '';
@@ -261,24 +368,26 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +            foreach ($finishedChild['files'] as $filePath) {
 +                $numProcessed++;
 +
-+                $errors   = 0;
-+                $warnings = 0;
++                $counts = [
++                    'errors'   => 0,
++                    'warnings' => 0,
++                    'fixable'  => 0,
++                    'fixed'    => 0,
++                ];
 +                if (isset($fileCounts[$filePath]) === true) {
-+                    $errors   = $fileCounts[$filePath]['errors'];
-+                    $warnings = $fileCounts[$filePath]['warnings'];
++                    $counts = $fileCounts[$filePath];
 +                } else {
 +                    $base = basename($filePath);
-+                    foreach ($fileCounts as $reportPath => $counts) {
++                    foreach ($fileCounts as $reportPath => $reportCounts) {
 +                        if (basename($reportPath) === $base) {
-+                            $errors   = $counts['errors'];
-+                            $warnings = $counts['warnings'];
++                            $counts = $reportCounts;
 +                            break;
 +                        }
 +                    }
 +                }
 +
 +                $progressFile = new DummyFile($filePath, $this->ruleset, $this->config);
-+                $progressFile->setErrorCounts($errors, $warnings, 0, 0);
++                $progressFile->setErrorCounts($counts['errors'], $counts['warnings'], $counts['fixable'], $counts['fixed']);
 +                $this->printProgress($progressFile, $numFiles, $numProcessed);
 +            }
 +        }
@@ -397,11 +506,13 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +     * Reporter::cacheFileReport so every configured report format receives
 +     * the data exactly as if the parent had processed the file itself.
 +     *
-+     * @param array<string, mixed> $json Decoded JSON report from a child phpcs invocation.
++     * @param array<string, mixed> $json       Decoded JSON report from a child phpcs invocation.
++     * @param array<int, string>   $batchFiles The file paths assigned to the child, used to
++     *                                         restore the pre-basepath-stripped path.
 +     *
 +     * @return void
 +     */
-+    private function mergeChildJsonReport(array $json)
++    private function mergeChildJsonReport(array $json, array $batchFiles)
 +    {
 +        if (isset($json['files']) === false || is_array($json['files']) === false) {
 +            return;
@@ -412,12 +523,14 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +                continue;
 +            }
 +
++            $path = $this->resolveChildReportPath((string) $path, $batchFiles);
++
 +            // Anonymous DummyFile that exposes the protected addMessage() so
 +            // child violations keep their original line and column. addError()
 +            // /addWarning() derive the position from a token pointer, so passing
 +            // null collapses every violation onto line 1. Mirrors
 +            // LocalFile::replayErrors().
-+            $dummy = new class('phpcs_input_file: '.(string) $path."\n", $this->ruleset, $this->config) extends DummyFile {
++            $dummy = new class('phpcs_input_file: '.$path."\n", $this->ruleset, $this->config) extends DummyFile {
 +
 +
 +                /**
@@ -462,6 +575,161 @@ count via PHPCS_BATCH_TIMING_TOP=N.
 +        }
 +
 +    }//end mergeChildJsonReport()
++
++
++    /**
++     * Merge a child's raw Cbf report data into the parent Reporter.
++     *
++     * PHPCBF forces its report set to "cbf", so a child cannot produce the JSON
++     * report the PHPCS path relies on. Instead the child writes the intermediate
++     * Cbf data - one `filename>>errors>>warnings>>fixable>>fixed` line per fixed
++     * file - plus a sidecar file holding its run totals. Both are folded into the
++     * parent so the final summary matches a serial run.
++     *
++     * @param string             $raw        Raw Cbf report data written by the child.
++     * @param string             $totalsFile Path to the sidecar file holding the child's totals.
++     * @param array<int, string> $batchFiles The file paths assigned to the child.
++     *
++     * @return array<string, array<string, int>> Per-file counts keyed by dispatched path.
++     */
++    private function mergeChildCbfReport($raw, $totalsFile, array $batchFiles)
++    {
++        $fileCounts = [];
++
++        if ($raw !== '') {
++            $this->appendCbfReportData($raw);
++
++            foreach (explode(PHP_EOL, $raw) as $line) {
++                if ($line === '') {
++                    continue;
++                }
++
++                $parts = explode('>>', $line);
++                if (count($parts) < 5) {
++                    continue;
++                }
++
++                $resolved = $this->resolveChildReportPath($parts[0], $batchFiles);
++                $fileCounts[$resolved] = [
++                    'errors'   => (int) $parts[1],
++                    'warnings' => (int) $parts[2],
++                    'fixable'  => (int) $parts[3],
++                    'fixed'    => (int) $parts[4],
++                ];
++            }
++        }
++
++        if (file_exists($totalsFile) === true) {
++            $totalsRaw = file_get_contents($totalsFile);
++            @unlink($totalsFile);
++            $totals = ($totalsRaw === false || $totalsRaw === '') ? null : json_decode($totalsRaw, true);
++            if (is_array($totals) === true) {
++                $this->reporter->totalFiles    += (isset($totals['totalFiles']) === true ? (int) $totals['totalFiles'] : 0);
++                $this->reporter->totalErrors   += (isset($totals['totalErrors']) === true ? (int) $totals['totalErrors'] : 0);
++                $this->reporter->totalWarnings += (isset($totals['totalWarnings']) === true ? (int) $totals['totalWarnings'] : 0);
++                $this->reporter->totalFixable  += (isset($totals['totalFixable']) === true ? (int) $totals['totalFixable'] : 0);
++                $this->reporter->totalFixed    += (isset($totals['totalFixed']) === true ? (int) $totals['totalFixed'] : 0);
++            }
++        }
++
++        return $fileCounts;
++
++    }//end mergeChildCbfReport()
++
++
++    /**
++     * Append raw Cbf report data to the parent Reporter's report cache.
++     *
++     * Reporter builds the final PHPCBF summary from the intermediate data each
++     * report accumulates during the run. That store is private, so reflection is
++     * required to append the data produced by a child process to it.
++     *
++     * @param string $data Raw Cbf report data written by a child process.
++     *
++     * @return void
++     */
++    private function appendCbfReportData($data)
++    {
++        try {
++            $ref         = new \ReflectionClass($this->reporter);
++            $reportsProp = $ref->getProperty('reports');
++            $tmpProp     = $ref->getProperty('tmpFiles');
++            if (PHP_VERSION_ID < 80100) {
++                $reportsProp->setAccessible(true);
++                $tmpProp->setAccessible(true);
++            }
++
++            $reports  = $reportsProp->getValue($this->reporter);
++            $tmpFiles = $tmpProp->getValue($this->reporter);
++        } catch (\ReflectionException $e) {
++            return;
++        }
++
++        if (is_array($reports) === false || isset($reports['cbf']) === false) {
++            return;
++        }
++
++        $target = $reports['cbf']['output'];
++        if ($target === null) {
++            $target = (isset($tmpFiles['cbf']) === true) ? $tmpFiles['cbf'] : null;
++        }
++
++        if ($target === null) {
++            return;
++        }
++
++        file_put_contents($target, $data, (FILE_APPEND | LOCK_EX));
++
++    }//end appendCbfReportData()
++
++
++    /**
++     * Map a path from a child JSON report back to the path the parent dispatched.
++     *
++     * Children run the same config as the parent, so their report paths have
++     * already had --basepath stripped. Replaying those shortened paths breaks
++     * File::addMessage(), which matches a sniff's include/exclude patterns
++     * against the file path and silently discards every message when a
++     * pattern such as `*<slash>core/*` can no longer match. Restoring the
++     * original path keeps that matching consistent with the child.
++     *
++     * @param string             $reportPath Path as reported by the child.
++     * @param array<int, string> $batchFiles The file paths assigned to the child.
++     *
++     * @return string
++     */
++    private function resolveChildReportPath($reportPath, array $batchFiles)
++    {
++        $basepath = $this->config->basepath;
++        $needle   = strtolower(str_replace('/', DIRECTORY_SEPARATOR, $reportPath));
++        $basename = strtolower(basename($reportPath));
++        $suffix   = null;
++        $fallback = null;
++
++        foreach ($batchFiles as $filePath) {
++            $candidate = strtolower(str_replace('/', DIRECTORY_SEPARATOR, $filePath));
++            if ($candidate === $needle
++                || strtolower(str_replace('/', DIRECTORY_SEPARATOR, Common::stripBasepath($filePath, $basepath))) === $needle
++            ) {
++                return $filePath;
++            }
++
++            if ($suffix === null && substr($candidate, -(strlen($needle) + 1)) === DIRECTORY_SEPARATOR.$needle) {
++                $suffix = $filePath;
++            }
++
++            if ($fallback === null && strtolower(basename($filePath)) === $basename) {
++                $fallback = $filePath;
++            }
++        }
++
++        if ($suffix !== null) {
++            return $suffix;
++        }
++
++        return ($fallback === null) ? $reportPath : $fallback;
++
++    }//end resolveChildReportPath()
 +
 +
 +    /**
