@@ -87,6 +87,7 @@
         <exclude name="WordPress.Arrays.ArrayIndentation" />
         <exclude name="WordPress.DB.SlowDBQuery" />
         <exclude name="WordPress.Files" />
+        <exclude name="WordPress.Security.NonceVerification.Recommended" />
         <exclude name="WordPress.WhiteSpace.OperatorSpacing" />
         <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
     </rule>

@@ -25,7 +25,7 @@ use WordPressCS\WordPress\AbstractFunctionRestrictionsSniff;
  * @since  4.4.0
  *
  * @code   `Missing` - For `POST` superglobals.
- * @code   `Recommended` - For `GET` or `REQUEST` superglobals.
+ * @code   `Recommended` - For `REQUEST` superglobals.
  */
 class NonceVerificationSniff extends \WordPressCS\WordPress\Sniffs\Security\NonceVerificationSniff {
 	/**
@@ -54,7 +54,6 @@ class NonceVerificationSniff extends \WordPressCS\WordPress\Sniffs\Security\Nonc
 	 */
 	protected array $inputs = [
 		'INPUT_POST'    => true,
-		'INPUT_GET'     => false,
 		'INPUT_REQUEST' => false,
 	];
 
