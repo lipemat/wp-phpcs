@@ -24,7 +24,24 @@ use WordPressVIPMinimum\Sniffs\Performance\WPQueryParamsSniff;
  */
 class PostNotInSniff extends AbstractArrayObjectAssignment {
 	/**
-	 * Whether the current $stackPtr being scanned is nested in a function call to get_users().
+	 * Functions where `exclude` targets users or terms instead of posts.
+	 */
+	public const NON_POST_FUNCTIONS = [
+		'get_categories'         => true,
+		'get_tags'               => true,
+		'get_terms'              => true,
+		'get_users'              => true,
+		'wp_dropdown_categories' => true,
+		'wp_dropdown_users'      => true,
+		'wp_list_authors'        => true,
+		'wp_list_categories'     => true,
+		'wp_tag_cloud'           => true,
+	];
+
+	/**
+	 * Whether the current $stackPtr being scanned is nested in a non-post function call.
+	 *
+	 * @see PostNotInSniff::NON_POST_FUNCTIONS
 	 *
 	 * @var bool
 	 */
@@ -73,11 +90,7 @@ class PostNotInSniff extends AbstractArrayObjectAssignment {
 		}
 
 		if ( 'exclude' === TextStrings::stripQuotes( $content ) ) {
-			$this->in_non_post_calls = (bool) ContextHelper::is_in_function_call( $this->phpcsFile, $stackPtr, [ 'get_users' => true ], true, true );
-
-			if ( false === $this->in_non_post_calls ) {
-				$this->in_non_post_calls = (bool) ContextHelper::is_in_function_call( $this->phpcsFile, $stackPtr, [ 'get_terms' => true ], true, true );
-			}
+			$this->in_non_post_calls = (bool) ContextHelper::is_in_function_call( $this->phpcsFile, $stackPtr, static::NON_POST_FUNCTIONS, true, true );
 
 			if ( false === $this->in_non_post_calls ) {
 				$this->in_non_post_calls = $this->is_in_class( 'Get_Terms', $stackPtr );
